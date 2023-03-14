@@ -63,7 +63,7 @@ dal-footer {
 
 		<nav class="menu">
 			<ul class="navi">
-				<li><a href="index.jsp?main=whatpick/movieaddform.jsp"
+				<li><a href="index.jsp?main=movie/movie_list.jsp"
 					class="mainmenu">영화</a></li>
 				<li><a href="index.jsp?main=whatpick/category.jsp"
 					class="mainmenu">카테고리</a></li>

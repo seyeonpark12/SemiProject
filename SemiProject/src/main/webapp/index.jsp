@@ -27,6 +27,7 @@ String root = request.getContextPath();
 
 	</div>
 
+<<<<<<< HEAD
 	<div class="layout main">
 		<jsp:include page="<%=mainPage%>" />
 	</div>
@@ -34,6 +35,11 @@ String root = request.getContextPath();
 	<footer style="positon: absolute; top: 2000px;">
 		<jsp:include page="layout/footer.html"></jsp:include>
 	</footer>
+=======
+<footer style="positon:absolute; top:150px;">
+	<jsp:include page="layout/footer.html"></jsp:include>
+</footer>
+>>>>>>> 97552af98f17ba2d018896c37adad0821a92eac1
 
 </body>
 </html>
