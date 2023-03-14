@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.bodywrap {
+	height: 800px;
+	width: 1920px;
+	margin-top: 50px;
+}
+/*이미지슬라이드*/
+.imgslide {
+	position: relative;
+	width: 1920px;
+	height: 750px;
+	overflow: hidden;
+}
+
+.imgslide>a {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.imgslide a>img {
+	height: 100%;
+}
+
+/*평점 TOP5*/
+#moviewrap {
+	width: 1920px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-top: 20px;
+}
+
+article {
+	float: left;
+	margin-left: 30px;
+	margin-bottom: 10px;
+}
+
+article a {
+	text-align: center;
+	color: black;
+	font-size: 16px;
+}
+
+.contents {
+	margin-top: 50px;
+	position: relative;
+	width: 1400px;
+	height: 600px;
+	overflow: hidden;
+}
+
+.topname {
+	color: #292a32;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 700;
+}
