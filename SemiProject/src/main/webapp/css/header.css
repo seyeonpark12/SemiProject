@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+*{
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	font-family:"Noto Sans KR";
+	color: black;
+}
+body{
+	width: 1920px;
+	background-color: #ffffff;
+	font-size:16px;
+}
+a{
+	text-decoration:none;
+	display: block;
+}
+
+header{
+	height:100px;
+	width:1920px;
+	position:relative;
+}
+
+.top{
+	height:100px;
+	width:1920px;
+	position:absolute;
+}
+
+.logo{
+	float:left;
+	width:200px;
+	margin-left: 100px;
+	margin-top:-20px;
+}
+
+.logo img{
+	float:left;
+	width:130px; 
+}
+
+.menu{
+	float:left;
+	width:400px;
+	right:0;
+	background-color:#ffffff;
+	z-index:1;
+}
+
+.navi>li{
+	float:left;
+	width:150px;
+}
+
+.navi>li>a{
+	font-family:"Noto Sans KR";
+	line-height:40px;
+	font-size: 16px;
+	font-weight:bold;
+	text-align:center;
+	color:black;
+	pointer:cursor;
+}
+
+navi>li:hover{
+	text-decoration:none;
+}
+
+.menu2{
+	float:right;
+	width:200px;
+	margin-right: -300px;
+	background-color:#ffffff;
+	z-index:1;
+}
+
