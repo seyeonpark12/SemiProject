@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-=======
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
->>>>>>> b12a1ae89092cf7d6ad3abc45949684c44874162
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<<<<<<< HEAD
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WPICK</title>
 <link rel="favicon" href="../layout_image/titlelogo.ico">
@@ -21,9 +16,6 @@
 </head>
 
 <body>
-main!!!
-</body>
-=======
 
 <title>main</title>
 
@@ -108,6 +100,5 @@ main!!!
 		$('.imgslide a:first-child').fadeOut().next('a').fadeIn().end()
 				.appendTo('.imgslide');
 	}, 3000);
-</script>
->>>>>>> b12a1ae89092cf7d6ad3abc45949684c44874162
+
 </html>

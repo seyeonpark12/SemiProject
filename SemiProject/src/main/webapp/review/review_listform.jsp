@@ -25,8 +25,8 @@ int totalPage; //총 페이지수
 int startPage; //각블럭의 시작페이지
 int endPage; //각 블럭의 마지막페이지
 int start; //각페이지 시작번호
-int perPage = 3; //현제페이지 보여질 글의 갯수
-int perBlock = 5; //한블럭당 보여지는 페이지개수
+int perPage = 5; //현재 페이지 보여질 글의 갯수
+int perBlock = 5; //한 블럭당 보여지는 페이지개수
 int currentPage; //현재페이지
 int no;
 
@@ -60,7 +60,6 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 no = totalCount - (currentPage - 1) * perPage;
 %>
-<body>
 <body>
 	<div style="margin: 30px 30px; width: 800px;">
 		<br>
@@ -107,9 +106,9 @@ no = totalCount - (currentPage - 1) * perPage;
 				<td colspan="5"><span style="float: right;">
 
 						&nbsp;
-						<button type="button" class="btn btn-success btn-sm" onclick="location.href='index.jsp?main=review/reviewinsertform.jsp'">
+						<button type="button" class="btn btn-success btn-sm" onclick="location.href='../review/review_addform.jsp'">
 							<span class="glyphicon glyphicon-pencil">글쓰기</span>
-							
+
 						</button>
 					</span></td>
 			</tr>
@@ -125,7 +124,7 @@ no = totalCount - (currentPage - 1) * perPage;
 			//이전
 			if (startPage > 1) {
 			%>
-			<li><a href="index.jsp?main=board/boardlist.jsp?currentPage=<%=startPage - 1%>">이전</a></li>
+			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=startPage - 1%>">이전</a></li>
 			<%
 			}
 
@@ -133,11 +132,11 @@ no = totalCount - (currentPage - 1) * perPage;
 
 			if (pp == currentPage) {
 			%>
-			<li class="active"><a href="index.jsp?main=board/boardlist.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
+			<li class="active"><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
 			<%
 			} else {
 			%>
-			<li><a href="index.jsp?main=board/boardlist.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
+			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
 			<%
 			}
 
@@ -146,7 +145,7 @@ no = totalCount - (currentPage - 1) * perPage;
 			//다음
 			if (endPage < totalPage) {
 			%>
-			<li><a href="index.jsp?main=board/boardlist.jsp?currentPage=<%=endPage + 1%>">다음</a></li>
+			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=endPage + 1%>">다음</a></li>
 			<%
 			}
 			%>
