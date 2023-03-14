@@ -14,6 +14,43 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+	.poster{
+		width: 150px;
+		height: 200px;
+	}
+</style>
+
+<script type="text/javascript">
+$(function(){
+	
+	$("#moviedel").click(function(){
+		
+		var cnt=$(".movie_num:checked").length;
+		if(cnt==0){
+			
+			alert("삭제할 영화를 선택해주세요");
+			return;
+		}
+		
+		$(".movie_num:checked").each(function(i,element){
+			
+			var movie_num=$(this).attr("movie_num");
+			$.ajax({
+				type:"get",
+				dataType:"html",
+				url:"movie/movie_delete.jsp",
+				data:{"movie_num":movie_num},
+				success:function(){
+					
+					location.reload();
+				}
+			});
+		});
+		
+	});
+})
+</script>
 </head>
 
 <%
@@ -21,8 +58,8 @@
 	//로그인상태 확인 후 입력폼  나타내기
 	String loginok = (String)session.getAttribute("loginok");
 	//id
-	String myid = (String)session.getAttribute("myid");
-
+	//String myid = (String)session.getAttribute("myid");
+	String myid="admin";
 	MovieDao dao = new MovieDao();
 
 	//블럭 < 1 2 3 4 5 >
@@ -86,8 +123,8 @@
   <div class="tab-content">
     <div id="tabs-1" class="tab-pane fade in active">
 
-       <table class="" style="width: 1000px; border-collapse: none;">
-       <br><br>
+       <table style="width: 1000px; border-collapse: none;">
+      	 <br><br>
        		
              <tr>
                 <%
@@ -101,7 +138,12 @@
                 	
                 	%>
                 	<td>
-                	  <input type="checkbox" id="movie_del">
+                	<%
+                		if(myid.equals("admin")){%>
+                			
+                	  <input type="checkbox" name="movie_num" class="movie_num" movie_num="<%=dto.getMovie_num()%>" id="movie_del">
+                		<%}
+                	%>
                       <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
                       <br>
                       <%=dto.getMovie_subject() %>
@@ -124,11 +166,359 @@
              </tr>
        </table>
    </div>
+   
+   <div id="tabs-2" class="tab-pane fade">
+
+       <table style="width: 1000px; border-collapse: none;">
+      	 <br><br>
+       		
+             <tr>
+                <%
+
+                int j=0;
+                
+                for(MovieDto dto:list)
+                {
+                	//장르분류
+                	if(dto.getMovie_genre().equals("로맨스")){
+                	
+                	//이미지
+                	String poster=dto.getMovie_poster();          	
+                	
+                	%>
+                	<td>
+                	<%
+                		if(myid.equals("admin")){%>
+                			
+                	  <input type="checkbox" id="movie_del">
+                		<%}
+                	%>
+                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <br>
+                      <%=dto.getMovie_subject() %>
+
+                      </a>
+                   </td>
+                   
+                   <%
+                   if((i+1)%4==0)
+                   {%>
+                	   </tr>
+                	   <tr>
+                   <%}
+                   j++;
+                                 	
+                }
+                }
+                                
+                %>
+                   
+             </tr>
+       </table>
+   </div>
+   
+   <div id="tabs-3" class="tab-pane fade">
+
+       <table style="width: 1000px; border-collapse: none;">
+      	 <br><br>
+       		
+             <tr>
+                <%
+
+                int x=0;
+                
+                for(MovieDto dto:list)
+                {
+                	//장르분류
+                	if(dto.getMovie_genre().equals("액션")){
+                	
+                	//이미지
+                	String poster=dto.getMovie_poster();          	
+                	
+                	%>
+                	<td>
+                	<%
+                		if(myid.equals("admin")){%>
+                			
+                	  <input type="checkbox" id="movie_del">
+                		<%}
+                	%>
+                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <br>
+                      <%=dto.getMovie_subject() %>
+
+                      </a>
+                   </td>
+                   
+                   <%
+                   if((i+1)%4==0)
+                   {%>
+                	   </tr>
+                	   <tr>
+                   <%}
+                   x++;
+                                 	
+                }
+                }
+                                
+                %>
+                   
+             </tr>
+       </table>
+   </div>
+   
+   <div id="tabs-4" class="tab-pane fade">
+
+       <table style="width: 1000px; border-collapse: none;">
+      	 <br><br>
+       		
+             <tr>
+                <%
+
+                int y=0;
+                
+                for(MovieDto dto:list)
+                {
+                	//장르분류
+                	if(dto.getMovie_genre().equals("코미디")){
+                	
+                	//이미지
+                	String poster=dto.getMovie_poster();          	
+                	
+                	%>
+                	<td>
+                	<%
+                		if(myid.equals("admin")){%>
+                			
+                	  <input type="checkbox" id="movie_del">
+                		<%}
+                	%>
+                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <br>
+                      <%=dto.getMovie_subject() %>
+
+                      </a>
+                   </td>
+                   
+                   <%
+                   if((i+1)%4==0)
+                   {%>
+                	   </tr>
+                	   <tr>
+                   <%}
+                   y++;
+                                 	
+                }
+                }
+                                
+                %>
+                   
+             </tr>
+       </table>
+   </div>
+   
+   <div id="tabs-5" class="tab-pane fade">
+
+       <table style="width: 1000px; border-collapse: none;">
+      	 <br><br>
+       		
+             <tr>
+                <%
+
+                int z=0;
+                
+                for(MovieDto dto:list)
+                {
+                	//장르분류
+                	if(dto.getMovie_genre().equals("공포")){
+                	
+                	//이미지
+                	String poster=dto.getMovie_poster();          	
+                	
+                	%>
+                	<td>
+                	<%
+                		if(myid.equals("admin")){%>
+                			
+                	  <input type="checkbox" id="movie_del">
+                		<%}
+                	%>
+                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <br>
+                      <%=dto.getMovie_subject() %>
+
+                      </a>
+                   </td>
+                   
+                   <%
+                   if((i+1)%4==0)
+                   {%>
+                	   </tr>
+                	   <tr>
+                   <%}
+                   z++;
+                                 	
+                }
+                }
+                                
+                %>
+                   
+             </tr>
+       </table>
+   </div>
+   
+   <div id="tabs-6" class="tab-pane fade">
+
+       <table style="width: 1000px; border-collapse: none;">
+      	 <br><br>
+       		
+             <tr>
+                <%
+
+                int a=0;
+                
+                for(MovieDto dto:list)
+                {
+                	//장르분류
+                	if(dto.getMovie_genre().equals("애니메이션")){
+                	
+                	//이미지
+                	String poster=dto.getMovie_poster();          	
+                	
+                	%>
+                	<td>
+                	<%
+                		if(myid.equals("admin")){%>
+                			
+                	  <input type="checkbox" id="movie_del">
+                		<%}
+                	%>
+                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <br>
+                      <%=dto.getMovie_subject() %>
+
+                      </a>
+                   </td>
+                   
+                   <%
+                   if((i+1)%4==0)
+                   {%>
+                	   </tr>
+                	   <tr>
+                   <%}
+                   a++;
+                                 	
+                }
+                }
+                                
+                %>
+                   
+             </tr>
+       </table>
+   </div>
+   
+   <div id="tabs-7" class="tab-pane fade">
+
+       <table style="width: 1000px; border-collapse: none;">
+      	 <br><br>
+       		
+             <tr>
+                <%
+
+                int b=0;
+                
+                for(MovieDto dto:list)
+                {
+                	//장르분류
+                	if(dto.getMovie_genre().equals("기타")){
+                	
+                	//이미지
+                	String poster=dto.getMovie_poster();          	
+                	
+                	%>
+                	<td>
+                	<%
+                		if(myid.equals("admin")){%>
+                			
+                	  <input type="checkbox" id="movie_del">
+                		<%}
+                	%>
+                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <br>
+                      <%=dto.getMovie_subject() %>
+
+                      </a>
+                   </td>
+                   
+                   <%
+                   if((i+1)%4==0)
+                   {%>
+                	   </tr>
+                	   <tr>
+                   <%}
+                   b++;
+                                 	
+                }
+                }
+                                
+                %>
+                   
+             </tr>
+       </table>
+   </div>
+   
 
 
    
   </div>
 </div>
+	<%
+	if(myid.equals("admin")){%>
+                			
+		<button type="button" class="btn btn-success" style="margin-left: 1500px;" onclick="location.href='movie/movie_addform.jsp'">등록</button>
+		<button type="button" class="btn btn-danger" id="moviedel">삭제</button>
+	<%}
+	%>
 
+
+	<!-- 페이징 처리 -->
+   <div style="width:500px; text-align:center;" class="container">
+      <ul class="pagination">
+         <%
+         //이전
+         
+         if(startPage > 1) {
+            %>
+            <li>
+               <a href="index.jsp?main=movie/movie_list.jsp?currentPage=<%=startPage-1%>">이전</a>
+            </li>
+            <%
+         }
+         for(int pp=startPage;pp<=endPage;pp++)
+         {
+             if(pp==currentPage)
+             {%>
+                <li class="active">
+                <a href="index.jsp?main=movie/movie_list.jsp?currentPage=<%=pp%>"><%=pp %></a>
+                </li>
+             <%}else{%>
+               
+                <li>
+                <a href="index.jsp?main=movie/movie_list.jsp?currentPage=<%=pp%>"><%=pp %></a>
+                </li>
+             <%}
+         }
+         
+         //다음
+         if(endPage<totalPage) {
+            %>
+            <li>
+               <a href="index.jsp?main=movie/movie_list.jsp?currentPage=<%=endPage + 1%>">다음</a>
+            </li>
+            <%
+         }
+         %>
+      </ul>
+   </div>
 </body>
 </html>
