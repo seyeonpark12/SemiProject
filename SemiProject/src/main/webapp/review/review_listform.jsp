@@ -89,8 +89,8 @@ no = totalCount - (currentPage - 1) * perPage;
 			for (ReviewDto dto : list) {
 			%>
 			<tr>
-				<td align="center"><input type="checkbox" class="alldel" value="<%=dto.getMovie_num()%>"> &nbsp;&nbsp; <%=no--%></td>
-				<td ><a href="index.jsp?main=board/detailview.jsp?num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>"><%=dto.getReview_content()%></a> <%
+				<td align="center"><input type="hidden" class="alldel" value="<%=dto.getMovie_num()%>"> &nbsp;&nbsp; <%=no--%></td>
+				<td><a href="index.jsp?main=review/review_detail.jsp?num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>"><%=dto.getReview_content()%></a> <%
 
  %></td>
 				<td align="center"><%=dto.getUser_num()%></td>
@@ -101,19 +101,20 @@ no = totalCount - (currentPage - 1) * perPage;
 			}
 			}
 			%>
-
+		</table>
+		<table style="border: none; float: right">
 			<tr>
-				<td colspan="5"><input type="checkbox" class="alldelcheck"> 전체선택 <span style="float: right;">
+				<td colspan="5"><span style="float: right;">
 
 						&nbsp;
 						<button type="button" class="btn btn-success btn-sm" onclick="location.href='index.jsp?main=review/reviewinsertform.jsp'">
-							<span class="glyphicon glyphicon-pencil"></span>
-							글쓰기
+							<span class="glyphicon glyphicon-pencil">글쓰기</span>
+							
 						</button>
 					</span></td>
 			</tr>
-
 		</table>
+
 	</div>
 
 
