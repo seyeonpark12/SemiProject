@@ -14,30 +14,30 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
-	<%
-	//id읽어오기
-	String user_id=request.getParameter("user_id");
-	
-	//dao
-	UserDao dao=new UserDao();
-	
-	//아이디에 따른 이름 얻기
-	String name =dao.getName(user_id);
-	
-	%>
-	
-	<div>
-	
-	<h3><%=name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;님의 회원가입을 축하합니다</h3>
-	<br><br>
-	
-	<!-- 모달창으로 고치기 -->
-	<button type="button" class="btn btn-success"
-	onclick="location.href='index.jsp?main=login/loginmain.jsp'">로그인</button>
-	
-	<button type="button" class="btn btn-success"
-	onclick="location.href='index.jsp'">HOME</button>
-	
-	</div>
+   <%
+   //id읽어오기
+   String user_id=request.getParameter("user_id");
+   
+   //dao
+   UserDao dao=new UserDao();
+   
+   //아이디에 따른 이름 얻기
+   String name =dao.getName_id(user_id);
+   
+   %>
+   
+   <div>
+   
+   <h3><%=name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;님의 회원가입을 축하합니다</h3>
+   <br><br>
+   
+   <!-- 모달창으로 고치기 -->
+   <button type="button" class="btn btn-success"
+   onclick="location.href='index.jsp?main=login/loginmain.jsp'">로그인</button>
+   
+   <button type="button" class="btn btn-success"
+   onclick="location.href='index.jsp'">HOME</button>
+   
+   </div>
 </body>
 </html>
