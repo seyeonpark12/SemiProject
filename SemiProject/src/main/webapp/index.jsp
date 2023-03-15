@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,33 +14,28 @@
 -->
 </head>
 <%
-String mainPage = "layout/main.jsp";
-//url을 통해서 main값을 읽어서 메인페이지에 출력을한다
-if (request.getParameter("main") != null) {
-	mainPage = request.getParameter("main");
-}
-String root = request.getContextPath();
+   String mainPage="layout/main.jsp";
+    //url을 통해서 main값을 읽어서 메인페이지에 출력을한다
+    if(request.getParameter("main")!=null)
+    {
+       mainPage=request.getParameter("main");
+    }
+ String root=request.getContextPath();
 %>
 
 <body>
-	<div class="layout header">
-		<jsp:include page="layout/header.jsp"></jsp:include>
+<div class="layout header">
+  <jsp:include page="layout/header.jsp"></jsp:include>
+ 
+</div>
 
-	</div>
+<div class="layout main">
+   <jsp:include page="<%=mainPage %>"/>
+</div>
 
-<<<<<<< HEAD
-	<div class="layout main">
-		<jsp:include page="<%=mainPage%>" />
-	</div>
-
-	<footer style="positon: absolute; top: 2000px;">
-		<jsp:include page="layout/footer.html"></jsp:include>
-	</footer>
-=======
 <footer style="positon:absolute; top:150px;">
-	<jsp:include page="layout/footer.html"></jsp:include>
+   <jsp:include page="layout/footer.html"></jsp:include>
 </footer>
->>>>>>> 97552af98f17ba2d018896c37adad0821a92eac1
 
 </body>
 </html>

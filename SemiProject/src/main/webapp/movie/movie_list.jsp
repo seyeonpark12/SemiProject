@@ -134,7 +134,7 @@ $(function(){
                 for(MovieDto dto:list)
                 {
                 	//이미지
-                	String poster=dto.getMovie_poster();          	
+                	String poster=dto.getMovie_poster();        
                 	
                 	%>
                 	<td>
@@ -144,7 +144,8 @@ $(function(){
                 	  <input type="checkbox" name="movie_num" class="movie_num" movie_num="<%=dto.getMovie_num()%>" id="movie_del">
                 		<%}
                 	%>
-                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -193,7 +194,7 @@ $(function(){
                 	  <input type="checkbox" id="movie_del">
                 		<%}
                 	%>
-                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -243,7 +244,7 @@ $(function(){
                 	  <input type="checkbox" id="movie_del">
                 		<%}
                 	%>
-                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -293,7 +294,7 @@ $(function(){
                 	  <input type="checkbox" id="movie_del">
                 		<%}
                 	%>
-                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -343,7 +344,7 @@ $(function(){
                 	  <input type="checkbox" id="movie_del">
                 		<%}
                 	%>
-                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -393,7 +394,7 @@ $(function(){
                 	  <input type="checkbox" id="movie_del">
                 		<%}
                 	%>
-                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -443,7 +444,7 @@ $(function(){
                 	  <input type="checkbox" id="movie_del">
                 		<%}
                 	%>
-                      <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail"><img src="movie_save/<%=poster%>" class="poster">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 

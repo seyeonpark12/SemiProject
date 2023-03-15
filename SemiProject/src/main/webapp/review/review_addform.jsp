@@ -118,7 +118,8 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<img alt="" src="" width="200" height="200">&nbsp;&nbsp;&nbsp;영화 제목
+						<img alt="" src="" width="200" height="200">
+						&nbsp;&nbsp;&nbsp;영화 제목
 					</div>
 					<div class="modal-score">
 
