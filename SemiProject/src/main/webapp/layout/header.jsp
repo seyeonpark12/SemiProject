@@ -1,5 +1,6 @@
+<%@page import="data.dao.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+   pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,228 +10,326 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
+   rel="stylesheet">
 <link href="css/header.css" type="text/css" rel="stylesheet">
 
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+   
 </head>
-
-<script type="text/javascript">
-	$(function() {
-		$("#myBtn").click(function() {
-			$("#myModal").modal();
-		});
-	});
+<%
+	String loginok=(String)session.getAttribute("loginok");
+	String myid=(String)session.getAttribute("myid");
+	String saveid=(String)session.getAttribute("saveid");
 	
-	$(function() {
-		$("#myBtn2").click(function() {
-			$("#myModal2").modal();
-		});
-	});
+	UserDao dao=new UserDao();
+	String nickname=dao.getName_id(myid);
+	
+%>
+<script type="text/javascript">
+   $(function() {
+      $("#myBtn").click(function() {
+         $("#myModal").modal();
+      });
+   
+   
+      $("#myBtn2").click(function() {
+         $("#myModal2").modal();
+      });
+   });
 </script>
 <style type="text/css">
-
 .modal-header, h4, .close {
-	background-color: #808080;
-	color: white !important;
-	text-align: center;
-	font-size: 30px;
+   background-color: #808080;
+   color: white !important;
+   text-align: center;
+   font-size: 30px;
 }
 
-.modal-content{
-width: 370px;
-margin-left:100px;
+.modal-content {
+   width: 370px;
+   margin-left: 100px;
 }
-
-
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #000;
+}
 dal-footer {
-	background-color: #f9f9f9;
+   background-color: #f9f9f9;
 }
+
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index:0;
+    background-color: #000;
+}
+
 </style>
+
+<script type="text/javascript">
+	$(function(){
+		
+		$("#gaip").click(function(){
+			
+			var gaipdata=$("#gaipfrm").serialize();
+			//alert(formdata);
+			
+			$.ajax({
+				
+				type:"get",
+				dataType:"html",
+				url: "user/user_addaction.jsp",
+				data:gaipdata,
+				success: function(){
+					
+					
+					location.reload();
+					//$("#myModal").modal();
+					
+				}
+			});
+		});
+		
+		
+		$("#login").click(function(){
+			
+			var logindata=$("#loginfrm").serialize();
+			//alert(logindata);
+
+			$.ajax({
+				
+				type:"get",
+				dataType:"html",
+				url: "login/loginaction.jsp",
+				data:logindata,
+				success: function(){
+					
+					location.reload();
+						
+					
+				}
+			});
+			
+		});
+		
+		
+		
+		
+	});
+
+
+
+</script>
 <body>
+
+	<%
+	request.setCharacterEncoding("utf-8");
+	%>
+	
+
 <header>
-	<div class="top" style="margin-top: 60px;">
+   <div class="top" style="margin-top: 60px;">
 
-		<div class="logo">
-			<a href="index.jsp?main=layout/main.jsp"><img
-				src="layout_image/logo.png"></a>
-		</div>
+      <div class="logo">
+         <a href="index.jsp?main=layout/main.jsp"><img
+            src="layout_image/logo.png"></a>
+      </div>
 
-		<nav class="menu">
-			<ul class="navi">
-				<li><a href="index.jsp?main=whatpick/movieaddform.jsp"
-					class="mainmenu">영화</a></li>
-				<li><a href="index.jsp?main=whatpick/category.jsp"
-					class="mainmenu">카테고리</a></li>
-			</ul>
-		</nav>
+      <nav class="menu">
+         <ul class="navi">
+            <li><a href="index.jsp?main=whatpick/movieaddform.jsp"
+               class="mainmenu">영화</a></li>
+            <li><a href="index.jsp?main=whatpick/category.jsp"
+               class="mainmenu">커뮤니티</a></li>
+         </ul>
+      </nav>
 
 
 <div class="container">
 
+      <div class="search">
+      
+      </div>
   <!-- Trigger the modal with a button 
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
   -->
-		<div class="menu2">
-			<button type="button" class="btn btn-default" id="myBtn" data-toggle="modal" data-target="#myModal" >로그인</button>
-			<button type="button" class="btn btn-default" style="width: 100px;" id="myBtn2" data-toggle="modal" data-target="#myModal2">회원가입</button>  
-		</div>
+  		<%
+  			if(loginok != null){%>
+  				 <div class="menu2">
+  				<b style="font-size: 12pt;"><%=nickname %>님 로그인중</b>
+		        <button type="button" class="btn btn-danger"
+		        style="width: 100px;" onclick="location.href='login/logoutaction.jsp'">Logout</button>
+		        <div class="glyphicon glyphicon-user"></div>
+		         </div>
+  			<%}else{%> 				
+  				
+			      <div class="menu2">
+			         <button type="button" class="btn btn-default" id="myBtn" data-toggle="modal" data-target="#myModal" >로그인</button>
+			         <button type="button" class="btn btn-default" style="width: 100px;" id="myBtn2" data-toggle="modal" data-target="#myModal2">회원가입</button>  
+			      </div>
+  			<%}
+  		%>
+  
 
-				<!-- Modal 로그인 -->
-				<div class="modal fade" id="myModal" role="dialog">
-					<div class="modal-dialog">
+            <!-- Modal 로그인 -->
+            <div class="modal fade" id="myModal" role="dialog">
+               <div class="modal-dialog">
 
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header" style="padding: 35px 50px;">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<caption>
-									<h2 align="center">로그인</h2>
-								</caption>
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header" style="padding: 35px 50px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <caption>
+                           <h2 align="center">로그인</h2>
+                        </caption>
 
-							</div>
-							<div class="modal-body" style="padding: 40px 50px;">
-								<form class="form-horizontal" action="login/loginaction.jsp"
-									method="post">
-									<div class="form-group" style="width: 300px;">
+                     </div>
+                     <div class="modal-body" style="padding: 40px 50px;">
+                        <form class="form-horizontal" id="loginfrm"
+                           method="post">
+                           <div class="form-group" style="width: 300px;">
 
-										<br> <br> <input type="text" name="id"
-											placeholder="ID" class="form-control" required="required"
-											style="width: 300px; background-color: #FAF7F7" value="">
-										<br> <br> <input type="password" name="pass"
-											placeholder="PASSWORD" class="form-control"
-											required="required"
-											style="width: 300px; background-color: #FAF7F7"> <br>
+                              <br> <br> <input type="text" name="user_id"
+                                 placeholder="ID" class="form-control" required="required"
+                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 
+                              <br> <br> <input type="password" name="user_pw"
+                                 placeholder="PASSWORD" class="form-control"
+                                 required="required"
+                                 style="width: 300px; background-color: #FAF7F7"> <br>
 
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
-												<div class="checkbox">
-													<label> <input type="checkbox" name="remember">
-														아이디저장
-													</label>
-												</div>
-											</div>
-										</div>
+                              <div class="form-group">
+                                 <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                       <label> <input type="checkbox" name="saveid">
+                                          아이디저장
+                                       </label>
+                                    </div>
+                                 </div>
+                              </div>
 
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
-												<button type="submit" class="btn btn-default"
-													style="width: 180px;">로그인</button>
-											</div>
-										</div>
+                              <div class="form-group">
+                                 <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-default" id="login"
+                                       style="width: 180px;">로그인</button>
+                                 </div>
+                              </div>
 
-									</div>
-								</form>
-							</div>
+                           </div>
+                        </form>
+                     </div>
 
-						</div>
+                  </div>
 
-					</div>
-				</div>
-				<!-- Modal 끝 -->
-				
-				
-				<!-- Modal 회원가입-->
-				<div class="modal fade" id="myModal2" role="dialog">
-					<div class="modal-dialog">
+               </div>
+            </div>
+            <!-- Modal 끝 -->
+            
+            
+            <!-- Modal 회원가입-->
+            <div class="modal fade" name="myModal2" id="myModal2" role="dialog">
+               <div class="modal-dialog">
 
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header" style="padding: 35px 50px;">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<caption>
-									<h2 align="center">회원가입</h2>
-								</caption>
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header" style="padding: 35px 50px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <caption>
+                           <h2 align="center">회원가입</h2>
+                        </caption>
 
-							</div>
-							<div class="modal-body" style="padding: 40px 50px;">
-								<form class="form-horizontal" action="login/loginaction.jsp"
-									method="post">
-									<div class="form-group" style="width: 300px;">
+                     </div>
+                     <div class="modal-body" style="padding: 40px 50px;">
+                        <form class="form-horizontal"  method="post" id="gaipfrm">
+                           <div class="form-group" style="width: 300px;">
 
-										<br> <br> <input type="text" name="name"
-											placeholder="이름" class="form-control" required="required"
-											style="width: 300px; background-color: #FAF7F7" value="">
-											
-											
-										<br> <br> <input type="text" name="nickname"
-											placeholder="닉네임" class="form-control" required="required"
-											style="width: 300px; background-color: #FAF7F7" value="">
-											
-											
-										<br> <br> <input type="text" name="id"
-											placeholder="아이디" class="form-control" required="required"
-											style="width:70%; background-color: #FAF7F7" value="">
-											
-											<button type="button" class="btn btn-default"
-											style="margin-top:-55px; margin-left:220px;">중복확인</button>
-											
-										<br> <br> <input type="password" name="pass"
-											placeholder="비밀번호" class="form-control"
-											required="required"
-											style="width: 300px; background-color: #FAF7F7"> 
+                              <br> <br> <input type="text" name="user_name"
+                                 placeholder="이름" class="form-control" required="required"
+                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 
+                                 
+                              <br> <br> <input type="text" name="user_nickname"
+                                 placeholder="닉네임" class="form-control" required="required"
+                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 
+                                 
+                              <br> <br> <input type="text" name="user_id" 
+                                 placeholder="아이디" class="form-control" required="required"
+                                 style="width:70%; background-color: #FAF7F7" value="">
+                                 
+                                 <button type="button" class="btn btn-default"
+                                 style="margin-top:-55px; margin-left:220px;">중복확인</button>
+                                 
+                              <br> <br> <input type="password" name="user_pw"
+                                 placeholder="비밀번호" class="form-control"
+                                 required="required"
+                                 style="width: 300px; background-color: #FAF7F7"> 
 
-	
-										<br> <br> <input type="password" name="pass"
-											placeholder="비밀번호확인" class="form-control"
-											required="required"
-											style="width: 300px; background-color: #FAF7F7"> 
-											
-										<br> <br> <input type="text" name="hp"
-											placeholder="휴대번호" class="form-control" required="required"
-											style="width: 300px; background-color: #FAF7F7" value="">
-											
-											<br> <br> <input type="text" name="addr"
-											placeholder="주소" class="form-control" required="required"
-											style="width: 300px; background-color: #FAF7F7" value="">
-											<br> <br> <input type="text" name="addr"
-											class="form-control" required="required"
-											style="width: 300px; background-color: #FAF7F7" value="">
-											
-										<br> <br> <input type="text" name="email"
-											placeholder="이메일" class="form-control" required="required"
-											style="width: 300px; background-color: #FAF7F7" value="">	
-										
-											<br> <br>
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
-												<button type="submit" class="btn btn-default"
-													style="width: 180px;">회원가입</button>
-											</div>
-										</div>
+   
+                              <br> <br> <input type="password" name="user_pw2"
+                                 placeholder="비밀번호확인" class="form-control"
+                                 required="required"
+                                 style="width: 300px; background-color: #FAF7F7"> 
+                                 
+                              <br> <br> <input type="text" name="user_hp"
+                                 placeholder="휴대번호" class="form-control" required="required"
+                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 
+                                 <br> <br> <input type="text" name="user_addr"
+                                 placeholder="주소" class="form-control" required="required"
+                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 
+                              <br> <br> <input type="text" name="user_email"
+                                 placeholder="이메일" class="form-control" required="required"
+                                 style="width: 300px; background-color: #FAF7F7" value="">   
+                              
+                                 <br> <br>
+                              <div class="form-group">
+                                 <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-default"
+                                       style="width: 180px;" id="gaip">회원가입</button>
+                                 </div>
+                              </div>
 
-									</div>
-								</form>
-							</div>
+                           </div>
+                        </form>
+                     </div>
 
-						</div>
+                  </div>
 
-					</div>
-				</div>
-				<!-- Modal2 끝 -->
-				
-				
-			</div>
-	
-	
-	</header>
-	
+               </div>
+            </div>
+            <!-- Modal2 끝 -->
+            
+            
+         </div>
+   
+   
+   </header>
+   
 
-  	
+     
 
-	 <!-- 로그인시..
-    	 
-    	 <b style="font-size: 12pt;">님 로그인중</b>
-    	 <button type="button" class="btn btn-danger"
-    	 style="width: 100px;" onclick="location.href='login/logoutaction.jsp'">Logout</button>
-    	 <div class="glyphicon glyphicon-user"></div>
-    --> 
-	 	
+ 
+        
+       
+
+       
 
 </body>
 </html>

@@ -15,8 +15,8 @@
 	String user_nickname=request.getParameter("user_nickname");
 	String user_hp=request.getParameter("user_hp");
 	String user_addr=request.getParameter("user_addr");
-	String user_email=request.getParameter("user_email")
-			+"@"+request.getParameter("user_email2");
+	String user_email=request.getParameter("user_email");
+
 	
 	dto.setUser_id(user_id);
 	dto.setUser_pw(user_pw);
@@ -32,6 +32,6 @@
 	
 	
 	//gaipsuccess페이지로 이동
-	//response.sendRedirect("../index.jsp?main=usser/gaipsuccess.jsp?id="+user_id);
+	//response.sendRedirect("../index.jsp?main=user/gaipsuccess.jsp?id="+user_id);
 
 %>

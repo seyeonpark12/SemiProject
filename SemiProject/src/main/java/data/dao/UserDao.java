@@ -48,33 +48,62 @@ public class UserDao {
 	}
 	
 	
-	//id에 따른 name 값 리턴
-	public String getName(String user_id) {
-		String name="";
-		
-		Connection conn=db.getConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		String sql="select * from user where user_id=?";
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1,user_id);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				name=rs.getString("name");
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(rs, pstmt, conn);
-		}
-		return name;
-	}
+	   //id에 따른 nickname 값 리턴
+    public String getName_id(String user_id) {
+       String user_nickname="";
+       
+       Connection conn=db.getConnection();
+       PreparedStatement pstmt=null;
+       ResultSet rs=null;
+       
+       String sql="select * from user where user_id=?";
+       
+       try {
+          pstmt=conn.prepareStatement(sql);
+          pstmt.setString(1,user_id);
+          rs=pstmt.executeQuery();
+          
+          if(rs.next()) {
+             user_nickname=rs.getString("user_nickname");
+          }
+          
+       } catch (SQLException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+       }finally {
+          db.dbClose(rs, pstmt, conn);
+       }
+       return user_nickname;
+    }
+ 
+    
+ //num에 따른 nickname 값 리턴
+    public String getName_num(String user_num) {
+       String user_nickname="";
+       
+       Connection conn=db.getConnection();
+       PreparedStatement pstmt=null;
+       ResultSet rs=null;
+       
+       String sql="select * from user where user_num=?";
+       
+       try {
+          pstmt=conn.prepareStatement(sql);
+          pstmt.setString(1,user_num);
+          rs=pstmt.executeQuery();
+          
+          if(rs.next()) {
+             user_nickname=rs.getString("user_nickname");
+          }
+          
+       } catch (SQLException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+       }finally {
+          db.dbClose(rs, pstmt, conn);
+       }
+       return user_nickname;
+    }
 	
 	
 	//insert

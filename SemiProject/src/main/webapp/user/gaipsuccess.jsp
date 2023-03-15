@@ -22,7 +22,7 @@
 	UserDao dao=new UserDao();
 	
 	//아이디에 따른 이름 얻기
-	String name =dao.getName(user_id);
+	String name =dao.getName_id(user_id);
 	
 	%>
 	
