@@ -60,7 +60,7 @@
 
       
       //페이지이동
-      response.sendRedirect("../index.jsp?main=movie/movie_list.jsp");
+      response.sendRedirect("../index.jsp?main=movie/movie_addform.jsp");
       
    }catch(Exception e){
       
