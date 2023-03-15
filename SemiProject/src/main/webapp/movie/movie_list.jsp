@@ -58,8 +58,8 @@ $(function(){
    //로그인상태 확인 후 입력폼  나타내기
    String loginok = (String)session.getAttribute("loginok");
    //id
-   //String myid = (String)session.getAttribute("myid");
-   String myid="admin";
+   String myid = (String)session.getAttribute("myid");
+
    MovieDao dao = new MovieDao();
 
    //블럭 < 1 2 3 4 5 >
@@ -68,7 +68,7 @@ $(function(){
    int startPage;//각블럭의 시작페이지
    int endPage;//각블럭의 끝페이지
    int start;//각페이지의 시작번호
-   int perPage=8;//한페이지에 보여질 글의 갯수
+   int perPage=2;//한페이지에 보여질 글의 갯수
    int perBlock=5; //한블럭당 보여지는 페이지
    int currentPage;//현재페이지
    //int no;
