@@ -58,8 +58,7 @@ $(function(){
    //로그인상태 확인 후 입력폼  나타내기
    String loginok = (String)session.getAttribute("loginok");
    //id
-   //String myid = (String)session.getAttribute("myid");
-   String myid="admin";
+   String myid = (String)session.getAttribute("myid");
    MovieDao dao = new MovieDao();
 
    //블럭 < 1 2 3 4 5 >

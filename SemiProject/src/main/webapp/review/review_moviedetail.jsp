@@ -61,13 +61,24 @@
 	margin-top: 4px;
 	margin-bottom: 10px;
 }
-
-a {
-	color: black;
+.mv_content_es {
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: -0.7px;
+	line-height: 22px;
+	margin-top: 4px;
+	margin-bottom: 10px;
+	float: right;
+	position: relative;
+	top: 217px;
+	right: 600px;
 }
 
 td {
 	margin-bottom: 100px;
+}
+#myform{
+height: 300px;
 }
 
 #myform fieldset {
@@ -103,9 +114,9 @@ td {
 	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-#reviewContents {
+#review_contents {
 	width: 100%;
-	height: 150px;
+	height: 300px;
 	padding: 10px;
 	box-sizing: border-box;
 	border: solid 1.5px #D3D3D3;
@@ -128,13 +139,46 @@ String poster = mdto.getMovie_poster();
 %>
 <body>
 	<div style="margin-top: 100px; padding: 0;">
-		<input type="hidden" id="movie_num" value="<%=movie_num%>">
+		<input type="hidden" id="movie_num" value="<%=movie_num%>"> <input type="hidden" id="user_nickname" value="<%=user_nickname%>">
+		<!-- Trigger the modal with a button -->
+		<a data-toggle="modal" data-target="#myModal">
+			<b class="mv_content_es">평가하기</b>
+		</a>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" >
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<img alt="" src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200" height="200">
+						<div style="text-align: center; margin-top:101px; width: 300px;float: right;font-size: 20pt"><b>&nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject() %></b></div>
+					</div>
+					<div class="modal-score">
+
+						<form action="review_addaction.jsp" class="mb-3" name="myform" id="myform" method="post">
+							<fieldset>
+								<input type="radio" name="review_Star" value="1" id="rate1"> <label for="rate1">★</label> <input type="radio" name="review_Star" value="2" id="rate2"> <label for="rate2">★</label> <input type="radio" name="review_Star" value="3" id="rate3"> <label for="rate3">★</label> <input type="radio" name="review_Star" value="4" id="rate4"> <label for="rate4">★</label> <input type="radio" name="review_Star" value="5" id="rate5"> <label for="rate5">★</label>
+							</fieldset>
+							<div>
+								<textarea class="col-auto form-control" type="text" id="review_contents" placeholder="욕설과 비방을 작성 시 강퇴당할 수 있습니다." required="required"></textarea>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.href='review_listform.jsp'" id="review_save">저장하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<form action="movie_addaction.jsp" method="post" enctype="multipart/form-data">
 			<table style="width: 1000px;">
 				<tr height="100">
 					<td rowspan="4" width="300">
-						<!-- 영화이미지 보이는 이미지 --> <img src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
-
+						<!-- 영화이미지 보이는 이미지 --> 
+						<img src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
 					</td>
 
 					<td width="600"><b class="mv_subject"><%=mdto.getMovie_subject()%></b></td>
@@ -150,49 +194,7 @@ String poster = mdto.getMovie_poster();
 
 				<tr>
 					<td><b class="mv_content"> 평균☆ 별점 값..</b></td>
-					<td><b class="mv_content" style="margin-left: -100px;">
-							찜♡
-
-							<input type="hidden" id="user_nickname" value="<%=user_nickname%>">
-							<a data-toggle="modal" data-target="#myModal"> 평가하기 </a>
-						</b> <!-- Modal -->
-						<div class="modal fade" id="myModal" role="dialog">
-							<div class="modal-dialog">
-
-								<!-- Modal content-->
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<img alt="" src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200" height="200">
-										&nbsp;&nbsp;&nbsp;영화 제목
-									</div>
-									<div class="modal-score">
-
-										<form action="review_addaction.jsp" class="mb-3" name="myform" id="myform" method="post">
-											<fieldset>
-												<input type="radio" name="review_Star" value="1" id="rate1">
-												<label for="rate1">★</label>
-												<input type="radio" name="review_Star" value="2" id="rate2">
-												<label for="rate2">★</label>
-												<input type="radio" name="review_Star" value="3" id="rate3">
-												<label for="rate3">★</label>
-												<input type="radio" name="review_Star" value="4" id="rate4">
-												<label for="rate4">★</label>
-												<input type="radio" name="review_Star" value="5" id="rate5">
-												<label for="rate5">★</label>
-											</fieldset>
-											<div>
-												<textarea class="col-auto form-control" type="text" id="review_contents" placeholder="욕설과 비방을 작성 시 강퇴당할 수 있습니다." required="required"></textarea>
-											</div>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.href='review_listform.jsp'" id="review_save">저장하기</button>
-									</div>
-								</div>
-							</div>
-
-						</div></td>
+					<td><b class="mv_content" style="margin-left: -100px;">찜</b></td>
 				</tr>
 			</table>
 
@@ -220,8 +222,10 @@ String poster = mdto.getMovie_poster();
 			</div>
 		</form>
 
+
 		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 	</div>
+
 </body>
 
 </html>
