@@ -133,7 +133,7 @@ String poster = mdto.getMovie_poster();
 			<table style="width: 1000px;">
 				<tr height="100">
 					<td rowspan="4" width="300">
-						<!-- 영화이미지 보이는 이미지 --> <img src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
+						<!-- 영화이미지 보이는 이미지 --> <img src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
 
 					</td>
 
@@ -163,7 +163,7 @@ String poster = mdto.getMovie_poster();
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<img alt="" src="" width="200" height="200">
+										<img alt="" src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200" height="200">
 										&nbsp;&nbsp;&nbsp;영화 제목
 									</div>
 									<div class="modal-score">
