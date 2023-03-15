@@ -14,7 +14,15 @@ public class CommuDto {
 	private int commu_readcount;
 	private Timestamp commu_writeday;
 	
+	private int answerCount; //댓글갯수!!
 	
+	
+	public int getAnswerCount() {
+		return answerCount;
+	}
+	public void setAnswerCount(int answerCount) {
+		this.answerCount = answerCount;
+	}
 	public String getCommu_num() {
 		return commu_num;
 	}

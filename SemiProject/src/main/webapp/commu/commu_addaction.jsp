@@ -18,23 +18,27 @@
 	try{
 	multi=new MultipartRequest(request,realPath,uploadSize,"utf-8", new DefaultFileRenamePolicy());
 	
-	String category=multi.getParameter("category");
-	String subject=multi.getParameter("subject");
-	String content=multi.getParameter("content");
-	String photo=multi.getFilesystemName("photo");
+	String commu_category=multi.getParameter("commu_category");
+	String commu_subject=multi.getParameter("commu_subject");
+	String commu_content=multi.getParameter("commu_content");
+	String commu_photo=multi.getFilesystemName("commu_photo");
 	
 	CommuDto dto=new CommuDto();
 	dto.setUser_num("1");
-	dto.setCommu_category(category);
-	dto.setCommu_subject(subject);
-	dto.setCommu_content(content);
-	dto.setCommu_photo(photo);
+	dto.setCommu_category(commu_category);
+	dto.setCommu_subject(commu_subject);
+	dto.setCommu_content(commu_content);
+	dto.setCommu_photo(commu_photo);
 	
 	CommuDao dao=new CommuDao();
 	dao.insertCommu(dto);
 	
-	//목록으로 이동 maxNum 구한걸로 주소 줘야함...??????
-	//response.sendRedirect("commu/commu_addform.jsp");
+	int maxNum=dao.getMaxNum();
+	
+	//목록으로 이동 maxNum 구한걸로 상세보기 주소 줘야함...??????
+	response.sendRedirect("index.jsp?main=commu/commu_detail.jsp?num="+maxNum+"&currentPage=1");
+	//일단 addform으로 일단은...
+	//response.sendRedirect("index.jsp?main=commu/commu_addform.jsp");
 	
 	}catch(Exception e){
 		System.out.println("업로드 오류"+e.getMessage());
