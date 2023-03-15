@@ -34,7 +34,6 @@
 	});
 </script>
 <style type="text/css">
-
 .modal-header, h4, .close {
 	background-color: #808080;
 	color: white !important;
@@ -42,15 +41,34 @@
 	font-size: 30px;
 }
 
-.modal-content{
-width: 370px;
-margin-left:100px;
+.modal-content {
+	width: 370px;
+	margin-left: 100px;
 }
-
-
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #000;
+}
 dal-footer {
 	background-color: #f9f9f9;
 }
+
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index:0;
+    background-color: #000;
+}
+
 </style>
 <body>
 <header>
@@ -63,16 +81,19 @@ dal-footer {
 
 		<nav class="menu">
 			<ul class="navi">
-				<li><a href="index.jsp?main=whatpick/movieaddform.jsp"
+				<li><a href="index.jsp?main=whatpick/movieinfo.jsp"
 					class="mainmenu">영화</a></li>
-				<li><a href="index.jsp?main=whatpick/category.jsp"
-					class="mainmenu">카테고리</a></li>
+				<li><a href="index.jsp?main=whatpick/commu_list.jsp"
+					class="mainmenu">커뮤니티</a></li>
 			</ul>
 		</nav>
 
 
 <div class="container">
 
+		<div class="search">
+		
+		</div>
   <!-- Trigger the modal with a button 
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
   -->
@@ -213,11 +234,8 @@ dal-footer {
 					</div>
 				</div>
 				<!-- Modal2 끝 -->
-				
-				
 			</div>
-	
-	
+
 	</header>
 	
 

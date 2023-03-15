@@ -54,6 +54,7 @@
 		</div>
 		
 		
+  
 		<div id="moviewrap2">
 			<p class="topname">BEST PICK</p>
 			<article>
@@ -89,4 +90,6 @@
 				.appendTo('.imgslide');
 	}, 3000);
 </script>
+
+  
 </html>
