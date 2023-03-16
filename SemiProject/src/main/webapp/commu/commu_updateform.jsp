@@ -66,13 +66,15 @@
 </head>
 
 <body>
+	
+
 
       <br>
       <br>
       <div style="margin: 30px 30px;">
       <form action="commu/commu_addaction.jsp" method="post" enctype="multipart/form-data">
          <table class="table table-bordered" style="width: 800px;">
-         <caption><b class="mv_content">게시판 글쓰기</b></caption>
+         <caption><b class="mv_content">게시글 수정</b></caption>
             <tr>
                <td>
                <select style="width: 200px;" name="commu_category" class="form-control" required="required">

@@ -213,15 +213,16 @@ public class UserDao {
 	}
 	
 	
-	//id에 따른 닉네임 값 리턴
-	public String getNickName(String user_id) {
+	
+	//id에 따른 num 값 리턴
+	public String getNum(String user_id) {
 		String num="";
 		
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt= null;
 		ResultSet rs= null;
 		
-		String sql="select num from user where user_id=?";
+		String sql="select * from user where user_id=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -230,7 +231,7 @@ public class UserDao {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
-				num=rs.getString("num");
+				num=rs.getString("user_num");
 			}
 			
 		} catch (SQLException e) {
@@ -244,34 +245,34 @@ public class UserDao {
 	}
 	
 	//id에 따른 num 값 리턴
-	public String getNum(String user_num) {
-		String num="";
-		
-		Connection conn=db.getConnection();
-		PreparedStatement pstmt= null;
-		ResultSet rs= null;
-		
-		String sql="select num from user where user_num=?";
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, user_num);
+		public String getId(String user_num) {
+			String user_id="";
 			
-			rs=pstmt.executeQuery();
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt= null;
+			ResultSet rs= null;
 			
-			if(rs.next()) {
-				num=rs.getString("num");
+			String sql="select * from user where user_num=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, user_num);
+				
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					user_id=rs.getString("user_id");
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
 			}
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(rs, pstmt, conn);
+			return user_id;
 		}
-		
-		return num;
-	}
 	
 	
 	//user 삭제
