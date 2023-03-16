@@ -1,3 +1,4 @@
+<%@page import="data.dao.UserDao"%>
 <%@page import="data.dao.MentDao"%>
 <%@page import="data.dto.MentDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -17,9 +18,12 @@
 <body>
 	
 	<%
-	request.setCharacterEncoding("utf-8");
+	String myid=(String)session.getAttribute("myid");
+	UserDao udao=new UserDao();
+	String user_num=udao.getNum(myid);
 	
-	String myid=request.getParameter("myid");
+	request.setCharacterEncoding("utf-8");
+
 	String ment_content=request.getParameter("ment_content");
 	String commu_num=request.getParameter("commu_num");
 	String currentPage=request.getParameter("currentPage");
@@ -27,13 +31,13 @@
 	MentDto dto=new MentDto();
 	MentDao dao=new MentDao();
 	
-	dto.setUser_num(myid);
+	dto.setUser_num(user_num);
 	dto.setMent_content(ment_content);
 	dto.setCommu_num(commu_num);
 	
 	dao.insertMent(dto);
 	
-	response.sendRedirect("../index.jsp?main=commu/commu_detail.jsp?currentPage="+currentPage);
+	response.sendRedirect("../index.jsp?main=commu/commu_detail.jsp?commu_num="+commu_num+"&currentPage="+currentPage);
 	
 	
 	%>

@@ -75,7 +75,12 @@
    
    //댓글 목록 가져오기
    MentDao mdao=new MentDao();
+   //commu_num에 따른 댓글리스트
    List<MentDto> mlist=mdao.getAllMent(dto.getCommu_num());
+   
+   MentDto ment_num_dto=mdao.getMentData(user_num);
+  
+   
    
    %>
 
@@ -165,7 +170,28 @@
          <!-- 댓글조회 -->
          <div>
          	<table>
-         	
+         	<%
+         	for(MentDto mdto:mlist){%>
+         		
+         		<tr>
+         			<td>
+         			<%
+                    //String mentnickname=udao.getName_num(dto.getUser_num());
+         			//String mnickname=mdao.getMentData(user_num);
+         			%>
+         			<b><%=nickname %></b>
+         			<%
+         			if(myid.equals(writer_id)){%>
+         				<span style="color: gray; font-weight: bold;">[글쓴이]</span>
+         			<%}
+         			%>
+         			
+         			<span style="font-size: 9pt; color: gray;"><%=sdf.format(mdto.getMent_writeday()) %></span>
+         			<span style="font-size: 10pt;"><%=mdto.getMent_content().replace("\n", "<br>") %></span>
+         			</td>
+         		</tr>
+         	<%}
+         	%>
          	</table>
          </div>
         
