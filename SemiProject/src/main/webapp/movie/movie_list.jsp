@@ -167,7 +167,7 @@ $(function(){
                    }
                    %>
                       <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail">
-                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 

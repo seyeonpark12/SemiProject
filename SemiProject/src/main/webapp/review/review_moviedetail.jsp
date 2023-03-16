@@ -27,12 +27,18 @@
 			$("#movie_poster").trigger("click"); //이벤트 강제호출 : trigger
 		});
 
-		$("#review_save").click(function() {
-			var review_score = $('input[name=review_Star]').val();
-			var review_contents = $("#review_contents").val();
+		$("#review_save").click(
+				function() {
+					var movie_num = $("#movie_num").val();
+					var user_num = $("#user_num").val();
+					var review_score = $("#myform input[type=radio]:checked")
+							.val()
+					var review_contents = $("#review_contents").val();
 
-			alert(review_score + "," + review_contents);
-		})
+					alert(movie_num + "," + user_num + "," + review_score + ","
+							+ review_contents);
+
+				})
 
 	});
 
@@ -50,12 +56,13 @@
 
 
 <style type="text/css">
-.shape{
-position:relative;
-font-size: 50pt;
-top: 50px;
-left: 100px;
+.shape {
+	position: relative;
+	font-size: 50pt;
+	top: 50px;
+	left: 100px;
 }
+
 * {
 	margin: 0 auto;
 	padding: 0;
@@ -103,7 +110,7 @@ td {
 
 #myform fieldset {
 	display: inline-block;
-	padding-left: 180px;
+	padding-left: 80px;
 	border: 0;
 	direction: rtl;
 }
@@ -152,16 +159,15 @@ MovieDao mdao = new MovieDao();
 UserDao udao = new UserDao();
 ReviewDao rdao = new ReviewDao();
 
-
 String movie_num = request.getParameter("movie_num");
 
 MovieDto mdto = mdao.getData(movie_num);
 String poster = mdto.getMovie_poster();
 
-String user_myid =(String)session.getAttribute("myid");
-String user_nickname=udao.getName_id(user_myid);
+String user_myid = (String) session.getAttribute("myid");
+String user_nickname = udao.getName_id(user_myid);
 
-String user_num=udao.getNum(user_myid);
+String user_num = udao.getNum(user_myid);
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -204,43 +210,43 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 no = totalCount - (currentPage - 1) * perPage;
 %>
 <body>
-<a href="javascript:history.back();" class="shape glyphicon glyphicon-arrow-left"></a>
+	<a href="javascript:history.back();" class="shape glyphicon glyphicon-arrow-left"></a>
 	<div style="margin-top: 100px; padding: 0;">
 		<input type="hidden" id="movie_num" value="<%=movie_num%>">
-		<input type="hidden" id="user_myid" value="<%=user_myid%>">
+		<input type="hidden" id="user_num" value="<%=user_num%>">
 		<input type="hidden" id="user_nickname" value="<%=user_nickname%>">
 		<!-- Trigger the modal with a button -->
-		<div data-toggle="modal" data-target="#myModal">
+		<div data-toggle="modal" data-target="#modal">
 			<b class="mv_content_es">/&nbsp;&nbsp;평가하기</b>
 		</div>
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog">
+		<div class="review_modal modal fade" id="modal" role="dialog">
+			<div class="review_modal modal-dialog">
 
 				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
+				<div class="review_modal modal-content">
+					<div class="review_modal modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<img alt="" src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200" height="200">
-						<div style="text-align: center; margin-top: 101px; width: 300px; float: right; font-size: 20pt">
+						<img alt="" src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200">
+						<div style="text-align: center; font-size: 20pt">
 							<b>
 								&nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject()%></b>
 						</div>
 					</div>
-					<div class="modal-score">
+					<div class="review_modal modal-score">
 
 						<form action="review_addaction.jsp" class="mb-3" name="myform" id="myform" method="post">
 							<fieldset>
-								<input type="radio" name="review_Star" value="1" id="rate1">
+								<input type="radio" name="review_Star" value="5" id="rate1">
 								<label for="rate1">★</label>
-								<input type="radio" name="review_Star" value="2" id="rate2">
+								<input type="radio" name="review_Star" value="4" id="rate2">
 								<label for="rate2">★</label>
 								<input type="radio" name="review_Star" value="3" id="rate3">
 								<label for="rate3">★</label>
-								<input type="radio" name="review_Star" value="4" id="rate4">
+								<input type="radio" name="review_Star" value="2" id="rate4">
 								<label for="rate4">★</label>
-								<input type="radio" name="review_Star" value="5" id="rate5">
+								<input type="radio" name="review_Star" value="1" id="rate5">
 								<label for="rate5">★</label>
 							</fieldset>
 							<div>
@@ -258,7 +264,7 @@ no = totalCount - (currentPage - 1) * perPage;
 			<table style="width: 1000px;">
 				<tr height="100">
 					<td rowspan="4" width="300">
-						<!-- 영화이미지 보이는 이미지 --> <img src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
+						<!-- 영화이미지 보이는 이미지 --> <img src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
 					</td>
 
 					<td width="600"><b class="mv_subject"><%=mdto.getMovie_subject()%></b></td>

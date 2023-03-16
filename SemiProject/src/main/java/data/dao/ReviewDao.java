@@ -18,12 +18,14 @@ public class ReviewDao {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into review values(null, null, null, ?, ?, now())";
+		String sql = "insert into review values(null, ?, ?, ?, ?, now())";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setDouble(1, dto.getReview_score());
-			pstmt.setString(2, dto.getReview_content());
+			pstmt.setString(1, dto.getMovie_num());
+			pstmt.setString(2, dto.getUser_num());
+			pstmt.setDouble(3, dto.getReview_score());
+			pstmt.setString(4, dto.getReview_content());
 
 			pstmt.execute();
 		} catch (SQLException e) {
