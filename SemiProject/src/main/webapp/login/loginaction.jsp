@@ -32,18 +32,7 @@
       session.setAttribute("loginok", "yes");
       session.setAttribute("myid", user_id);
       session.setAttribute("saveid", saveid==null?null:"yes");
-      
-      //로그인메인이동
-      //response.sendRedirect("../index.jsp?main=login/loginmain.jsp");%>
-      alert("로그인성공");
-   <%}else{%>
-      
-      <script type="text/javascript">
-         alert("아이디와 비번이 맞지않습니다");
-         history.back();
-      </script>
-   <%}
-%>
-
+   }
+ %>
 </body>
 </html>

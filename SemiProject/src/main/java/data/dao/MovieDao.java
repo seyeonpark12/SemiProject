@@ -71,8 +71,40 @@ public class MovieDao {
 	      
 	      return n;
 	   }
+	   
+	   
+	   //카테고리별 총갯수
+	   public int getTotalCount_Genre(String movie_genre) {
+		      
+		      int n=0;
+		      
+		      Connection conn=db.getConnection();
+		      PreparedStatement pstmt=null;
+		      ResultSet rs=null;
+		      
+		      String sql="select count(*) from movie where movie_genre=?";
+		      
+		      try {
+		         
+		         pstmt=conn.prepareStatement(sql);
+		         pstmt.setString(1, movie_genre);
+		         
+		         rs=pstmt.executeQuery();
+		         
+		         if(rs.next())
+		            n=rs.getInt(1);
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally {
+		         db.dbClose(rs, pstmt, conn);
+		      }
+		      
+		      return n;
+		   }
+	   
+	   
 	 
-	 
+	 //전체 리스트출력
 	 public List<MovieDto> getList(int start,int perPage){
 	      
 	      List<MovieDto> list=new ArrayList<>();
@@ -119,6 +151,55 @@ public class MovieDao {
 	      
 	      return list;
 	   }
+	 
+	//카테고리별 리스트출력
+		 public List<MovieDto> getList_Genre(String movie_genre,int start,int perPage){
+		      
+		      List<MovieDto> list=new ArrayList<>();
+		      
+		      Connection conn=db.getConnection();
+		      PreparedStatement pstmt=null;
+		      ResultSet rs=null;
+		      
+		      String sql="select * from movie where movie_genre=? order by movie_num desc limit ?,?";
+		      
+		      try {
+		         
+		         pstmt=conn.prepareStatement(sql);
+		         pstmt.setString(1, movie_genre);
+		         pstmt.setInt(2, start);
+		         pstmt.setInt(3, perPage);
+		         
+		         rs=pstmt.executeQuery();
+		         
+		         while(rs.next()) {
+		            
+		            MovieDto dto=new MovieDto();
+		            
+		            dto.setMovie_num(rs.getString("movie_num"));
+		            dto.setMovie_genre(rs.getString("movie_genre"));
+		            dto.setMovie_subject(rs.getString("movie_subject"));
+		            dto.setMovie_poster(rs.getString("movie_poster"));
+		            dto.setMovie_play(rs.getString("movie_play"));
+		            dto.setMovie_year(rs.getString("movie_year"));
+		            dto.setMovie_nara(rs.getString("movie_nara"));
+		            dto.setMovie_director(rs.getString("movie_director"));
+		            dto.setMovie_actor(rs.getString("movie_actor"));
+		            dto.setMovie_content(rs.getString("movie_content"));
+		            dto.setMovie_pcount(rs.getInt("movie_pcount"));
+		            dto.setMovie_rank_avg(rs.getDouble("movie_rank_avg"));
+		            
+		            list.add(dto);
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally {
+		         db.dbClose(rs, pstmt, conn);
+		      }
+		      
+		      
+		      return list;
+		   }
 	
 	 public void deleteMovie(String movie_num) {
 		 
