@@ -4,14 +4,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-
-<title>header</title>
-
+<title>WPICK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
 	rel="stylesheet">
-<link href="css/header.css" type="text/css" rel="stylesheet">
+<link href="css/info.css" type="text/css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -21,8 +19,6 @@
 </head>
 <body>
 	<div>
-		<br>
-		<br>
 		<caption>
 			<h3 align="center">관리자정보수정</h3>
 		</caption>
@@ -87,5 +83,8 @@
 		</div>
 
 	</div>
+	
+	
+	
 </body>
 </html>

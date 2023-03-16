@@ -1,78 +1,125 @@
 @charset "utf-8";
 
-*{
+* {
 	margin: 0 auto;
 	padding: 0;
 	list-style: none;
-	font-family:"Noto Sans KR";
+	font-family: "Noto Sans KR";
 	color: black;
 }
-body{
+
+body {
 	width: 1920px;
 	background-color: #ffffff;
-	font-size:16px;
+	font-size: 16px;
 }
-a{
-	text-decoration:none;
+
+a {
+	text-decoration: none;
 	display: block;
 }
 
-header{
-	height:100px;
-	width:1920px;
-	position:relative;
+header {
+	height: 100px;
+	width: 1920px;
+	position: relative;
 }
 
-.top{
-	height:100px;
-	width:1920px;
-	position:absolute;
+.top {
+	height: 100px;
+	width: 1920px;
+	position: absolute;
 }
 
-.logo{
-	float:left;
-	width:200px;
+.logo {
+	float: left;
+	width: 200px;
 	margin-left: 100px;
-	margin-top:-20px;
+	margin-top: -22px;
 }
 
-.logo img{
-	float:left;
-	width:130px; 
+.logo img {
+	float: left;
+	width: 130px;
 }
 
-.menu{
-	float:left;
-	width:400px;
-	right:0;
-	background-color:#ffffff;
-	z-index:1;
+.menu {
+	float: left;
+	width: 400px;
+	right: 0;
+	background-color: #ffffff;
+	z-index: 1;
 }
 
-.navi>li{
-	float:left;
-	width:150px;
+.navi>li {
+	float: left;
+	width: 150px;
 }
 
-.navi>li>a{
-	font-family:"Noto Sans KR";
-	line-height:40px;
+.navi>li>a {
+	font-family: "Noto Sans KR";
+	line-height: 40px;
 	font-size: 16px;
-	font-weight:bold;
-	text-align:center;
-	color:black;
-	pointer:cursor;
+	font-weight: bold;
+	text-align: center;
+	color: black;
+	cursor: pointer;
 }
 
-navi>li:hover{
-	text-decoration:none;
+navi>li:hover {
+	text-decoration: none;
 }
 
-.menu2{
-	float:right;
-	width:200px;
-	margin-right: -300px;
-	background-color:#ffffff;
-	z-index:1;
+.menu2 {
+	float: right;
+	width: 400px;
+	margin-top: -28px; margin-right : -500px;
+	background-color: #ffffff;
+	z-index: 1;
+	margin-right: -500px;
 }
 
+.modal-header, h4, .close {
+	background-color: #808080;
+	color: white !important;
+	text-align: center;
+	font-size: 30px;
+}
+
+.modal-content {
+	width: 370px;
+	margin-left: 100px;
+}
+
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 0;
+	background-color: #000;
+}
+
+dal-footer {
+	background-color: #f9f9f9;
+}
+
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 0;
+	background-color: #000;
+}
+
+#search_id {
+	width: 250px;
+	height: 30px;
+	line-height: 30px;
+	border: none;
+	margin-left: 1370px;
+	background-color: #fafafa;
+}

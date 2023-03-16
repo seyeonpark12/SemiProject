@@ -10,86 +10,20 @@
 <link rel="favicon" href="../layout_image/titlelogo.ico">
 <link rel="shortcut icon" type="../layoutimage/x-icon"
 	href="../layout_image/titlelogo.ico">
+
+<link href="css/info.css" type="text/css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<style type="text/css">
-* {
-	margin: 0 auto;
-	padding: 0;
-	list-style: none;
-	font-family: "Noto Sans KR";
-	color: black;
-}
-
-tr th td {
-	text-align: center;
-}
-
-.ca_subject {
-	font-size: 15px;
-	font-weight: 400;
-	letter-spacing: -1.2px;
-	line-height: 36px;
-}
-
-.myinfo {
-	font-size: 15px;
-	letter-spacing: -1.2px;
-	line-height: 50px;
-}
-
-th.myinfo {
-	text-align: center;
-}
-
-#moviewrap_pick>div {
-	float: left;
-	border:1px solid black;
-	width: 200px;
-	height: 300px;
-	margin-left:30px;
-	font-size: 20px;
-	line-height: 100px;
-	text-align: center;
-}
-
-#moviewrap_pick ::afrer {
-	content: "";
-	display: block;
-	clear: both;
-}
-
- #zzim{
-      color: red;
-      z-index: 10;
-      font-size:35px;
-      position: relative;
-      float:right; 
-      margin-top:230px;
-      padding:20px;
-   }
-   
-</style>
 </head>
 <body>
-
-	<br>
-	<br>
-
-	<div style="margin-left: 500px; width: 1000px; padding: 0;">
-
-
-			
-<h3 stlye=" font-size:20px; margin-bottom:-200px;">회원목록</h3>
-
-
-		<table class="table table-bordered" style="width: 1000px;">
-
-			<tr>
+	<div class="myinfo_div">
+		<table style="width: 1000px;">
+			<h3>회원목록</h3>
+			<tr class="tr_myinfo">
 				<th width="50" class="myinfo">NO</th>
 				<th width="100" class="myinfo">이름</th>
 				<th width="100" class="myinfo">닉네임</th>
@@ -101,19 +35,20 @@ th.myinfo {
 			</tr>
 
 			<tr>
-				<td colspan="8" align="center">
+				<td colspan="8" align="center" class="myinfo">
 					<h3>등록된 게시글이 없습니다</h3>
 				</td>
 			</tr>
 
 		</table>
-		
-			<button type="button" class="btn btn-default btn-sm"
-			style="float: right; margin-bottom: 10px;">삭제</button>
-			
-			<button type="button" class="btn btn-default btn-sm"
+		<button type="button" class="btn btn-default btn-sm"
+			style="margin-left: 450px; margin-bottom: 10px;">삭제</button>
+
+		<button type="button" class="btn btn-default btn-sm"
 			onclick="location.href='index.jsp?main=whatpick/admin_mypage.jsp'"
-			style="float: right; margin-bottom: 10px; margin-right:10px;">관리자페이지</button>
+			style="margin-bottom: 10px; margin-right: 10px;">관리자페이지</button>
 	</div>
+
+
 </body>
 </html>

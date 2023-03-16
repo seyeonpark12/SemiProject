@@ -10,85 +10,19 @@
 <link rel="favicon" href="../layout_image/titlelogo.ico">
 <link rel="shortcut icon" type="../layoutimage/x-icon"
 	href="../layout_image/titlelogo.ico">
+<link href="css/info.css" type="text/css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<style type="text/css">
-* {
-	margin: 0 auto;
-	padding: 0;
-	list-style: none;
-	font-family: "Noto Sans KR";
-	color: black;
-}
-
-tr th td {
-	text-align: center;
-}
-
-.ca_subject {
-	font-size: 15px;
-	font-weight: 400;
-	letter-spacing: -1.2px;
-	line-height: 36px;
-}
-
-.myinfo {
-	font-size: 15px;
-	letter-spacing: -1.2px;
-	line-height: 50px;
-}
-
-th.myinfo {
-	text-align: center;
-}
-
-#moviewrap_pick>div {
-	float: left;
-	border:1px solid black;
-	width: 200px;
-	height: 300px;
-	margin-left:30px;
-	font-size: 20px;
-	line-height: 100px;
-	text-align: center;
-}
-
-#moviewrap_pick ::afrer {
-	content: "";
-	display: block;
-	clear: both;
-}
-
- #zzim{
-      color: red;
-      z-index: 10;
-      font-size:35px;
-      position: relative;
-      float:right; 
-      margin-top:230px;
-      padding:20px;
-   }
-   
-</style>
 </head>
 <body>
-
-	<br>
-	<br>
-	<div
-		style="margin-left: 500px; width: 1000px; padding: 0;">
-
-		<h3>회원정보</h3>
-		<br>
-		<table class="table table-bordered" style="width: 700px;">
-
-			<button type="button" class="btn btn-default btn-sm"
-				onclick="location.href='index.jsp?main=whatpick/updateloginform.jsp'"
-				style="float: right; margin-bottom: 10px;">수정하기</button>
+	<div class="myinfo_div">
+		<table style="width: 700px;">
+			<h3>회원정보</h3>
+			<a class="editbtn" href='index.jsp?main=whatpick/updateloginform.jsp'">EDIT</a>
 
 			<tr>
 				<th class="myinfo" width="200">이름</th>
@@ -122,81 +56,78 @@ th.myinfo {
 			</tr>
 
 		</table>
-		
-		<h3 style="margin-bottom:30px;">MYPICK</h3>
-			<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=whatpick/login_mypickpage.jsp'"
-			style="float: right; margin-top: -50px;">더보기</button>
-		
-		<div id="moviewrap_pick"
-			style="width: 1000px; height: 400px; padding-left: 20px; margin-bottom:-50px;">
-			<div class="pick"><span class="glyphicon glyphicon-heart" id="zzim"></span></div>
+
+
+		<a class="morebtn" href='index.jsp?main=whatpick/login_mypickpage.jsp'">+MORE</a>
+
+		<div id="moviewrap_pick">
+			<h3 style="margin-bottom: 30px;">MYPICK</h3>
+
+			<div class="pick">
+				<span class="glyphicon glyphicon-heart" id="zzim"></span>
+			</div>
+			
+			<!-- 최대 4개까지만 보이게 하기.. -->
 		</div>
 
-		<h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 글 보기</h3>
 
-		<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=whatpick/login_mypage_mywrite.jsp'"
-			style="float: right; margin-bottom: 10px;">더보기</button>
 
-		<table class="table table-bordered" style="width: 1000px;">
+		<a class="morebtn"
+			href='index.jsp?main=whatpick/login_mypage_mywrite.jsp'">+MORE</a>
 
-			<tr>
+		<table style="width: 1000px;">
+			<h3>내가 쓴 글보기</h3>
+			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
 				<th width="800" class="myinfo">제목</th>
 			</tr>
 
 			<tr>
-				<td colspan="5" align="center">
+				<td colspan="5" align="center" class="myinfo">
 					<h3>등록된 게시글이 없습니다</h3>
+					<!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
 		</table>
 
-		<h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 리뷰보기</h3>
-<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=whatpick/login_mypage_myreview.jsp'"
-			style="float: right; margin-bottom: 10px;">더보기</button>
+		<a class="morebtn"
+			href='index.jsp?main=whatpick/login_mypage_myreview.jsp'">+MORE</a>
 
-		<table class="table table-bordered" style="width: 1000px;">
-
-			<tr>
-				<th width="200" class="myinfo" >영화제목</th>
-				<th width="600" class="myinfo" >리뷰</th>
-				<th width="200" class="myinfo" >날짜</th>
+		<table style="width: 1000px;">
+			<h3>내가 쓴 리뷰보기</h3>
+			<tr class="tr_myinfo">
+				<th width="200" class="myinfo">영화제목</th>
+				<th width="600" class="myinfo">리뷰</th>
+				<th width="200" class="myinfo">날짜</th>
 			</tr>
 
 			<tr>
-				<td colspan="5" align="center">
+				<td colspan="5" align="center" class="myinfo">
 					<h3>등록된 게시글이 없습니다</h3>
+					<!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
-			
 		</table>
 
-<h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 댓글보기</h3>
-<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=whatpick/login_mypage_mycomment.jsp'"
-			style="float: right; margin-bottom: 10px;">더보기</button>
 
+		<a class="morebtn"
+			href='index.jsp?main=whatpick/login_mypage_mycomment.jsp'">+MORE</a>
 
-		<table class="table table-bordered" style="width: 1000px;">
-
-			<tr>
-				<th width="200" class="myinfo" >카테고리</th>
-				<th width="800" class="myinfo" >제목</th>
+		<table style="width: 1000px;">
+			<h3>내가쓴댓글보기</h3>
+			<tr class="tr_myinfo">
+				<th width="200" class="myinfo">카테고리</th>
+				<th width="800" class="myinfo">제목</th>
 			</tr>
 
 			<tr>
-				<td colspan="5" align="center">
+				<td colspan="5" align="center" class="myinfo">
 					<h3>등록된 게시글이 없습니다</h3>
+					<!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
-
-
-
 		</table>
-		
+
 	</div>
 </body>
 </html>

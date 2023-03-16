@@ -10,86 +10,23 @@
 <link rel="favicon" href="../layout_image/titlelogo.ico">
 <link rel="shortcut icon" type="../layoutimage/x-icon"
 	href="../layout_image/titlelogo.ico">
+
+<link href="css/info.css" type="text/css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<style type="text/css">
-* {
-	margin: 0 auto;
-	padding: 0;
-	list-style: none;
-	font-family: "Noto Sans KR";
-	color: black;
-}
 
-tr th td {
-	text-align: center;
-}
-
-.ca_subject {
-	font-size: 15px;
-	font-weight: 400;
-	letter-spacing: -1.2px;
-	line-height: 36px;
-}
-
-.myinfo {
-	font-size: 15px;
-	letter-spacing: -1.2px;
-	line-height: 50px;
-}
-
-th.myinfo {
-	text-align: center;
-}
-
-#moviewrap_pick>div {
-	float: left;
-	border:1px solid black;
-	width: 200px;
-	height: 300px;
-	margin-left:30px;
-	font-size: 20px;
-	line-height: 100px;
-	text-align: center;
-}
-
-#moviewrap_pick ::afrer {
-	content: "";
-	display: block;
-	clear: both;
-}
-
- #zzim{
-      color: red;
-      z-index: 10;
-      font-size:35px;
-      position: relative;
-      float:right; 
-      margin-top:230px;
-      padding:20px;
-   }
-   
-</style>
 </head>
 <body>
+	<div class="myinfo_div">
+		<table style="width: 700px;">
 
-	<br>
-	<br>
-	<div
-		style="margin-left: 500px; width: 1000px; padding: 0;">
+			<h3>관리자정보</h3>
 
-		<h3>관리자정보</h3>
-		<br>
-		<table class="table table-bordered" style="width: 700px;">
-
-			<button type="button" class="btn btn-default btn-sm"
-				onclick="location.href='index.jsp?main=whatpick/admin_updateform.jsp'"
-				style="float: right; margin-bottom: 10px;">수정하기</button>
-
+			<a class="editbtn" href='index.jsp?main=whatpick/admin_updateform.jsp'">EDIT</a>
 			<tr>
 				<th class="myinfo" width="200">이름</th>
 				<td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
@@ -122,15 +59,13 @@ th.myinfo {
 			</tr>
 
 		</table>
-		
-<h3 stlye=" font-size:20px; margin-bottom:-200px;">회원목록</h3>
-<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=whatpick/admin_peoplelist.jsp'"
-			style="float: right; margin-bottom: 10px;">더보기</button>
 
 
-		<table class="table table-bordered" style="width: 1000px;">
+		<a class="morebtn"
+			href='index.jsp?main=whatpick/admin_peoplelist.jsp'">+MORE</a>
 
+		<table style="width: 1000px;">
+			<h3>회원목록</h3>
 			<tr>
 				<th width="50" class="myinfo">NO</th>
 				<th width="100" class="myinfo">이름</th>
@@ -151,7 +86,7 @@ th.myinfo {
 
 
 		</table>
-		
+
 	</div>
 </body>
 </html>
