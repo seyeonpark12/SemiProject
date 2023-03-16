@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.List"%>
 <%@page import="data.dao.ReviewDao"%>
 <%@page import="data.dto.ReviewDto"%>
 <%@page import="data.dto.MovieDto"%>
@@ -22,6 +24,7 @@
 		$("span.camera").click(function() {
 			$("#movie_poster").trigger("click"); //이벤트 강제호출 : trigger
 		});
+
 	});
 
 	//이미지미리보기
@@ -54,31 +57,32 @@
 }
 
 .mv_content {
-	font-size: 14px;
-	font-weight: 400;
-	letter-spacing: -0.7px;
-	line-height: 22px;
-	margin-top: 4px;
-	margin-bottom: 10px;
-}
-.mv_content_es {
-	font-size: 14px;
-	font-weight: 400;
-	letter-spacing: -0.7px;
-	line-height: 22px;
-	margin-top: 4px;
-	margin-bottom: 10px;
-	float: right;
 	position: relative;
-	top: 217px;
-	right: 600px;
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: -0.7px;
+	line-height: 22px;
+	top: 50px;
+	left: 50px;
+}
+
+.mv_content_es {
+	position: relative;
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: -0.7px;
+	line-height: 22px;
+	top: 302px;
+	left: 1400px;
+	cursor: pointer;
 }
 
 td {
 	margin-bottom: 100px;
 }
-#myform{
-height: 300px;
+
+#myform {
+	height: 300px;
 }
 
 #myform fieldset {
@@ -136,14 +140,57 @@ MovieDto mdto = mdao.getData(movie_num);
 ReviewDao rdao = new ReviewDao();
 
 String poster = mdto.getMovie_poster();
+
+ReviewDao dao = new ReviewDao();
+
+int totalCount;
+int totalPage; //총 페이지수
+int startPage; //각블럭의 시작페이지
+int endPage; //각 블럭의 마지막페이지
+int start; //각페이지 시작번호
+int perPage = 5; //현재 페이지 보여질 글의 갯수
+int perBlock = 5; //한 블럭당 보여지는 페이지개수
+int currentPage; //현재페이지
+int no;
+
+//총갯수
+totalCount = dao.getTotalReviewCount();
+
+//현재 페이지번호 읽기
+if (request.getParameter("currentPage") == null)
+	currentPage = 1;
+else
+	currentPage = Integer.parseInt(request.getParameter("currentPage"));
+
+//총 페이지 갯수
+totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+
+//각 블럭의 시작페이지
+startPage = (currentPage - 1) / perBlock * perBlock + 1;
+endPage = startPage + perBlock - 1;
+
+//총페이지가 8... (6-10... endpage를 8로 수정)
+if (endPage > totalPage)
+	endPage = totalPage;
+
+//각페이지에서 불러올 시작번호
+start = (currentPage - 1) * perPage;
+
+//각 페이지 에서 필요한 게시글 가져오기
+List<ReviewDto> list = dao.getAllReview(start, perPage);
+
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+no = totalCount - (currentPage - 1) * perPage;
 %>
 <body>
 	<div style="margin-top: 100px; padding: 0;">
-		<input type="hidden" id="movie_num" value="<%=movie_num%>"> <input type="hidden" id="user_nickname" value="<%=user_nickname%>">
+		<input type="hidden" id="movie_num" value="<%=movie_num%>">
+		<input type="hidden" id="user_nickname" value="<%=user_nickname%>">
 		<!-- Trigger the modal with a button -->
-		<a data-toggle="modal" data-target="#myModal">
-			<b class="mv_content_es">평가하기</b>
-		</a>
+		<div data-toggle="modal" data-target="#myModal">
+			<b class="mv_content_es">/&nbsp;&nbsp;평가하기</b>
+		</div>
 
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
@@ -151,19 +198,31 @@ String poster = mdto.getMovie_poster();
 
 				<!-- Modal content-->
 				<div class="modal-content">
-					<div class="modal-header" >
+					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<img alt="" src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200" height="200">
-						<div style="text-align: center; margin-top:101px; width: 300px;float: right;font-size: 20pt"><b>&nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject() %></b></div>
+						<div style="text-align: center; margin-top: 101px; width: 300px; float: right; font-size: 20pt">
+							<b>
+								&nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject()%></b>
+						</div>
 					</div>
 					<div class="modal-score">
 
 						<form action="review_addaction.jsp" class="mb-3" name="myform" id="myform" method="post">
 							<fieldset>
-								<input type="radio" name="review_Star" value="1" id="rate1"> <label for="rate1">★</label> <input type="radio" name="review_Star" value="2" id="rate2"> <label for="rate2">★</label> <input type="radio" name="review_Star" value="3" id="rate3"> <label for="rate3">★</label> <input type="radio" name="review_Star" value="4" id="rate4"> <label for="rate4">★</label> <input type="radio" name="review_Star" value="5" id="rate5"> <label for="rate5">★</label>
+								<input type="radio" name="review_Star" value="1" id="rate1">
+								<label for="rate1">★</label>
+								<input type="radio" name="review_Star" value="2" id="rate2">
+								<label for="rate2">★</label>
+								<input type="radio" name="review_Star" value="3" id="rate3">
+								<label for="rate3">★</label>
+								<input type="radio" name="review_Star" value="4" id="rate4">
+								<label for="rate4">★</label>
+								<input type="radio" name="review_Star" value="5" id="rate5">
+								<label for="rate5">★</label>
 							</fieldset>
 							<div>
-								<textarea class="col-auto form-control" type="text" id="review_contents" placeholder="욕설과 비방을 작성 시 강퇴당할 수 있습니다." required="required"></textarea>
+								<textarea class="col-auto form-control" type="text" id="review_contents" placeholder="욕설과 비방을 작성 시 제재를 당할 수 있습니다." required="required"></textarea>
 							</div>
 						</form>
 					</div>
@@ -177,8 +236,7 @@ String poster = mdto.getMovie_poster();
 			<table style="width: 1000px;">
 				<tr height="100">
 					<td rowspan="4" width="300">
-						<!-- 영화이미지 보이는 이미지 --> 
-						<img src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
+						<!-- 영화이미지 보이는 이미지 --> <img src="../movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
 					</td>
 
 					<td width="600"><b class="mv_subject"><%=mdto.getMovie_subject()%></b></td>
@@ -194,7 +252,7 @@ String poster = mdto.getMovie_poster();
 
 				<tr>
 					<td><b class="mv_content"> 평균☆ 별점 값..</b></td>
-					<td><b class="mv_content" style="margin-left: -100px;">찜</b></td>
+					<td><b class="mv_content" style="margin-left: -100px;">PICK</b></td>
 				</tr>
 			</table>
 
@@ -214,10 +272,102 @@ String poster = mdto.getMovie_poster();
 
 
 				<h3>예고편</h3>
-				<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content">예고편 유튜브값 불러오기</div>
+				<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content">
+					<iframe width="900" height="506" src="<%=mdto.getMovie_play()%>" title="<%=mdto.getMovie_subject()%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen> </iframe>
+				</div>
 
 				<h3>리뷰</h3>
-				<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content">리뷰값 불러오기</div>
+				<div style="margin: 30px 30px; width: 800px;">
+		<br>
+		<table class="table table-bordered">
+			<caption>
+				<b>리뷰 목록</b>
+			</caption>
+			<tr>
+				<th width="80" style="text-align: center;">번호</th>
+				<th width="400" style="text-align: center;">내용</th>
+				<th width="120" style="text-align: center;">작성자</th>
+				<th width="70" style="text-align: center;">점수</th>
+				<th width="60" style="text-align: center;">작성일</th>
+			</tr>
+
+			<%
+			if (totalCount == 0) {
+			%>
+			<tr>
+				<td colspan="5" align="center">
+					<h3>등록된 게시글이 없습니다</h3>
+				</td>
+			</tr>
+			<%
+			} else {
+			for (ReviewDto dto : list) {
+			%>
+			<tr>
+				<td align="center"><input type="hidden" class="alldel" value="<%=dto.getMovie_num()%>"> &nbsp;&nbsp; <%=no--%></td>
+				<td><a href="index.jsp?main=review/review_detail.jsp?num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>"><%=dto.getReview_content()%></a> <%
+
+ %></td>
+				<td align="center"><%=dto.getUser_num()%></td>
+				<td width="30" style="text-align: center;"><%=dto.getReview_score()%></td>
+				<td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
+			</tr>
+			<%
+			}
+			}
+			%>
+		</table>
+		<table style="border: none; float: right">
+			<tr>
+				<td colspan="5"><span style="float: right;">
+
+						&nbsp;
+						<button type="button" class="btn btn-success btn-sm" onclick="location.href='../review/review_addform.jsp'">
+							<span class="glyphicon glyphicon-pencil">글쓰기</span>
+
+						</button>
+					</span></td>
+			</tr>
+		</table>
+
+	</div>
+
+
+	<!-- 페이징 처리 -->
+	<div style="width: 800px; text-align: center;">
+		<ul class="pagination">
+			<%
+			//이전
+			if (startPage > 1) {
+			%>
+			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=startPage - 1%>">이전</a></li>
+			<%
+			}
+
+			for (int pp = startPage; pp <= endPage; pp++) {
+
+			if (pp == currentPage) {
+			%>
+			<li class="active"><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
+			<%
+			} else {
+			%>
+			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
+			<%
+			}
+
+			}
+
+			//다음
+			if (endPage < totalPage) {
+			%>
+			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=endPage + 1%>">다음</a></li>
+			<%
+			}
+			%>
+		</ul>
+	</div>
+
 
 			</div>
 		</form>
