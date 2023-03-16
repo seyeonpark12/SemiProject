@@ -52,13 +52,13 @@ $(function(){
       
 });
 
-	function genre(movie_genre){
-		
-		
-		//alert(movie_genre);
-		location.href="index.jsp?main=movie/movie_list.jsp?movie_genre="+movie_genre+"?currentPage=1";
-		
-	}
+   function genre(movie_genre){
+      
+      
+      //alert(movie_genre);
+      location.href="index.jsp?main=movie/movie_list.jsp?movie_genre="+movie_genre+"?currentPage=1";
+      
+   }
 </script>
 </head>
 
@@ -137,9 +137,9 @@ $(function(){
     <li><a movie_genre="기타" class="everything" href="movie/select_genre.jsp?movie_genre=etc">기타</a></li>
   </ul>
   
-	<%
-		if(movie_genre.equals("all")){%>
-				
+   <%
+      if(movie_genre.equals("all")){%>
+            
   <div class="tab-content">
     <div id="all" >
 
@@ -167,7 +167,7 @@ $(function(){
                    }
                    %>
                       <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail">
-                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -193,11 +193,11 @@ $(function(){
   </div>
    <%
    if(loginok != null){
-	   if(myid.equals("admin")){%>
-	                         
-	      <button type="button" class="btn btn-success" style="margin-left: 1500px;" onclick="location.href='movie/movie_addform.jsp'">등록</button>
-	      <button type="button" class="btn btn-danger" id="moviedel">삭제</button>
-	   <%}
+      if(myid.equals("admin")){%>
+                            
+         <button type="button" class="btn btn-success" style="margin-left: 1500px;" onclick="location.href='movie/movie_addform.jsp'">등록</button>
+         <button type="button" class="btn btn-danger" id="moviedel">삭제</button>
+      <%}
    }
    %>
 
@@ -242,8 +242,8 @@ $(function(){
       </ul>
    </div>
    <% }else{%>
-	   
-	   <div class="tab-content">
+      
+      <div class="tab-content">
     <div id="movie_genre" >
 
        <table style="width: 1000px; border-collapse: none;">
@@ -270,7 +270,7 @@ $(function(){
                    }
                    %>
                       <a movie_num="<%=dto.getMovie_num()%>" style="cursor: pointer;" class="godetail">
-                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+                      <img src="movie_save/<%=poster%>" class="poster" onclick="location.href='../index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                       <br>
                       <%=dto.getMovie_subject() %>
 
@@ -297,12 +297,12 @@ $(function(){
    
    <%
    if(loginok != null){
-	   if(myid.equals("admin")){%>
-	         
-	    	                
-	      <button type="button" class="btn btn-success"  onclick="location.href='movie/movie_addform.jsp'">등록</button>
-	      <button type="button" class="btn btn-danger" id="moviedel">삭제</button>
-	   <%}
+      if(myid.equals("admin")){%>
+            
+                          
+         <button type="button" class="btn btn-success"  onclick="location.href='movie/movie_addform.jsp'">등록</button>
+         <button type="button" class="btn btn-danger" id="moviedel">삭제</button>
+      <%}
    }
    %>
 
@@ -347,7 +347,7 @@ $(function(){
       </ul>
    </div>
    <%}
-	%>
+   %>
    </div>
    
 

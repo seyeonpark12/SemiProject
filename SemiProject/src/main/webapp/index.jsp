@@ -33,7 +33,7 @@
    <jsp:include page="<%=mainPage %>"/>
 </div>
 
-<footer style="positon:absolute; top:150px;">
+<footer style="top:200px;">
    <jsp:include page="layout/footer.html"></jsp:include>
 </footer>
 
