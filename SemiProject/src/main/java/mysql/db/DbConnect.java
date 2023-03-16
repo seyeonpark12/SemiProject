@@ -13,7 +13,6 @@ public class DbConnect {
 	static final String MYSQLDRIVER="com.mysql.cj.jdbc.Driver";
 	static final String MYSQL_URL="jdbc:mysql://popcorn.cuqgx5noh2if.ap-northeast-2.rds.amazonaws.com:3306/popcorn?serverTimezone=Asia/Seoul";
 
-	
 	public DbConnect() {
 		
 		try {
