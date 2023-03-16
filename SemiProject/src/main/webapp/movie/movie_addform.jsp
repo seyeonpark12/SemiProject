@@ -99,12 +99,12 @@ margin-bottom: 100px;
 
                <td><select name="movie_genre" class="form-control"
                   style="width: 200px;">
-                     <option value="로맨스">로맨스</option>
-                     <option value="액션">액션</option>
-                     <option value="코미디">코미디</option>
-                     <option value="공포">공포</option>
-                     <option value="애니메이션">애니메이션</option>
-                     <option value="기타">기타</option>
+                     <option value="romance">로맨스</option>
+                     <option value="action">액션</option>
+                     <option value="comedy">코미디</option>
+                     <option value="horror">공포</option>
+                     <option value="animation">애니메이션</option>
+                     <option value="etc">기타</option>
                </select></td>
             </tr>
 

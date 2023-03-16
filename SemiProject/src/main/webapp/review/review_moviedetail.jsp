@@ -1,3 +1,5 @@
+<%@page import="data.dto.UserDto"%>
+<%@page import="data.dao.UserDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="data.dao.ReviewDao"%>
@@ -25,6 +27,13 @@
 			$("#movie_poster").trigger("click"); //이벤트 강제호출 : trigger
 		});
 
+		$("#review_save").click(function() {
+			var review_score = $('input[name=review_Star]').val();
+			var review_contents = $("#review_contents").val();
+
+			alert(review_score + "," + review_contents);
+		})
+
 	});
 
 	//이미지미리보기
@@ -41,6 +50,12 @@
 
 
 <style type="text/css">
+.shape{
+position:relative;
+font-size: 50pt;
+top: 50px;
+left: 100px;
+}
 * {
 	margin: 0 auto;
 	padding: 0;
@@ -64,6 +79,7 @@
 	line-height: 22px;
 	top: 50px;
 	left: 50px;
+	line-height: 22px;
 }
 
 .mv_content_es {
@@ -133,15 +149,19 @@ td {
 </head>
 <%
 MovieDao mdao = new MovieDao();
-String movie_num = request.getParameter("movie_num");
-String user_nickname = request.getParameter("user_nickname");
-String review_content = request.getParameter("review_content");
-MovieDto mdto = mdao.getData(movie_num);
+UserDao udao = new UserDao();
 ReviewDao rdao = new ReviewDao();
 
+
+String movie_num = request.getParameter("movie_num");
+
+MovieDto mdto = mdao.getData(movie_num);
 String poster = mdto.getMovie_poster();
 
-ReviewDao dao = new ReviewDao();
+String user_myid =(String)session.getAttribute("myid");
+String user_nickname=udao.getName_id(user_myid);
+
+String user_num=udao.getNum(user_myid);
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -154,7 +174,7 @@ int currentPage; //현재페이지
 int no;
 
 //총갯수
-totalCount = dao.getTotalReviewCount();
+totalCount = rdao.getTotalReviewCount();
 
 //현재 페이지번호 읽기
 if (request.getParameter("currentPage") == null)
@@ -177,15 +197,17 @@ if (endPage > totalPage)
 start = (currentPage - 1) * perPage;
 
 //각 페이지 에서 필요한 게시글 가져오기
-List<ReviewDto> list = dao.getAllReview(start, perPage);
+List<ReviewDto> list = rdao.getAllReview(start, perPage);
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 no = totalCount - (currentPage - 1) * perPage;
 %>
 <body>
+<a href="javascript:history.back();" class="shape glyphicon glyphicon-arrow-left"></a>
 	<div style="margin-top: 100px; padding: 0;">
 		<input type="hidden" id="movie_num" value="<%=movie_num%>">
+		<input type="hidden" id="user_myid" value="<%=user_myid%>">
 		<input type="hidden" id="user_nickname" value="<%=user_nickname%>">
 		<!-- Trigger the modal with a button -->
 		<div data-toggle="modal" data-target="#myModal">
@@ -222,12 +244,12 @@ no = totalCount - (currentPage - 1) * perPage;
 								<label for="rate5">★</label>
 							</fieldset>
 							<div>
-								<textarea class="col-auto form-control" type="text" id="review_contents" placeholder="욕설과 비방을 작성 시 제재를 당할 수 있습니다." required="required"></textarea>
+								<textarea class="col-auto form-control" id="review_contents" placeholder="욕설과 비방을 작성 시 제재를 당할 수 있습니다." required="required"></textarea>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.href='review_listform.jsp'" id="review_save">저장하기</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" id="review_save">저장하기</button>
 					</div>
 				</div>
 			</div>
@@ -277,96 +299,80 @@ no = totalCount - (currentPage - 1) * perPage;
 				</div>
 
 				<h3>리뷰</h3>
-				<div style="margin: 30px 30px; width: 800px;">
-		<br>
-		<table class="table table-bordered">
-			<caption>
-				<b>리뷰 목록</b>
-			</caption>
-			<tr>
-				<th width="80" style="text-align: center;">번호</th>
-				<th width="400" style="text-align: center;">내용</th>
-				<th width="120" style="text-align: center;">작성자</th>
-				<th width="70" style="text-align: center;">점수</th>
-				<th width="60" style="text-align: center;">작성일</th>
-			</tr>
+				<div style="width: 1000px; margin-left: 1px;" id="movie_content">
+					<br>
+					<table class="table table-bordered">
+						<tr>
+							<th width="80" style="text-align: center;">번호</th>
+							<th width="400" style="text-align: center;">내용</th>
+							<th width="120" style="text-align: center;">작성자</th>
+							<th width="70" style="text-align: center;">점수</th>
+							<th width="60" style="text-align: center;">작성일</th>
+						</tr>
 
-			<%
-			if (totalCount == 0) {
-			%>
-			<tr>
-				<td colspan="5" align="center">
-					<h3>등록된 게시글이 없습니다</h3>
-				</td>
-			</tr>
-			<%
-			} else {
-			for (ReviewDto dto : list) {
-			%>
-			<tr>
-				<td align="center"><input type="hidden" class="alldel" value="<%=dto.getMovie_num()%>"> &nbsp;&nbsp; <%=no--%></td>
-				<td><a href="index.jsp?main=review/review_detail.jsp?num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>"><%=dto.getReview_content()%></a> <%
+						<%
+						if (totalCount == 0) {
+						%>
+						<tr>
+							<td colspan="5" align="center">
+								<h3>등록된 게시글이 없습니다</h3>
+							</td>
+						</tr>
+						<%
+						} else {
+						for (ReviewDto dto : list) {
+						%>
+						<tr>
+							<td align="center"><input type="hidden" class="alldel" value="<%=dto.getMovie_num()%>"> &nbsp;&nbsp; <%=no--%></td>
+							<td><a href="../index.jsp?main=review/review_detailview.jsp?num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>"><%=dto.getReview_content()%></a> <%
 
  %></td>
-				<td align="center"><%=dto.getUser_num()%></td>
-				<td width="30" style="text-align: center;"><%=dto.getReview_score()%></td>
-				<td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
-			</tr>
-			<%
-			}
-			}
-			%>
-		</table>
-		<table style="border: none; float: right">
-			<tr>
-				<td colspan="5"><span style="float: right;">
-
-						&nbsp;
-						<button type="button" class="btn btn-success btn-sm" onclick="location.href='../review/review_addform.jsp'">
-							<span class="glyphicon glyphicon-pencil">글쓰기</span>
-
-						</button>
-					</span></td>
-			</tr>
-		</table>
-
-	</div>
+							<td align="center"><%=user_nickname%></td>
+							<td width="30" style="text-align: center;"><%=dto.getReview_score()%></td>
+							<td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
+						</tr>
+						<%
+						}
+						}
+						%>
+					</table>
+				</div>
 
 
-	<!-- 페이징 처리 -->
-	<div style="width: 800px; text-align: center;">
-		<ul class="pagination">
-			<%
-			//이전
-			if (startPage > 1) {
-			%>
-			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=startPage - 1%>">이전</a></li>
-			<%
-			}
+				<!-- 페이징 처리 -->
+				<div style="width: 800px; text-align: center;">
+					<ul class="pagination">
+						<%
+						//이전
+						if (startPage > 1) {
+						%>
+						<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=startPage - 1%>">이전</a></li>
+						<%
+						}
 
-			for (int pp = startPage; pp <= endPage; pp++) {
+						for (int pp = startPage; pp <= endPage; pp++) {
 
-			if (pp == currentPage) {
-			%>
-			<li class="active"><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
-			<%
-			} else {
-			%>
-			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
-			<%
-			}
+						if (pp == currentPage) {
+						%>
+						<li class="active"><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
+						<%
+						} else {
+						%>
+						<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=pp%>"><%=pp%></a></li>
+						<%
+						}
 
-			}
+						}
 
-			//다음
-			if (endPage < totalPage) {
-			%>
-			<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=endPage + 1%>">다음</a></li>
-			<%
-			}
-			%>
-		</ul>
-	</div>
+						//다음
+						if (endPage < totalPage) {
+						%>
+						<li><a href="index.jsp?main=review/review_listform.jsp?currentPage=<%=endPage + 1%>">다음</a></li>
+						<%
+						}
+						%>
+					</ul>
+				</div>
 
 
 			</div>

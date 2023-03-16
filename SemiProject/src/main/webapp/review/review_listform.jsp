@@ -101,19 +101,6 @@ no = totalCount - (currentPage - 1) * perPage;
 			}
 			%>
 		</table>
-		<table style="border: none; float: right">
-			<tr>
-				<td colspan="5"><span style="float: right;">
-
-						&nbsp;
-						<button type="button" class="btn btn-success btn-sm" onclick="location.href='../review/review_addform.jsp'">
-							<span class="glyphicon glyphicon-pencil">글쓰기</span>
-
-						</button>
-					</span></td>
-			</tr>
-		</table>
-
 	</div>
 
 
