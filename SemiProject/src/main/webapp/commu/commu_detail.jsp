@@ -192,6 +192,7 @@
          			%>
          			<b><%=mentnickname %></b>
          			<%
+         			//게시글 작성자가 자기글에 댓글 달았을때 [글쓴이] 표시
          			if(writer_id.equals(ment_id)){%>
          				<span style="color: gray; font-weight: bold;">[글쓴이]</span>
          			<%}
@@ -205,6 +206,7 @@
          		<tr>
          			<td>
          			<%
+         			//댓글 수정,삭제
          			if(loginok!=null){
          				if(myid.equals(ment_id)){%>
          					<button type="button" class="mentupdate btn btn-default btn-xs" ment_num=<%=mdto.getMent_num() %>>수정</button>
