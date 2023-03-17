@@ -78,10 +78,8 @@
    //commu_num에 따른 댓글리스트
    List<MentDto> mlist=mdao.getAllMent(dto.getCommu_num());
    
-   MentDto ment_num_dto=mdao.getMentData(user_num);
+   //MentDto mentnum_dto=mdao.getMentData(user_num);
   
-   
-   
    %>
 
       <br>
@@ -120,22 +118,36 @@
       
       <div style="margin-left:840px;">  
       <% 
+      
       if(loginok!=null){
       	
       	if(myid.equals(writer_id)){%>
       
     	  <button type="button" class="btn btn-default" onclick="location.href='#'">수정</button>
-          <button type="button" class="btn btn-default" onclick="location.href='#'">삭제</button>
+          <button type="button" class="btn btn-default" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
       
       	<%}else if(myid.equals("admin")){%>
-      		<button type="button" class="btn btn-default" onclick="location.href='#'">삭제</button>
+      		<button type="button" class="btn btn-default" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
       	<%}
       }
       %>
       <button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=commu/commu_totallist.jsp'">목록</button> 
 	  </div>
-	     
-     
+	  
+	  
+	  <!-- 삭제 사용자함수 -->
+	<script type="text/javascript">
+	
+		function funcdel(commu_num,currentPage){
+			
+			var a=confirm("삭제하시겠습니까?");
+	
+			if(a){
+				location.href="commu/commu_delete.jsp?commu_num="+commu_num+"&currentPage="+currentPage;
+			}
+		}
+	</script>
+	  
       <h3>댓글</h3>
       
       <div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_comtent">
@@ -172,22 +184,38 @@
          	<table>
          	<%
          	for(MentDto mdto:mlist){%>
-         		
          		<tr>
          			<td>
          			<%
-                    //String mentnickname=udao.getName_num(dto.getUser_num());
-         			//String mnickname=mdao.getMentData(user_num);
+                    String mentnickname=udao.getName_num(mdto.getUser_num());
+         			String ment_id=udao.getId(mdto.getUser_num());
          			%>
-         			<b><%=nickname %></b>
+         			<b><%=mentnickname %></b>
          			<%
-         			if(myid.equals(writer_id)){%>
+         			if(writer_id.equals(ment_id)){%>
          				<span style="color: gray; font-weight: bold;">[글쓴이]</span>
          			<%}
          			%>
          			
-         			<span style="font-size: 9pt; color: gray;"><%=sdf.format(mdto.getMent_writeday()) %></span>
          			<span style="font-size: 10pt;"><%=mdto.getMent_content().replace("\n", "<br>") %></span>
+         			<span style="font-size: 9pt; color: gray;"><%=sdf.format(mdto.getMent_writeday()) %></span>
+         			</td>
+         		</tr>
+         		
+         		<tr>
+         			<td>
+         			<%
+         			if(loginok!=null){
+         				if(myid.equals(ment_id)){%>
+         					<button type="button" class="mentupdate btn btn-default btn-xs" ment_num=<%=mdto.getMent_num() %>>수정</button>
+         					<button type="button" class="mentdelete btn btn-default btn-xs" ment_num=<%=mdto.getMent_num() %>>삭제</button>
+         					
+         				<%}else if(myid.equals("admin")){%>
+         					<button type="button" class="mentdelete btn btn-default btn-xs" ment_num=<%=mdto.getMent_num() %>>삭제</button>
+         					
+         				<%}
+         			}
+         			%>
          			</td>
          		</tr>
          	<%}
