@@ -10,7 +10,6 @@
 <link rel="favicon" href="../layout_image/titlelogo.ico">
 <link rel="shortcut icon" type="../layoutimage/x-icon"
 	href="../layout_image/titlelogo.ico">
-
 <link href="css/info.css" type="text/css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"

@@ -11,6 +11,8 @@
 <link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="css/movie.css" type="text/css" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 	
 	<script type="text/javascript">
@@ -30,37 +32,6 @@
         
     }
     </script>
-    
-    
-<style type="text/css">
-
-
-*{
-	margin: 0 auto;
-	padding: 0;
-	list-style: none;
-	font-family:"Noto Sans KR";
-	color: black;
-}
-
-.mv_subject {
-	font-size: 33px;
-	font-weight: 700;
-	letter-spacing: -1.2px;
-	line-height: 41px;
-}
-
-.mv_content {
-	font-size: 17px;
-	font-weight: 400;
-	letter-spacing: -0.7px;
-	line-height: 22px;
-	margin-top: 4px;
-	margin-bottom: 10px;
-}
-
-
-</style>
 
 </head>
 

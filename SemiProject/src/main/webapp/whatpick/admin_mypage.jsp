@@ -26,7 +26,8 @@
 
 			<h3>관리자정보</h3>
 
-			<a class="editbtn" href='index.jsp?main=whatpick/admin_updateform.jsp'">EDIT</a>
+			<a class="editbtn"
+				href='index.jsp?main=whatpick/admin_updateform.jsp'">EDIT</a>
 			<tr>
 				<th class="myinfo" width="200">이름</th>
 				<td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
@@ -57,12 +58,8 @@
 				<th class="myinfo" width="100">이메일</th>
 				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;이메일(dto값)</td>
 			</tr>
-
 		</table>
-
-
-		<a class="morebtn"
-			href='index.jsp?main=whatpick/admin_peoplelist.jsp'">+MORE</a>
+		<a class="morebtn" href='index.jsp?main=whatpick/admin_peoplelist.jsp'">+MORE</a>
 
 		<table style="width: 1000px;">
 			<h3>회원목록</h3>
@@ -82,11 +79,7 @@
 					<h3>등록된 게시글이 없습니다</h3>
 				</td>
 			</tr>
-
-
-
 		</table>
-
 	</div>
 </body>
 </html>

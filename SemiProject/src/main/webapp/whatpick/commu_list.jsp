@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Insert title here</title>
+<title>WPICK</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
@@ -128,60 +128,56 @@ td.myinfo {
 				<th width="100" class="myinfo">작성일</th>
 				<th width="60" class="myinfo">조회수</th>
 			</tr>
-     
-      <%
+
+			<%
    
          if(totalCount==0){%>
-         
+
 			<tr class="tr_myinfo">
 				<td colspan="5" align="center" class="myinfo">
 					<h3>등록된 게시글이 없습니다</h3>
 				</td>
 			</tr>
-			
-			 <%}else{
+
+			<%}else{
             
             for(CommuDto dto:list){%>
-            
-                 <tr class="tr_myinfo">
-                  <td class="myinfo">
-                  <%=dto.getCommu_category() %>
-                  </td>
-                  
-         		 <td class="myinfo">
-                  <a href="index.jsp?main=whatpick/commu_detail.jsp?num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
-                  <%
+
+			<tr class="tr_myinfo">
+				<td class="myinfo"><%=dto.getCommu_category() %></td>
+
+				<td class="myinfo"><a
+					href="index.jsp?main=whatpick/commu_detail.jsp?num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
+					<%
 	   				//댓글이 있을 경우 제목 옆에 갯수 나타내기
-	   				if(dto.getAnswerCount()>0){%>
-	   					<a href="index.jsp?main=whatpick/commu_detail.jsp?num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>" style="color: red;">[<%=dto.getAnswerCount() %>]</a>
-	   				<%}
-	   				%>
-                  </td>
-                  
-                  <%
+	   				if(dto.getAnswerCount()>0){%> <a
+					href="index.jsp?main=whatpick/commu_detail.jsp?num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
+					style="color: red;">[<%=dto.getAnswerCount() %>]
+				</a> <%}
+	   				%></td>
+
+				<%
                   String nickname=udao.getName_num(dto.getUser_num());
                   %>
-                  <td class="myinfo">
-                  <%=nickname %>
-                  </td>
-                  
-                  <td class="myinfo"><%=sdf.format(dto.getCommu_writeday()) %></td>
-                  
-                  <td class="myinfo"><%=dto.getCommu_readcount() %></td>
-               </tr>
-               
-            <%}
+				<td class="myinfo"><%=nickname %></td>
+
+				<td class="myinfo"><%=sdf.format(dto.getCommu_writeday()) %></td>
+
+				<td class="myinfo"><%=dto.getCommu_readcount() %></td>
+			</tr>
+
+			<%}
             }
             %>
-         </table>
+		</table>
 
-			<div style="margin-left:930px;">
-		<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=whatpick/commu_addform.jsp'">
-			<span class="glyphicon glyphicon-pencil"></span>글쓰기
-		</button>
-	</div>
-	
+		<div style="margin-left: 930px;">
+			<button type="button" class="btn btn-default btn-sm"
+				onclick="location.href='index.jsp?main=whatpick/commu_addform.jsp'">
+				<span class="glyphicon glyphicon-pencil"></span>글쓰기
+			</button>
+		</div>
+
 	</div>
 </body>
 </html>

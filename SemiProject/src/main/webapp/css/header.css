@@ -9,7 +9,7 @@
 }
 
 body {
-	width: 1920px;
+	width: 1536px;
 	background-color: #ffffff;
 	font-size: 16px;
 }
@@ -21,20 +21,21 @@ a {
 
 header {
 	height: 100px;
-	width: 1920px;
+	width: 1536px;
 	position: relative;
 }
 
 .top {
-	height: 100px;
-	width: 1920px;
 	position: absolute;
+	height: 100px;
+	width: 1536px;
+	padding: 50px 0;
 }
 
 .logo {
 	float: left;
-	width: 200px;
-	margin-left: 100px;
+	width: 150px;
+	margin-left: 30px;
 	margin-top: -22px;
 }
 
@@ -53,7 +54,7 @@ header {
 
 .navi>li {
 	float: left;
-	width: 150px;
+	width: 130px;
 }
 
 .navi>li>a {
@@ -73,10 +74,10 @@ navi>li:hover {
 .menu2 {
 	float: right;
 	width: 400px;
-	margin-top: -28px; margin-right : -500px;
+	margin-top: -30px;
+	margin-right: -400px;
 	background-color: #ffffff;
 	z-index: 1;
-	margin-right: -500px;
 }
 
 .modal-header, h4, .close {
@@ -88,7 +89,7 @@ navi>li:hover {
 
 .modal-content {
 	width: 370px;
-	margin-left: 100px;
+	margin-left: 120px;
 }
 
 .modal-backdrop {
@@ -120,6 +121,6 @@ dal-footer {
 	height: 30px;
 	line-height: 30px;
 	border: none;
-	margin-left: 1370px;
+	margin-left: 1050px;
 	background-color: #fafafa;
 }

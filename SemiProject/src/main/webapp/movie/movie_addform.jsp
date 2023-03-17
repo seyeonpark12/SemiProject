@@ -8,7 +8,7 @@
 <link rel="favicon" href="../layout_image/titlelogo.ico">
 <link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-<!-- <link href="css/index.css" type="text/css" rel="stylesheet"> -->
+<link href="css/movie.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -30,40 +30,6 @@
            }
        }
    </script>
-   
-   
-<style type="text/css">
-
-
-*{
-   margin: 0 auto;
-   padding: 0;
-   list-style: none;
-   font-family:"Noto Sans KR";
-   color: black;
-}
-
-.mv_subject {
-   font-size: 33px;
-   font-weight: 700;
-   letter-spacing: -1.2px;
-   line-height: 41px;
-}
-
-.mv_content {
-   font-size: 17px;
-   font-weight: 400;
-   letter-spacing: -0.7px;
-   line-height: 22px;
-   margin-top: 4px;
-   margin-bottom: 10px;
-}
-
-td{
-margin-bottom: 100px;
-}
-</style>
-
 </head>
 <body>
    <div style="margin-top: 100px; padding: 0;">
@@ -99,12 +65,12 @@ margin-bottom: 100px;
 
                <td><select name="movie_genre" class="form-control"
                   style="width: 200px;">
-                     <option value="로맨스">로맨스</option>
-                     <option value="액션">액션</option>
-                     <option value="코미디">코미디</option>
-                     <option value="공포">공포</option>
-                     <option value="애니메이션">애니메이션</option>
-                     <option value="기타">기타</option>
+                     <option value="romance">로맨스</option>
+                     <option value="action">액션</option>
+                     <option value="comedy">코미디</option>
+                     <option value="horror">공포</option>
+                     <option value="animation">애니메이션</option>
+                     <option value="etc">기타</option>
                </select></td>
             </tr>
 

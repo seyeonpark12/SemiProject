@@ -77,14 +77,9 @@
 							onclick="location.href='index.jsp?main=whatpick/admin_mypage.jsp'"
 							style="float: right; margin-right: 125px; margin-top: 20px;">마이페이지</button>
 					</div>
-
 				</div>
 			</form>
 		</div>
-
 	</div>
-	
-	
-	
 </body>
 </html>
