@@ -129,7 +129,7 @@ td.myinfo {
    %>
    
 	<div class="category"
-		style="width: 1000px; margin-top: 100px; margin-left: 860px;">
+		style="width: 1000px; margin-top: 100px; margin-left: 670px;">
 		<div style="float: left;">
 			<a href="index.jsp?main=commu/commu_totallist.jsp"
 				style="font-size: 18px; font-weight: bold; color: black; padding-right: 10px;">전체

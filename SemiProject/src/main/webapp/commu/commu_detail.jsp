@@ -82,9 +82,8 @@
   
    %>
 
-      <br>
-      <br>
-   <div style="margin: 30px 30px; margin-left: 450px;">
+ 
+   <div style="margin: 30px 30px; margin-left:300px;">
       <form>
       <input type="hidden" name="commu_num" value="<%=commu_num%>">   
       <input type="hidden" name="user_num" value="<%=user_num%>">

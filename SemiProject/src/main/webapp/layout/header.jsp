@@ -167,14 +167,13 @@ String user_num=dao.getNum(myid);
             }
             %>
 
-
-            <!-- Modal 로그인 -->
+   <!-- Modal 로그인 -->
             <div class="modal fade" id="myModal" role="dialog">
                <div class="modal-dialog">
 
                   <!-- Modal content-->
                   <div class="modal-content">
-                     <div class="modal-header" style="padding: 35px 50px;">
+                     <div class="modal-header" style="padding: 50px 50px;">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <caption>
                            <h2 align="center">로그인</h2>
@@ -187,12 +186,12 @@ String user_num=dao.getNum(myid);
 
                               <br> <br> <input type="text" name="user_id"
                                  placeholder="ID" class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 style="width: 300px; background-color: #fafafa" value="">
 
                               <br> <br> <input type="password" name="user_pw"
                                  placeholder="PASSWORD" class="form-control"
                                  required="required"
-                                 style="width: 300px; background-color: #FAF7F7"> <br>
+                                 style="width: 300px; background-color: #fafafa"> <br>
 
                               <div class="form-group">
                                  <div class="col-sm-offset-2 col-sm-10">
@@ -241,38 +240,38 @@ String user_num=dao.getNum(myid);
 
                               <br> <br> <input type="text" name="user_name"
                                  placeholder="이름" class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 style="width: 300px; background-color: #fafafa" value="">
 
 
                               <br> <br> <input type="text" name="user_nickname"
                                  placeholder="닉네임" class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 style="width: 300px; background-color: #fafafa" value="">
 
 
                               <br> <br> <input type="text" name="user_id"
                                  placeholder="아이디" class="form-control" required="required"
-                                 style="width: 70%; background-color: #FAF7F7" value="">
+                                 style="width: 70%; background-color: #fafafa" value="">
 
                               <button type="button" class="btn btn-default"
                                  style="margin-top: -55px; margin-left: 220px;">중복확인</button>
 
                               <br> <br> <input type="password" name="user_pw"
                                  placeholder="비밀번호" class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7"> <br>
+                                 style="width: 300px; background-color: #fafafa"> <br>
                               <br> <input type="password" name="user_pw2"
                                  placeholder="비밀번호확인" class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7"> <br>
+                                 style="width: 300px; background-color: #fafafa"> <br>
                               <br> <input type="text" name="user_hp" placeholder="휴대번호"
                                  class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 style="width: 300px; background-color: #fafafa" value="">
 
                               <br> <br> <input type="text" name="user_addr"
                                  placeholder="주소" class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 style="width: 300px; background-color: #fafafa" value="">
 
                               <br> <br> <input type="text" name="user_email"
                                  placeholder="이메일" class="form-control" required="required"
-                                 style="width: 300px; background-color: #FAF7F7" value="">
+                                 style="width: 300px; background-color: #fafafa" value="">
 
                               <br> <br>
                               <div class="form-group">
