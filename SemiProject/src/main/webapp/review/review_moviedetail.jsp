@@ -31,8 +31,7 @@
 				function() {
 					var movie_num = $("#movie_num").val();
 					var user_num = $("#user_num").val();
-					var review_score = $("#myform input[type=radio]:checked")
-							.val()
+					var review_score = $("#myform input[type=radio]:checked").val()
 					var review_contents = $("#review_contents").val();
 
 					alert(movie_num + "," + user_num + "," + review_score + ","
@@ -230,7 +229,7 @@ no = totalCount - (currentPage - 1) * perPage;
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<img alt="" src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200">
 						<div style="text-align: center; font-size: 20pt">
-							<b>
+							<b style="font-size: 15pt;">
 								&nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject()%></b>
 						</div>
 					</div>
@@ -383,9 +382,6 @@ no = totalCount - (currentPage - 1) * perPage;
 
 			</div>
 		</form>
-
-
-		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 	</div>
 
 </body>
