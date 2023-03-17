@@ -66,8 +66,8 @@ margin-bottom: 100px;
 
 </head>
 <body>
-   <div style="margin-top: 100px; padding: 0;">
-      <form action="movie_addaction.jsp" method="post"
+   <div style="margin-top: 100px; padding: 0; margin-bottom:300px;">
+      <form action="movie/movie_addaction.jsp" method="post"
          enctype="multipart/form-data">
          <table style="width: 1000px;">
             <caption>
@@ -146,10 +146,10 @@ margin-bottom: 100px;
                </div>
             </div>
 
-            <div>
+          
                <button type="submit" class="btn btn-default btn-ls"
                   style="float: right; margin-right: 500px;">영화등록</button>
-            </div>
+            
          </div>
         </form>
    </div>

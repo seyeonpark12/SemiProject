@@ -23,10 +23,6 @@
    href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
-<script src="script/script.js" defer type="text/javascript"></script>
-<script src="https://kit.fontawesome.com/7027f21a5f.js"
-   crossorigin="anonymous"></script>
-
 <script type="text/javascript">
    $(function() {
 
@@ -60,13 +56,6 @@
 
    });
 
-   function genre(movie_genre) {
-
-      //alert(movie_genre);
-      location.href = "index.jsp?main=movie/movie_list.jsp?movie_genre="
-            + movie_genre + "?currentPage=1";
-
-   }
 </script>
 
 <style type="text/css">
@@ -178,13 +167,13 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             href="movie/select_genre.jsp?movie_genre=romance">로맨스</a></li>
          <li><a class="action"
             href="movie/select_genre.jsp?movie_genre=action">액션</a></li>
-         <li><a movie_genre="코미디" class="comedy"
+         <li><a class="comedy"
             href="movie/select_genre.jsp?movie_genre=comedy">코미디</a></li>
-         <li><a movie_genre="공포" class="horror"
+         <li><a class="horror"
             href="movie/select_genre.jsp?movie_genre=horror">공포</a></li>
-         <li><a movie_genre="애니메이션" class="animation"
+         <li><a class="animation"
             href="movie/select_genre.jsp?movie_genre=animation">애니메이션</a></li>
-         <li><a movie_genre="기타" class="everything"
+         <li><a class="everything"
             href="movie/select_genre.jsp?movie_genre=etc">기타</a></li>
       </ul>
 
@@ -276,7 +265,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
          <div style="margin-left: 990px;">
             <button type="button" class="btn btn-default"
                style="color: #653491; border: 1px solid #653491;"
-               onclick="location.href='movie/movie_addform.jsp'">등록</button>
+               onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
             <button type="button" class="btn btn-default" id="moviedel">삭제</button>
          </div>
       </div>
@@ -387,7 +376,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
          <div style="margin-left: 990px;">
             <button type="button" class="btn btn-default"
                style="color: #653491; border: 1px solid #653491;"
-               onclick="location.href='movie/movie_addform.jsp'">등록</button>
+               onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
             <button type="button" class="btn btn-default" id="moviedel">삭제</button>
          </div>
       </div>
