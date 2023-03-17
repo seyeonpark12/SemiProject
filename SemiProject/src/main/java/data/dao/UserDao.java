@@ -15,37 +15,44 @@ public class UserDao {
 	DbConnect db=new DbConnect();
 	
 	
-	//id 중복 체크
-	public int isIdCheck(String user_id) {
-		
-		int isid=0;
-		
-		Connection conn=db.getConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		String sql="select count(*) from user where user_id=?";
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, user_id);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				isid=rs.getInt(1);
-				
-			}	
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(rs, pstmt, conn);
-		}
-		
-		return isid;
-	}
+	
+	  //id 중복 체크
+	   public int isIdCheck(String user_id) {
+	  
+	  int isid=0;
+	  
+	  Connection conn=db.getConnection();
+	  PreparedStatement pstmt=null;
+	  ResultSet rs=null;
+	  
+	  String sql="select count(*) from user where user_id=?";
+	  
+	  try {
+		  pstmt=conn.prepareStatement(sql);
+		  pstmt.setString(1, user_id);
+		  rs=pstmt.executeQuery();
+	  
+	  if(rs.next()) {
+		  
+		// 해당 아이디 존재하면 1, 존재하지 않으면 0
+		// if(rs.getInt(1)==1) {
+		// isid=1;}
+		  
+		  isid=rs.getInt(1);
+	  
+	  		}
+	  
+	  } catch (Exception e) {
+		  // TODO Auto-generated catch block
+		  e.printStackTrace();
+	  }finally { 
+		  db.dbClose(rs, pstmt, conn); 
+	  }
+	  
+	  return isid; 
+	  }
+	 
+	
 	
 	
 	   //id에 따른 nickname 값 리턴

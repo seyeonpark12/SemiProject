@@ -22,27 +22,27 @@
 	
 	UserDao dao=new UserDao();
 	boolean b=dao.isIdPwCheck(user_id, user_pw);
+	int a=dao.isIdCheck(user_id);
 	
-	//아이디와 비번이 맞으면 3개의 세션을 저장하고
-	//로그인메인으로 이동
+	
 	if(b){
 		
-		//세션유지시간(생략시 30분)
+		//세션 유지시간(생략시 30분)
 		session.setMaxInactiveInterval(60*60*8);
 		session.setAttribute("loginok", "yes");
 		session.setAttribute("myid", user_id);
 		session.setAttribute("saveid", saveid==null?null:"yes");
 		
-		//로그인메인이동
-		//response.sendRedirect("../index.jsp?main=login/loginmain.jsp");%>
-		alert("로그인성공");
-	<%}else{%>
 		
+		%>
+		
+	<%}else{%>
 		<script type="text/javascript">
-		   alert("아이디와 비번이 맞지않습니다");
-		   history.back();
+		alert("아이디와 비번이 맞지 않습니다");
+		history.back();
 		</script>
 	<%}
+	
 %>
 
 </body>

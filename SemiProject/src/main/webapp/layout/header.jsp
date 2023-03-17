@@ -26,23 +26,23 @@
 
 </head>
 <%
-String loginok = (String) session.getAttribute("loginok");
-String myid = (String) session.getAttribute("myid");
-String saveid = (String) session.getAttribute("saveid");
-
-UserDao dao = new UserDao();
-String nickname = dao.getName_id(myid);
-%>
-<script type="text/javascript">
-   $(function() {
-      $("#myBtn").click(function() {
-         $("#myModal").modal();
-      });
-
-      $("#myBtn2").click(function() {
-         $("#myModal2").modal();
-      });
-   });
+		String loginok = (String) session.getAttribute("loginok");
+		String myid = (String) session.getAttribute("myid");
+		String saveid = (String) session.getAttribute("saveid");
+		
+		UserDao dao = new UserDao();
+		String nickname = dao.getName_id(myid);
+		%>
+		<script type="text/javascript">
+		   $(function() {
+		      $("#myBtn").click(function() {
+		         $("#myModal").modal();
+		      });
+		
+		      $("#myBtn2").click(function() {
+		         $("#myModal2").modal();
+		      });
+		   });
 </script>
 
 <script type="text/javascript">
@@ -68,33 +68,7 @@ String nickname = dao.getName_id(myid);
             }
          });
          
-         
-         $.ajax({
-             data : { user_id : inputed },
-             url : "user/user_addaction.jsp",
-             success : function(data) {
-                 if(inputed=="" && data=='0') {
-                     $("#gaip").prop("disabled", true);
-                     $("#gaip").css("background-color", "#aaaaaa");
-                     $("#user_id").css("background-color", "#FFCECE");
-                     idCheck = 0;
-                 } else if (data == '0') {
-                     $("#user_id").css("background-color", "#B0F6AC");
-                     idCheck = 1;
-                     if(idCheck==1 && pwdCheck == 1) {
-                         $("#gaip").prop("disabled", false);
-                         $("#gaip").css("background-color", "#4CAF50");
-                         signupCheck();
-                     } 
-                 } else if (data == '1') {
-                     $("#gaip").prop("disabled", true);
-                     $("#gaip").css("background-color", "#aaaaaa");
-                     $("#user_id").css("background-color", "#FFCECE");
-                     idCheck = 0;
-                 } 
-             }
-         });
-         
+       
         	//비밀번호 확인
         		$('#user_pw2').blur(function(){
         		   if($('#user_pw').val() != $('#user_pw2').val()){
@@ -122,17 +96,12 @@ String nickname = dao.getName_id(myid);
             dataType : "html",
             url : "login/loginaction.jsp",
             data : logindata,
-            success : function(data) {
+            success : function() {
              
-            	location.reload(data);
+            	location.reload();
                 
-                
-               if(data==1){
-            	   alert("로그인 되었습니다.");
-                    
-               }else{
-            	 alert("아이디와 비밀번호가 맞지 않습니다.");
-               }
+               
+              
             }
          
          });
@@ -140,16 +109,17 @@ String nickname = dao.getName_id(myid);
       });
 
    });
+   
+   
 </script>
 <body>
-	<%=loginok %>
    <%
    request.setCharacterEncoding("utf-8");
    %>
 
 
    <header>
-      <div class="top" style="margin-top: 60px;">
+      <div class="top" style="margin-top: 60px;"></div>
 
          <div class="logo">
             <a href="index.jsp?main=layout/main.jsp"><img
@@ -226,9 +196,9 @@ String nickname = dao.getName_id(myid);
                   <div class="modal-content">
                      <div class="modal-header" style="padding: 35px 50px;">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <caption>
+                       
                            <h2 align="center">로그인</h2>
-                        </caption>
+                        
 
                      </div>
                      <div class="modal-body" style="padding: 40px 50px;">
@@ -280,9 +250,9 @@ String nickname = dao.getName_id(myid);
                   <div class="modal-content">
                      <div class="modal-header" style="padding: 35px 50px;">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <caption>
+                        
                            <h2 align="center">회원가입</h2>
-                        </caption>
+                        
 
                      </div>
                      <div class="modal-body" style="padding: 40px 50px;">
