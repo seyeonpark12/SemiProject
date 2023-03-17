@@ -34,8 +34,7 @@
 					var review_score = $("#myform input[type=radio]:checked").val()
 					var review_contents = $("#review_contents").val();
 
-					alert(movie_num + "," + user_num + "," + review_score + ","
-							+ review_contents);
+					// alert(movie_num + "," + user_num + "," + review_score + "," + review_contents);
 
 				})
 
@@ -163,10 +162,10 @@ String movie_num = request.getParameter("movie_num");
 MovieDto mdto = mdao.getData(movie_num);
 String poster = mdto.getMovie_poster();
 
-String user_myid = (String) session.getAttribute("myid");
-String user_nickname = udao.getName_id(user_myid);
+String myid = (String) session.getAttribute("myid");
+String user_nickname = udao.getName_id(myid);
 
-String user_num = udao.getNum(user_myid);
+String user_num = udao.getNum(myid);
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -212,6 +211,7 @@ no = totalCount - (currentPage - 1) * perPage;
 	<a href="javascript:history.back();" class="shape glyphicon glyphicon-arrow-left"></a>
 	<div style="margin-top: 100px; padding: 0;">
 		<input type="hidden" id="movie_num" value="<%=movie_num%>">
+		<input type="hidden" id="myid" value="<%=myid%>">
 		<input type="hidden" id="user_num" value="<%=user_num%>">
 		<input type="hidden" id="user_nickname" value="<%=user_nickname%>">
 		<!-- Trigger the modal with a button -->

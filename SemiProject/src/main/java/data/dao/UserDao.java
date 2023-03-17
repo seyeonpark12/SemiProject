@@ -219,7 +219,7 @@ public class UserDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				num = rs.getString("num");
+				num = rs.getString("user_num");
 			}
 
 		} catch (SQLException e) {
