@@ -22,5 +22,5 @@ dao.insertreview(dto);
 
 int num=dao.getMaxNum();
 
-response.sendRedirect("../index.jsp?main=whatpick/category.jsp?num=" + num);
+
 %>

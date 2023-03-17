@@ -176,10 +176,10 @@
          		<tr>
          			<td>
          			<%
-                    //String mentnickname=udao.getName_num(dto.getUser_num());
+                   	String mentnickname=udao.getName_num(mdto.getUser_num());
          			//String mnickname=mdao.getMentData(user_num);
          			%>
-         			<b><%=nickname %></b>
+         			<b><%=mentnickname %></b>
          			<%
          			if(myid.equals(writer_id)){%>
          				<span style="color: gray; font-weight: bold;">[글쓴이]</span>

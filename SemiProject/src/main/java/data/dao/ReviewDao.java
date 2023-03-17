@@ -11,153 +11,193 @@ import data.dto.ReviewDto;
 import mysql.db.DbConnect;
 
 public class ReviewDao {
-	DbConnect db = new DbConnect();
+   DbConnect db = new DbConnect();
 
-	public void insertreview(ReviewDto dto) {
+   public void insertreview(ReviewDto dto) {
 
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
 
-		String sql = "insert into review values(null, ?, ?, ?, ?, now())";
+      String sql = "insert into review values(null, ?, ?, ?, ?, now())";
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getMovie_num());
-			pstmt.setString(2, dto.getUser_num());
-			pstmt.setDouble(3, dto.getReview_score());
-			pstmt.setString(4, dto.getReview_content());
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, dto.getMovie_num());
+         pstmt.setString(2, dto.getUser_num());
+         pstmt.setDouble(3, dto.getReview_score());
+         pstmt.setString(4, dto.getReview_content());
 
-			pstmt.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			db.dbClose(pstmt, conn);
-		}
+         pstmt.execute();
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         db.dbClose(pstmt, conn);
+      }
 
-	}
+   }
 
-	public int getMaxNum() {
-		int max = 0;
+   public int getMaxNum() {
+      int max = 0;
 
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
 
-		String sql = "select max(review_num) max from review";
+      String sql = "select max(review_num) max from review";
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+      try {
+         pstmt = conn.prepareStatement(sql);
+         rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				max = rs.getInt("max");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+         if (rs.next()) {
+            max = rs.getInt("max");
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
 
-		return max;
+      return max;
 
-	}
+   }
 
-	public List<ReviewDto> getAllReview(String user_num) {
-		List<ReviewDto> list = new Vector<>();
+   public List<ReviewDto> getAllReview_num(String user_num) {
+      List<ReviewDto> list = new Vector<>();
 
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
 
-		String sql = "select * from review where user_num=? order by movie_num";
+      String sql = "select * from review where user_num=? order by movie_num";
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user_num);
-			rs = pstmt.executeQuery();
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, user_num);
+         rs = pstmt.executeQuery();
 
-			while (rs.next()) {
-				ReviewDto dto = new ReviewDto();
-				dto.setUser_num(rs.getString("user_num"));
-				dto.setMovie_num(rs.getString("movie_num"));
-				dto.setReview_num(rs.getString("review_num"));
-				dto.setReview_score(rs.getDouble("review_score"));
-				dto.setReview_content(rs.getString("review_content"));
-				dto.setReview_writeday(rs.getTimestamp("review_writeday"));
+         while (rs.next()) {
+            ReviewDto dto = new ReviewDto();
+            dto.setUser_num(rs.getString("user_num"));
+            dto.setMovie_num(rs.getString("movie_num"));
+            dto.setReview_num(rs.getString("review_num"));
+            dto.setReview_score(rs.getDouble("review_score"));
+            dto.setReview_content(rs.getString("review_content"));
+            dto.setReview_writeday(rs.getTimestamp("review_writeday"));
 
-				list.add(dto);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			db.dbClose(rs, pstmt, conn);
-		}
+            list.add(dto);
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         db.dbClose(rs, pstmt, conn);
+      }
 
-		return list;
-	}
+      return list;
+   }
 
-	public int getTotalReviewCount() {
-		int total = 0;
+   public int getTotalReviewCount(String movie_num) {
+      int total = 0;
+      
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
 
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+      String sql = "select count(*) from review where movie_num=?";
 
-		String sql = "select count(*) from review";
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, movie_num);
+         rs = pstmt.executeQuery();
+         
+         if (rs.next()) {
+            total = rs.getInt(1);
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         db.dbClose(rs, pstmt, conn);
+      }
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+      return total;
+   }
 
-			if (rs.next()) {
-				total = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			db.dbClose(rs, pstmt, conn);
-		}
+   // 페이징처리 list
+   public List<ReviewDto> getAllReview(int start, int perPage) {
+      List<ReviewDto> list = new Vector<>();
 
-		return total;
-	}
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
 
-	// 페이징처리 list
-	public List<ReviewDto> getAllReview(int start, int perPage) {
-		List<ReviewDto> list = new Vector<>();
+      String sql = "select * from review order by user_num desc limit ?,?";
 
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setInt(1, start);
+         pstmt.setInt(2, perPage);
 
-		String sql = "select * from review order by user_num desc limit ?,?";
+         rs = pstmt.executeQuery();
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, perPage);
+         while (rs.next()) {
+            ReviewDto dto = new ReviewDto();
 
-			rs = pstmt.executeQuery();
+            dto.setUser_num(rs.getString("user_num"));
+            dto.setMovie_num(rs.getString("movie_num"));
+            dto.setReview_num(rs.getString("review_num"));
+            dto.setReview_score(rs.getDouble("review_score"));
+            dto.setReview_content(rs.getString("review_content"));
+            dto.setReview_writeday(rs.getTimestamp("review_writeday"));
 
-			while (rs.next()) {
-				ReviewDto dto = new ReviewDto();
+            list.add(dto);
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         db.dbClose(rs, pstmt, conn);
+      }
 
-				dto.setUser_num(rs.getString("user_num"));
-				dto.setMovie_num(rs.getString("movie_num"));
-				dto.setReview_num(rs.getString("review_num"));
-				dto.setReview_score(rs.getDouble("review_score"));
-				dto.setReview_content(rs.getString("review_content"));
-				dto.setReview_writeday(rs.getTimestamp("review_writeday"));
+      return list;
 
-				list.add(dto);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			db.dbClose(rs, pstmt, conn);
-		}
+   }
+   
+   public List<ReviewDto> getAllReview_movie(String movie_num, int start, int perPage) {
+      List<ReviewDto> list = new Vector<>();
 
-		return list;
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
 
-	}
+      String sql = "select * from review where movie_num=? order by review_num desc limit ?,?";
+
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, movie_num);
+         pstmt.setInt(2, start);
+         pstmt.setInt(3, perPage);
+
+         rs = pstmt.executeQuery();
+
+         while (rs.next()) {
+            ReviewDto dto = new ReviewDto();
+
+            dto.setReview_num(rs.getString("review_num"));
+            dto.setMovie_num(rs.getString("movie_num"));
+            dto.setUser_num(rs.getString("user_num"));
+            dto.setReview_score(rs.getDouble("review_score"));
+            dto.setReview_content(rs.getString("review_content"));
+            dto.setReview_writeday(rs.getTimestamp("review_writeday"));
+
+            list.add(dto);
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         db.dbClose(rs, pstmt, conn);
+      }
+
+      return list;
+
+   }
 
 
 }

@@ -32,6 +32,7 @@ String saveid = (String) session.getAttribute("saveid");
 
 UserDao dao = new UserDao();
 String nickname = dao.getName_id(myid);
+String user_num=dao.getNum(myid);
 %>
 <script type="text/javascript">
    $(function() {
@@ -98,7 +99,7 @@ String nickname = dao.getName_id(myid);
 
 
    <header>
-      <div class="top" style="margin-top: 60px;">
+      <div class="top">
 
          <div class="logo">
             <a href="index.jsp?main=layout/main.jsp"><img
@@ -109,7 +110,7 @@ String nickname = dao.getName_id(myid);
             <ul class="navi">
                <li><a href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=1"
                   class="mainmenu">영화</a></li>
-               <li><a href="index.jsp?main=whatpick/commu_list.jsp"
+               <li><a href="index.jsp?main=commu/commu_totallist.jsp"
                   class="mainmenu">커뮤니티</a></li>
             </ul>
          </nav>
@@ -135,7 +136,7 @@ String nickname = dao.getName_id(myid);
                   onclick="location.href='login/logoutaction.jsp'">Logout</button>
                <div class="fa-solid fa-user-gear"
                   style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='index.jsp?main=whatpick/admin_mypage.jsp'"></div>
+                  onclick="location.href='#'"></div>
             </div>
                <%}else{%>
                   <div class="menu2">
@@ -147,7 +148,7 @@ String nickname = dao.getName_id(myid);
                   onclick="location.href='login/logoutaction.jsp'">Logout</button>
                <div class="fa-solid fa-user"
                   style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='index.jsp?main=whatpick/login_mypage.jsp'"></div>
+                  onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"></div>
             </div>
                <%}
             %>
