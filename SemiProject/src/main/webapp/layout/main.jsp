@@ -159,13 +159,6 @@
 					<button type="button" class="slide_btn_prev fa-solid fa-circle-chevron-left"></button>
 					<button type="button" class="slide_btn_next fa-solid fa-circle-chevron-right"></button>
 				</div>
-				<!-- 
-				<div class="slide_btn_box">
-				<i class="fa-solid fa-circle-chevron-right"></i>
-					<button type="button" class="slide_btn_prev"><</button>
-					<button type="button" class="slide_btn_next">></button>
-				</div>
-				 -->
 				<!-- // .slide_btn_box -->
 				<ul class="slide_pagination"></ul>
 				<!-- // .slide_pagination -->
@@ -173,33 +166,6 @@
 			<!-- // .slide_wrap -->
 		</div>
 		<!-- // .container -->
-
-
-		<!--  
-			<div id="moviewrap">
-				<main class="main">
-					<section id="upcoming">
-						<h2 style="text-align: center; color: #653491; font-weight: bold;">BEST
-							PICK</h2>
-						<div class="bestimg_item" style="padding: 0 200px;">
-							<ul class="top5_list">
-								<li><a href="#"><img src="movie_image/럭키.jpeg"></a>
-									<h3 class="img_text">럭키</h3></li>
-								<li><a href="#"><img src="movie_image/겨울왕국1.jpeg"></a>
-									<h3 class="img_text">겨울왕국1</h3></li>
-								<li><a href="#"><img src="movie_image/너의이름은.jpeg"></a>
-									<h3 class="img_text">너의이름은</h3></li>
-								<li><a href="#"><img src="movie_image/뷰티인사이드.jpeg"></a>
-									<h3 class="img_text">뷰티인사이드</h3></li>
-							</ul>
-						</div>
-						<button class="prev fas fa-caret-left"></button>
-						<button class="next fas fa-caret-right"></button>
-					</section>
-				</main>
-			</div>
-			
-			-->
 
 
 
