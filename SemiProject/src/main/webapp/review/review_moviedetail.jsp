@@ -16,7 +16,9 @@
 <link rel="favicon" href="../layout_image/titlelogo.ico">
 <link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-<!-- <link href="css/index.css" type="text/css" rel="stylesheet"> -->
+
+<link href="css/info.css" type="text/css" rel="stylesheet">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -31,7 +33,7 @@
 			var movie_num = $("#movie_num").val();
 			var user_num = $("#user_num").val();
 			var review_score = $("#myform input[type=radio]:checked").val()
-			var review_content = $("#review_contents").val();
+			var review_contents = $("#review_contents").val();
 
 			//alert(movie_num + "," + user_num + "," + review_score + "," + review_contents);
 
@@ -43,12 +45,12 @@
 					"movie_num" : movie_num,
 					"user_num" : user_num,
 					"review_score" : review_score,
-					"review_content" : review_content
+					"review_content" : review_contents
 				},
 				success : function() {
 					alert("리뷰 등록 완료");
-					
 					location.reload();
+
 				}
 			})
 
@@ -180,6 +182,8 @@ String myid = (String) session.getAttribute("myid");
 String user_nickname = udao.getName_id(myid);
 
 String user_num = udao.getNum(myid);
+double review_avgscore = rdao.review_ScoreAvg(movie_num);
+String currentPage = request.getParameter("currentPage");
 
 //장르
 String movie_genre = request.getParameter("movie_genre");
@@ -223,7 +227,7 @@ List<ReviewDto> list_movie = rdao.getAllReview_movie(movie_num, start, perPage);
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-no = 1;
+no = totalCount - (currentPage_review - 1) * perPage;
 %>
 <body>
 	<a href="javascript:history.back();" class="shape glyphicon glyphicon-arrow-left"></a>
@@ -275,6 +279,9 @@ no = 1;
 				</div>
 			</div>
 		</div>
+		<!-- Modal 끝-->
+
+
 
 		<table style="width: 1000px;">
 			<tr height="100">
@@ -294,42 +301,51 @@ no = 1;
 			</tr>
 
 			<tr>
-				<td><b class="mv_content"> 평균☆ 별점 값..</b></td>
+				<td><b class="mv_content" style="color: orange;">
+						★
+						<%=review_avgscore%></b></td>
 				<td><b class="mv_content" style="margin-left: -100px;">PICK</b></td>
 				<td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
 			</tr>
 		</table>
 
 		<hr>
-		<br> <br>
-		<div class="write" style="align: center; margin-left: 500px;">
-			<h3>기본정보</h3>
-			<br>
-			<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_content()%></div>
-		</div>
 
-		<div style="margin-left: 500px; width: 1000px; height: 100px; padding: 0;">
+		<div style="width: 1000px; padding: 0;">
+
+			<h3>기본정보</h3>
+
+
+			<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_content()%></div>
+
+
+
+
 			<h3>출연/제작</h3>
+
 			<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_actor()%>
 				/
 				<%=mdto.getMovie_director()%></div>
 
 
 			<h3>예고편</h3>
+
 			<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content">
 				<iframe width="900" height="506" src="<%=mdto.getMovie_play()%>" title="<%=mdto.getMovie_subject()%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen> </iframe>
 			</div>
 
+
 			<h3>리뷰</h3>
+
 			<div style="width: 1000px; margin-left: 1px;" id="movie_content">
-				<br>
-				<table class="table table-bordered">
+
+				<table style="width: 1000px;">
 					<tr>
-						<th width="80" style="text-align: center;">번호</th>
-						<th width="400" style="text-align: center;">내용</th>
-						<th width="120" style="text-align: center;">작성자</th>
-						<th width="70" style="text-align: center;">점수</th>
-						<th width="60" style="text-align: center;">작성일</th>
+						<th width="80" class="myinfo" style="text-align: center;">번호</th>
+						<th width="400" class="myinfo" style="text-align: center;">내용</th>
+						<th width="120" class="myinfo" style="text-align: center;">작성자</th>
+						<th width="70" class="myinfo" style="text-align: center;">점수</th>
+						<th width="60" class="myinfo" style="text-align: center;">작성일</th>
 					</tr>
 
 					<%
@@ -350,8 +366,7 @@ no = 1;
 					%>
 
 					<tr>
-						<td align="center">&nbsp;&nbsp; <%=no++%>
-						</td>
+						<td align="center"><%=no--%></td>
 
 						<td><%=dto.getReview_content()%></td>
 
@@ -378,7 +393,7 @@ no = 1;
 					//이전
 					if (startPage > 1) {
 					%>
-					<li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage_reviewe=<%=startPage - 1%>">이전</a></li>
+					<li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_reviewe=<%=startPage - 1%>">이전</a></li>
 					<%
 					}
 
@@ -386,11 +401,11 @@ no = 1;
 
 					if (pp == currentPage_review) {
 					%>
-					<li class="active"><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
+					<li class="active"><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
 					<%
 					} else {
 					%>
-					<li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
+					<li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
 					<%
 					}
 
@@ -399,16 +414,16 @@ no = 1;
 					//다음
 					if (endPage < totalPage) {
 					%>
-					<li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage_review=<%=endPage + 1%>">다음</a></li>
+					<li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=endPage + 1%>">다음</a></li>
 					<%
 					}
 					%>
 				</ul>
+
+				<button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
 			</div>
 
-
 		</div>
-
 	</div>
 
 </body>

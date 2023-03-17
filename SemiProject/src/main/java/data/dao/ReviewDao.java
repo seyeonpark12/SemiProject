@@ -97,7 +97,7 @@ public class ReviewDao {
 
 	public int getTotalReviewCount(String movie_num) {
 		int total = 0;
-		
+
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -108,7 +108,7 @@ public class ReviewDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, movie_num);
 			rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				total = rs.getInt(1);
 			}
@@ -159,7 +159,7 @@ public class ReviewDao {
 		return list;
 
 	}
-	
+
 	public List<ReviewDto> getAllReview_movie(String movie_num, int start, int perPage) {
 		List<ReviewDto> list = new Vector<>();
 
@@ -167,7 +167,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from review where movie_num=? order by user_num desc limit ?,?";
+		String sql = "select * from review where movie_num=? order by review_num desc limit ?,?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -180,9 +180,9 @@ public class ReviewDao {
 			while (rs.next()) {
 				ReviewDto dto = new ReviewDto();
 
-				dto.setUser_num(rs.getString("user_num"));
-				dto.setMovie_num(rs.getString("movie_num"));
 				dto.setReview_num(rs.getString("review_num"));
+				dto.setMovie_num(rs.getString("movie_num"));
+				dto.setUser_num(rs.getString("user_num"));
 				dto.setReview_score(rs.getDouble("review_score"));
 				dto.setReview_content(rs.getString("review_content"));
 				dto.setReview_writeday(rs.getTimestamp("review_writeday"));
@@ -199,5 +199,26 @@ public class ReviewDao {
 
 	}
 
+	public double review_ScoreAvg(String movie_num) {
+		double score = 0;
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+
+		String sql = "select round(avg(review_score),2) avg from review where movie_num=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, movie_num);
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return score;
+	}
 
 }
