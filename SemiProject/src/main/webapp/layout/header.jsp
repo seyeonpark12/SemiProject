@@ -108,7 +108,7 @@ String user_num=dao.getNum(myid);
 
          <nav class="menu">
             <ul class="navi">
-               <li><a href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=1"
+               <li><a href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1"
                   class="mainmenu">영화</a></li>
                <li><a href="index.jsp?main=commu/commu_totallist.jsp"
                   class="mainmenu">커뮤니티</a></li>

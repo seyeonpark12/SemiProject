@@ -192,6 +192,8 @@ String currentPage = request.getParameter("currentPage");
 
 //장르
 String movie_genre = request.getParameter("movie_genre");
+//정렬
+String sort=request.getParameter("sort");
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -436,7 +438,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 				</ul>
 
 				<button type="button" class="btn btn-default"
-					onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
+					onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&currentPage=<%=currentPage%>'">목록</button>
 			</div>
 
 		</div>
