@@ -26,23 +26,24 @@
 
 </head>
 <%
-		String loginok = (String) session.getAttribute("loginok");
-		String myid = (String) session.getAttribute("myid");
-		String saveid = (String) session.getAttribute("saveid");
-		
-		UserDao dao = new UserDao();
-		String nickname = dao.getName_id(myid);
-		%>
-		<script type="text/javascript">
-		   $(function() {
-		      $("#myBtn").click(function() {
-		         $("#myModal").modal();
-		      });
-		
-		      $("#myBtn2").click(function() {
-		         $("#myModal2").modal();
-		      });
-		   });
+String loginok = (String) session.getAttribute("loginok");
+String myid = (String) session.getAttribute("myid");
+String saveid = (String) session.getAttribute("saveid");
+
+UserDao dao = new UserDao();
+String nickname = dao.getName_id(myid);
+String user_num=dao.getNum(myid);
+%>
+<script type="text/javascript">
+   $(function() {
+      $("#myBtn").click(function() {
+         $("#myModal").modal();
+      });
+
+      $("#myBtn2").click(function() {
+         $("#myModal2").modal();
+      });
+   });
 </script>
 
 <script type="text/javascript">
@@ -52,8 +53,7 @@
 
          var gaipdata = $("#gaipfrm").serialize();
          //alert(formdata);
-		var inputed = $("#user_id").val();
-		
+
          $.ajax({
 
             type : "get",
@@ -67,23 +67,7 @@
 
             }
          });
-         
-       
-        	//비밀번호 확인
-        		$('#user_pw2').blur(function(){
-        		   if($('#user_pw').val() != $('#user_pw2').val()){
-        		    	if($('#user_pw2').val()!=''){
-        			    alert("비밀번호가 일치하지 않습니다.");
-        		    	    $('#user_pw2').val('');
-        		          $('#user_pw2').focus();
-        		       }
-        		    }
-        		})  	   
-        	
-         
       });
-      
-      
 
       $("#login").click(function() {
 
@@ -97,29 +81,25 @@
             url : "login/loginaction.jsp",
             data : logindata,
             success : function() {
-             
-            	location.reload();
-                
-               
-              
+
+               location.reload();
+
             }
-         
          });
 
       });
 
    });
-   
-   
 </script>
 <body>
+
    <%
    request.setCharacterEncoding("utf-8");
    %>
 
 
    <header>
-      <div class="top" style="margin-top: 60px;"></div>
+      <div class="top">
 
          <div class="logo">
             <a href="index.jsp?main=layout/main.jsp"><img
@@ -128,9 +108,9 @@
 
          <nav class="menu">
             <ul class="navi">
-               <li><a href="index.jsp?main=movie/movie_list.jsp"
+               <li><a href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=1"
                   class="mainmenu">영화</a></li>
-               <li><a href="index.jsp?main=whatpick/commu_list.jsp"
+               <li><a href="index.jsp?main=commu/commu_totallist.jsp"
                   class="mainmenu">커뮤니티</a></li>
             </ul>
          </nav>
@@ -156,7 +136,7 @@
                   onclick="location.href='login/logoutaction.jsp'">Logout</button>
                <div class="fa-solid fa-user-gear"
                   style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='index.jsp?main=user/admin_mypage.jsp'"></div>
+                  onclick="location.href='#'"></div>
             </div>
                <%}else{%>
                   <div class="menu2">
@@ -168,7 +148,7 @@
                   onclick="location.href='login/logoutaction.jsp'">Logout</button>
                <div class="fa-solid fa-user"
                   style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='index.jsp?main=user/login_mypage.jsp'"></div>
+                  onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"></div>
             </div>
                <%}
             %>
@@ -196,9 +176,9 @@
                   <div class="modal-content">
                      <div class="modal-header" style="padding: 35px 50px;">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                       
+                        <caption>
                            <h2 align="center">로그인</h2>
-                        
+                        </caption>
 
                      </div>
                      <div class="modal-body" style="padding: 40px 50px;">
@@ -250,9 +230,9 @@
                   <div class="modal-content">
                      <div class="modal-header" style="padding: 35px 50px;">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        
+                        <caption>
                            <h2 align="center">회원가입</h2>
-                        
+                        </caption>
 
                      </div>
                      <div class="modal-body" style="padding: 40px 50px;">
@@ -269,17 +249,17 @@
                                  style="width: 300px; background-color: #FAF7F7" value="">
 
 
-                              <br> <br> <input type="text" name="user_id" id="user_id"
+                              <br> <br> <input type="text" name="user_id"
                                  placeholder="아이디" class="form-control" required="required"
                                  style="width: 70%; background-color: #FAF7F7" value="">
 
-                              <button type="button" class="btn btn-default" id="idcheck"
+                              <button type="button" class="btn btn-default"
                                  style="margin-top: -55px; margin-left: 220px;">중복확인</button>
 
-                              <br> <br> <input type="password" name="user_pw" id="user_pw"
+                              <br> <br> <input type="password" name="user_pw"
                                  placeholder="비밀번호" class="form-control" required="required"
                                  style="width: 300px; background-color: #FAF7F7"> <br>
-                              <br> <input type="password" name="user_pw2" id="user_pw2"
+                              <br> <input type="password" name="user_pw2"
                                  placeholder="비밀번호확인" class="form-control" required="required"
                                  style="width: 300px; background-color: #FAF7F7"> <br>
                               <br> <input type="text" name="user_hp" placeholder="휴대번호"

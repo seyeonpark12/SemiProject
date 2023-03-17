@@ -1,0 +1,27 @@
+{
+  "ecmaVersion": 5,
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "ckeditor4.4.x": {
+      
+<<<<<<< HEAD
+=======
+    },
+    "browser-extension": {
+      
+    },
+    "jquery-extension": {
+      
+>>>>>>> 2aaa4bab640b8005096a57019765f52d075ae3bd
+    }
+  },
+  "libs": [
+    "browser",
+    "jquery"
+  ]
+}

@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+*{
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	font-family:"Noto Sans KR";
+	color: black;
+}
+
+.ca_subject {
+	font-size: 15px;
+	font-weight: 400;
+	letter-spacing: -1.2px;
+	line-height: 36px;
+}

@@ -1,4 +1,6 @@
 <%@page import="data.dao.UserDao"%>
+<%@page import="data.dao.MentDao"%>
+<%@page import="data.dto.MentDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -14,30 +16,30 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
-   <%
-   //id읽어오기
-   String user_id=request.getParameter("user_id");
-   
-   //dao
-   UserDao dao=new UserDao();
-   
-   //아이디에 따른 이름 얻기
-   String name =dao.getName_id(user_id);
-   
-   %>
-   
-   <div>
-   
-   <h3><%=name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;님의 회원가입을 축하합니다</h3>
-   <br><br>
-   
-   <!-- 모달창으로 고치기 -->
-   <button type="button" class="btn btn-success"
-   onclick="location.href='index.jsp?main=login/loginmain.jsp'">로그인</button>
-   
-   <button type="button" class="btn btn-success"
-   onclick="location.href='index.jsp'">HOME</button>
-   
-   </div>
+	
+	<%
+	String myid=(String)session.getAttribute("myid");
+	UserDao udao=new UserDao();
+	String user_num=udao.getNum(myid);
+	
+	request.setCharacterEncoding("utf-8");
+
+	String ment_content=request.getParameter("ment_content");
+	String commu_num=request.getParameter("commu_num");
+	String currentPage=request.getParameter("currentPage");
+	
+	MentDto dto=new MentDto();
+	MentDao dao=new MentDao();
+	
+	dto.setUser_num(user_num);
+	dto.setMent_content(ment_content);
+	dto.setCommu_num(commu_num);
+	
+	dao.insertMent(dto);
+	
+	response.sendRedirect("../index.jsp?main=commu/commu_detail.jsp?commu_num="+commu_num+"&currentPage="+currentPage);
+	
+	
+	%>
 </body>
 </html>
