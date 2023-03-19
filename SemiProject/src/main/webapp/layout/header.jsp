@@ -34,21 +34,19 @@ UserDao dao = new UserDao();
 String nickname = dao.getName_id(myid);
 String user_num=dao.getNum(myid);
 %>
-<script type="text/javascript">
-   $(function() {
-      $("#myBtn").click(function() {
-         $("#myModal").modal();
-      });
-
-      $("#myBtn2").click(function() {
-         $("#myModal2").modal();
-      });
-   });
-</script>
 
 <script type="text/javascript">
    $(function() {
 
+	   $("#myBtn").click(function() {
+	         $("#myModal").modal();
+	      });
+
+	      $("#myBtn2").click(function() {
+	         $("#myModal2").modal();
+	      });
+	   
+	   
       $("#gaip").click(function() {
 
          var gaipdata = $("#gaipfrm").serialize();
@@ -291,6 +289,7 @@ String user_num=dao.getNum(myid);
             </div>
             <!-- Modal2 끝 -->
 
+         </div>
          </div>
    </header>
 

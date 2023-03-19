@@ -163,7 +163,7 @@ public class MovieDao {
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
 	      
-	      String sql="select * from movie order by movie_pcount desc limit ?,?";
+	      String sql="select * from movie order by movie_pcount desc,movie_num desc limit ?,?";
 	      
 	      try {
 	         
@@ -213,7 +213,7 @@ public class MovieDao {
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
 	      
-	      String sql="select * from movie order by movie_rank_avg desc limit ?,?";
+	      String sql="select * from movie order by movie_rank_avg desc,movie_num desc limit ?,?";
 	      
 	      try {
 	         
@@ -319,7 +319,7 @@ public class MovieDao {
 		      PreparedStatement pstmt=null;
 		      ResultSet rs=null;
 		      
-		      String sql="select * from movie where movie_genre=? order by movie_pcount desc limit ?,?";
+		      String sql="select * from movie where movie_genre=? order by movie_pcount desc,movie_num desc limit ?,?";
 		      
 		      try {
 		         
@@ -370,7 +370,7 @@ public class MovieDao {
 		      PreparedStatement pstmt=null;
 		      ResultSet rs=null;
 		      
-		      String sql="select * from movie where movie_genre=? order by movie_rank_avg desc limit ?,?";
+		      String sql="select * from movie where movie_genre=? order by movie_rank_avg desc,movie_num desc limit ?,?";
 		      
 		      try {
 		         
@@ -474,4 +474,49 @@ public class MovieDao {
 	      return dto;
 
 	   }
+	 
+	 
+	 
+	 
+	 //업데이트
+	 public void updateMovie(MovieDto dto) {
+		 
+		   Connection conn=db.getConnection();
+		   PreparedStatement pstmt=null;
+		   
+		   String sql="update movie set "
+		   		+ "movie_genre=?,movie_subject=?,movie_poster=?,movie_play=?,movie_year=?,movie_nara=?,movie_director=?,movie_actor=?,movie_content=? "
+		   		+ "where movie_num=?";
+		   
+		   try {
+			   
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getMovie_genre());
+			pstmt.setString(2, dto.getMovie_subject());
+			pstmt.setString(3, dto.getMovie_poster());
+			pstmt.setString(4, dto.getMovie_play());
+			pstmt.setString(5, dto.getMovie_year());
+			pstmt.setString(6, dto.getMovie_nara());
+			pstmt.setString(7, dto.getMovie_director());
+			pstmt.setString(8, dto.getMovie_actor());
+			pstmt.setString(9, dto.getMovie_content());
+			pstmt.setString(10, dto.getMovie_num());
+			
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 }
