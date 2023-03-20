@@ -45,6 +45,8 @@
 	
 	$(function(){
 		
+		var ment_num=$("ment_num").val();
+		
 		//댓글삭제
 		$(document).on("click",".mentdelete",function(){
 			
@@ -85,6 +87,26 @@
 			$("#myModal3").modal();
 			
 		});
+		
+		//댓글수정
+		$(document).on("click","#btnupdate",function(){
+			
+			var ment_content=$("#update_ment_content").val();
+			//alert(ment_content);
+			
+			$.ajax({
+				
+				type:"get",
+				url:"ment/ment_updateaction.jsp",
+				dataType:"html",
+				data:{"ment_num":ment_num,"ment_content":ment_content},
+				success:function(){
+					
+					location.reload();
+				}
+			})
+		});
+		
 	});
 
 </script>
@@ -127,8 +149,6 @@
    //commu_num에 따른 댓글리스트
    List<MentDto> mlist=mdao.getAllMent(dto.getCommu_num());
    
-  
-  
    %>
 
  

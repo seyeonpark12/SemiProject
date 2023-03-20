@@ -32,7 +32,6 @@
 <%
 	MovieDao dao=new MovieDao();
 	List<MovieDto> list_rank = dao.getList_Rank_Avg(0,5);
-	
 	List<MovieDto> list_pick1 = dao.getList_Pcount(0, 4);
 	List<MovieDto> list_pick2 = dao.getList_Pcount(4, 4);
 	List<MovieDto> list_pick3 = dao.getList_Pcount(8, 4);
@@ -65,7 +64,7 @@
 											<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
 												<img src="movie_save/<%=dto.getMovie_poster()%>">
 											</a>
-											<h3 class="img_text"><%=dto.getMovie_rank_avg() %> | <%=dto.getMovie_subject()%></h3>
+											<h3 class="img_text"><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %> | <%=dto.getMovie_subject()%></h3>
 										</li>
 									<%}
 								%>

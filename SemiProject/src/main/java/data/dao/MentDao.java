@@ -141,7 +141,7 @@ public class MentDao {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		
-		String sql="update set ment_content=? where ment_num=?";
+		String sql="update ment set ment_content=? where ment_num=?";
 		
 		try {
 			

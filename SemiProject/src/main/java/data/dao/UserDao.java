@@ -178,78 +178,78 @@ public class UserDao {
    }
    
  //전체 회원 페이지...조회
- 	public List<UserDto> getAllAdminUsers(int start,int perPage){
+    public List<UserDto> getAllAdminUsers(int start,int perPage){
 
- 		List<UserDto> list =new Vector<>();
- 		Connection conn=db.getConnection();
- 		PreparedStatement pstmt=null;
- 		ResultSet rs=null;
+       List<UserDto> list =new Vector<>();
+       Connection conn=db.getConnection();
+       PreparedStatement pstmt=null;
+       ResultSet rs=null;
 
- 		String sql="select * from user order by user_id desc limit ?,?";
+       String sql="select * from user order by user_id desc limit ?,?";
 
- 		try {
- 			pstmt=conn.prepareStatement(sql);
- 			
- 			pstmt.setInt(1, start);
- 			pstmt.setInt(2, perPage);
- 			rs=pstmt.executeQuery();
+       try {
+          pstmt=conn.prepareStatement(sql);
+          
+          pstmt.setInt(1, start);
+          pstmt.setInt(2, perPage);
+          rs=pstmt.executeQuery();
 
- 			while(rs.next()) {
- 				UserDto dto=new UserDto();
+          while(rs.next()) {
+             UserDto dto=new UserDto();
 
- 				dto.setUser_num(rs.getString("user_num"));
- 				dto.setUser_id(rs.getString("user_id"));
- 				dto.setUser_pw(rs.getString("user_pw"));
- 				dto.setUser_name(rs.getString("user_name"));
- 				dto.setUser_nickname(rs.getString("user_nickname"));
- 				dto.setUser_hp(rs.getString("user_hp"));
- 				dto.setUser_addr(rs.getString("user_addr"));
- 				dto.setUser_email(rs.getString("user_email"));
- 				dto.setUser_gaip(rs.getTimestamp("user_gaip"));
+             dto.setUser_num(rs.getString("user_num"));
+             dto.setUser_id(rs.getString("user_id"));
+             dto.setUser_pw(rs.getString("user_pw"));
+             dto.setUser_name(rs.getString("user_name"));
+             dto.setUser_nickname(rs.getString("user_nickname"));
+             dto.setUser_hp(rs.getString("user_hp"));
+             dto.setUser_addr(rs.getString("user_addr"));
+             dto.setUser_email(rs.getString("user_email"));
+             dto.setUser_gaip(rs.getTimestamp("user_gaip"));
 
- 				list.add(dto);
- 			}
+             list.add(dto);
+          }
 
- 		} catch (Exception e) {
- 			// TODO: handle exception
- 			e.printStackTrace();
- 		}finally {
- 			db.dbClose(rs, pstmt, conn);
- 		}
+       } catch (Exception e) {
+          // TODO: handle exception
+          e.printStackTrace();
+       }finally {
+          db.dbClose(rs, pstmt, conn);
+       }
 
- 		return list;
+       return list;
 
- 	}
+    }
 
- 	
+    
    //userTotal
    public int getUserTotal() {
-	   
-	   int n=0;
-	   
-	   Connection conn=db.getConnection();
-	   PreparedStatement pstmt= null;
-	   ResultSet rs= null;
-	   
-	   String sql="select count(*) from user";
-	   
-	   try {
-		pstmt= conn.prepareStatement(sql);
-		rs=pstmt.executeQuery();
-		
-		if(rs.next()) {
-			
-			 n=rs.getInt(1);
-		}
-			
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally {
-		
-		db.dbClose(rs, pstmt, conn);
-	}
-	    return n;
+      
+      int n=0;
+      
+      Connection conn=db.getConnection();
+      PreparedStatement pstmt= null;
+      ResultSet rs= null;
+      
+      String sql="select count(*) from user";
+      
+      try {
+      pstmt= conn.prepareStatement(sql);
+      rs=pstmt.executeQuery();
+      
+      if(rs.next()) {
+         
+          n=rs.getInt(1);
+      }
+         
+   } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+   }finally {
+      
+      db.dbClose(rs, pstmt, conn);
+   }
+       return n;
    }
    
    //user 삭제
@@ -265,7 +265,7 @@ public class UserDao {
          pstmt.execute();
          
       } catch (SQLException e) {
-         // TODO Auto-generated catch block
+
          e.printStackTrace();
       }finally {
          db.dbClose(pstmt, conn);
@@ -466,6 +466,6 @@ public class UserDao {
        }
    
    
-
+   
    
 }

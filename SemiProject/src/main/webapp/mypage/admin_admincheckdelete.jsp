@@ -1,6 +1,6 @@
 <%@page import="data.dao.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+   pageEncoding="utf-8"%>
 
 <%
 //관리자 체크박스 삭제action!!!!
@@ -13,11 +13,10 @@ UserDao dao = new UserDao();
 
 for (String user_n : num) {
 
-	dao.deleteUser(user_n);
+   dao.deleteUser(user_n);
 
 }
 
 //목록으로 이동
 response.sendRedirect("../index.jsp?main=mypage/admin_peoplelist.jsp");
 %>
-
