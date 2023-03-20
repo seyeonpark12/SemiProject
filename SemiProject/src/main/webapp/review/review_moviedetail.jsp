@@ -230,7 +230,6 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 no = totalCount - (currentPage_review - 1) * perPage;
 %>
 <body>
-	<a href="javascript:history.back();" class="shape glyphicon glyphicon-arrow-left"></a>
 	<div style="margin-top: 100px; padding: 0;">
 		<input type="hidden" id="movie_num" value="<%=movie_num%>">
 		<input type="hidden" id="myid" value="<%=myid%>">
@@ -372,7 +371,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 
 						<td align="center"><%=writer_nickname%></td>
 
-						<td width="30" style="text-align: center;"><%="★"+Math.round(dto.getReview_score())%></td>
+						<td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(dto.getReview_score())%></td>
 
 						<td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
 					</tr>
@@ -418,9 +417,9 @@ no = totalCount - (currentPage_review - 1) * perPage;
 					<%
 					}
 					%>
+					<button style="height: 32px; float: right" type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
 				</ul>
 
-				<button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
 			</div>
 
 		</div>
