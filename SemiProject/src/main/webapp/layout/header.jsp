@@ -86,6 +86,15 @@ String user_num=dao.getNum(myid);
          });
 
       });
+      
+      $("#search_id").keyup(function(event){
+    	  
+    	  if(event.which===13){
+    		  
+    		  var search=$("#search_id").val();
+    		  location.href="index.jsp?main=movie/movie_search.jsp?search="+search+"";
+    	  }
+      });
 
    });
 </script>

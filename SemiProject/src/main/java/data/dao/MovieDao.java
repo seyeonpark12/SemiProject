@@ -512,6 +512,89 @@ public class MovieDao {
 	 }
 	 
 	 
+	 //검색단어에 대한 총갯수
+	 public int getTotalCount_Search(String Search) {
+	      
+	      int n=0;
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select count(*) from movie where movie_subject like '%?%'";
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, Search);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         if(rs.next())
+	            n=rs.getInt(1);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      return n;
+	   }
+	 
+	 
+	 
+	 //검색 단어에 따른 무비리스트 반환
+	 public List<MovieDto> getList_Search(String search,int start,int perPage){
+	      
+	      List<MovieDto> list=new ArrayList<>();
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select * from movie where movie_subject like '%?%' order by movie_num desc limit ?,?";
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, search);
+	         pstmt.setInt(2, start);
+	         pstmt.setInt(3, perPage);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         while(rs.next()) {
+	            
+	            MovieDto dto=new MovieDto();
+	            
+	            dto.setMovie_num(rs.getString("movie_num"));
+	            dto.setMovie_genre(rs.getString("movie_genre"));
+	            dto.setMovie_subject(rs.getString("movie_subject"));
+	            dto.setMovie_poster(rs.getString("movie_poster"));
+	            dto.setMovie_play(rs.getString("movie_play"));
+	            dto.setMovie_year(rs.getString("movie_year"));
+	            dto.setMovie_nara(rs.getString("movie_nara"));
+	            dto.setMovie_director(rs.getString("movie_director"));
+	            dto.setMovie_actor(rs.getString("movie_actor"));
+	            dto.setMovie_content(rs.getString("movie_content"));
+	            dto.setMovie_pcount(rs.getInt("movie_pcount"));
+	            dto.setMovie_rank_avg(rs.getDouble("movie_rank_avg"));
+	            
+	            list.add(dto);
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      
+	      return list;
+	   }
+	 
+	 
+	 
+	 
 	 
 	 
 	 
