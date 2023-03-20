@@ -90,9 +90,8 @@ String user_num=dao.getNum(myid);
       $("#search_id").keyup(function(event){
     	  
     	  if(event.which===13){
-    		  
-    		  var search=$("#search_id").val();
-    		  location.href="index.jsp?main=movie/movie_search.jsp?search="+search+"";
+
+    		  location.href="index.jsp?main=movie/movie_search.jsp?";
     	  }
       });
 
@@ -122,9 +121,12 @@ String user_num=dao.getNum(myid);
             </ul>
          </nav>
 
-
+		<form method="post">
+		
          <input type="text" name="search" id="search_id"  placeholder="검색"
             class="form-control">
+		</form>
+		
 
          <div class="container">
             <!-- 회원(로그인)모드.. -->
