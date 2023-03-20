@@ -276,7 +276,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
          <div style="margin-left: 990px;">
             <button type="button" class="btn btn-default"
                style="color: #653491; border: 1px solid #653491;"
-               onclick="location.href='movie/movie_addform.jsp'">등록</button>
+                   onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
             <button type="button" class="btn btn-default" id="moviedel">삭제</button>
          </div>
       </div>

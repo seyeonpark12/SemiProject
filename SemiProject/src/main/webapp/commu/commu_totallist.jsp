@@ -61,7 +61,7 @@ td.myinfo {
       
       List<CommuDto> list=dao.getAllList(start, perPage);
        
-      SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+      SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd HH:mm");
       
       //스마트게시판 댓글에 관한 Dao처리
       MentDao mdao=new MentDao();
@@ -108,8 +108,11 @@ td.myinfo {
 				
 				commu_n=commu_n.substring(0, commu_n.length-1);
 				
-				//삭제파일로 전송
-				location.href="commu/commu_admincheckdelete.jsp?nums="+commu_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
+				if(a==1){
+					//삭제파일로 전송
+					location.href="commu/commu_admincheckdelete.jsp?nums="+commu_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
+				}
+				
 			}
 		});
 		
@@ -201,10 +204,12 @@ td.myinfo {
                   </td>
                   
          		 <td class="myinfo">
+                  
                   <a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
                   <%
                   //이미지 첨부된 경우 아이콘 표시
                   if(dto.getCommu_photo()!=null){%>
+                  	
  					<img style="width: 15px;" src="commu/new_img/photoimg.png">
  				  <%}
                   
@@ -214,7 +219,7 @@ td.myinfo {
 	   				<%}
 	   				
                   	//오늘 쓴 글 new 표시
-	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
+	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy.MM.dd");
      				String inpuDate=sdf2.format(dto.getCommu_writeday());
      				String now = sdf2.format(new java.util.Date());
  
@@ -222,8 +227,7 @@ td.myinfo {
      				<img style="width: 15px;" src="commu/new_img/newimg.png">
      				<%}
      				%>
-     				
-     				
+
                   </td>
                   
                   <%
