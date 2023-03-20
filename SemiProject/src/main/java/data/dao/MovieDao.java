@@ -104,8 +104,8 @@ public class MovieDao {
 	   
 	   
 	 
-	 //전체 리스트출력
-	 public List<MovieDto> getList(int start,int perPage){
+	 //전체 리스트출력(최신순)
+	 public List<MovieDto> getList_Recent(int start,int perPage){
 	      
 	      List<MovieDto> list=new ArrayList<>();
 	      
@@ -152,8 +152,116 @@ public class MovieDao {
 	      return list;
 	   }
 	 
-	//카테고리별 리스트출력
-		 public List<MovieDto> getList_Genre(String movie_genre,int start,int perPage){
+	 
+	 
+	 //전체 리스트출력(픽순)
+	 public List<MovieDto> getList_Pcount(int start,int perPage){
+	      
+	      List<MovieDto> list=new ArrayList<>();
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select * from movie order by movie_pcount desc,movie_num desc limit ?,?";
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setInt(1, start);
+	         pstmt.setInt(2, perPage);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         while(rs.next()) {
+	            
+	            MovieDto dto=new MovieDto();
+	            
+	            dto.setMovie_num(rs.getString("movie_num"));
+	            dto.setMovie_genre(rs.getString("movie_genre"));
+	            dto.setMovie_subject(rs.getString("movie_subject"));
+	            dto.setMovie_poster(rs.getString("movie_poster"));
+	            dto.setMovie_play(rs.getString("movie_play"));
+	            dto.setMovie_year(rs.getString("movie_year"));
+	            dto.setMovie_nara(rs.getString("movie_nara"));
+	            dto.setMovie_director(rs.getString("movie_director"));
+	            dto.setMovie_actor(rs.getString("movie_actor"));
+	            dto.setMovie_content(rs.getString("movie_content"));
+	            dto.setMovie_pcount(rs.getInt("movie_pcount"));
+	            dto.setMovie_rank_avg(rs.getDouble("movie_rank_avg"));
+	            
+	            list.add(dto);
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      
+	      return list;
+	   }
+	 
+	 
+	 
+	 //전체 리스트출력(평점순)
+	 public List<MovieDto> getList_Rank_Avg(int start,int perPage){
+	      
+	      List<MovieDto> list=new ArrayList<>();
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select * from movie order by movie_rank_avg desc,movie_num desc limit ?,?";
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setInt(1, start);
+	         pstmt.setInt(2, perPage);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         while(rs.next()) {
+	            
+	            MovieDto dto=new MovieDto();
+	            
+	            dto.setMovie_num(rs.getString("movie_num"));
+	            dto.setMovie_genre(rs.getString("movie_genre"));
+	            dto.setMovie_subject(rs.getString("movie_subject"));
+	            dto.setMovie_poster(rs.getString("movie_poster"));
+	            dto.setMovie_play(rs.getString("movie_play"));
+	            dto.setMovie_year(rs.getString("movie_year"));
+	            dto.setMovie_nara(rs.getString("movie_nara"));
+	            dto.setMovie_director(rs.getString("movie_director"));
+	            dto.setMovie_actor(rs.getString("movie_actor"));
+	            dto.setMovie_content(rs.getString("movie_content"));
+	            dto.setMovie_pcount(rs.getInt("movie_pcount"));
+	            dto.setMovie_rank_avg(rs.getDouble("movie_rank_avg"));
+	            
+	            list.add(dto);
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      
+	      return list;
+	   }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	//카테고리별 리스트출력(최신순)
+		 public List<MovieDto> getList_Genre_Recent(String movie_genre,int start,int perPage){
 		      
 		      List<MovieDto> list=new ArrayList<>();
 		      
@@ -200,7 +308,110 @@ public class MovieDao {
 		      
 		      return list;
 		   }
-	
+		 
+		 
+		//카테고리별 리스트출력(픽순)
+		 public List<MovieDto> getList_Genre_Pcount(String movie_genre,int start,int perPage){
+		      
+		      List<MovieDto> list=new ArrayList<>();
+		      
+		      Connection conn=db.getConnection();
+		      PreparedStatement pstmt=null;
+		      ResultSet rs=null;
+		      
+		      String sql="select * from movie where movie_genre=? order by movie_pcount desc,movie_num desc limit ?,?";
+		      
+		      try {
+		         
+		         pstmt=conn.prepareStatement(sql);
+		         pstmt.setString(1, movie_genre);
+		         pstmt.setInt(2, start);
+		         pstmt.setInt(3, perPage);
+		         
+		         rs=pstmt.executeQuery();
+		         
+		         while(rs.next()) {
+		            
+		            MovieDto dto=new MovieDto();
+		            
+		            dto.setMovie_num(rs.getString("movie_num"));
+		            dto.setMovie_genre(rs.getString("movie_genre"));
+		            dto.setMovie_subject(rs.getString("movie_subject"));
+		            dto.setMovie_poster(rs.getString("movie_poster"));
+		            dto.setMovie_play(rs.getString("movie_play"));
+		            dto.setMovie_year(rs.getString("movie_year"));
+		            dto.setMovie_nara(rs.getString("movie_nara"));
+		            dto.setMovie_director(rs.getString("movie_director"));
+		            dto.setMovie_actor(rs.getString("movie_actor"));
+		            dto.setMovie_content(rs.getString("movie_content"));
+		            dto.setMovie_pcount(rs.getInt("movie_pcount"));
+		            dto.setMovie_rank_avg(rs.getDouble("movie_rank_avg"));
+		            
+		            list.add(dto);
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally {
+		         db.dbClose(rs, pstmt, conn);
+		      }
+		      
+		      
+		      return list;
+		   }
+		 
+		 
+		 
+		//카테고리별 리스트출력(평점순)
+		 public List<MovieDto> getList_Genre_Rank_Avg(String movie_genre,int start,int perPage){
+		      
+		      List<MovieDto> list=new ArrayList<>();
+		      
+		      Connection conn=db.getConnection();
+		      PreparedStatement pstmt=null;
+		      ResultSet rs=null;
+		      
+		      String sql="select * from movie where movie_genre=? order by movie_rank_avg desc,movie_num desc limit ?,?";
+		      
+		      try {
+		         
+		         pstmt=conn.prepareStatement(sql);
+		         pstmt.setString(1, movie_genre);
+		         pstmt.setInt(2, start);
+		         pstmt.setInt(3, perPage);
+		         
+		         rs=pstmt.executeQuery();
+		         
+		         while(rs.next()) {
+		            
+		            MovieDto dto=new MovieDto();
+		            
+		            dto.setMovie_num(rs.getString("movie_num"));
+		            dto.setMovie_genre(rs.getString("movie_genre"));
+		            dto.setMovie_subject(rs.getString("movie_subject"));
+		            dto.setMovie_poster(rs.getString("movie_poster"));
+		            dto.setMovie_play(rs.getString("movie_play"));
+		            dto.setMovie_year(rs.getString("movie_year"));
+		            dto.setMovie_nara(rs.getString("movie_nara"));
+		            dto.setMovie_director(rs.getString("movie_director"));
+		            dto.setMovie_actor(rs.getString("movie_actor"));
+		            dto.setMovie_content(rs.getString("movie_content"));
+		            dto.setMovie_pcount(rs.getInt("movie_pcount"));
+		            dto.setMovie_rank_avg(rs.getDouble("movie_rank_avg"));
+		            
+		            list.add(dto);
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally {
+		         db.dbClose(rs, pstmt, conn);
+		      }
+		      
+		      
+		      return list;
+		   }
+		 
+		 
+	//삭제
 	 public void deleteMovie(String movie_num) {
 		 
 		  Connection conn=db.getConnection();
@@ -221,6 +432,7 @@ public class MovieDao {
 	      }
 	 }
 	 
+	 //데이터얻기
 	 public MovieDto getData(String movie_num) {
 	      
 	      MovieDto dto=new MovieDto();
@@ -262,4 +474,132 @@ public class MovieDao {
 	      return dto;
 
 	   }
+	 
+	 
+	 
+	 
+	 //업데이트
+	 public void updateMovie(MovieDto dto) {
+		 
+		   Connection conn=db.getConnection();
+		   PreparedStatement pstmt=null;
+		   
+		   String sql="update movie set "
+		   		+ "movie_genre=?,movie_subject=?,movie_poster=?,movie_play=?,movie_year=?,movie_nara=?,movie_director=?,movie_actor=?,movie_content=? "
+		   		+ "where movie_num=?";
+		   
+		   try {
+			   
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getMovie_genre());
+			pstmt.setString(2, dto.getMovie_subject());
+			pstmt.setString(3, dto.getMovie_poster());
+			pstmt.setString(4, dto.getMovie_play());
+			pstmt.setString(5, dto.getMovie_year());
+			pstmt.setString(6, dto.getMovie_nara());
+			pstmt.setString(7, dto.getMovie_director());
+			pstmt.setString(8, dto.getMovie_actor());
+			pstmt.setString(9, dto.getMovie_content());
+			pstmt.setString(10, dto.getMovie_num());
+			
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+	 }
+	 
+	 
+	 //검색단어에 대한 총갯수
+	 public int getTotalCount_Search(String Search) {
+	      
+	      int n=0;
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select count(*) from movie where movie_subject like '%?%'";
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, Search);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         if(rs.next())
+	            n=rs.getInt(1);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      return n;
+	   }
+	 
+	 
+	 
+	 //검색 단어에 따른 무비리스트 반환
+	 public List<MovieDto> getList_Search(String search,int start,int perPage){
+	      
+	      List<MovieDto> list=new ArrayList<>();
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select * from movie where movie_subject like '%?%' order by movie_num desc limit ?,?";
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, search);
+	         pstmt.setInt(2, start);
+	         pstmt.setInt(3, perPage);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         while(rs.next()) {
+	            
+	            MovieDto dto=new MovieDto();
+	            
+	            dto.setMovie_num(rs.getString("movie_num"));
+	            dto.setMovie_genre(rs.getString("movie_genre"));
+	            dto.setMovie_subject(rs.getString("movie_subject"));
+	            dto.setMovie_poster(rs.getString("movie_poster"));
+	            dto.setMovie_play(rs.getString("movie_play"));
+	            dto.setMovie_year(rs.getString("movie_year"));
+	            dto.setMovie_nara(rs.getString("movie_nara"));
+	            dto.setMovie_director(rs.getString("movie_director"));
+	            dto.setMovie_actor(rs.getString("movie_actor"));
+	            dto.setMovie_content(rs.getString("movie_content"));
+	            dto.setMovie_pcount(rs.getInt("movie_pcount"));
+	            dto.setMovie_rank_avg(rs.getDouble("movie_rank_avg"));
+	            
+	            list.add(dto);
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      
+	      return list;
+	   }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 }

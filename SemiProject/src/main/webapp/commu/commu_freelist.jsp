@@ -68,7 +68,7 @@ td.myinfo {
       //카테고리별 리스트
       List<CommuDto> list=dao.getCategoryList(commu_category, start, perPage);
        
-      SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+      SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd HH:mm");
       
       
       //스마트게시판 댓글에 관한 Dao처리
@@ -116,8 +116,10 @@ td.myinfo {
 				
 				commu_n=commu_n.substring(0, commu_n.length-1);
 				
-				//삭제파일로 전송
-				location.href="commu/commu_admincheckdelete.jsp?nums="+commu_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
+				if(a==1){
+					//삭제파일로 전송
+					location.href="commu/commu_admincheckdelete.jsp?nums="+commu_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
+				}
 			}
 		});
 		
@@ -137,7 +139,8 @@ td.myinfo {
    %>
    
 	<div class="category"
-		style="width: 1000px; margin-top: 100px; margin-left: 860px;">
+		style="width: 1000px; margin-top: 100px; margin-left: 670px;">
+		
 		<div style="float: left;">
 			<a href="index.jsp?main=commu/commu_totallist.jsp"
 				style="font-size: 18px; color: black; padding-right: 10px;">전체

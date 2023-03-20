@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="data.dao.MovieDao"%>
 <%@page import="data.dto.MovieDto"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -21,10 +22,19 @@
    //이미지가 업로드되는 실제경로
    String realPath=getServletContext().getRealPath("/movie_save");
    System.out.println(realPath);
-  
-   
+
    int uploadSize=1024*1024*2; //2메가
    MultipartRequest multi=null;
+ 	
+ 	/* //전 이미지 포스터네임
+	String posterName=request.getParameter("before_poster");
+ 	
+	File file=new File(realPath+"\\"+posterName);
+	if(file.exists()){
+	   
+	   file.delete();
+	}
+	 */
    
    try{
       
@@ -32,6 +42,7 @@
             new DefaultFileRenamePolicy());
       
       //multi변수로 모든 폼데이타 읽어오기
+      	String movie_num=multi.getParameter("movie_num");
 		String movie_genre=multi.getParameter("movie_genre");
 		String movie_subject=multi.getParameter("movie_subject");
 		String movie_play=multi.getParameter("movie_play");
@@ -41,9 +52,12 @@
 		String movie_actor=multi.getParameter("movie_actor");
 		String movie_content=multi.getParameter("movie_content");
 		String movie_poster=multi.getFilesystemName("movie_poster");
+		
+   
       
       //dto저장
    		MovieDto dto=new MovieDto();
+      	dto.setMovie_num(movie_num);
       	dto.setMovie_genre(movie_genre);
       	dto.setMovie_subject(movie_subject);
       	dto.setMovie_play(movie_play);
@@ -56,11 +70,11 @@
       	
       	
       	MovieDao dao=new MovieDao();
-      	dao.insertMovie(dto);
+      	dao.updateMovie(dto);
 
      
       //페이지이동
-      response.sendRedirect("../index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1");
+      response.sendRedirect("../index.jsp?main=review/review_moviedetail.jsp?movie_num="+movie_num+"&movie_genre="+movie_genre+"&sort=recent&currentPage=1");
    
       
    }catch(Exception e){

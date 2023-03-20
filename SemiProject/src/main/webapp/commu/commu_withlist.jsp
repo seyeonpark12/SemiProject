@@ -68,7 +68,7 @@ td.myinfo {
       //카테고리별 리스트
       List<CommuDto> list=dao.getCategoryList(commu_category, start, perPage);
        
-      SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+      SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd HH:mm");
       
       
       //스마트게시판 댓글에 관한 Dao처리
@@ -84,7 +84,7 @@ td.myinfo {
       
    %>
    
-   <!-- 관리자 체크박스 -->
+    <!-- 관리자 체크박스 -->
    	<script type="text/javascript">
 	$(function(){
 		
@@ -116,8 +116,10 @@ td.myinfo {
 				
 				commu_n=commu_n.substring(0, commu_n.length-1);
 				
-				//삭제파일로 전송
-				location.href="commu/commu_admincheckdelete.jsp?nums="+commu_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
+				if(a==1){
+					//삭제파일로 전송
+					location.href="commu/commu_admincheckdelete.jsp?nums="+commu_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
+				}
 			}
 		});
 		
@@ -135,9 +137,9 @@ td.myinfo {
 
    UserDao udao=new UserDao();
    %>
-   
-	<div class="category"
-		style="width: 1000px; margin-top: 100px; margin-left: 860px;">
+  <div class="category"
+		style="width: 1000px; margin-top: 100px; margin-left: 670px;">
+		
 		<div style="float: left;">
 			<a href="index.jsp?main=commu/commu_totallist.jsp"
 				style="font-size: 18px; color: black; padding-right: 10px;">전체
@@ -164,6 +166,14 @@ td.myinfo {
 		<table style="width: 1000px;">
 
 			<tr class="tr_myinfo">
+				<%
+				//관리자삭제 전체선택
+				if(loginok!=null){
+					if(myid.equals("admin")){%>
+						<th width="30" class="myinfo"><input type="checkbox" class="allcheckdelete"></th>
+					<%}
+				}
+				%>
 				<th width="100" class="myinfo">카테고리</th>
 				<th width="500" class="myinfo">제목</th>
 				<th width="120" class="myinfo">글쓴이</th>
@@ -195,7 +205,7 @@ td.myinfo {
 	    					</td>
 	    				<%}
     				}%>
-                 
+    				
                   <td class="myinfo">
                   <%=dto.getCommu_category() %>
                   </td>
@@ -213,7 +223,7 @@ td.myinfo {
 	   					<a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>" style="color: red;">[<%=dto.getAnswerCount() %>]</a>
 	   				<%}
                   
-	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
+	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy.MM.dd");
      				String inpuDate=sdf2.format(dto.getCommu_writeday());
      				String now = sdf2.format(new java.util.Date());
  
@@ -239,6 +249,7 @@ td.myinfo {
             }
             %>
          </table>
+
 	<% 
 	if(loginok!=null){
 		if(myid.equals("admin")){%>
@@ -276,7 +287,7 @@ td.myinfo {
          if(pp==currentPage){
             %>
             <li class="active">
-               <a href="index.jsp?main=commu/commu_wuthlist.jsp?currentPage=<%=pp %>"><%=pp %></a>
+               <a href="index.jsp?main=commu/commu_withlist.jsp?currentPage=<%=pp %>"><%=pp %></a>
             </li>
          <% } else{
             %>
