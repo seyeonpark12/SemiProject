@@ -143,7 +143,7 @@ String user_num=dao.getNum(myid);
                   onclick="location.href='login/logoutaction.jsp'">Logout</button>
                <div class="fa-solid fa-user-gear"
                   style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='#'"></div>
+                 onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num%>'"></div>
             </div>
                <%}else{%>
                   <div class="menu2">

@@ -9,51 +9,31 @@
 }
 
 .mv_subject {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
    font-size: 22px;
-=======
-   font-size: 33px;
->>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7
-=======
-   font-size: 33px;
->>>>>>> 9cc452e1f934ac60450140fac907fb448716d522
+
    font-weight: 700;
    letter-spacing: -1.2px;
    line-height: 41px;
 }
 
 .mv_content {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
    font-size: 14px;
    font-weight: 400;
    letter-spacing: -0.7px;
    line-height: 60px;
-=======
-=======
->>>>>>> 9cc452e1f934ac60450140fac907fb448716d522
+
    font-size: 17px;
    font-weight: 400;
    letter-spacing: -0.7px;
    line-height: 22px;
-<<<<<<< HEAD
->>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7
-=======
->>>>>>> 9cc452e1f934ac60450140fac907fb448716d522
+
    margin-top: 4px;
    margin-bottom: 10px;
 }
 
 td{
 margin-bottom: 100px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
 
-=======
 }
->>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7
-=======
-}
->>>>>>> 9cc452e1f934ac60450140fac907fb448716d522
