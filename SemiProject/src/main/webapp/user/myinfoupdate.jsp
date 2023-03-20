@@ -35,10 +35,11 @@
     dto.getUser_hp();
     dto.getUser_addr();
     dto.getUser_email();
-    dto.getUser_gaip()
+    dto.getUser_gaip();
     
     //dao선언
     UserDao dao=new UserDao();
+    
     //update 메서드 호출
     dao.updateMyInfo(dto);
     

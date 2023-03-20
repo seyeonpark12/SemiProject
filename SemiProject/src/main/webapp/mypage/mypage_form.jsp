@@ -92,16 +92,13 @@ th.myinfo {
 
          <tr>
             <th class="myinfo" width="200">이름</th>
-            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto. %></td>
+            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
          </tr>
          <tr>
             <th class="myinfo">닉네임</th>
             <td class="myinfo">&nbsp;&nbsp;&nbsp;닉네임(dto값)</td>
          </tr>
-         <tr>
-            <th class="myinfo">이름</th>
-            <td class="myinfo">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
-         </tr>
+         
          <tr>
             <th class="myinfo">아이디</th>
             <td class="myinfo">&nbsp;&nbsp;&nbsp;아이디(dto값)</td>
@@ -111,6 +108,12 @@ th.myinfo {
             <th class="myinfo" width="100">비밀번호</th>
             <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;비밀번호(dto값)</td>
          </tr>
+         
+         <tr>
+            <th class="myinfo">핸드폰번호</th>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;핸드폰번호(dto값)</td>
+         </tr>
+         
          <tr>
             <th class="myinfo" width="100">주소</th>
             <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;주소(dto값)</td>

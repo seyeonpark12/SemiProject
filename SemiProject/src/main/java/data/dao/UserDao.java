@@ -178,6 +178,28 @@ public class UserDao {
 	}
 	
 	
+	//user 삭제
+	public void deleteUser(String user_num) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from user where user_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, user_num);
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	
+	
 	//id, pw 체크
 	public boolean isIdPwCheck(String user_id, String user_pw) {
 		boolean b=false;
@@ -212,6 +234,27 @@ public class UserDao {
 		
 	}
 	
+	
+	 //탈퇴
+	 public void deleteInfo(String user_num) {
+		 
+		 Connection conn=db.getConnection();
+		 PreparedStatement pstmt=null;
+		 
+		 String sql="delete from member where user_num=?";
+		 
+		 try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, user_num);
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+	 }
 	
 	
 	//id에 따른 num 값 리턴
@@ -274,31 +317,79 @@ public class UserDao {
 			return user_id;
 		}
 	
-	
-	//user 삭제
-	public void deleteUser(String user_num) {
-		Connection conn=db.getConnection();
-		PreparedStatement pstmt=null;
-		
-		String sql="delete from user where user_num=?";
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, user_num);
-			pstmt.execute();
+		 
+		 
+		 //num
+		 public UserDto getData(String user_num) {
+			 
+			 UserDto dto=new UserDto();
+			 
+			 Connection conn=db.getConnection();
+			 PreparedStatement pstmt=null;
+		     ResultSet rs=null;
+		     
+		     String sql="select * from member where user_num=?";
+		     
+		     try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, user_num);
+		        rs=pstmt.executeQuery();
+		        
+		        if(rs.next()) {
 					
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(pstmt, conn);
-		}
-		
-	}
-	
-	
-	
-	
+					dto.setUser_num(rs.getString("user_num"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setUser_pw(rs.getString("usr_pw"));
+					dto.setUser_name(rs.getString("user_name"));
+					dto.setUser_nickname(rs.getString("user_nickname"));
+					dto.setUser_hp(rs.getString("user_hp"));
+					dto.setUser_addr(rs.getString("user_addr"));
+					dto.setUser_email(rs.getString("user_email"));
+					dto.setUser_gaip(rs.getTimestamp("user_gaip"));
+				
+		        }
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+
+			 return dto;
+		 }
+		 
+		 
+		 
+		 //myinfo update
+		 public void updateMyInfo(UserDto dto) {
+			 
+			 Connection conn=db.getConnection();
+			 PreparedStatement pstmt=null;
+			 
+			 String sql="update member set pass=?, nickname=?,hp=?,addr=?,email=? where num=?";
+			 
+			 try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getUser_num());
+				pstmt.setString(2, dto.getUser_pw());
+				pstmt.setString(3, dto.getUser_nickname());
+				pstmt.setString(4, dto.getUser_hp());
+				pstmt.setString(5, dto.getUser_addr());
+				pstmt.setString(6, dto.getUser_email());
+				
+				
+				pstmt.execute();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(pstmt, conn);
+			}
+			 
+		 }
 	
 	
 	
