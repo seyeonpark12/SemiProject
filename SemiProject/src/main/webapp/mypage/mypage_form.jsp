@@ -1,3 +1,4 @@
+<%@page import="data.dto.UserDto"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -91,7 +92,7 @@ th.myinfo {
 
          <tr>
             <th class="myinfo" width="200">이름</th>
-            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
+            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto. %></td>
          </tr>
          <tr>
             <th class="myinfo">닉네임</th>
