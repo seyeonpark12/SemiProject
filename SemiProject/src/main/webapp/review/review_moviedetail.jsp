@@ -230,7 +230,6 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 no = totalCount - (currentPage_review - 1) * perPage;
 %>
 <body>
-   <a href="javascript:history.back();" class="shape glyphicon glyphicon-arrow-left"></a>
    <div style="margin-top: 100px; padding: 0;">
       <input type="hidden" id="movie_num" value="<%=movie_num%>">
       <input type="hidden" id="myid" value="<%=myid%>">
