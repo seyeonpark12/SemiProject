@@ -1,3 +1,5 @@
+<%@page import="data.dao.CommuDao"%>
+<%@page import="data.dto.CommuDto"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -34,8 +36,6 @@
     
     
 <style type="text/css">
-
-
 *{
    margin: 0 auto;
    padding: 0;
@@ -43,14 +43,12 @@
    font-family:"Noto Sans KR";
    color: black;
 }
-
 .mv_subject {
    font-size: 33px;
    font-weight: 700;
    letter-spacing: -1.2px;
    line-height: 41px;
 }
-
 .mv_content {
    font-size: 17px;
    font-weight: 400;
@@ -59,50 +57,55 @@
    margin-top: 4px;
    margin-bottom: 10px;
 }
-
-
 </style>
 
 </head>
 
 <body>
-	
-
-
+   
+   <%
+   String commu_num=request.getParameter("commu_num");
+   String currentPage=request.getParameter("currenPage");
+   
+   CommuDao dao=new CommuDao();
+   CommuDto dto=dao.getCommuData(commu_num);
+   %>
       <br>
       <br>
       <div style="margin: 30px 30px;">
-      <form action="commu/commu_addaction.jsp" method="post" enctype="multipart/form-data">
+      <form action="commu/commu_updateaction.jsp" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="commu_num" value="<%=commu_num%>">
+      <input type="hidden" name="currentPage" value="<%=currentPage%>">
+      
          <table class="table table-bordered" style="width: 800px;">
          <caption><b class="mv_content">게시글 수정</b></caption>
             <tr>
                <td>
                <select style="width: 200px;" name="commu_category" class="form-control" required="required">
-                  <option value="자유" selected="selected">자유</option>
+                  <option value="자유">자유</option>
                   <option value="동행">동행</option>
                   <option value="나눔">나눔</option>
                </select>
                </td>
                
                <td>
-               <input type="text" name="commu_subject" class="form-control" style="width: 400px;" required="required">
+               <input type="text" name="commu_subject" class="form-control" style="width: 400px;" required="required" value="<%=dto.getCommu_subject()%>">
                </td>
             </tr>
             
             <tr>
                <td colspan="2">
                   <div>
-                  <img id="showimg" style=" max-width: 200px; margin-top: 10px; margin-left: 10px;">
+                  <img id="showimg" src="<%=dto.getCommu_photo()==null?"":"commu_save/"+dto.getCommu_photo() %>"  style=" max-width: 200px; margin-top: 10px; margin-left: 10px;">
                   </div>
-                  <textarea name="commu_content" id="commu_content" required="required" style="width: 100%; height: 400px; border: none;  outline: none;"></textarea>
-                  <input type="file" name="commu_photo" id="commu_photo" class="form-control" onchange="readURL(this)">
+                  <textarea name="commu_content" id="commu_content" required="required" style="width: 100%; height: 400px; border: none;  outline: none;"><%=dto.getCommu_content() %></textarea>
+                  <input type="file" name="commu_photo_update" id="commu_photo_update" class="form-control" onchange="readURL(this)">
                </td>
             </tr>
             
             <tr>
                <td colspan="2" align="center">
-               <button type="submit" class="btn btn-default">저장</button>
-               <button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=commu/commu_totallist.jsp'">목록</button>
+               <button type="submit" class="btn btn-default">수정</button>
                </td>
             </tr>
 

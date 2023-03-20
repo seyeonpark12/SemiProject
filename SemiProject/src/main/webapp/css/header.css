@@ -6,6 +6,7 @@
 	list-style: none;
 	font-family: "Noto Sans KR";
 	color: black;
+	text-decoration:none;
 }
 
 body {
@@ -17,6 +18,10 @@ body {
 a {
 	text-decoration: none;
 	display: block;
+}
+
+a:hover{
+	text-decoration:none;
 }
 
 header {
@@ -55,6 +60,7 @@ header {
 .navi>li {
 	float: left;
 	width: 130px;
+	text-decoration:none;
 }
 
 .navi>li>a {
@@ -65,6 +71,7 @@ header {
 	text-align: center;
 	color: black;
 	cursor: pointer;
+	text-decoration:none;
 }
 
 navi>li:hover {
@@ -75,7 +82,7 @@ navi>li:hover {
 	float: right;
 	width: 400px;
 	margin-top: -30px;
-	margin-right: -400px;
+	margin-right: -320px;
 	background-color: #ffffff;
 	z-index: 1;
 }
@@ -121,6 +128,6 @@ dal-footer {
 	height: 30px;
 	line-height: 30px;
 	border: none;
-	margin-left: 1050px;
+	margin-left: 980px;
 	background-color: #fafafa;
 }

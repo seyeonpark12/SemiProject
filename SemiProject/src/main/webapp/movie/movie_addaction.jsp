@@ -60,7 +60,7 @@
 
      
       //페이지이동
-      response.sendRedirect("../index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=1");
+      response.sendRedirect("../index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1");
    
       
    }catch(Exception e){
