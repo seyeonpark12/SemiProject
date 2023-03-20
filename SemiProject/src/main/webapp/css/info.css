@@ -109,6 +109,10 @@ td.myinfo {
 
 .myinfo_div {
 	margin-top: 50px;
+<<<<<<< HEAD
+=======
+	margin-left: 500px;
+>>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7
 	width: 1000px;
 	padding: 0;
 }

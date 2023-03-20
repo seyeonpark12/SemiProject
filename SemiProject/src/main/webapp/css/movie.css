@@ -9,22 +9,37 @@
 }
 
 .mv_subject {
+<<<<<<< HEAD
    font-size: 22px;
+=======
+   font-size: 33px;
+>>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7
    font-weight: 700;
    letter-spacing: -1.2px;
    line-height: 41px;
 }
 
 .mv_content {
+<<<<<<< HEAD
    font-size: 14px;
    font-weight: 400;
    letter-spacing: -0.7px;
    line-height: 60px;
+=======
+   font-size: 17px;
+   font-weight: 400;
+   letter-spacing: -0.7px;
+   line-height: 22px;
+>>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7
    margin-top: 4px;
    margin-bottom: 10px;
 }
 
 td{
 margin-bottom: 100px;
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7

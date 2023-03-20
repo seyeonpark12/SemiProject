@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 a.godetail {
+<<<<<<< HEAD
 	max-width: 240px;
 	height: 380px;
 	padding: 10px;
@@ -30,3 +31,20 @@ img {
 	background-color:#CBB6D9;
 	border:0px solid;
 }
+=======
+   max-width: 240px;
+   height: 380px;
+   padding: 10px;
+   height: 380px;
+}
+
+.poster {
+   width: 200px;
+   height: 320px;
+}
+
+img {
+   border: 0;
+   display: block;
+}
+>>>>>>> 27a2c1fcc40d320fd01c279bab0cbd94abcaa2f7

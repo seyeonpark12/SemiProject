@@ -32,6 +32,7 @@ String saveid = (String) session.getAttribute("saveid");
 
 UserDao dao = new UserDao();
 String nickname = dao.getName_id(myid);
+String user_num = dao.getNum(myid);
 %>
 <script type="text/javascript">
 	$(function() {
@@ -88,6 +89,18 @@ String nickname = dao.getName_id(myid);
 
 		});
 
+		$("#search_id")
+				.keyup(
+						function(event) {
+
+							if (event.which === 13) {
+
+								var search = $("#search_id").val();
+								location.href = "index.jsp?main=movie/movie_search.jsp?search="
+										+ search + "";
+							}
+						});
+
 	});
 </script>
 <body>
@@ -107,38 +120,42 @@ String nickname = dao.getName_id(myid);
 
 			<nav class="menu">
 				<ul class="navi">
-					<li><a href="index.jsp?main=movie/movie_list.jsp"
+					<li><a
+						href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=1"
 						class="mainmenu">영화</a></li>
-					<li><a href="index.jsp?main=whatpick/commu_list.jsp"
+					<li><a href="index.jsp?main=commu/commu_totallist.jsp"
 						class="mainmenu">커뮤니티</a></li>
 				</ul>
 			</nav>
 
 
-			<input type="text" name="search" id="search_id"  placeholder="검색"
+			<input type="text" name="search" id="search_id" placeholder="검색"
 				class="form-control">
+
 
 			<div class="container">
 				<!-- 회원(로그인)모드.. -->
 				<%
 				if (loginok != null) {
-					
-					if(myid.equals("admin")){%>
-						
-						<div class="menu2">
+
+					if (myid.equals("admin")) {
+				%>
+
+				<div class="menu2">
 					<b
 						style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님
-						로그인중
-					</b>
+						로그인중 </b>
 					<button type="button" class="btn btn-default btn-sm"
 						style="width: 80px; margin-right: 10px;"
 						onclick="location.href='login/logoutaction.jsp'">Logout</button>
 					<div class="fa-solid fa-user-gear"
 						style="font-size: 20px; line-height: 20px; height: 20px;"
-						onclick="location.href='index.jsp?main=whatpick/admin_mypage.jsp'"></div>
+						onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num%>'"></div>
 				</div>
-					<%}else{%>
-						<div class="menu2">
+				<%
+				} else {
+				%>
+				<div class="menu2">
 					<b
 						style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님
 						로그인중</b>
@@ -147,9 +164,10 @@ String nickname = dao.getName_id(myid);
 						onclick="location.href='login/logoutaction.jsp'">Logout</button>
 					<div class="fa-solid fa-user"
 						style="font-size: 20px; line-height: 20px; height: 20px;"
-						onclick="location.href='index.jsp?main=whatpick/login_mypage.jsp'"></div>
+						onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"></div>
 				</div>
-					<%}
+				<%
+				}
 				%>
 
 				<%
@@ -157,7 +175,7 @@ String nickname = dao.getName_id(myid);
 				%>
 				<div class="menu2">
 					<button type="button" class="btn btn-default btn-sm" id="myBtn"
-						data-toggle="modal" data-target="#myModal" style="margin-right:10px;">로그인</button>
+						data-toggle="modal" data-target="#myModal">로그인</button>
 					<button type="button" class="btn btn-default btn-sm"
 						style="width: 100px;" id="myBtn2" data-toggle="modal"
 						data-target="#myModal2">회원가입</button>
@@ -173,7 +191,7 @@ String nickname = dao.getName_id(myid);
 
 						<!-- Modal content-->
 						<div class="modal-content">
-							<div class="modal-header" style="padding: 50px 50px;">
+							<div class="modal-header" style="padding: 35px 50px;">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<caption>
 									<h2 align="center">로그인</h2>
@@ -186,12 +204,12 @@ String nickname = dao.getName_id(myid);
 
 										<br> <br> <input type="text" name="user_id"
 											placeholder="ID" class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa" value="">
+											style="width: 300px; background-color: #FAF7F7" value="">
 
 										<br> <br> <input type="password" name="user_pw"
 											placeholder="PASSWORD" class="form-control"
 											required="required"
-											style="width: 300px; background-color: #fafafa"> <br>
+											style="width: 300px; background-color: #FAF7F7"> <br>
 
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
@@ -240,38 +258,38 @@ String nickname = dao.getName_id(myid);
 
 										<br> <br> <input type="text" name="user_name"
 											placeholder="이름" class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa" value="">
+											style="width: 300px; background-color: #FAF7F7" value="">
 
 
 										<br> <br> <input type="text" name="user_nickname"
 											placeholder="닉네임" class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa" value="">
+											style="width: 300px; background-color: #FAF7F7" value="">
 
 
 										<br> <br> <input type="text" name="user_id"
 											placeholder="아이디" class="form-control" required="required"
-											style="width: 70%; background-color: #fafafa" value="">
+											style="width: 70%; background-color: #FAF7F7" value="">
 
 										<button type="button" class="btn btn-default"
 											style="margin-top: -55px; margin-left: 220px;">중복확인</button>
 
 										<br> <br> <input type="password" name="user_pw"
 											placeholder="비밀번호" class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa"> <br>
+											style="width: 300px; background-color: #FAF7F7"> <br>
 										<br> <input type="password" name="user_pw2"
 											placeholder="비밀번호확인" class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa"> <br>
+											style="width: 300px; background-color: #FAF7F7"> <br>
 										<br> <input type="text" name="user_hp" placeholder="휴대번호"
 											class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa" value="">
+											style="width: 300px; background-color: #FAF7F7" value="">
 
 										<br> <br> <input type="text" name="user_addr"
 											placeholder="주소" class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa" value="">
+											style="width: 300px; background-color: #FAF7F7" value="">
 
 										<br> <br> <input type="text" name="user_email"
 											placeholder="이메일" class="form-control" required="required"
-											style="width: 300px; background-color: #fafafa" value="">
+											style="width: 300px; background-color: #FAF7F7" value="">
 
 										<br> <br>
 										<div class="form-group">

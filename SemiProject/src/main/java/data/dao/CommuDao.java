@@ -315,7 +315,7 @@ public class CommuDao {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 
-		String sql = "delete from commu where commu_num";
+		String sql = "delete from commu where commu_num=?";
 
 		try {
 
