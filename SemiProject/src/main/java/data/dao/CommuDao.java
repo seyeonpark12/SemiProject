@@ -299,6 +299,7 @@ public class CommuDao {
 			pstmt.setString(2, dto.getCommu_subject());
 			pstmt.setString(3, dto.getCommu_content());
 			pstmt.setString(4, dto.getCommu_photo());
+			pstmt.setString(5, dto.getCommu_num());
 
 			pstmt.execute();
 		} catch (SQLException e) {

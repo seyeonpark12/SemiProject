@@ -6,7 +6,10 @@
 	list-style: none;
 	font-family:"Noto Sans KR";
 	color: black;
+<<<<<<< HEAD
 	text-decoration:none;
+=======
+>>>>>>> 9cc452e1f934ac60450140fac907fb448716d522
 }
 
 .ca_subject {
@@ -14,5 +17,8 @@
 	font-weight: 400;
 	letter-spacing: -1.2px;
 	line-height: 36px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cc452e1f934ac60450140fac907fb448716d522
 }

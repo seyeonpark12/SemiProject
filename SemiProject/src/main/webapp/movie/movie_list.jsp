@@ -23,10 +23,6 @@
    href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
-<script src="script/script.js" defer type="text/javascript"></script>
-<script src="https://kit.fontawesome.com/7027f21a5f.js"
-   crossorigin="anonymous"></script>
-
 <script type="text/javascript">
    $(function() {
 
@@ -60,13 +56,6 @@
 
    });
 
-   function genre(movie_genre) {
-
-      //alert(movie_genre);
-      location.href = "index.jsp?main=movie/movie_list.jsp?movie_genre="
-            + movie_genre + "?currentPage=1";
-
-   }
 </script>
 
 <style type="text/css">
@@ -117,6 +106,7 @@ String loginok = (String) session.getAttribute("loginok");
 String myid = (String) session.getAttribute("myid");
 
 String movie_genre = request.getParameter("movie_genre");
+String sort=request.getParameter("sort");
 MovieDao dao = new MovieDao();
 
 //블럭 < 1 2 3 4 5 >
@@ -164,8 +154,14 @@ if (endPageGen > totalPageGen)
 start = (currentPage - 1) * perPage;
 
 //각페이지에서 필요한 게시글 가져오기
-List<MovieDto> list = dao.getList(start, perPage);
-List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
+List<MovieDto> list_recent = dao.getList_Recent(start, perPage);
+List<MovieDto> list_pick = dao.getList_Pcount(start, perPage);
+List<MovieDto> list_rank = dao.getList_Rank_Avg(start, perPage);
+List<MovieDto> list_genre_recent = dao.getList_Genre_Recent(movie_genre, start, perPage);
+List<MovieDto> list_genre_pick = dao.getList_Genre_Pcount(movie_genre, start, perPage);
+List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, perPage);
+
+
 %>
 
 <body>
@@ -173,36 +169,39 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
    <div class="container">
       <ul class="nav nav-tabs">
          <li style="margin-left: 330px;"><a class="all_genre"
-            href="movie/select_genre.jsp?movie_genre=all">전체</a></li>
+            href="movie/select_genre_sort.jsp?movie_genre=all&sort=<%=sort %>">전체</a></li>
          <li><a class="romance"
-            href="movie/select_genre.jsp?movie_genre=romance">로맨스</a></li>
+            href="movie/select_genre_sort.jsp?movie_genre=romance&sort=<%=sort %>">로맨스</a></li>
          <li><a class="action"
-            href="movie/select_genre.jsp?movie_genre=action">액션</a></li>
-         <li><a movie_genre="코미디" class="comedy"
-            href="movie/select_genre.jsp?movie_genre=comedy">코미디</a></li>
-         <li><a movie_genre="공포" class="horror"
-            href="movie/select_genre.jsp?movie_genre=horror">공포</a></li>
-         <li><a movie_genre="애니메이션" class="animation"
-            href="movie/select_genre.jsp?movie_genre=animation">애니메이션</a></li>
-         <li><a movie_genre="기타" class="everything"
-            href="movie/select_genre.jsp?movie_genre=etc">기타</a></li>
+            href="movie/select_genre_sort.jsp?movie_genre=action&sort=<%=sort %>">액션</a></li>
+         <li><a class="comedy"
+            href="movie/select_genre_sort.jsp?movie_genre=comedy&sort=<%=sort %>">코미디</a></li>
+         <li><a class="horror"
+            href="movie/select_genre_sort.jsp?movie_genre=horror&sort=<%=sort %>">공포</a></li>
+         <li><a class="animation"
+            href="movie/select_genre_sort.jsp?movie_genre=animation&sort=<%=sort %>">애니메이션</a></li>
+         <li><a class="everything"
+            href="movie/select_genre_sort.jsp?movie_genre=etc&sort=<%=sort %>">기타</a></li>
       </ul>
+
+
+
 
 
       <div style="float: right; padding-top: 20px; padding-right: 20px;">
          <div style="float: left;">
-            <a href="#"
-               style="font-size: 12px; color: #653491; padding-right: 10px; text-decoration: none;">자유
+            <a href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=recent"
+               style="font-size: 12px; color: #653491; padding-right: 10px;">최신순
                &nbsp;|</a>
          </div>
          <div style="float: left;">
-            <a href="#"
-               style="font-size: 12px; color: #653491; padding-right: 10px; text-decoration: none;">동행
+            <a href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=rank"
+               style="font-size: 12px; color: #653491; padding-right: 10px;">평점순
                &nbsp;|</a>
          </div>
          <div style="float: left;">
-            <a href="#"
-               style="font-size: 12px; color: #653491; padding-right: 10px; text-decoration: none;">나눔</a>
+            <a href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=pick"
+               style="font-size: 12px; color: #653491; padding-right: 10px;">pick순</a>
          </div>
       </div>
 
@@ -220,11 +219,11 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
                   style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
                   <%
                   int i = 0;
-                  for (MovieDto dto : list) {
+                  for (MovieDto dto : sort.equals("recent")?list_recent:sort.equals("pick")?list_pick:list_rank) {
                      //이미지
                      String poster = dto.getMovie_poster();
                   %>
-
+					<% %>
                   <div style="padding: 10px;">
                      <%
                      if (loginok != null) {
@@ -243,7 +242,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
                         style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
                         class="godetail"> <img src="movie_save/<%=poster%>"
                         class="poster"
-                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort %>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                         <span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
                      </a>
                   </div>
@@ -292,7 +291,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             if (startPage > 1) {
             %>
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=<%=startPage - 1%>">이전</a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort %>&currentPage=<%=startPage - 1%>">이전</a>
             </li>
             <%
             }
@@ -300,14 +299,14 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             if (pp == currentPage) {
             %>
             <li class="active"><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=<%=pp%>"><%=pp%></a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort %>&currentPage=<%=pp%>"><%=pp%></a>
             </li>
             <%
             } else {
             %>
 
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=<%=pp%>"><%=pp%></a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort %>&currentPage=<%=pp%>"><%=pp%></a>
             </li>
             <%
             }
@@ -317,7 +316,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             if (endPage < totalPage) {
             %>
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&currentPage=<%=endPage + 1%>">다음</a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort %>&currentPage=<%=endPage + 1%>">다음</a>
             </li>
             <%
             }
@@ -335,10 +334,11 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
                   style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
                   <%
                   int i = 0;
-                  for (MovieDto dto : list_genre) {
+                  for (MovieDto dto : sort.equals("recent")?list_genre_recent:sort.equals("pick")?list_genre_pick:list_genre_rank) {
+                	 
                      String poster = dto.getMovie_poster();
                   %>
-
+		
                   <div style="padding: 10px;">
                      <%
                      if (loginok != null) {
@@ -354,7 +354,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
                         style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
                         class="godetail"> <img src="movie_save/<%=poster%>"
                         class="poster"
-                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort %>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
                         <span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
                      </a>
                   </div>
@@ -382,10 +382,9 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
 
 
          <div style="margin-left: 990px;">
-         
             <button type="button" class="btn btn-default"
                style="color: #653491; border: 1px solid #653491;"
-               onclick="location.href='movie/movie_addform.jsp'">등록</button>
+               onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
             <button type="button" class="btn btn-default" id="moviedel">삭제</button>
          </div>
       </div>
@@ -404,7 +403,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             if (startPage > 1) {
             %>
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=startPage - 1%>">이전</a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&currentPage=<%=startPage - 1%>">이전</a>
             </li>
             <%
             }
@@ -412,14 +411,14 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             if (pp == currentPage) {
             %>
             <li class="active"><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=pp%>"><%=pp%></a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&currentPage=<%=pp%>"><%=pp%></a>
             </li>
             <%
             } else {
             %>
 
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=pp%>"><%=pp%></a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&currentPage=<%=pp%>"><%=pp%></a>
             </li>
             <%
             }
@@ -429,7 +428,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             if (endPageGen < totalPageGen) {
             %>
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=endPageGen + 1%>">다음</a>
+               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&currentPage=<%=endPageGen + 1%>">다음</a>
             </li>
             <%
             }

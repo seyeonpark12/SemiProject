@@ -80,7 +80,7 @@ th.myinfo {
    <br>
    <br>
    <div
-      style="margin-left: 270px; width: 1000px; padding: 0;">
+      style="margin-left: 500px; width: 1000px; padding: 0;">
 
       <h3>회원정보</h3>
       <table class="table table-bordered" style="width: 700px;">

@@ -97,7 +97,7 @@ public class ReviewDao {
 
    public int getTotalReviewCount(String movie_num) {
       int total = 0;
-      
+
       Connection conn = db.getConnection();
       PreparedStatement pstmt = null;
       ResultSet rs = null;
@@ -108,7 +108,7 @@ public class ReviewDao {
          pstmt = conn.prepareStatement(sql);
          pstmt.setString(1, movie_num);
          rs = pstmt.executeQuery();
-         
+
          if (rs.next()) {
             total = rs.getInt(1);
          }
@@ -159,7 +159,7 @@ public class ReviewDao {
       return list;
 
    }
-   
+
    public List<ReviewDto> getAllReview_movie(String movie_num, int start, int perPage) {
       List<ReviewDto> list = new Vector<>();
 
@@ -199,5 +199,26 @@ public class ReviewDao {
 
    }
 
+   public double review_ScoreAvg(String movie_num) {
+      double score = 0;
+
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+      
+
+      String sql = "select round(avg(review_score),2) avg from review where movie_num=?";
+
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, movie_num);
+         
+         pstmt.execute();
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+
+      return score;
+   }
 
 }
