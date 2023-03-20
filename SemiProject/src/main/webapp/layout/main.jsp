@@ -64,7 +64,7 @@
 											<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
 												<img src="movie_save/<%=dto.getMovie_poster()%>">
 											</a>
-											<h3 class="img_text"><%=dto.getMovie_rank_avg() %> | <%=dto.getMovie_subject()%></h3>
+											<h3 class="img_text"><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %> | <%=dto.getMovie_subject()%></h3>
 										</li>
 									<%}
 								%>
