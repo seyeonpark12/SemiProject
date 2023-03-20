@@ -30,40 +30,6 @@
            }
        }
    </script>
-   
-   
-<style type="text/css">
-
-
-*{
-   margin: 0 auto;
-   padding: 0;
-   list-style: none;
-   font-family:"Noto Sans KR";
-   color: black;
-}
-
-.mv_subject {
-   font-size: 33px;
-   font-weight: 700;
-   letter-spacing: -1.2px;
-   line-height: 41px;
-}
-
-.mv_content {
-   font-size: 17px;
-   font-weight: 400;
-   letter-spacing: -0.7px;
-   line-height: 22px;
-   margin-top: 4px;
-   margin-bottom: 10px;
-}
-
-td{
-margin-bottom: 100px;
-}
-</style>
-
 </head>
 <body>
    <div style="margin-top: 100px; padding: 0; margin-bottom:300px;">

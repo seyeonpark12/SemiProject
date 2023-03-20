@@ -1,0 +1,72 @@
+
+{
+java:S1192‡"KDefine a constant instead of duplicating this literal "movie_year" 8 times.(Ò×ÁHå{RCRITICALZ
+CODE_SMELL
+}	java:S117í"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( âÿÛHî{RMINORZ
+CODE_SMELL
+{
+java:S1192ˆ"KDefine a constant instead of duplicating this literal "movie_nara" 8 times.(òÃİ­Hï{RCRITICALZ
+CODE_SMELL
+
+java:S1192ƒ"LDefine a constant instead of duplicating this literal "movie_genre" 8 times.(’øœıÿÿÿÿHø{RCRITICALZ
+CODE_SMELL
+z	java:S100º"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÖ§ãH|RMINORZ
+CODE_SMELL
+|
+java:S1192Š"LDefine a constant instead of duplicating this literal "movie_actor" 8 times.(”¤º…H‚|RCRITICALZ
+CODE_SMELL
+‚	java:S117Ÿ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨à…úùÿÿÿÿH‹|RMINORZ
+CODE_SMELL
+	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÂƒ‡şÿÿÿÿHŒ|RMINORZ
+CODE_SMELL
+z	java:S100Ğ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú‹ÿ»H|RMINORZ
+CODE_SMELL
+€
+java:S1192†"KDefine a constant instead of duplicating this literal "movie_play" 8 times.(ü…óÓıÿÿÿÿH|RCRITICALZ
+CODE_SMELL
+	java:S100ˆ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥â©îúÿÿÿÿH—|RMINORZ
+CODE_SMELL
+}	java:S117º"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÖ§ãH˜|RMINORZ
+CODE_SMELL
+z	java:S100í"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( âÿÛH™|RMINORZ
+CODE_SMELL
+‚
+java:S1192Œ"MDefine a constant instead of duplicating this literal "movie_pcount" 8 times.(×Ã²ıÿÿÿÿHš|RCRITICALZ
+CODE_SMELL
+‚
+java:S1192…"MDefine a constant instead of duplicating this literal "movie_poster" 8 times.(ÂüÓöûÿÿÿÿH£|RCRITICALZ
+CODE_SMELL
+ƒ
+java:S1192„"NDefine a constant instead of duplicating this literal "movie_subject" 8 times.(ÑüçÀıÿÿÿÿH¬|RCRITICALZ
+CODE_SMELL
+„
+java:S1192‰"ODefine a constant instead of duplicating this literal "movie_director" 8 times.(¢ÜÅ—úÿÿÿÿHµ|RCRITICALZ
+CODE_SMELL
+y	java:S100M"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²©ÀH¾|RMINORZ
+CODE_SMELL
+~
+java:S1192‹"NDefine a constant instead of duplicating this literal "movie_content" 8 times.(¯ÕÁüH¿|RCRITICALZ
+CODE_SMELL
+}	java:S117„"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª•·HÈ|RMINORZ
+CODE_SMELL
+y
+java:S1192‚"JDefine a constant instead of duplicating this literal "movie_num" 8 times.(Ù–ènHÉ|RCRITICALZ
+CODE_SMELL
+z	java:S100„"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª•·HÒ|RMINORZ
+CODE_SMELL
+|	java:S117M"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²©ÀHÓ|RMINORZ
+CODE_SMELL
+‚	java:S117ˆ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥â©îúÿÿÿÿHÔ|RMINORZ
+CODE_SMELL
+b
+java:S1135'"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿHÕ|RINFOZ
+CODE_SMELL
+z	java:S100£"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û’çHÖ|RMINORZ
+CODE_SMELL
+„
+java:S1192"ODefine a constant instead of duplicating this literal "movie_rank_avg" 8 times.(Œ¯Ğ²ûÿÿÿÿH×|RCRITICALZ
+CODE_SMELL
+‚	java:S117´"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ÊÅáøÿÿÿÿHà|RMINORZ
+CODE_SMELL
+~	java:S100l"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ß‹ÓûÿÿÿÿHá|RMINORZ
+CODE_SMELL

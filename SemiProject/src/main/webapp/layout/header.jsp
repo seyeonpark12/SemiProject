@@ -90,10 +90,14 @@ String user_num=dao.getNum(myid);
       $("#search_id").keyup(function(event){
     	  
     	  if(event.which===13){
+			
+    		  var search=$(this).val();
+    		  //alert(search);
+
     		  
-    		  var search=$("#search_id").val();
-    		  location.href="index.jsp?main=movie/movie_search.jsp?search="+search+"";
-    	  }
+    		  
+    		  location.href="index.jsp?main=movie/movie_search.jsp?search="+search+"&currentPage=1";
+    	  };
       });
 
    });
@@ -122,9 +126,13 @@ String user_num=dao.getNum(myid);
             </ul>
          </nav>
 
-
-         <input type="text" name="search" id="search_id"  placeholder="검색"
+		<form method="post">
+		
+         <input type="text" id="search_id"  placeholder="검색"
             class="form-control">
+         <input type="hidden" name="search" id="search" search="">   
+		</form>
+		
 
          <div class="container">
             <!-- 회원(로그인)모드.. -->
@@ -143,7 +151,7 @@ String user_num=dao.getNum(myid);
                   onclick="location.href='login/logoutaction.jsp'">Logout</button>
                <div class="fa-solid fa-user-gear"
                   style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='#'"></div>
+                 onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num%>'"></div>
             </div>
                <%}else{%>
                   <div class="menu2">

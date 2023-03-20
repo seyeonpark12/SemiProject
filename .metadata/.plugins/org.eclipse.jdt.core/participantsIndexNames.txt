@@ -1,0 +1,21 @@
+INDEX VERSION 1.131
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1924307776.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2489584417.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\688118850.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1483885087.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2121782116.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4192603944.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1185427283.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4012143456.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1786394214.index
+\SemiProject\src\main\java
+C:\sist1226\semi\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2397728143.index
+\SemiProject\src\main\java

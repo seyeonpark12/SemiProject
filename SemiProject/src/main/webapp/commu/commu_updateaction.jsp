@@ -45,7 +45,10 @@
 	dto.setCommu_num(commu_num);
 	
 	dao.updateCommu(dto);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 	
 	//목록으로 이동 maxNum 구한걸로 상세보기 주소 줘야함...??????
 	response.sendRedirect("../index.jsp?main=commu/commu_detail.jsp?commu_num="+commu_num+"&currentPage="+currentPage);
@@ -53,6 +56,10 @@
 	}catch(Exception e){
 		System.out.println("업로드 오류"+e.getMessage());
 	}
+<<<<<<< HEAD
 	%>
 	
 	
+=======
+	%>
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e

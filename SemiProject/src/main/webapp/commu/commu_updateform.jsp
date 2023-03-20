@@ -62,6 +62,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
    
    <%
    String commu_num=request.getParameter("commu_num");
@@ -70,6 +71,16 @@
    CommuDao dao=new CommuDao();
    CommuDto dto=dao.getCommuData(commu_num);
    %>
+=======
+	
+	<%
+	String commu_num=request.getParameter("commu_num");
+	String currentPage=request.getParameter("currenPage");
+	
+	CommuDao dao=new CommuDao();
+	CommuDto dto=dao.getCommuData(commu_num);
+	%>
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
       <br>
       <br>
       <div style="margin: 30px 30px;">

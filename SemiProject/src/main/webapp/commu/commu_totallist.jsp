@@ -11,6 +11,7 @@
 <head>
 <meta charset="utf-8">
 
+<<<<<<< HEAD
 <title>Insert title here</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +19,19 @@
 <link href="css/info.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+=======
+<title>commu_totallist</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
+	rel="stylesheet">
+<link href="css/info.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <style type="text/css">
 td.myinfo {
@@ -75,9 +89,15 @@ td.myinfo {
       }
       
    %>
+<<<<<<< HEAD
    	
    	<!-- 관리자 체크박스 -->
    	<script type="text/javascript">
+=======
+
+<!-- 관리자 체크박스 -->
+<script type="text/javascript">
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 	$(function(){
 		
 		$(".allcheckdelete").click(function(){
@@ -122,7 +142,11 @@ td.myinfo {
 
 </head>
 <body>
+<<<<<<< HEAD
   <%
+=======
+	<%
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
    //로그인 세션
    String loginok=(String)session.getAttribute("loginok");
    //아이디 myid
@@ -130,7 +154,11 @@ td.myinfo {
 
    UserDao udao=new UserDao();
    %>
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 	<div class="category"
 		style="width: 1000px; margin-top: 100px; margin-left: 670px;">
 		<div style="float: left;">
@@ -151,20 +179,34 @@ td.myinfo {
 				style="font-size: 18px; color: black; padding-right: 10px;">나눔</a>
 		</div>
 	</div>
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 	<br>
 	<div class="myinfo_div">
 		<br>
 
 		<table style="width: 1000px;">
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 			<tr class="tr_myinfo">
 				<%
 				//관리자삭제 전체선택
 				if(loginok!=null){
 					if(myid.equals("admin")){%>
+<<<<<<< HEAD
 						<th width="30" class="myinfo"><input type="checkbox" class="allcheckdelete"></th>
 					<%}
+=======
+				<th width="30" class="myinfo"><input type="checkbox"
+					class="allcheckdelete"></th>
+				<%}
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 				}
 				%>
 				<th width="100" class="myinfo">카테고리</th>
@@ -173,16 +215,25 @@ td.myinfo {
 				<th width="100" class="myinfo">작성일</th>
 				<th width="60" class="myinfo">조회수</th>
 			</tr>
+<<<<<<< HEAD
      
       <%
    
          if(totalCount==0){%>
          
+=======
+
+			<%
+   
+         if(totalCount==0){%>
+
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 			<tr class="tr_myinfo">
 				<td colspan="5" align="center" class="myinfo">
 					<h3>등록된 게시글이 없습니다</h3>
 				</td>
 			</tr>
+<<<<<<< HEAD
 			
 			 <%}else{
             
@@ -219,10 +270,45 @@ td.myinfo {
 	   				<%}
 	   				
                   	//오늘 쓴 글 new 표시
+=======
+
+			<%}else{
+            
+            for(CommuDto dto:list){ %>
+			<tr class="tr_myinfo">
+
+				<%
+                    //관리자삭제 개별선택
+                    if(loginok!=null){
+	    				if(myid.equals("admin")){%>
+				<td class="myinfo"><input type="checkbox" class="checkdelete"
+					value="<%=dto.getCommu_num() %>"></td>
+				<%}
+    				}%>
+
+				<td class="myinfo"><%=dto.getCommu_category() %></td>
+
+
+				<td class="myinfo"><a style="float: left; margin-left: 50px;"
+					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
+					<%
+                  //이미지 첨부된 경우 아이콘 표시
+                  if(dto.getCommu_photo()!=null){%> <img
+					style="float: left; width: 15px;" src="commu/new_img/photoimg.png">
+					<%}
+                  
+	   				//댓글이 있을 경우 제목 옆에 갯수 나타내기
+	   				if(dto.getAnswerCount()>0){%> <a
+					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
+					style="float: left; color: red;">[<%=dto.getAnswerCount() %>]
+				</a> <%}
+                  
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy.MM.dd");
      				String inpuDate=sdf2.format(dto.getCommu_writeday());
      				String now = sdf2.format(new java.util.Date());
  
+<<<<<<< HEAD
      				if(inpuDate.equals(now)){%>
      				<img style="width: 15px;" src="commu/new_img/newimg.png">
      				<%}
@@ -270,20 +356,77 @@ td.myinfo {
    <div style="width: 500px; text-align: center;" class="container">
    <ul class="pagination">
       <%
+=======
+     				if(inpuDate.equals(now)){%> <img
+					style="float: left; width: 15px;" src="commu/new_img/newimg.png">
+					<%}
+     				%></td>
+
+
+				<%
+                  String nickname=udao.getName_num(dto.getUser_num());
+                  %>
+				<td class="myinfo"><%=nickname %></td>
+
+				<td class="myinfo"><%=sdf.format(dto.getCommu_writeday()) %></td>
+
+				<td class="myinfo"><%=dto.getCommu_readcount() %></td>
+
+			</tr>
+
+			<%}
+            }
+            %>
+		</table>
+
+	<% 
+		if(loginok!=null){
+			if(myid.equals("admin")){%>
+		<div style="float: right;">
+			<button style="float: left;" type="button" id="admindelete"
+				class="btn btn-default btn-sm" onclick="location.href='#'">삭제</button>
+			<%}%>
+
+
+			<button type="button" class="btn btn-default btn-sm"
+				style="float: right; margin-left: 5px;"
+				onclick="location.href='index.jsp?main=commu/commu_addform.jsp'">
+				<span class="glyphicon glyphicon-pencil"></span>글쓰기
+			</button>
+		</div>
+		<%}
+	%>
+
+	</div>
+
+
+	<!-- 페이징처리 -->
+	<div style="width: 500px; text-align: center;" class="container">
+		<ul class="pagination">
+			<%
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
          
       //이전
       if(startPage>1){
          %>
+<<<<<<< HEAD
          <li>
             <a href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=startPage-1 %>">이전</a>
          </li>
       <%}
+=======
+			<li><a
+				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=startPage-1 %>">이전</a>
+			</li>
+			<%}
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
          
          
       for(int pp=startPage;pp<=endPage;pp++){
             
          if(pp==currentPage){
             %>
+<<<<<<< HEAD
             <li class="active">
                <a href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=pp %>"><%=pp %></a>
             </li>
@@ -293,12 +436,24 @@ td.myinfo {
                <a href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=pp %>"><%=pp %></a>
             </li>
          <%}
+=======
+			<li class="active"><a
+				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=pp %>"><%=pp %></a>
+			</li>
+			<% } else{
+            %>
+			<li><a
+				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=pp %>"><%=pp %></a>
+			</li>
+			<%}
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
             
       }
          
       //다음
       if(endPage<totalPage){
          %>
+<<<<<<< HEAD
          <li>
             <a href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=endPage+1 %>">다음</a>
          </li>
@@ -307,5 +462,15 @@ td.myinfo {
    </ul>
    </div>
    
+=======
+			<li><a
+				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=endPage+1 %>">다음</a>
+			</li>
+			<%}
+      %>
+		</ul>
+	</div>
+
+>>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 </body>
 </html>

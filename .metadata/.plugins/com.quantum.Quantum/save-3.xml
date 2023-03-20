@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<SAVED_DATA>
+	<bookmarks>
+		<jdbcDriver className="org.apache.derby.jdbc.EmbeddedDriver" name="Apache Derby Embedded JDBC Driver" type="DERBY" version="10.3.1.4 - (561794)">
+			<jar fileName="C:/Users/sung/.p2/pool/plugins/com.quantum.derby_3.3.10/lib/derby.jar" />
+		</jdbcDriver>
+		<jdbcDriver className="com.mysql.cj.jdbc.Driver" name="MySQL Connector/J" type="GENERIC" version="mysql-connector-j-8.0.32 (Revision: fa4912a849140828e48162a2c396c8df0091bed7)">
+			<jar fileName="C:\sist1226\util\mysql-connector-j-8.0.32.jar" />
+		</jdbcDriver>
+		<bookmark>
+			<name>(Internal) Derby</name>
+			<username>QUANTUM</username>
+			<password />
+			<prompt>false</prompt>
+			<connect>jdbc:derby:C:/Users/sung/.p2/pool/plugins/com.quantum.derby_3.3.10/data/quantum</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>true</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>org.apache.derby.jdbc.EmbeddedDriver</driver>
+			<type>DERBY</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:/Users/sung/.p2/pool/plugins/com.quantum.derby_3.3.10/lib/derby.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList />
+		</bookmark>
+		<bookmark>
+			<name>mysql_semi</name>
+			<username>adminpjs</username>
+			<password>sist1226</password>
+			<prompt>false</prompt>
+			<connect>jdbc:mysql://popcorn.cuqgx5noh2if.ap-northeast-2.rds.amazonaws.com:3306/popcorn?serverTimezone=Asia/Seoul</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>com.mysql.cj.jdbc.Driver</driver>
+			<type>GENERIC</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\sist1226\util\mysql-connector-j-8.0.32.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>INSERT INTO movie (movie_num, movie_genre, movie_subject, movie_poster, movie_play, movie_year, movie_director, movie_actor, movie_content, movie_pcount, movie_rank_avg ) VALUES  ( , '판타지', '아바타:물의길', '아바타.jpeg', 'https://www.youtube.com/embed/kihrFxwdMb4', '2023', '제임스 카메론', '조 샐다나, 샘 워싱턴,스티븐 랭', '&lt;아바타: 물의 길&gt;은 판도라 행성에서  ''제이크 설리''와 ''네이티리''가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편 &lt;아바타&gt;에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로,  샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭이 출연하고 존 랜도가 프로듀싱을 맡았다.', ,  )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO review (review_num, movie_num, user_num, review_score, review_content, review_writeday ) VALUES  ( null, null, null, 5, '최고!', 'null' )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO review (review_num, movie_num, user_num, review_score, review_content, review_writeday ) VALUES  ( null, null, null, 5, '최고!', now() )</queryString>
+				</query>
+				<query>
+					<queryString>UPDATE review SET movie_num = 1, user_num = 1 WHERE (review_num = 1) AND (movie_num = &lt;NULL&gt;) AND (user_num = &lt;NULL&gt;)</queryString>
+				</query>
+				<query>
+					<queryString>DELETE FROM review WHERE (review_num = 1)</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO review (review_num, movie_num, user_num, review_score, review_content, review_writeday ) VALUES  ( 1, 1, 1, 5, 'das', now() )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO movie (movie_num, movie_genre, movie_subject, movie_poster, movie_play, movie_year, movie_director, movie_actor, movie_content, movie_pcount, movie_rank_avg ) VALUES  ( null, '판타지', '아바타:물의길', '아바타.jpeg', 'https://www.youtube.com/embed/kihrFxwdMb4', '2023', '제임스 카메론', '조 샐다나, 샘 워싱턴,스티븐 랭', '&lt;아바타: 물의 길&gt;은 판도라 행성에서  ''제이크 설리''와 ''네이티리''가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 월드와이드 역대 흥행 순위 1위를 기록한 전편 &lt;아바타&gt;에 이어 제임스 카메론 감독이 13년만에 선보이는 영화로,  샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭이 출연하고 존 랜도가 프로듀싱을 맡았다.', null, null )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO review (review_num, movie_num, user_num, review_score, review_content, review_writeday ) VALUES  ( 1, 1, 1, 5, 'dsa', now() )</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+	</bookmarks>
+</SAVED_DATA>

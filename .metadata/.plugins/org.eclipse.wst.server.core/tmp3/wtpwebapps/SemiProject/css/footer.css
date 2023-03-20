@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+* {
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 13px;
+}
+
+body {
+	margin: 0;
+	overflow-x: hidden;
+}
+
+footer {
+	height: 200px;
+	position: relative;
+	transform: translatY(-100%);
+}
+
+.btlogo {
+	float: left;
+	height: 100px;
+	width: 250px;
+}
+
+.btlogo img {
+	float: left;
+	width: 130px;
+	opacity: 0.5;
+	margin-top: 25px;
+	margin-left: 15px;
+}
+
+.copy {
+	float: left;
+	height: 180px;
+	width: 800px;
+	color: black;
+	line-height: 25px;
+}
+
+.sns {
+	float: right;
+	height: 100px;
+	width: 200px;
+}
+
+.sns ul {
+	float: right;
+	margin-right: 20px;
+	margin-top: 25px;
+}
+
+.sns li {
+	display: inline-block;
+}
+
+.sns img {
+	height: 45px;
+	width: 45px;
+	padding: 5px;
+}
+
+.sns img:hover {
+	opacity: 0.5;
+}
