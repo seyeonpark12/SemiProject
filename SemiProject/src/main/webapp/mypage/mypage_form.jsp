@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="data.dao.UserDao"%>
 <%@page import="data.dto.UserDto"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -76,6 +78,17 @@ th.myinfo {
    
 </style>
 </head>
+<%
+String loginok = (String) session.getAttribute("loginok");
+String myid = (String) session.getAttribute("myid");
+
+UserDao dao = new UserDao();
+List<UserDto> list=dao.getAllUsers();
+
+String user_num=request.getParameter("user_num");
+
+//UserDto dto=dao.getData(user_num);
+%>
 <body>
 
    <br>
@@ -85,44 +98,58 @@ th.myinfo {
 
       <h3>회원정보</h3>
       <table class="table table-bordered" style="width: 700px;">
-
-         <button type="button" class="btn btn-default btn-sm"
-            onclick="location.href='index.jsp?main=whatpick/updateloginform.jsp'"
+      <input type="hidden" name="user_num" value="<%=user_num%>">
+      
+      <%
+      for(UserDto dto:list){
+    	  
+    	  if(loginok!=null){
+    		  
+    		  if(dto.getUser_id().equals(myid)){%>
+    		  
+    			     <button type="button" class="btn btn-default btn-sm"
+            onclick="location.href='index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num %>'"
             style="float: right; margin-bottom: 10px;">수정하기</button>
 
          <tr>
             <th class="myinfo" width="200">이름</th>
-            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
+            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto.getUser_name() %></td>
          </tr>
          <tr>
             <th class="myinfo">닉네임</th>
-            <td class="myinfo">&nbsp;&nbsp;&nbsp;닉네임(dto값)</td>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_nickname() %></td>
          </tr>
          
          <tr>
             <th class="myinfo">아이디</th>
-            <td class="myinfo">&nbsp;&nbsp;&nbsp;아이디(dto값)</td>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_id() %></td>
          </tr>
 
          <tr>
             <th class="myinfo" width="100">비밀번호</th>
-            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;비밀번호(dto값)</td>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_pw() %></td>
          </tr>
          
          <tr>
             <th class="myinfo">핸드폰번호</th>
-            <td class="myinfo">&nbsp;&nbsp;&nbsp;핸드폰번호(dto값)</td>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_hp() %></td>
          </tr>
          
          <tr>
             <th class="myinfo" width="100">주소</th>
-            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;주소(dto값)</td>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_addr() %></td>
          </tr>
 
          <tr>
             <th class="myinfo" width="100">이메일</th>
-            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;이메일(dto값)</td>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_email() %></td>
          </tr>
+    		  <%}
+    	  }
+      }
+      %>
+
+      
 
       </table>
       
