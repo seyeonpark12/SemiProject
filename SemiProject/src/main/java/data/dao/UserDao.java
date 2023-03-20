@@ -144,7 +144,7 @@ public class UserDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from user order by user_id";
+		String sql="select * from user order by user_num";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);

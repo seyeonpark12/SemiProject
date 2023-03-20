@@ -24,34 +24,32 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 </head>
-<%
-String loginok = (String) session.getAttribute("loginok");
-String myid = (String) session.getAttribute("myid");
+	<%
+	String loginok = (String) session.getAttribute("loginok");
+	String myid = (String) session.getAttribute("myid");
+	
+	UserDao dao = new UserDao();
+	List<UserDto> list=dao.getAllUsers();
+	String user_num=request.getParameter("user_num");
+	//UserDto dto=dao.getData(user_num);
+	
+	//커뮤니티 dao,dto
+	CommuDao cdao=new CommuDao();
+	String commu_num=request.getParameter("commu_num");
 
-UserDao dao = new UserDao();
-List<UserDto> list=dao.getAllUsers();
-
-String user_num=request.getParameter("user_num");
-
-//UserDto dto=dao.getData(user_num);
-
-//커뮤니티 dao,dto
-CommuDao cdao=new CommuDao();
-
-List<CommuDto> commu_list=cdao.getAllList(0, 5);
-
-
-%>
+	//게시글 리스트
+	List<CommuDto> mycommulist=cdao.getMyCommuList(user_num, 0, 8);
+	%>
 <body>
 	<div class="myinfo_div">
 		<table style="width: 700px;">
 			<h3>회원정보</h3>
 			<a class="editbtn"
-				href='index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num %>'">EDIT</a>
+				href='index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num %>'>EDIT</a>
 			<input type="hidden" name="user_num" value="<%=user_num%>">
 
-			<%
-      for(UserDto dto:list){
+		<%
+      	for(UserDto dto:list){
          
          if(loginok!=null){
             
@@ -96,43 +94,20 @@ List<CommuDto> commu_list=cdao.getAllList(0, 5);
       %>
 		</table>
 
-      <table class="table table-bordered" style="width: 1000px;">
 
-         <tr>
-            <th width="200" class="myinfo">카테고리</th>
-            <th width="800" class="myinfo">제목</th>
-         </tr>
-
-         <tr>
-            <td colspan="5" align="center">
-               <h3>등록된 게시글이 없습니다</h3>
-            </td>
-         </tr>
-      </table>
-      
-	  <h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 댓글보기</h3>
-	 <button type="button" class="btn btn-default btn-sm"
-	         onclick="location.href='index.jsp?main=whatpick/commu_addform.jsp'"
-	         style="float: right; margin-bottom: 10px;">더보기</button>
-
-
-		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp'">+MORE</a>
-
+		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp'>+MORE</a>
 		<h3 style="margin-bottom: 30px;">MYPICK</h3>
 		<div id="moviewrap_pick">
-
 			<div class="pick">
 				<span class="glyphicon glyphicon-heart" id="zzim"></span>
 			</div>
-
 			<!-- 최대 4개까지만 보이게 하기.. -->
 		</div>
-
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_myreview.jsp'">+MORE</a>
+			href='index.jsp?main=mypage/login_mypage_myreview.jsp'>+MORE</a>
 
 		<table style="width: 1000px;">
-			<h3>내가 쓴 리뷰보기</h3>
+			<h3>내가 쓴 리뷰</h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">영화제목</th>
 				<th width="600" class="myinfo">리뷰</th>
@@ -146,31 +121,55 @@ List<CommuDto> commu_list=cdao.getAllList(0, 5);
 			</tr>
 		</table>
 
-
+		
+		<!-- 커뮤니티!!!!! 내가 쓴 글!!!! -->
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_mywrite.jsp'">+MORE</a>
-
+			href='index.jsp?main=mypage/login_mypage_mywrite.jsp?user_num=<%=user_num %>'>+MORE</a>
 		<table style="width: 1000px;">
-			<h3>내가 쓴 글보기</h3>
+		<input type="hidden" name="user_num" value="<%=user_num%>">
+		<input type="hidden" name="commu_num" value="<%=commu_num%>">
+		<%
+		int myCommuCount=cdao.myCommuCount(user_num);
+		%>
+			<h3>내가 쓴 글 <%=myCommuCount %></h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
 				<th width="800" class="myinfo">제목</th>
 			</tr>
-
-			<tr>
+			
+			<%
+			if(myCommuCount==0){%>
+			
+				<tr>
 				<td colspan="5" align="center" class="myinfo">
-					<h3>등록된 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
+					<h3>작성한 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
+			
+			<%}else{
+				
+				for(CommuDto cdto:mycommulist){%>
+					<tr>
+						<td align="center" class="myinfo">
+						<span><%=cdto.getCommu_category() %></span>
+						</td>
+					
+						<td align="center" class="myinfo">						
+						<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=cdto.getCommu_num()%>"><%=cdto.getCommu_subject() %></a></span>
+						</td>
+					</tr>
+				<%}
+			}
+			%>
 		</table>
-
-
-
+		
+		
+		<!-- 커뮤니티!!!!!! 내가 쓴 댓글!!!!!!!!!!!!! -->
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_mycomment.jsp'">+MORE</a>
-
+			href='index.jsp?main=mypage/login_mypage_mycomment.jsp'>+MORE</a>
+		
 		<table style="width: 1000px;">
-			<h3>내가쓴댓글보기</h3>
+			<h3>내가 쓴 댓글</h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
 				<th width="800" class="myinfo">제목</th>
