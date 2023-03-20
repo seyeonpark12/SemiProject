@@ -76,7 +76,7 @@
 
 			});
 		});
-		$("#movie_delete")
+		$("#movie_pickcancel")
 				.click(
 						function() {
 							var movie_num = $(this).attr("movie_num");
@@ -234,7 +234,7 @@ String currentPage = request.getParameter("currentPage");
 String movie_genre = request.getParameter("movie_genre");
 
 // 정렬
-String sort= request.getParameter("sort");
+String sort = request.getParameter("sort");
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -362,12 +362,10 @@ no = totalCount - (currentPage_review - 1) * perPage;
 				}
 				%>
 
-				<td>
-				<b id="movie_pick" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b>
-				</td>
+				<td><b id="movie_pick" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b></td>
 				<td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
 				<%
-				}
+				} 
 				%>
 			</tr>
 		</table>
@@ -465,7 +463,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 					%>
 				</ul>
 
-				<button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recentt&currentPage=1'">목록</button>
+				<button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1'">목록</button>
 			</div>
 
 		</div>
