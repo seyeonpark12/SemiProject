@@ -86,10 +86,27 @@
 
 			});
 		});
-		$("#movie_delete").click(function() {
-			var movie_num=$(this).attr("movie_num");
-			alert(movie_num);
-		}
+		$("#movie_delete")
+				.click(
+						function() {
+							var movie_num = $(this).attr("movie_num");
+							//alert(movie_num);
+
+							$
+									.ajax({
+										type : "get",
+										dataType : "html",
+										url : "movie/movie_delete.jsp",
+										data : {
+											"movie_num" : movie_num
+										},
+										success : function() {
+											alert("삭제성공!")
+
+											location.href = "index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1";
+										}
+									});
+						})
 	});
 
 	//이미지미리보기
@@ -341,17 +358,20 @@ no = totalCount - (currentPage_review - 1) * perPage;
 				if (loginok != null) {
 				%>
 				<%
-					if(myid.equals("admin")){%>
-						
-						<td>
-							<button type="button" onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
-							<button type="button" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
-						</td>
-					<%}				
+				if (myid.equals("admin")) {
 				%>
-				
-				<td><b id="movie_pick" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b></td>
-				
+
+				<td>
+					<button type="button" onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
+					<button type="button" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
+				</td>
+				<%
+				}
+				%>
+
+				<td>
+				<b id="movie_pick" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b>
+				</td>
 				<td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
 				<%
 				}
