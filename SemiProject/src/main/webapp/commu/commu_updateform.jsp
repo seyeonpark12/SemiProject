@@ -36,8 +36,6 @@
     
     
 <style type="text/css">
-
-
 *{
    margin: 0 auto;
    padding: 0;
@@ -45,14 +43,12 @@
    font-family:"Noto Sans KR";
    color: black;
 }
-
 .mv_subject {
    font-size: 33px;
    font-weight: 700;
    letter-spacing: -1.2px;
    line-height: 41px;
 }
-
 .mv_content {
    font-size: 17px;
    font-weight: 400;
@@ -61,21 +57,19 @@
    margin-top: 4px;
    margin-bottom: 10px;
 }
-
-
 </style>
 
 </head>
 
 <body>
-	
-	<%
-	String commu_num=request.getParameter("commu_num");
-	String currentPage=request.getParameter("currenPage");
-	
-	CommuDao dao=new CommuDao();
-	CommuDto dto=dao.getCommuData(commu_num);
-	%>
+   
+   <%
+   String commu_num=request.getParameter("commu_num");
+   String currentPage=request.getParameter("currenPage");
+   
+   CommuDao dao=new CommuDao();
+   CommuDto dto=dao.getCommuData(commu_num);
+   %>
       <br>
       <br>
       <div style="margin: 30px 30px;">

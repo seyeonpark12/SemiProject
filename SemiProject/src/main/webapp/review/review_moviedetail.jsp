@@ -70,17 +70,7 @@
 					"movie_num" : movie_num
 				},
 				success : function(res) {
-					tag.next().text(res.pcount);
-
-					tag.next().next().animate({
-						"font-size" : "20px"
-					}, 1000, function() {
-
-						//애니메이션이 끝난후 글꼴크기 0px
-						$(this).css("font-size", "0px")
-					});
-
-					alert("픽 성공!")
+					alert("PICK이 되었습니다.")
 					location.reload();
 				}
 
@@ -242,6 +232,9 @@ String currentPage = request.getParameter("currentPage");
 
 //장르
 String movie_genre = request.getParameter("movie_genre");
+
+// 정렬
+String sort= request.getParameter("sort");
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -472,7 +465,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 					%>
 				</ul>
 
-				<button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
+				<button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recentt&currentPage=1'">목록</button>
 			</div>
 
 		</div>
