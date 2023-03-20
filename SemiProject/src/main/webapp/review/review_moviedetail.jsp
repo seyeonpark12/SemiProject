@@ -56,6 +56,40 @@
 
 		})
 
+		$("#movie_pick").click(function() {
+			var movie_num = $("#movie_num").val();
+			var tag = $(this);
+
+			//alert(movie_num+"번 영화");
+			$.ajax({
+
+				type : "get",
+				dataType : "json",
+				url : "review/movie_pick.jsp",
+				data : {
+					"movie_num" : movie_num
+				},
+				success : function(res) {
+					tag.next().text(res.pcount);
+
+					tag.next().next().animate({
+						"font-size" : "20px"
+					}, 1000, function() {
+
+						//애니메이션이 끝난후 글꼴크기 0px
+						$(this).css("font-size", "0px")
+					});
+
+					alert("픽 성공!")
+					location.reload();
+				}
+
+			});
+		});
+		$("#movie_delete").click(function() {
+			var movie_num=$(this).attr("movie_num");
+			alert(movie_num);
+		}
 	});
 
 	//이미지미리보기
@@ -174,9 +208,10 @@ UserDto udto = new UserDto();
 ReviewDao rdao = new ReviewDao();
 
 String movie_num = request.getParameter("movie_num");
-
 MovieDto mdto = mdao.getData(movie_num);
+
 String poster = mdto.getMovie_poster();
+String loginok = (String) session.getAttribute("loginok");
 
 String myid = (String) session.getAttribute("myid");
 String user_nickname = udao.getName_id(myid);
@@ -238,8 +273,6 @@ no = totalCount - (currentPage_review - 1) * perPage;
 		<input type="hidden" id="myid" value="<%=myid%>">
 		<input type="hidden" id="user_num" value="<%=user_num%>">
 		<input type="hidden" id="user_nickname" value="<%=user_nickname%>">
-		<!-- Trigger the modal with a button -->
-
 
 		<!-- Modal -->
 		<div class="review_modal modal fade" id="modal" role="dialog">
@@ -283,8 +316,6 @@ no = totalCount - (currentPage_review - 1) * perPage;
 		</div>
 		<!-- Modal 끝-->
 
-
-
 		<table style="width: 1000px;">
 			<tr height="100">
 				<td rowspan="3" width="300">
@@ -306,41 +337,46 @@ no = totalCount - (currentPage_review - 1) * perPage;
 				<td><b class="mv_content" style="color: orange;">
 						★
 						<%=review_avgscore%></b></td>
-				<td><b class="mv_content" style="margin-left: -100px;">PICK</b></td>
+				<%
+				if (loginok != null) {
+				%>
+				<%
+					if(myid.equals("admin")){%>
+						
+						<td>
+							<button type="button" onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
+							<button type="button" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
+						</td>
+					<%}				
+				%>
+				
+				<td><b id="movie_pick" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b></td>
+				
 				<td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
+				<%
+				}
+				%>
 			</tr>
 		</table>
 
 		<hr>
 
 		<div style="width: 1000px; padding: 0;">
-
 			<h3>기본정보</h3>
-
-
 			<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_content()%></div>
 
-
-
-
 			<h3>출연/제작</h3>
-
 			<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_actor()%>
 				/
 				<%=mdto.getMovie_director()%></div>
 
-
 			<h3>예고편</h3>
-
 			<div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content">
 				<iframe width="900" height="506" src="<%=mdto.getMovie_play()%>" title="<%=mdto.getMovie_subject()%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen> </iframe>
 			</div>
 
-
 			<h3>리뷰</h3>
-
 			<div style="width: 1000px; margin-left: 1px;" id="movie_content">
-
 				<table style="width: 1000px; height: 300px;">
 					<tr>
 						<th width="80" class="myinfo" style="text-align: center;">번호</th>
@@ -369,21 +405,15 @@ no = totalCount - (currentPage_review - 1) * perPage;
 
 					<tr>
 						<td align="center"><%=no--%></td>
-
 						<td><%=dto.getReview_content()%></td>
-
 						<td align="center"><%=writer_nickname%></td>
-
 						<td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(dto.getReview_score())%></td>
-
 						<td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
 					</tr>
 					<%
 					}
 					}
 					%>
-
-
 				</table>
 			</div>
 
