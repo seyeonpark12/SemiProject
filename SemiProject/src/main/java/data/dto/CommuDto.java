@@ -14,7 +14,7 @@ public class CommuDto {
 	private int commu_readcount;
 	private Timestamp commu_writeday;
 	
-	private int answerCount; //댓글갯수!!
+	private int answerCount; //댓글갯수!! comment라고 해야하는데 잘 못 씀 ㅠㅠ
 	
 	
 	public int getAnswerCount() {
