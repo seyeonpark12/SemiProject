@@ -301,7 +301,7 @@
          			if(loginok!=null){
          				if(myid.equals(ment_id)){%>
          				
-         					<button type="button" class="mentupdate btn btn-default btn-xs" ment_num=<%=mdto.getMent_num() %> >수정</button>
+         					<button type="button" class="mentupdate btn btn-default btn-xs" data-toggle="modal" data-target="#myModal3" ment_num=<%=mdto.getMent_num() %> >수정</button>
          					<button type="button" class="mentdelete btn btn-default btn-xs" ment_num=<%=mdto.getMent_num() %>>삭제</button>
          					
          				<%}else if(myid.equals("admin")){%>
@@ -332,7 +332,7 @@
    
    
    <!-- 댓글 수정 모달!!! -->
-	  <div class="modal fade" id="myModal" role="dialog">
+	  <div class="modal fade" id="myModal3" role="dialog">
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
@@ -344,8 +344,8 @@
 	        </div>
 	        
 	        <div class="modal-body">
-		        <b>댓글: </b>
-		        <input type="text" id=update_ment_content style="width: 100px;">
+		        <b>댓글수정 </b>
+		        <input type="text" id=update_ment_content style="width: 300px; height: 200px;">
 	        </div>
 	        
 	        <div class="modal-footer">
