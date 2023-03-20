@@ -50,7 +50,6 @@
 				success : function() {
 					alert("리뷰 등록 완료");
 					location.reload();
-
 				}
 			})
 
@@ -182,11 +181,13 @@ String myid = (String) session.getAttribute("myid");
 String user_nickname = udao.getName_id(myid);
 
 String user_num = udao.getNum(myid);
-double review_avgscore = rdao.review_ScoreAvg(movie_num);
+
 String currentPage = request.getParameter("currentPage");
 
 //장르
 String movie_genre = request.getParameter("movie_genre");
+//정렬
+String sort = request.getParameter("sort");
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -300,9 +301,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 			</tr>
 
 			<tr>
-				<td><b class="mv_content" style="color: orange;">
-						★
-						<%=review_avgscore%></b></td>
+				<td><b class="mv_content"> 평균☆ 별점 값..</b></td>
 				<td><b class="mv_content" style="margin-left: -100px;">PICK</b></td>
 				<td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
 			</tr>
@@ -387,6 +386,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 
 			<!-- 페이징 처리 -->
 			<div style="width: 800px; text-align: center;">
+				<button style="height: 32px; float: right;" type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
 				<ul class="pagination">
 					<%
 					//이전
@@ -417,7 +417,6 @@ no = totalCount - (currentPage_review - 1) * perPage;
 					<%
 					}
 					%>
-					<button style="height: 32px; float: right" type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
 				</ul>
 
 			</div>

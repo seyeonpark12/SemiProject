@@ -23,7 +23,7 @@
    href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
-
+<script src="script/script.js" defer type="text/javascript"></script>
 <script src="https://kit.fontawesome.com/7027f21a5f.js"
    crossorigin="anonymous"></script>
 
@@ -60,8 +60,54 @@
 
    });
 
-   
+   function genre(movie_genre) {
+
+      //alert(movie_genre);
+      location.href = "index.jsp?main=movie/movie_list.jsp?movie_genre="
+            + movie_genre + "?currentPage=1";
+
+   }
 </script>
+
+<style type="text/css">
+.nav>li>a, .nav>li>a {
+   text-decoration: none;
+   color: #653491;;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+   text-decoration: none;
+   color: #fff;
+   background-color: #CBB6D9;
+   border: 0px solid;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+   .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+   {
+   z-index: 3;
+   color: #fff;
+   cursor: default;
+   background-color: #CBB6D9;
+   border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+   {
+   z-index: 2;
+   color: #CBB6D9;
+   background-color: #fff;
+   border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+   .pagination>li>span:hover {
+   z-index: 2;
+   color: #fff;
+   background-color: #ECE6FF;
+   border: 0px solid;
+}
+</style>
 </head>
 
 <%
@@ -126,7 +172,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
 
    <div class="container">
       <ul class="nav nav-tabs">
-         <li style="margin-left: 300px;"><a class="all_genre"
+         <li style="margin-left: 330px;"><a class="all_genre"
             href="movie/select_genre.jsp?movie_genre=all">전체</a></li>
          <li><a class="romance"
             href="movie/select_genre.jsp?movie_genre=romance">로맨스</a></li>
@@ -142,12 +188,35 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
             href="movie/select_genre.jsp?movie_genre=etc">기타</a></li>
       </ul>
 
+
+
+
+
+      <div style="float: right; padding-top: 20px; padding-right: 20px;">
+         <div style="float: left;">
+            <a href="#"
+               style="font-size: 12px; color: #653491; padding-right: 10px;">자유
+               &nbsp;|</a>
+         </div>
+         <div style="float: left;">
+            <a href="#"
+               style="font-size: 12px; color: #653491; padding-right: 10px;">동행
+               &nbsp;|</a>
+         </div>
+         <div style="float: left;">
+            <a href="#"
+               style="font-size: 12px; color: #653491; padding-right: 10px;">나눔</a>
+         </div>
+      </div>
+
+
+
       <%
       if (movie_genre.equals("all")) {
       %>
 
 
-      <div class="tab-content">
+      <div class="tab-content" style="padding-top: 40px;">
          <div id="all">
             <div>
                <div
@@ -262,7 +331,7 @@ List<MovieDto> list_genre = dao.getList_Genre(movie_genre, start, perPage);
       <%
       } else {
       %>
-      <div class="tab-content">
+      <div class="tab-content" style="padding-top: 40px;">
          <div id="movie_genre">
             <div>
                <div

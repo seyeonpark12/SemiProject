@@ -63,7 +63,6 @@ td.myinfo {
        
       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
       
-      
       //스마트게시판 댓글에 관한 Dao처리
       MentDao mdao=new MentDao();
       
@@ -76,6 +75,47 @@ td.myinfo {
       }
       
    %>
+   	
+   	<!-- 관리자 체크박스 -->
+   	<script type="text/javascript">
+	$(function(){
+		
+		$(".allcheckdelete").click(function(){
+			
+		var admincheck=$(this).is(":checked"); 
+		
+		$(".checkdelete").prop("checked", admincheck);
+		});
+		
+		$("#admindelete").click(function(){
+			
+			var len=$(".checkdelete:checked").length; //체크 된 수(길이)를 len
+			
+			if(len==0){
+				alert("한 개 이상의 글을 선택해 주세요");
+			}else{
+				
+				var a=confirm(len+"개의 글을 삭제하시겠습니까?");
+				
+				//체크된 글의 value를 commu_n 
+				var commu_n="";
+				
+				$(".checkdelete:checked").each(function(idx){
+					
+					commu_n+=$(this).val()+",";
+					
+				});
+				
+				commu_n=commu_n.substring(0, commu_n.length-1);
+				
+				//삭제파일로 전송
+				location.href="commu/commu_admincheckdelete.jsp?nums="+commu_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
+			}
+		});
+		
+		
+	});
+	</script>
 
 </head>
 <body>
@@ -114,8 +154,16 @@ td.myinfo {
 		<br>
 
 		<table style="width: 1000px;">
-
+			
 			<tr class="tr_myinfo">
+				<%
+				//관리자삭제 전체선택
+				if(loginok!=null){
+					if(myid.equals("admin")){%>
+						<th width="30" class="myinfo"><input type="checkbox" class="allcheckdelete"></th>
+					<%}
+				}
+				%>
 				<th width="100" class="myinfo">카테고리</th>
 				<th width="500" class="myinfo">제목</th>
 				<th width="120" class="myinfo">글쓴이</th>
@@ -135,9 +183,19 @@ td.myinfo {
 			
 			 <%}else{
             
-            for(CommuDto dto:list){%>
-            
+            for(CommuDto dto:list){ %>
                  <tr class="tr_myinfo">
+                 
+                    <%
+                    //관리자삭제 개별선택
+                    if(loginok!=null){
+	    				if(myid.equals("admin")){%>
+	    					<td class="myinfo">
+	    					<input  type="checkbox" class="checkdelete" value="<%=dto.getCommu_num() %>" >
+	    					</td>
+	    				<%}
+    				}%>
+    				
                   <td class="myinfo">
                   <%=dto.getCommu_category() %>
                   </td>
@@ -145,11 +203,27 @@ td.myinfo {
          		 <td class="myinfo">
                   <a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
                   <%
+                  //이미지 첨부된 경우 아이콘 표시
+                  if(dto.getCommu_photo()!=null){%>
+ 					<img style="width: 15px;" src="commu/new_img/photoimg.png">
+ 				  <%}
+                  
 	   				//댓글이 있을 경우 제목 옆에 갯수 나타내기
 	   				if(dto.getAnswerCount()>0){%>
 	   					<a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>" style="color: red;">[<%=dto.getAnswerCount() %>]</a>
 	   				<%}
-	   				%>
+	   				
+                  	//오늘 쓴 글 new 표시
+	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
+     				String inpuDate=sdf2.format(dto.getCommu_writeday());
+     				String now = sdf2.format(new java.util.Date());
+ 
+     				if(inpuDate.equals(now)){%>
+     				<img style="width: 15px;" src="commu/new_img/newimg.png">
+     				<%}
+     				%>
+     				
+     				
                   </td>
                   
                   <%
@@ -162,6 +236,7 @@ td.myinfo {
                   <td class="myinfo"><%=sdf.format(dto.getCommu_writeday()) %></td>
                   
                   <td class="myinfo"><%=dto.getCommu_readcount() %></td>
+                 
                </tr>
                
             <%}
@@ -172,7 +247,7 @@ td.myinfo {
 	<% 
 	if(loginok!=null){
 		if(myid.equals("admin")){%>
-			<button type="button" class="btn btn-default" onclick="location.href='#'">삭제</button>
+			<button type="button" id="admindelete" class="btn btn-default" onclick="location.href='#'">삭제</button>
 		<%}%>
 	<div style="margin-left:930px;">
 		<button type="button" class="btn btn-default btn-sm"
