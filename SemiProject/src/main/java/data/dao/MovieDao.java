@@ -521,12 +521,12 @@ public class MovieDao {
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
 	      
-	      String sql="select count(*) from movie where movie_subject like '%?%'";
+	      String sql="select count(*) from movie where movie_subject like ?";
 	      
 	      try {
 	         
 	         pstmt=conn.prepareStatement(sql);
-	         pstmt.setString(1, Search);
+	         pstmt.setString(1, "%"+Search+"%");
 	         
 	         rs=pstmt.executeQuery();
 	         
@@ -552,12 +552,12 @@ public class MovieDao {
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
 	      
-	      String sql="select * from movie where movie_subject like '%?%' order by movie_num desc limit ?,?";
+	      String sql="select * from movie where movie_subject like ? order by movie_num desc limit ?,?";
 	      
 	      try {
 	         
 	         pstmt=conn.prepareStatement(sql);
-	         pstmt.setString(1, search);
+	         pstmt.setString(1, "%"+search+"%");
 	         pstmt.setInt(2, start);
 	         pstmt.setInt(3, perPage);
 	         
