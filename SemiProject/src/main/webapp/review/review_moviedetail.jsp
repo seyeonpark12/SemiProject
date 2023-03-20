@@ -225,7 +225,7 @@ start = (currentPage_review - 1) * perPage;
 List<ReviewDto> list = rdao.getAllReview(start, perPage);
 List<ReviewDto> list_movie = rdao.getAllReview_movie(movie_num, start, perPage);
 
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 no = totalCount - (currentPage_review - 1) * perPage;
 %>
@@ -339,7 +339,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 
 			<div style="width: 1000px; margin-left: 1px;" id="movie_content">
 
-				<table style="width: 1000px;">
+				<table style="width: 1000px; height: 300px;">
 					<tr>
 						<th width="80" class="myinfo" style="text-align: center;">번호</th>
 						<th width="400" class="myinfo" style="text-align: center;">내용</th>
@@ -372,7 +372,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 
 						<td align="center"><%=writer_nickname%></td>
 
-						<td width="30" style="text-align: center;"><%=dto.getReview_score()%></td>
+						<td width="30" style="text-align: center;"><%="★"+Math.round(dto.getReview_score())%></td>
 
 						<td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
 					</tr>
