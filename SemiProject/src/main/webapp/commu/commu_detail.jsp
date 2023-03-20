@@ -82,7 +82,7 @@
 				}
 			});
 			
-			$("#myModal").modal();
+			$("#myModal3").modal();
 			
 		});
 	});
