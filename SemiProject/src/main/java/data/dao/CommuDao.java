@@ -191,6 +191,7 @@ public class CommuDao {
 
 		return list;
 	}
+	
 
 	// num에 대한 각각의 dto
 	public CommuDto getCommuData(String commu_num) {
@@ -331,5 +332,6 @@ public class CommuDao {
 			db.dbClose(pstmt, conn);
 		}
 	}
+	
 
 }

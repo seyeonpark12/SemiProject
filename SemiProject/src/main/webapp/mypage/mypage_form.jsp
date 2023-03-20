@@ -1,3 +1,8 @@
+<%@page import="data.dto.CommuDto"%>
+<%@page import="data.dao.CommuDao"%>
+<%@page import="java.util.List"%>
+<%@page import="data.dao.UserDao"%>
+<%@page import="data.dto.UserDto"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -75,6 +80,24 @@ th.myinfo {
    
 </style>
 </head>
+<%
+String loginok = (String) session.getAttribute("loginok");
+String myid = (String) session.getAttribute("myid");
+
+UserDao dao = new UserDao();
+List<UserDto> list=dao.getAllUsers();
+
+String user_num=request.getParameter("user_num");
+
+//UserDto dto=dao.getData(user_num);
+
+//커뮤니티 dao,dto
+CommuDao cdao=new CommuDao();
+
+List<CommuDto> commu_list=cdao.getAllList(0, 5);
+
+
+%>
 <body>
 
    <br>
@@ -84,42 +107,56 @@ th.myinfo {
 
       <h3>회원정보</h3>
       <table class="table table-bordered" style="width: 700px;">
-
-         <button type="button" class="btn btn-default btn-sm"
-            onclick="location.href='index.jsp?main=whatpick/updateloginform.jsp'"
+      <input type="hidden" name="user_num" value="<%=user_num%>">
+      
+      <%
+      for(UserDto dto:list){
+         
+         if(loginok!=null){
+            
+            if(dto.getUser_id().equals(myid)){%>
+            
+                  <button type="button" class="btn btn-default btn-sm"
+            onclick="location.href='index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num %>'"
             style="float: right; margin-bottom: 10px;">수정하기</button>
 
          <tr>
             <th class="myinfo" width="200">이름</th>
-            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
+            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto.getUser_name() %></td>
          </tr>
          <tr>
             <th class="myinfo">닉네임</th>
-            <td class="myinfo">&nbsp;&nbsp;&nbsp;닉네임(dto값)</td>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_nickname() %></td>
          </tr>
-         <tr>
-            <th class="myinfo">이름</th>
-            <td class="myinfo">&nbsp;&nbsp;&nbsp;이름(dto값)</td>
-         </tr>
+         
          <tr>
             <th class="myinfo">아이디</th>
-            <td class="myinfo">&nbsp;&nbsp;&nbsp;아이디(dto값)</td>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_id() %></td>
          </tr>
 
          <tr>
             <th class="myinfo" width="100">비밀번호</th>
-            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;비밀번호(dto값)</td>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_pw() %></td>
          </tr>
+         
+         <tr>
+            <th class="myinfo">핸드폰번호</th>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_hp() %></td>
+         </tr>
+         
          <tr>
             <th class="myinfo" width="100">주소</th>
-            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;주소(dto값)</td>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_addr() %></td>
          </tr>
 
          <tr>
             <th class="myinfo" width="100">이메일</th>
-            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;이메일(dto값)</td>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_email() %></td>
          </tr>
-
+            <%}
+         }
+      }
+      %>
       </table>
       
       <h3 style="margin-bottom:30px;">MYPICK</h3>
@@ -132,29 +169,6 @@ th.myinfo {
          <div class="pick"><span class="glyphicon glyphicon-heart" id="zzim"></span></div>
       </div>
 
-
-
-
-      <h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 글 보기</h3>
-
-
-      <button type="button" class="btn btn-default btn-sm"
-         onclick="location.href='index.jsp?main=whatpick/commu_addform.jsp'"
-         style="float: right; margin-bottom: 10px;">더보기</button>
-
-      <table class="table table-bordered" style="width: 1000px;">
-
-         <tr>
-            <th width="200" class="myinfo">카테고리</th>
-            <th width="800" class="myinfo">제목</th>
-         </tr>
-
-         <tr>
-            <td colspan="5" align="center">
-               <h3>등록된 게시글이 없습니다</h3>
-            </td>
-         </tr>
-      </table>
 
       <h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 리뷰보기</h3>
 <button type="button" class="btn btn-default btn-sm"
@@ -176,11 +190,32 @@ th.myinfo {
          </tr>
          
       </table>
+      
+      <!-- 커뮤니티 불러오기  -->
+      <h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 글 보기</h3>
 
-<h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 댓글보기</h3>
-<button type="button" class="btn btn-default btn-sm"
+      <button type="button" class="btn btn-default btn-sm"
          onclick="location.href='index.jsp?main=whatpick/commu_addform.jsp'"
          style="float: right; margin-bottom: 10px;">더보기</button>
+
+      <table class="table table-bordered" style="width: 1000px;">
+
+         <tr>
+            <th width="200" class="myinfo">카테고리</th>
+            <th width="800" class="myinfo">제목</th>
+         </tr>
+
+         <tr>
+            <td colspan="5" align="center">
+               <h3>등록된 게시글이 없습니다</h3>
+            </td>
+         </tr>
+      </table>
+      
+	  <h3 stlye=" font-size:20px; margin-bottom:-200px;">내가 쓴 댓글보기</h3>
+	 <button type="button" class="btn btn-default btn-sm"
+	         onclick="location.href='index.jsp?main=whatpick/commu_addform.jsp'"
+	         style="float: right; margin-bottom: 10px;">더보기</button>
 
 
       <table class="table table-bordered" style="width: 1000px;">
@@ -195,8 +230,6 @@ th.myinfo {
                <h3>등록된 게시글이 없습니다</h3>
             </td>
          </tr>
-
-
 
       </table>
       

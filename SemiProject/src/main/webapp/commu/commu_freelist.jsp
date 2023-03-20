@@ -224,7 +224,7 @@ td.myinfo {
 	   					<a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>" style="color: red;">[<%=dto.getAnswerCount() %>]</a>
 	   				<%}
                   
-	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
+	   				SimpleDateFormat sdf2=new SimpleDateFormat("yyyy.MM.dd");
      				String inpuDate=sdf2.format(dto.getCommu_writeday());
      				String now = sdf2.format(new java.util.Date());
  
