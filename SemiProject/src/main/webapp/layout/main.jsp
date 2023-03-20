@@ -32,7 +32,6 @@
 <%
 	MovieDao dao=new MovieDao();
 	List<MovieDto> list_rank = dao.getList_Rank_Avg(0,5);
-	
 	List<MovieDto> list_pick1 = dao.getList_Pcount(0, 4);
 	List<MovieDto> list_pick2 = dao.getList_Pcount(4, 4);
 	List<MovieDto> list_pick3 = dao.getList_Pcount(8, 4);
