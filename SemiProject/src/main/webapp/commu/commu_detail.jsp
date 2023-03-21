@@ -131,7 +131,7 @@
    CommuDto dto=dao.getCommuData(commu_num);
    
    //날짜형식
-   SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+   SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
    
 	//글 쓴 사람의 번호(user_num 받아오기)
 	String user_num=request.getParameter("user_num");
@@ -309,7 +309,17 @@
          				<span style="color: gray; font-weight: bold; margin-left: 3px;">[글쓴이]</span>
          			<%}
          			%>
-         			<span style="font-size: 9pt; color: gray;"><%=sdf.format(mdto.getMent_writeday()) %></span>
+         			
+         			<span style="font-size: 9pt; color: gray;"><%=sdf.format(mdto.getMent_writeday()) %>
+         			<%//오늘 올라온 댓글이면 N icon
+     				String inpuDate=sdf.format(mdto.getMent_writeday());
+     				String now = sdf.format(new java.util.Date());
+ 
+     				if(inpuDate.equals(now)){%> 
+     				<img style="float: right; width: 12px; margin-top:4px; margin-left:3px;" src="commu/new_img/newimg.png">
+					<%}%> 
+         			</span>      
+         			     
          			<br>
          			<span style="font-size: 10pt;"><%=mdto.getMent_content().replace("\n", "<br>") %></span>
          			</td>
@@ -356,7 +366,7 @@
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
-	      <div class="modal-content">
+	      <div class="modal-content" style="margin-top:160px;">
 	      
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>

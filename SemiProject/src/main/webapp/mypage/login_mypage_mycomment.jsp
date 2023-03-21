@@ -155,7 +155,10 @@
 						</td>
 						
 						<td align="center" class="myinfo">
-						<span>엉엉카테고리어캐해</span>
+						<%
+						String category=mdao.getCategory(mdto.getCommu_num());
+						%>
+						<span><%=category %></span>
 						</td>
 					
 						<td align="center" class="myinfo">						

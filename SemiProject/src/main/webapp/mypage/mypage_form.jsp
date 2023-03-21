@@ -1,3 +1,5 @@
+<%@page import="data.dto.ReviewDto"%>
+<%@page import="data.dao.ReviewDao"%>
 <%@page import="data.dto.MentDto"%>
 <%@page import="data.dao.MentDao"%>
 <%@page import="data.dto.CommuDto"%>
@@ -27,6 +29,8 @@
 
 </head>
 	<%
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
+	
 	String loginok = (String) session.getAttribute("loginok");
 	String myid = (String) session.getAttribute("myid");
 	
@@ -40,13 +44,20 @@
 	String commu_num=request.getParameter("commu_num");
 	String commu_category=request.getParameter("commu_category");
 	//게시글 리스트
-	List<CommuDto> mycommulist=cdao.getMyCommuList(user_num, 0, 8);
+	List<CommuDto> mycommulist=cdao.getMyCommuList(user_num, 0, 4);
 	
 	//커뮤니티 댓글 dao, dto
 	MentDao mdao=new MentDao();
 	String ment_num=request.getParameter("ment_num");
 	//댓글 리스트
-	List<MentDto> mymentlist=mdao.getMyMentList(user_num, 0, 8);
+	List<MentDto> mymentlist=mdao.getMyMentList(user_num, 0, 4);
+	
+	//리뷰 댓글 dao,dto
+	ReviewDao rdao=new ReviewDao();
+	String review_num=request.getParameter("review_num");
+	String movie_num=request.getParameter("movie_num");
+	//리뷰리스트
+	List<ReviewDto> myreviewlist=rdao.getMyReview(user_num, 0, 4);
 	
 	%>
 <body>
@@ -103,7 +114,6 @@
       %>
 		</table>
 
-
 		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp'>+MORE</a>
 		<h3 style="margin-bottom: 30px;">MYPICK</h3>
 		<div id="moviewrap_pick">
@@ -112,44 +122,83 @@
 			</div>
 			<!-- 최대 4개까지만 보이게 하기.. -->
 		</div>
+				
+		<!-- 영화!!!!!! 내가 쓴 리뷰!!!!!!!!!!  -->
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_myreview.jsp'>+MORE</a>
+			href='index.jsp?main=mypage/login_mypage_myreview.jsp?user_num=<%=user_num %>'>+MORE</a>
 
 		<table style="width: 1000px;">
-			<h3>내가 쓴 리뷰</h3>
+		<input type="hidden" name="user_num" value="<%=user_num %>">
+		<input type="hidden" name="review_num" value="<%=review_num %>">
+		<input type="hidden" name="movie_num" value="<%=movie_num %>">
+		<%
+		int myReViewCount=rdao.myReviewCount(user_num);
+		%>
+			<h3>내가 쓴 리뷰 <%=myReViewCount %></h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">영화제목</th>
-				<th width="600" class="myinfo">리뷰</th>
+				<th width="50" class="myinfo">별점</th>
+				<th width="550" class="myinfo">리뷰</th>
 				<th width="200" class="myinfo">날짜</th>
 			</tr>
-
+			
+			<%
+			if(myReViewCount==0){%>
 			<tr>
 				<td colspan="5" align="center" class="myinfo">
-					<h3>등록된 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
+					<h3>등록된 리뷰가 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
-			</tr>
+			</tr>	
+			<%}else{
+				
+				for(ReviewDto rdto:myreviewlist){%>
+					
+					<tr>
+					<%
+					String movie_subject=rdao.getMovieSubject(rdto.getMovie_num());
+					%>
+					<td align="center" class="myinfo">
+					<span><%=movie_subject %></span>
+					</td>
+					
+					<td align="center" class="myinfo">
+					<span><%=rdto.getReview_score() %></span>
+					</td>
+				
+					<td align="center" class="myinfo">						
+					<span><a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=rdto.getMovie_num()%>"><%=rdto.getReview_content() %></a></span>
+					</td>
+					
+					<td align="center" class="myinfo">						
+					<span><%=sdf.format(rdto.getReview_writeday()) %></span>
+					</td>
+				</tr>
+					
+				<%}
+			}
+			%>
 		</table>
 
-		
 		<!-- 커뮤니티!!!!! 내가 쓴 글!!!! -->
 		<a class="morebtn"
 			href='index.jsp?main=mypage/login_mypage_mywrite.jsp?user_num=<%=user_num %>'>+MORE</a>
 		<table style="width: 1000px;">
-		<input type="hidden" name="user_num" value="<%=user_num%>">
-		<input type="hidden" name="commu_num" value="<%=commu_num%>">
+		<input type="hidden" name="user_num" value="<%=user_num %>">
+		<input type="hidden" name="commu_num" value="<%=commu_num %>">
 		<%
 		int myCommuCount=cdao.myCommuCount(user_num);
 		%>
 			<h3>내가 쓴 글 <%=myCommuCount %></h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
-				<th width="800" class="myinfo">제목</th>
+				<th width="600" class="myinfo">제목</th>
+				<th width="200" class="myinfo">작성일</th>
 			</tr>
 			
 			<%
 			if(myCommuCount==0){%>
 			
-				<tr>
+			<tr>
 				<td colspan="5" align="center" class="myinfo">
 					<h3>작성한 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
@@ -166,12 +215,13 @@
 						<td align="center" class="myinfo">						
 						<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=cdto.getCommu_num()%>"><%=cdto.getCommu_subject() %></a></span>
 						</td>
+						
+						<td align="center" class="myinfo"><%=sdf.format(cdto.getCommu_writeday()) %></td>
 					</tr>
 				<%}
 			}
 			%>
 		</table>
-		
 		
 		<!-- 커뮤니티!!!!!! 내가 쓴 댓글!!!!!!!!!!!!! -->
 		<a class="morebtn"
@@ -179,8 +229,8 @@
 		
 		<table style="width: 1000px;">
 		<input type="hidden" name="user_num" value="<%=user_num%>">
-		<input type="hidden" name="commu_num="<%=commu_num%>">
-		<input type="hidden" name="ment_num="<%=ment_num%>">
+		<input type="hidden" name="commu_num=" value="<%=commu_num%>">
+		<input type="hidden" name="ment_num=" value="<%=ment_num%>">
 		
 		<%
 		int myMentCount=mdao.myMentCount(user_num);
@@ -188,13 +238,14 @@
 			<h3>내가 쓴 댓글 <%=myMentCount %></h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
-				<th width="800" class="myinfo">댓글</th>
+				<th width="600" class="myinfo">댓글</th>
+				<th width="200" class="myinfo">작성일</th>
 			</tr>
 			
 			<%
 			if(myMentCount==0){%>
 			
-				<tr>
+			<tr>
 				<td colspan="5" align="center" class="myinfo">
 					<h3>작성한 댓글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
@@ -204,13 +255,19 @@
 				
 				for(MentDto mdto:mymentlist){%>
 					<tr>		
+							
 							<td align="center" class="myinfo">
-							<span>엉엉카테고리어캐해</span>
+							<%
+							String category=mdao.getCategory(mdto.getCommu_num());
+							%>
+							<span><%=category %></span>
 							</td>
 						
-						<td align="center" class="myinfo">						
-						<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=mdto.getCommu_num()%>"><%=mdto.getMent_content() %></a></span>
-						</td>
+							<td align="center" class="myinfo">						
+							<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=mdto.getCommu_num()%>"><%=mdto.getMent_content() %></a></span>
+							</td>
+							
+							<td align="center" class="myinfo"><%=sdf.format(mdto.getMent_writeday()) %></td>
 					</tr>
 				<%}
 			}

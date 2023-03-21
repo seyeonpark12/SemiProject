@@ -72,7 +72,7 @@ start = (currentPage - 1) * perPage;
 //카테고리별 리스트
 List<CommuDto> list = dao.getCategoryList(commu_category, start, perPage);
 
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
 //스마트게시판 댓글에 관한 Dao처리
 MentDao mdao = new MentDao();
@@ -235,18 +235,15 @@ for (CommuDto dto : list) {
 					%> <a
 					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
 					style="float: left; color: red;">[<%=dto.getAnswerCount()%>]
-				</a> <%
- }
-
- SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy.MM.dd");
- String inpuDate = sdf2.format(dto.getCommu_writeday());
- String now = sdf2.format(new java.util.Date());
-
- if (inpuDate.equals(now)) {
- %> <img
-					style="float: left; width: 15px;" src="commu/new_img/newimg.png">
-					<%
-					}
+				</a> <%}
+					
+	   				//오늘 올라온 글이면 N icon
+     				String inpuDate=sdf.format(dto.getCommu_writeday());
+     				String now = sdf.format(new java.util.Date());
+ 
+     				if(inpuDate.equals(now)){%> 
+     				<img style="float: left; width: 15px;" src="commu/new_img/newimg.png">
+					<%}   
 					%></td>
 
 				<%

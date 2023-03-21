@@ -67,7 +67,7 @@
 	      
 	      List<CommuDto> list=cdao.getMyCommuList(user_num, start, perPage);
 	       
-	      SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd HH:mm");
+	      SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
 	      
 	      //스마트게시판 댓글에 관한 Dao처리
 	      MentDao mdao=new MentDao();
