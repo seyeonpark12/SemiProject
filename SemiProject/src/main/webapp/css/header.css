@@ -6,7 +6,7 @@
 	list-style: none;
 	font-family: "Noto Sans KR";
 	color: black;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 body {
@@ -20,21 +20,25 @@ a {
 	display: block;
 }
 
-a:hover{
-	text-decoration:none;
+a:hover {
+	text-decoration: none;
 }
 
 header {
-	height: 100px;
+	height: 80px;
 	width: 1536px;
 	position: relative;
 }
 
 .top {
-	position: absolute;
-	height: 100px;
 	width: 1536px;
-	padding: 50px 0;
+	padding: 50px 0 30px 0;
+	position: fixed;
+	background-color:#fff;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
 }
 
 .logo {
@@ -60,7 +64,7 @@ header {
 .navi>li {
 	float: left;
 	width: 130px;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 .navi>li>a {
@@ -71,7 +75,7 @@ header {
 	text-align: center;
 	color: black;
 	cursor: pointer;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 navi>li:hover {
