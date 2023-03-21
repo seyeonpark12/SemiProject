@@ -29,7 +29,8 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 </head>
-<%
+
+	<%
 	MovieDao dao=new MovieDao();
 	List<MovieDto> list_rank = dao.getList_Rank_Avg(0,5);
 	List<MovieDto> list_pick1 = dao.getList_Pcount(0, 4);
@@ -37,8 +38,8 @@
 	List<MovieDto> list_pick3 = dao.getList_Pcount(8, 4);
 	List<MovieDto> list_pick4 = dao.getList_Pcount(12, 4);
 	List<MovieDto> list_pick5 = dao.getList_Pcount(16, 4);
+	%>
 	
-%>
 <body>
 	<div class="bodywrap">
 		<div class="imgslide">
@@ -55,8 +56,7 @@
 							TOP5</h2>
 						<div class="pickimg_item" style="padding: 20px;">
 							<ul class="top5_list">
-								<!-- 5개만 넣기..! -->
-								
+								<!-- 5개만 넣기..! -->							
 								<%
 									for(MovieDto dto:list_rank){%>
 										
@@ -64,7 +64,7 @@
 											<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
 												<img src="movie_save/<%=dto.getMovie_poster()%>">
 											</a>
-											<h3 class="img_text"><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %> | <%=dto.getMovie_subject()%></h3>
+											<h3 class="img_text" style="font-size:20px;"><%=dto.getMovie_subject()%> <b style="color:yellow; font-size:23px;">★</b><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %> </h3>
 										</li>
 									<%}
 								%>

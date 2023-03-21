@@ -6,19 +6,13 @@
 	list-style: none;
 	font-family: "Noto Sans KR";
 	color: black;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 body {
-<<<<<<< HEAD
-   width: 1536px;
-   background-color: #ffffff;
-   font-size: 16px;
-=======
 	width: 1536px;
 	background-color: #ffffff;
 	font-size: 16px;
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 }
 
 a {
@@ -26,40 +20,25 @@ a {
 	display: block;
 }
 
-a:hover{
-	text-decoration:none;
+a:hover {
+	text-decoration: none;
 }
 
 header {
-<<<<<<< HEAD
-   height: 100px;
-   width: 1536px;
-   position: relative;
-}
-
-.top {
-   position: absolute;
-   height: 100px;
-   width: 1536px;
-   padding: 50px 0;
-}
-
-.logo {
-   float: left;
-   width: 150px;
-   margin-left: 30px;
-   margin-top: -22px;
-=======
-	height: 100px;
+	height: 80px;
 	width: 1536px;
 	position: relative;
 }
 
 .top {
-	position: absolute;
-	height: 100px;
 	width: 1536px;
-	padding: 50px 0;
+	padding: 50px 0 30px 0;
+	position: fixed;
+	background-color:#fff;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
 }
 
 .logo {
@@ -67,7 +46,6 @@ header {
 	width: 150px;
 	margin-left: 30px;
 	margin-top: -22px;
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 }
 
 .logo img {
@@ -84,14 +62,9 @@ header {
 }
 
 .navi>li {
-<<<<<<< HEAD
-   float: left;
-   width: 130px;
-=======
 	float: left;
 	width: 130px;
-	text-decoration:none;
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
+	text-decoration: none;
 }
 
 .navi>li>a {
@@ -102,7 +75,7 @@ header {
 	text-align: center;
 	color: black;
 	cursor: pointer;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 navi>li:hover {
@@ -110,21 +83,12 @@ navi>li:hover {
 }
 
 .menu2 {
-<<<<<<< HEAD
-   float: right;
-   width: 400px;
-   margin-top: -30px;
-   margin-right: -360px;
-   background-color: #ffffff;
-   z-index: 1;
-=======
 	float: right;
 	width: 400px;
 	margin-top: -30px;
 	margin-right: -320px;
 	background-color: #ffffff;
 	z-index: 1;
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 }
 
 .modal-header, h4, .close {
@@ -135,13 +99,8 @@ navi>li:hover {
 }
 
 .modal-content {
-<<<<<<< HEAD
-   width: 370px;
-   margin-left: 120px;
-=======
 	width: 370px;
 	margin-left: 120px;
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 }
 
 .modal-backdrop {
@@ -169,19 +128,10 @@ dal-footer {
 }
 
 #search_id {
-<<<<<<< HEAD
-   width: 250px;
-   height: 30px;
-   line-height: 30px;
-   border: none;
-   margin-left: 1050px;
-   background-color: #fafafa;
-=======
 	width: 250px;
 	height: 30px;
 	line-height: 30px;
 	border: none;
 	margin-left: 980px;
 	background-color: #fafafa;
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 }

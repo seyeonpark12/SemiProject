@@ -114,8 +114,4 @@ jQuery(document).ready(function(){
 					+ (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
 		});
 	});
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e

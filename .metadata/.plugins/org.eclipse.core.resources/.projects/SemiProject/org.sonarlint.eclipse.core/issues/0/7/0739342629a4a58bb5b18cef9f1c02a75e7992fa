@@ -1,35 +1,0 @@
-
-[	Web:S1827›")Remove this deprecated "width" attribute.(á”£ÎúÿÿÿÿH”‚RMAJORZ
-CODE_SMELL
-Z	Web:S1827I")Remove this deprecated "width" attribute.(çïëŸıÿÿÿÿH•‚RMAJORZ
-CODE_SMELL
-j	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷ÃûÿÿÿÿH–‚RMAJORZBUG
-[	Web:S1827š")Remove this deprecated "width" attribute.(º¯ëíøÿÿÿÿH—‚RMAJORZ
-CODE_SMELL
-U	Web:S1827X")Remove this deprecated "width" attribute.(ú–‡ÆH˜‚RMAJORZ
-CODE_SMELL
-U	Web:S1827W")Remove this deprecated "width" attribute.(­ñŸH™‚RMAJORZ
-CODE_SMELL
-Z	Web:S1827R")Remove this deprecated "width" attribute.(Ÿó–¥ÿÿÿÿÿHš‚RMAJORZ
-CODE_SMELL
-T	Web:S1827t")Remove this deprecated "width" attribute.(©—èPH›‚RMAJORZ
-CODE_SMELL
-Z	Web:S1827u")Remove this deprecated "width" attribute.(‡¯÷úÿÿÿÿHœ‚RMAJORZ
-CODE_SMELL
-Z	Web:S1827H")Remove this deprecated "width" attribute.(·Ê®ÎúÿÿÿÿH‚RMAJORZ
-CODE_SMELL
-Z	Web:S1827:")Remove this deprecated "width" attribute.(ûËàÓûÿÿÿÿH‚RMAJORZ
-CODE_SMELL
-Z	Web:S1827S")Remove this deprecated "width" attribute.(âü¹¨ıÿÿÿÿHŸ‚RMAJORZ
-CODE_SMELL
-U	Web:S1827;")Remove this deprecated "width" attribute.(×÷H ‚RMAJORZ
-CODE_SMELL
-Z	Web:S1827v")Remove this deprecated "width" attribute.(ÕÆ¬’ıÿÿÿÿH¡‚RMAJORZ
-CODE_SMELL
-^Web:TableWithoutCaptionCheck+" Add a description to this table.(ú®Æ28Ô®ğï0H¢‚RMINORZBUG
-dWeb:TableWithoutCaptionCheckq" Add a description to this table.(î¥ğøÿÿÿÿ8Ô®ğï0H£‚RMINORZBUG
-a	Web:S1827z")Remove this deprecated "align" attribute.(ì€¬¾úÿÿÿÿ8Ô®ğï0H¤‚RMAJORZ
-CODE_SMELL
-eWeb:TableWithoutCaptionCheck—" Add a description to this table.(î¥ğøÿÿÿÿ8Ô®ğï0H¥‚RMINORZBUG
-b	Web:S1827Ÿ")Remove this deprecated "align" attribute.(ì€¬¾úÿÿÿÿ8Ô®ğï0H¦‚RMAJORZ
-CODE_SMELL

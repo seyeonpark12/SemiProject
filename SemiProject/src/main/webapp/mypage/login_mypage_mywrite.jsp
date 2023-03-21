@@ -94,9 +94,9 @@
 		
 		});
 		
-		$("#admindelete").click(function(){
+		$("#mycommudelete").click(function(){
 			
-			var len=$(".checkdelete:checked").length; //체크 된 수(길이)를 len
+			var len=$(".checkdelete:checked").length;
 			
 			if(len==0){
 				alert("한 개 이상의 글을 선택해 주세요");
@@ -117,7 +117,7 @@
 				commu_n=commu_n.substring(0, commu_n.length-1);
 				
 				if(a==1){
-					//삭제파일로 전송
+					
 					location.href="mypage/mypage_mycommu_delete.jsp?nums="+commu_n+"&user_num="+user_num;
 					//nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
 					
@@ -188,7 +188,7 @@
 				onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num %>'"
 			style="margin-left: 450px; margin-bottom: 10px;">마이페이지</button>
 			
-		<button type="button" class="btn btn-default btn-sm" id="admindelete"
+		<button type="button" class="btn btn-default btn-sm" id="mycommudelete"
 			style="margin-left: 450px; margin-bottom: 10px;">삭제</button>
 	</div>
 	

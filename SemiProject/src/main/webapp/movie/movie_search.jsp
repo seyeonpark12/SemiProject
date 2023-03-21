@@ -1,31 +1,14 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-=======
 <%@page import="javax.swing.plaf.metal.MetalBorders.Flush3DBorder"%>
 <%@page import="java.util.List"%>
 <%@page import="data.dao.MovieDao"%>
 <%@page import="data.dto.MovieDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
    pageEncoding="utf-8"%>
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>WPICK</title>
-<<<<<<< HEAD
-<link rel="favicon" href="../layout_image/titlelogo.ico">
-<link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-
-=======
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
@@ -190,6 +173,5 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
 	%>
 	
   
->>>>>>> 473be456a3e46c26242f977cf4c6d272cd0d531e
 </body>
 </html>
