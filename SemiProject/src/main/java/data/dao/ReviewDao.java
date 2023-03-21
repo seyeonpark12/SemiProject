@@ -50,7 +50,7 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, review_num);
-			
+
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -335,104 +335,104 @@ public class ReviewDao {
 			db.dbClose(pstmt, conn);
 		}
 	}
-	  
-	   //user_num에 따른 리스트 출력
-	   public List<ReviewDto> getMyReview(String user_num, int start, int perPage) {
-	         List<ReviewDto> myreviewlist = new Vector<>();
 
-	         Connection conn = db.getConnection();
-	         PreparedStatement pstmt = null;
-	         ResultSet rs = null;
+	// user_num에 따른 리스트 출력
+	public List<ReviewDto> getMyReview(String user_num, int start, int perPage) {
+		List<ReviewDto> myreviewlist = new Vector<>();
 
-	         String sql = "select * from review where user_num=? order by review_num desc limit ?,?";
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-	         try {
-	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setString(1, user_num);
-	            pstmt.setInt(2, start);
-	            pstmt.setInt(3, perPage);
+		String sql = "select * from review where user_num=? order by review_num desc limit ?,?";
 
-	            rs = pstmt.executeQuery();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, perPage);
 
-	            while (rs.next()) {
-	               ReviewDto dto = new ReviewDto();
+			rs = pstmt.executeQuery();
 
-	               dto.setReview_num(rs.getString("review_num"));
-	               dto.setMovie_num(rs.getString("movie_num"));
-	               dto.setUser_num(rs.getString("user_num"));
-	               dto.setReview_score(rs.getDouble("review_score"));
-	               dto.setReview_content(rs.getString("review_content"));
-	               dto.setReview_writeday(rs.getTimestamp("review_writeday"));
+			while (rs.next()) {
+				ReviewDto dto = new ReviewDto();
 
-	               myreviewlist.add(dto);
-	            }
-	         } catch (SQLException e) {
-	            e.printStackTrace();
-	         } finally {
-	            db.dbClose(rs, pstmt, conn);
-	         }
+				dto.setReview_num(rs.getString("review_num"));
+				dto.setMovie_num(rs.getString("movie_num"));
+				dto.setUser_num(rs.getString("user_num"));
+				dto.setReview_score(rs.getDouble("review_score"));
+				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_writeday(rs.getTimestamp("review_writeday"));
 
-	         return myreviewlist;
+				myreviewlist.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
 
-	      }
-	   
-	   //user_num별 갯수 구하기
-	   public int myReviewCount(String user_num) {
-	      
-	       int total = 0;
-	       
-	       Connection conn = db.getConnection();
-	      PreparedStatement pstmt = null;
-	      ResultSet rs = null;
+		return myreviewlist;
 
-	      String sql = "select count(*) from review where user_num=?";
+	}
 
-	      try {
+	// user_num별 갯수 구하기
+	public int myReviewCount(String user_num) {
 
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, user_num);
-	         rs = pstmt.executeQuery();
+		int total = 0;
 
-	         if (rs.next()) {
-	            total = rs.getInt(1);
-	         }
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      } finally {
-	         db.dbClose(rs, pstmt, conn);
-	      }
-	      return total;
-	   }
-	   
-	   //movie_num에 따른 제목
-	   public String getMovieSubject(String movie_num) {
-	         
-	         String movie_subject="";
-	         
-	         Connection conn=db.getConnection();
-	           PreparedStatement pstmt=null;
-	           ResultSet rs=null;
-	           
-	           String sql="select movie_subject from movie where movie_num=?";
-	           
-	           try {
-	            pstmt=conn.prepareStatement(sql);
-	            pstmt.setString(1, movie_num);
-	              rs=pstmt.executeQuery();
-	                  
-	                  if(rs.next()) {
-	                     movie_subject=rs.getString("movie_subject");
-	                  }
-	         } catch (SQLException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }finally {
-	            db.dbClose(rs, pstmt, conn);
-	         }
-	         
-	         return movie_subject;
-	      }
+		String sql = "select count(*) from review where user_num=?";
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return total;
+	}
+
+	// movie_num에 따른 제목
+	public String getMovieSubject(String movie_num) {
+
+		String movie_subject = "";
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select movie_subject from movie where movie_num=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, movie_num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				movie_subject = rs.getString("movie_subject");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+
+		return movie_subject;
+	}
 
 }

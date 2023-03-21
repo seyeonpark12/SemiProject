@@ -70,3 +70,4 @@
 3월 21, 2023 12:36:49.497 [19996:3316:0321/123649.495:ERROR:device_event_log_impl.cc(222)] [12:36:49.495] USB: usb_device_handle_win.cc:1046 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
 3월 21, 2023 12:36:49.498 [19996:3316:0321/123649.497:ERROR:device_event_log_impl.cc(222)] [12:36:49.497] USB: usb_device_handle_win.cc:1046 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
 3월 21, 2023 12:36:49.674 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+3월 21, 2023 13:38:05.749 [19996:17724:0321/133805.748:ERROR:connection_factory_impl.cc(473)] ConnectionHandler failed with net error: -2
