@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
+import com.mysql.cj.protocol.Resultset;
+
+import data.dto.MovieDto;
 import data.dto.ReviewDto;
 import mysql.db.DbConnect;
 
@@ -59,6 +62,34 @@ public class ReviewDao {
 
       return max;
 
+   }
+
+   public MovieDto getPickData(String movie_num) {
+      MovieDto mdto = new MovieDto();
+
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
+
+      String sql = "select movie_pcount from movie where movie_num=?";
+
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, movie_num);
+         rs = pstmt.executeQuery();
+
+         if (rs.next()) {
+               mdto.setMovie_num(rs.getString("movie_num"));
+         }
+
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         db.dbClose(pstmt, conn);
+      }
+
+      return mdto;
    }
 
    public List<ReviewDto> getAllReview_num(String user_num) {
@@ -204,21 +235,84 @@ public class ReviewDao {
 
       Connection conn = db.getConnection();
       PreparedStatement pstmt = null;
-      
+      ResultSet rs = null;
 
       String sql = "select round(avg(review_score),2) avg from review where movie_num=?";
 
       try {
          pstmt = conn.prepareStatement(sql);
          pstmt.setString(1, movie_num);
-         
-         pstmt.execute();
+         rs = pstmt.executeQuery();
+
+         if (rs.next()) {
+            score = rs.getDouble(1);
+         }
+
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
 
       return score;
+   }
+
+   public void insertMovie_Rank_Avg(double review_avgscore, String movie_num) {
+
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+
+      String sql = "update movie set movie_rank_avg=? where movie_num=?";
+
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setDouble(1, review_avgscore);
+         pstmt.setString(2, movie_num);
+
+         pstmt.execute();
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         db.dbClose(pstmt, conn);
+      }
+   }
+
+   public void updatePick(String movie_num) {
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+
+      String sql = "update movie set movie_pcount=movie_pcount+1 where movie_num=?";
+
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, movie_num);
+
+         pstmt.execute();
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         db.dbClose(pstmt, conn);
+      }
+   }
+   
+   public void deletePick(String movie_num) {
+      Connection conn = db.getConnection();
+      PreparedStatement pstmt = null;
+
+      String sql = "update movie set movie_pcount=movie_pcount-1 where movie_num=?";
+
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, movie_num);
+
+         pstmt.execute();
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         db.dbClose(pstmt, conn);
+      }
    }
 
 }

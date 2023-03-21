@@ -191,6 +191,7 @@ public class CommuDao {
 
 		return list;
 	}
+	
 
 	// num에 대한 각각의 dto
 	public CommuDto getCommuData(String commu_num) {
@@ -331,5 +332,83 @@ public class CommuDao {
 			db.dbClose(pstmt, conn);
 		}
 	}
+	
+	// (페이징처리) user_num에 따른 리스트 츌력
+	public List<CommuDto> getMyCommuList(String user_num, int start, int perPage) {
+
+		List<CommuDto> mycommulist = new Vector<>();
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from commu where user_num=? order by commu_num desc limit ?,?";
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, perPage);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				CommuDto dto = new CommuDto();
+
+				dto.setCommu_num(rs.getString("commu_num"));
+				dto.setUser_num(rs.getString("user_num"));
+				dto.setCommu_category(rs.getString("commu_category"));
+				dto.setCommu_subject(rs.getString("commu_subject"));
+				dto.setCommu_content(rs.getString("commu_content"));
+				dto.setCommu_photo(rs.getString("commu_photo"));
+				dto.setCommu_readcount(rs.getInt("commu_readcount"));
+				dto.setCommu_writeday(rs.getTimestamp("commu_writeday"));
+
+				mycommulist.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+
+		return mycommulist;
+	}
+	
+	//user_num별 갯수 구하기
+	public int myCommuCount(String user_num) {
+
+		int total = 0;
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select count(*) from commu where user_num=?";
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return total;
+	}
+	
+	
 
 }

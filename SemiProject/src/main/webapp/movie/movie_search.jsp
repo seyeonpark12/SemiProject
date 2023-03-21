@@ -1,3 +1,4 @@
+<%@page import="javax.swing.plaf.metal.MetalBorders.Flush3DBorder"%>
 <%@page import="java.util.List"%>
 <%@page import="data.dao.MovieDao"%>
 <%@page import="data.dto.MovieDto"%>
@@ -75,10 +76,15 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
 %>
 
 <body>
-<%=search%>
-   <div class="container">
-    
+<b>검색단어: <%=search %></b>
 
+	<%
+		if(totalCount == 0){%>
+			
+			<h3 style="width: 200px; text-align: center"><b>등록된 영화가 없습니다</b></h3>
+		<%}else{%>
+			
+			 <div class="container">
       <div class="tab-content" style="padding-top: 40px;">
          <div id="all">
             <div>
@@ -96,7 +102,7 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
                         style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
                         class="godetail"> <img src="movie_save/<%=poster%>"
                         class="poster"
-                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&movie_genre=all&sort=recent&currentPage=<%=currentPage%>'">
                         <span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
                      </a>
                   </div>
@@ -116,6 +122,7 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
                </div>
             </div>
          </div>
+         </div>
 
       <!-- 페이징 처리 -->
       <div style="width: 500px; text-align: center;" class="container">
@@ -126,7 +133,7 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
             if (startPage > 1) {
             %>
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?search=<%=search%>&movie_genre=all&sort=recent&currentPage=<%=startPage - 1%>">이전</a>
+               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=startPage - 1%>">이전</a>
             </li>
             <%
             }
@@ -134,14 +141,14 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
             if (pp == currentPage) {
             %>
             <li class="active"><a
-               href="index.jsp?main=movie/movie_list.jsp?search=<%=search%>&movie_genre=all&sort=recent&currentPage=<%=pp%>"><%=pp%></a>
+               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=pp%>"><%=pp%></a>
             </li>
             <%
             } else {
             %>
 
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?search=<%=search%>&movie_genre=all&sort=recent&currentPage=<%=pp%>"><%=pp%></a>
+               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=pp%>"><%=pp%></a>
             </li>
             <%
             }
@@ -151,7 +158,7 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
             if (endPage < totalPage) {
             %>
             <li><a
-               href="index.jsp?main=movie/movie_list.jsp?search=<%=search%>&movie_genre=all&sort=recent&currentPage=<%=endPage + 1%>">다음</a>
+               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=endPage + 1%>">다음</a>
             </li>
             <%
             }
@@ -160,7 +167,11 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
       </div>
 
    
+   
    </div>
-   </div>
+		<%}
+	%>
+	
+  
 </body>
 </html>

@@ -265,7 +265,7 @@ public class UserDao {
          pstmt.execute();
          
       } catch (SQLException e) {
-         // TODO Auto-generated catch block
+
          e.printStackTrace();
       }finally {
          db.dbClose(pstmt, conn);
@@ -315,7 +315,7 @@ public class UserDao {
        Connection conn=db.getConnection();
        PreparedStatement pstmt=null;
        
-       String sql="delete from member where user_num=?";
+       String sql="delete from user where user_num=?";
        
        try {
          pstmt=conn.prepareStatement(sql);
@@ -402,7 +402,7 @@ public class UserDao {
           PreparedStatement pstmt=null;
            ResultSet rs=null;
            
-           String sql="select * from member where user_num=?";
+           String sql="select * from user where user_num=?";
            
            try {
             pstmt=conn.prepareStatement(sql);
@@ -413,7 +413,7 @@ public class UserDao {
                
                dto.setUser_num(rs.getString("user_num"));
                dto.setUser_id(rs.getString("user_id"));
-               dto.setUser_pw(rs.getString("usr_pw"));
+               dto.setUser_pw(rs.getString("user_pw"));
                dto.setUser_name(rs.getString("user_name"));
                dto.setUser_nickname(rs.getString("user_nickname"));
                dto.setUser_hp(rs.getString("user_hp"));
@@ -441,17 +441,17 @@ public class UserDao {
           Connection conn=db.getConnection();
           PreparedStatement pstmt=null;
           
-          String sql="update member set pass=?, nickname=?,hp=?,addr=?,email=? where num=?";
+          String sql="update user set user_pw=?, user_nickname=?,user_hp=?,user_addr=?,user_email=? where user_num=?";
           
           try {
             pstmt=conn.prepareStatement(sql);
             
-            pstmt.setString(1, dto.getUser_num());
-            pstmt.setString(2, dto.getUser_pw());
-            pstmt.setString(3, dto.getUser_nickname());
-            pstmt.setString(4, dto.getUser_hp());
-            pstmt.setString(5, dto.getUser_addr());
-            pstmt.setString(6, dto.getUser_email());
+            pstmt.setString(1, dto.getUser_pw());
+            pstmt.setString(2, dto.getUser_nickname());
+            pstmt.setString(3, dto.getUser_hp());
+            pstmt.setString(4, dto.getUser_addr());
+            pstmt.setString(5, dto.getUser_email());
+            pstmt.setString(6, dto.getUser_num());
             
             
             pstmt.execute();

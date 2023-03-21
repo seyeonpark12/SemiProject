@@ -1,3 +1,5 @@
+<%@page import="data.dto.MentDto"%>
+<%@page import="data.dao.MentDao"%>
 <%@page import="data.dto.CommuDto"%>
 <%@page import="data.dao.CommuDao"%>
 <%@page import="java.util.List"%>
@@ -24,94 +26,97 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 </head>
-<%
-String loginok = (String) session.getAttribute("loginok");
-String myid = (String) session.getAttribute("myid");
-
-UserDao dao = new UserDao();
-List<UserDto> list = dao.getAllUsers();
-
-String user_num = request.getParameter("user_num");
-
-//UserDto dto=dao.getData(user_num);
-
-//커뮤니티 dao,dto
-CommuDao cdao = new CommuDao();
-%>
+	<%
+	String loginok = (String) session.getAttribute("loginok");
+	String myid = (String) session.getAttribute("myid");
+	
+	UserDao dao = new UserDao();
+	List<UserDto> list=dao.getAllUsers();
+	String user_num=request.getParameter("user_num");
+	//UserDto dto=dao.getData(user_num);
+	
+	//커뮤니티 게시글 dao,dto
+	CommuDao cdao=new CommuDao();
+	String commu_num=request.getParameter("commu_num");
+	String commu_category=request.getParameter("commu_category");
+	//게시글 리스트
+	List<CommuDto> mycommulist=cdao.getMyCommuList(user_num, 0, 8);
+	
+	//커뮤니티 댓글 dao, dto
+	MentDao mdao=new MentDao();
+	String ment_num=request.getParameter("ment_num");
+	//댓글 리스트
+	List<MentDto> mymentlist=mdao.getMyMentList(user_num, 0, 8);
+	
+	%>
 <body>
 	<div class="myinfo_div">
 		<table style="width: 700px;">
 			<h3>회원정보</h3>
 			<a class="editbtn"
-				href="index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num%>">EDIT</a>
+				href='index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num %>'>EDIT</a>
 			<input type="hidden" name="user_num" value="<%=user_num%>">
 
-			<%
-			for (UserDto dto : list) {
-
-				if (loginok != null) {
-
-					if (dto.getUser_id().equals(myid)) {
-			%>
+		<%
+      	for(UserDto dto:list){
+         
+         if(loginok!=null){
+            
+            if(dto.getUser_id().equals(myid)){%>
 
 			<tr>
 				<th class="myinfo" width="200">이름</th>
-				<td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto.getUser_name()%></td>
+				<td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto.getUser_name() %></td>
 			</tr>
 			<tr>
 				<th class="myinfo">닉네임</th>
-				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_nickname()%></td>
+				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_nickname() %></td>
 			</tr>
 
 			<tr>
 				<th class="myinfo">아이디</th>
-				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_id()%></td>
+				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_id() %></td>
 			</tr>
 
 			<tr>
 				<th class="myinfo" width="100">비밀번호</th>
-				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_pw()%></td>
+				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_pw() %></td>
 			</tr>
 
 			<tr>
 				<th class="myinfo">핸드폰번호</th>
-				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_hp()%></td>
+				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_hp() %></td>
 			</tr>
 
 			<tr>
 				<th class="myinfo" width="100">주소</th>
-				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_addr()%></td>
+				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_addr() %></td>
 			</tr>
 
 			<tr>
 				<th class="myinfo" width="100">이메일</th>
-				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_email()%></td>
+				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_email() %></td>
 			</tr>
-			<%
-			}
-			}
-			}
-			%>
+			<%}
+         }
+      }
+      %>
 		</table>
 
 
-		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp'">+MORE</a>
-
+		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp'>+MORE</a>
 		<h3 style="margin-bottom: 30px;">MYPICK</h3>
 		<div id="moviewrap_pick">
-
 			<div class="pick">
 				<span class="glyphicon glyphicon-heart" id="zzim"></span>
 			</div>
-
 			<!-- 최대 4개까지만 보이게 하기.. -->
 		</div>
-
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_myreview.jsp'">+MORE</a>
+			href='index.jsp?main=mypage/login_mypage_myreview.jsp'>+MORE</a>
 
 		<table style="width: 1000px;">
-			<h3>내가 쓴 리뷰보기</h3>
+			<h3>내가 쓴 리뷰</h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">영화제목</th>
 				<th width="600" class="myinfo">리뷰</th>
@@ -125,41 +130,90 @@ CommuDao cdao = new CommuDao();
 			</tr>
 		</table>
 
-
+		
+		<!-- 커뮤니티!!!!! 내가 쓴 글!!!! -->
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_mywrite.jsp'">+MORE</a>
-
+			href='index.jsp?main=mypage/login_mypage_mywrite.jsp?user_num=<%=user_num %>'>+MORE</a>
 		<table style="width: 1000px;">
-			<h3>내가 쓴 글보기</h3>
+		<input type="hidden" name="user_num" value="<%=user_num%>">
+		<input type="hidden" name="commu_num" value="<%=commu_num%>">
+		<%
+		int myCommuCount=cdao.myCommuCount(user_num);
+		%>
+			<h3>내가 쓴 글 <%=myCommuCount %></h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
 				<th width="800" class="myinfo">제목</th>
 			</tr>
-
-			<tr>
+			
+			<%
+			if(myCommuCount==0){%>
+			
+				<tr>
 				<td colspan="5" align="center" class="myinfo">
-					<h3>등록된 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
+					<h3>작성한 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
+			
+			<%}else{
+				
+				for(CommuDto cdto:mycommulist){%>
+					<tr>
+						<td align="center" class="myinfo">
+						<span><%=cdto.getCommu_category() %></span>
+						</td>
+					
+						<td align="center" class="myinfo">						
+						<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=cdto.getCommu_num()%>"><%=cdto.getCommu_subject() %></a></span>
+						</td>
+					</tr>
+				<%}
+			}
+			%>
 		</table>
-
-
-
+		
+		<!-- 커뮤니티!!!!!! 내가 쓴 댓글!!!!!!!!!!!!! -->
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_mycomment.jsp'">+MORE</a>
-
+			href='index.jsp?main=mypage/login_mypage_mycomment.jsp?user_num=<%=user_num %>'>+MORE</a>
+		
 		<table style="width: 1000px;">
-			<h3>내가쓴댓글보기</h3>
+		<input type="hidden" name="user_num" value="<%=user_num%>">
+		<input type="hidden" name="commu_num="<%=commu_num%>">
+		<input type="hidden" name="ment_num="<%=ment_num%>">
+		
+		<%
+		int myMentCount=mdao.myMentCount(user_num);
+		%>
+			<h3>내가 쓴 댓글 <%=myMentCount %></h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
-				<th width="800" class="myinfo">제목</th>
+				<th width="800" class="myinfo">댓글</th>
 			</tr>
-
-			<tr>
+			
+			<%
+			if(myMentCount==0){%>
+			
+				<tr>
 				<td colspan="5" align="center" class="myinfo">
-					<h3>등록된 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
+					<h3>작성한 댓글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
+			
+			<%}else{
+				
+				for(MentDto mdto:mymentlist){%>
+					<tr>		
+							<td align="center" class="myinfo">
+							<span>엉엉카테고리어캐해</span>
+							</td>
+						
+						<td align="center" class="myinfo">						
+						<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=mdto.getCommu_num()%>"><%=mdto.getMent_content() %></a></span>
+						</td>
+					</tr>
+				<%}
+			}
+			%>
 		</table>
 	</div>
 </body>

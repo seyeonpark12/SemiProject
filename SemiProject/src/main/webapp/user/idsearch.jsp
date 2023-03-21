@@ -12,6 +12,4 @@
 	JSONObject ob=new JSONObject();
 	ob.put("count", count);
 %>
-
-
 <%=ob.toString()%>

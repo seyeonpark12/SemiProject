@@ -1,3 +1,4 @@
+<%@page import="data.dao.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -13,5 +14,19 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
+<%
+	String num=request.getParameter("num");
+	
+	//전체멤버 정보 가져오기
+	UserDao dao=new UserDao();
+	
+	dao.deleteInfo(num);
+	
+	//세션
+	session.removeAttribute("loginok");
+	session.removeAttribute("myid");
+	
+	response.sendRedirect("../index.jsp?main=login/loginmain.jsp");
+	%>
 </body>
 </html>

@@ -62,14 +62,14 @@
 </head>
 
 <body>
-   
-   <%
-   String commu_num=request.getParameter("commu_num");
-   String currentPage=request.getParameter("currenPage");
-   
-   CommuDao dao=new CommuDao();
-   CommuDto dto=dao.getCommuData(commu_num);
-   %>
+	
+	<%
+	String commu_num=request.getParameter("commu_num");
+	String currentPage=request.getParameter("currenPage");
+	
+	CommuDao dao=new CommuDao();
+	CommuDto dto=dao.getCommuData(commu_num);
+	%>
       <br>
       <br>
       <div style="margin: 30px 30px;">

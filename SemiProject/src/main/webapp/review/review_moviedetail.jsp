@@ -1,3 +1,4 @@
+<%@page import="data.dao.PickDao"%>
 <%@page import="data.dto.UserDto"%>
 <%@page import="data.dao.UserDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -28,7 +29,7 @@
       $("span.camera").click(function() {
          $("#movie_poster").trigger("click"); //이벤트 강제호출 : trigger
       });
-
+      // 리뷰 생성
       $("#review_save").click(function() {
          var movie_num = $("#movie_num").val();
          var user_num = $("#user_num").val();
@@ -55,7 +56,89 @@
          })
 
       })
+      // 리뷰 삭제
+      $(".review_del").click(function() {
+         var review_num = $(this).attr("review_num")
+         //alert(review_num)
 
+         $.ajax({
+            type : "get",
+            dataType : "html",
+            url : "review/review_delete.jsp",
+            data : {
+               "review_num" : review_num
+            },
+            success : function() {
+               alert("삭제되었습니다")
+               location.reload();
+            }
+         })
+      })
+      // pick 추가
+      $("#movie_pickadd").click(function() {
+         var movie_num = $("#movie_num").val();
+         var user_num = $("#user_num").val();
+         var tag = $(this);
+
+         //alert(movie_num+"번 영화, "+user_num+"번 유저");
+         $.ajax({
+            type : "get",
+            dataType : "html",
+            url : "review/pick_addaction.jsp",
+            data : {
+               "movie_num" : movie_num,
+               "user_num" : user_num
+            },
+            success : function() {
+               alert("pick 되었습니다")
+               location.reload();
+            }
+
+         });
+      });
+      // pick 제거
+      $("#movie_pickdel").click(function() {
+         var movie_num = $("#movie_num").val();
+         var user_num = $("#user_num").val();
+
+         //alert(movie_num+"번 영화, "+user_num+"번 유저");
+         $.ajax({
+            type : "get",
+            dataType : "html",
+            url : "review/pick_delete.jsp",
+            data : {
+               "movie_num" : movie_num,
+               "user_num" : user_num
+            },
+            success : function() {
+               alert("pick이 해제되었습니다")
+               location.reload();
+            }
+
+         });
+      });
+      // 영화 삭제
+      $("#movie_delete")
+            .click(
+                  function() {
+                     var movie_num = $(this).attr("movie_num");
+                     //alert(movie_num);
+
+                     $
+                           .ajax({
+                              type : "get",
+                              dataType : "html",
+                              url : "movie/movie_delete.jsp",
+                              data : {
+                                 "movie_num" : movie_num
+                              },
+                              success : function() {
+                                 alert("삭제성공!")
+
+                                 location.href = "index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1";
+                              }
+                           });
+                  })
    });
 
    //이미지미리보기
@@ -72,6 +155,10 @@
 
 
 <style type="text/css">
+.review_del {
+   width: 30px;
+}
+
 .shape {
    position: relative;
    font-size: 50pt;
@@ -172,21 +259,28 @@ MovieDao mdao = new MovieDao();
 UserDao udao = new UserDao();
 UserDto udto = new UserDto();
 ReviewDao rdao = new ReviewDao();
-
+PickDao pdao = new PickDao();
 String movie_num = request.getParameter("movie_num");
-
 MovieDto mdto = mdao.getData(movie_num);
+
 String poster = mdto.getMovie_poster();
+String loginok = (String) session.getAttribute("loginok");
 
 String myid = (String) session.getAttribute("myid");
 String user_nickname = udao.getName_id(myid);
 
 String user_num = udao.getNum(myid);
 double review_avgscore = rdao.review_ScoreAvg(movie_num);
+
+rdao.insertMovie_Rank_Avg(review_avgscore, movie_num);
+
 String currentPage = request.getParameter("currentPage");
 
 //장르
 String movie_genre = request.getParameter("movie_genre");
+
+//정렬
+String sort = request.getParameter("sort");
 
 int totalCount;
 int totalPage; //총 페이지수
@@ -235,15 +329,13 @@ no = totalCount - (currentPage_review - 1) * perPage;
       <input type="hidden" id="myid" value="<%=myid%>">
       <input type="hidden" id="user_num" value="<%=user_num%>">
       <input type="hidden" id="user_nickname" value="<%=user_nickname%>">
-      <!-- Trigger the modal with a button -->
-
 
       <!-- Modal -->
       <div class="review_modal modal fade" id="modal" role="dialog">
          <div class="review_modal modal-dialog">
 
             <!-- Modal content-->
-            <div class="review_modal modal-content">
+            <div class="review_modal modal-content" style="margin-top: 170px;">
                <div class="review_modal modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <img alt="" src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200">
@@ -280,8 +372,6 @@ no = totalCount - (currentPage_review - 1) * perPage;
       </div>
       <!-- Modal 끝-->
 
-
-
       <table style="width: 1000px;">
          <tr height="100">
             <td rowspan="3" width="300">
@@ -303,48 +393,64 @@ no = totalCount - (currentPage_review - 1) * perPage;
             <td><b class="mv_content" style="color: orange;">
                   ★
                   <%=review_avgscore%></b></td>
-            <td><b class="mv_content" style="margin-left: -100px;">PICK</b></td>
+            <%
+            if (loginok != null) {
+            %>
+            <%
+            if (myid.equals("admin")) {
+            %>
+
+            <td>
+               <button type="button" onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
+               <button type="button" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
+            </td>
+            <%
+            }
+            %>
+            <%
+            if (pdao.isCheck(user_num, movie_num) == false) {
+            %>
+            <td><b id="movie_pickadd" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b></td>
+            <%
+            } else {
+            %>
+            <td><b id="movie_pickdel" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">NOT PICK</b></td>
+            <%
+            }
+            %>
             <td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
+            <%
+            }
+            %>
          </tr>
       </table>
 
       <hr>
 
       <div style="width: 1000px; padding: 0;">
-
          <h3>기본정보</h3>
-
-
          <div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_content()%></div>
 
-
-
-
          <h3>출연/제작</h3>
-
          <div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_actor()%>
             /
             <%=mdto.getMovie_director()%></div>
 
-
          <h3>예고편</h3>
-
          <div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content">
             <iframe width="900" height="506" src="<%=mdto.getMovie_play()%>" title="<%=mdto.getMovie_subject()%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen> </iframe>
          </div>
 
-
          <h3>리뷰</h3>
-
          <div style="width: 1000px; margin-left: 1px;" id="movie_content">
-
-            <table style="width: 1000px; height: 300px;">
+            <table style="width: 1000px; height: 200px;">
                <tr>
-                  <th width="80" class="myinfo" style="text-align: center;">번호</th>
+                  <th width="80" height="50" class="myinfo" style="text-align: center;">번호</th>
                   <th width="400" class="myinfo" style="text-align: center;">내용</th>
                   <th width="120" class="myinfo" style="text-align: center;">작성자</th>
                   <th width="70" class="myinfo" style="text-align: center;">점수</th>
-                  <th width="60" class="myinfo" style="text-align: center;">작성일</th>
+                  <th width="330" class="myinfo" style="text-align: center;">작성일</th>
+                  <th width="100"></th>
                </tr>
 
                <%
@@ -357,29 +463,31 @@ no = totalCount - (currentPage_review - 1) * perPage;
                </tr>
                <%
                } else {
-               for (ReviewDto dto : list_movie) {
+               for (ReviewDto rdto : list_movie) {
                %>
 
                <%
-               String writer_nickname = udao.getName_num(dto.getUser_num());
+               String writer_nickname = udao.getName_num(rdto.getUser_num());
                %>
 
                <tr>
                   <td align="center"><%=no--%></td>
-
-                  <td><%=dto.getReview_content()%></td>
-
+                  <td><%=rdto.getReview_content()%></td>
                   <td align="center"><%=writer_nickname%></td>
-
-                  <td width="30" style="text-align: center; color: orange;"><%="★ "+Math.round(dto.getReview_score())%></td>
-
-                  <td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
+                  <td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(rdto.getReview_score())%></td>
+                  <td width="300" style="text-align: center;"><%=sdf.format(rdto.getReview_writeday())%></td>
+                  <%
+                  if (loginok != null && rdto.getUser_num().equals(user_num) ||loginok != null && myid.equals("admin")) {
+                  %>
+                  <td width="200" align="center"><button class="review_del" review_num=<%=rdto.getReview_num()%>>삭제</button></td>
+                  <%
+                  }
+                  %>
                </tr>
                <%
                }
                }
                %>
-
 
             </table>
          </div>
@@ -419,7 +527,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
                %>
             </ul>
 
-            <button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&currentPage=<%=currentPage%>'">목록</button>
+            <button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1'">목록</button>
          </div>
 
       </div>
