@@ -76,7 +76,9 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
 %>
 
 <body>
-<b>검색단어: <%=search %></b>
+<div style="margin-left: 200px; margin-top: 50px; width: 500px; height: 150px;">
+	<h3><b style="font-size: 1.5em;"><%=search %>에 대한 검색결과입니다</b></h3>
+</div>
 
 	<%
 		if(totalCount == 0){%>

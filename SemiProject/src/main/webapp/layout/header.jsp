@@ -38,15 +38,17 @@ String user_num=dao.getNum(myid);
 <script type="text/javascript">
    $(function() {
 
-	   $("#myBtn").click(function() {
-	         $("#myModal").modal();
-	      });
+      $("#myBtn").click(function() {
+            $("#myModal").modal();
+         });
 
-	      $("#myBtn2").click(function() {
-	         $("#myModal2").modal();
-	      });
-	   
-	   
+         $("#myBtn2").click(function() {
+            $("#myModal2").modal();
+         });
+      
+         
+         
+      //회원가입 액션으로 넘겨주기
       $("#gaip").click(function() {
 
          var gaipdata = $("#gaipfrm").serialize();
@@ -66,7 +68,9 @@ String user_num=dao.getNum(myid);
             }
          });
       });
-
+   
+      
+      //로그인 액션으로 넘겨주기
       $("#login").click(function() {
 
          var logindata = $("#loginfrm").serialize();
@@ -87,27 +91,99 @@ String user_num=dao.getNum(myid);
 
       });
       
+      
+      //idsearch 불러오기
       $("#search_id").keyup(function(event){
-    	  
-    	  if(event.which===13){
-			
-    		  var search=$(this).val();
-    		  //alert(search);
+         
+         if(event.which===13){
+         
+            var search=$(this).val();
+            //alert(search);
 
-    		  
-    		  
-    		  location.href="index.jsp?main=movie/movie_search.jsp?search="+search+"&currentPage=1";
-    	  };
+            location.href="index.jsp?main=movie/movie_search.jsp?search="+search+"&currentPage=1";
+         };
       });
+      
+               //엔터로 로그인
+            $("#user_pw").keyup(function(event){
+            
+            if(event.which===13){
+            
+               var logindata = $("#loginfrm").serialize();
+                   //alert(logindata);
+
+                   $.ajax({
+
+                      type : "get",
+                      dataType : "html",
+                      url : "login/loginaction.jsp",
+                      data : logindata,
+                      success : function() {
+
+                         location.reload();
+                         
+
+                      }
+                   });
+            };
+         });
+            
+            
+            
+            //중복 아이디 체크
+            $("#id_check").click(function(){
+                 
+                  var user_id=$("#user_id").val();//user_id에 입력되는 값
+                  
+                  $.ajax({
+                     url:"user/idsearch.jsp",
+                     type:"get",
+                     data:{"user_id":user_id},
+                     dataType:'json',
+                     success: function(res){
+                        if(res.count==1){
+                           $("#check_result").html('중복된 아이디입니다.');
+                           $('#check_result').css({"color":"red"});
+                           $("#user_id").val("");
+                           $("#user_id").focus();
+                           
+                        }else {
+                           $("#check_result").html('사용가능한 아이디입니다.');
+                           $('#check_result').css({"color":"green"});
+                        }
+                     }
+                  });
+               });        
+      
+            
+            
+            //회원가입 시 비번 일치
+            $("#user_pw2").focusout(function(){
+               
+               var pw1=$("#user_pw1").val();
+               var pw2=$("#user_pw2").val();
+               
+               if(pw1==pw2){
+                  $("#pw_check").html('비밀번호가 일치합니다.');
+                  $('#pw_check').css({"color":"green"});
+               }else{
+                  $("#pw_check").html('비밀번호가 일치하지 않습니다.');
+                  $('#pw_check').css({"color":"red"});
+                  $("#user_pw2").val("");
+                  $("#user_pw2").focus();
+               }
+               
+            });
+      
 
    });
+   
+   
 </script>
 <body>
-
    <%
-   request.setCharacterEncoding("utf-8");
+    request.setCharacterEncoding("utf-8");
    %>
-
 
    <header>
       <div class="top">
@@ -126,13 +202,13 @@ String user_num=dao.getNum(myid);
             </ul>
          </nav>
 
-		<form method="post">
-		
+      <form method="post">
+      
          <input type="text" id="search_id"  placeholder="검색"
-            class="form-control">
-         <input type="hidden" name="search" id="search" search="">   
-		</form>
-		
+            class="form-control" value="">
+         
+      </form>
+      
 
          <div class="container">
             <!-- 회원(로그인)모드.. -->
@@ -203,7 +279,7 @@ String user_num=dao.getNum(myid);
                                  placeholder="ID" class="form-control" required="required"
                                  style="width: 300px; background-color: #fafafa" value="">
 
-                              <br> <br> <input type="password" name="user_pw"
+                              <br> <br> <input type="password" name="user_pw" id="user_pw"
                                  placeholder="PASSWORD" class="form-control"
                                  required="required"
                                  style="width: 300px; background-color: #fafafa"> <br>
@@ -211,7 +287,7 @@ String user_num=dao.getNum(myid);
                               <div class="form-group">
                                  <div class="col-sm-offset-2 col-sm-10">
                                     <div class="checkbox">
-                                       <label> <input type="checkbox" name="saveid">
+                                       <label> <input type="checkbox" name="saveid" id="saveid">
                                           아이디저장
                                        </label>
                                     </div>
@@ -221,6 +297,7 @@ String user_num=dao.getNum(myid);
                               <div class="form-group">
                                  <div class="col-sm-offset-2 col-sm-10">
                                     <button type="button" class="btn btn-default" id="login"
+                                    
                                        style="width: 180px;">로그인</button>
                                  </div>
                               </div>
@@ -263,20 +340,25 @@ String user_num=dao.getNum(myid);
                                  style="width: 300px; background-color: #fafafa" value="">
 
 
-                              <br> <br> <input type="text" name="user_id"
+                              <br> <br> <input type="text" name="user_id" id="user_id"
                                  placeholder="아이디" class="form-control" required="required"
-                                 style="width: 70%; background-color: #fafafa" value="">
+                                 style="width: 70%; background-color: #fafafa">
 
                               <button type="button" class="btn btn-default"
-                                 style="margin-top: -55px; margin-left: 220px;">중복확인</button>
+                                 style="margin-top: -55px; margin-left: 220px;" id="id_check">중복확인</button>
+                                 
+                               <div id="check_result"></div>
 
-                              <br> <br> <input type="password" name="user_pw"
+                              <br> <br> <input type="password" name="user_pw" id="user_pw1"
                                  placeholder="비밀번호" class="form-control" required="required"
                                  style="width: 300px; background-color: #fafafa"> <br>
-                              <br> <input type="password" name="user_pw2"
+                              <br> <input type="password" name="user_pw2" id="user_pw2"
                                  placeholder="비밀번호확인" class="form-control" required="required"
-                                 style="width: 300px; background-color: #fafafa"> <br>
-                              <br> <input type="text" name="user_hp" placeholder="휴대번호"
+                                 style="width: 300px; background-color: #fafafa"> 
+                                 <div id="pw_check"></div>
+                                 
+                                 
+                              <br><br> <input type="text" name="user_hp" placeholder="휴대번호"
                                  class="form-control" required="required"
                                  style="width: 300px; background-color: #fafafa" value="">
 

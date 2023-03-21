@@ -325,7 +325,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 		<%
       } else {
       %>
-		<div class="tab-content" style="padding-top: 40px;">
+		<div class="tab-content" style=" margin-left:200px;">
 			<div id="movie_genre">
 				<div>
 					<div
