@@ -1,102 +1,102 @@
 
-Š	java:S117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦™„üÿÿÿÿ8æ¶ïğ0HÃ¥RMINORZ
+
+java:S1192g"JDefine a constant instead of duplicating this literal "movie_num" 5 times.(í‚¢ŠıÿÿÿÿHø©RCRITICALZ
 CODE_SMELL
-j
-java:S1135k"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8æ¶ïğ0HÁ¥RINFOZ
+…
+java:S1192ˆ"ODefine a constant instead of duplicating this literal "review_content" 4 times.(…ÛÏÛüÿÿÿÿH•ªRCRITICALZ
 CODE_SMELL
-Š	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÙŠŠşÿÿÿÿ8İÛ†çï0H•¥RMINORZ
+c
+java:S1135#"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿH„ªRINFOZ
 CODE_SMELL
-“
-java:S1149Ø"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(©…·£H¬¥RMAJORZ
+Š	java:S117ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™©•ôüÿÿÿÿ8½ŞĞ‘ğ0HªRMINORZ
 CODE_SMELL
-ƒ	java:S117­"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Îş×ØÿÿÿÿÿHÄ¥RMINORZ
+…	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úá¸ú8½ŞĞ‘ğ0H“ªRMINORZ
+CODE_SMELL
+z	java:S100t"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ„ÍH¯ªRMINORZ
 CODE_SMELL
 k
-java:S1135¦"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8åöçï0H¯¥RINFOZ
+java:S1135‘"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8½ŞĞ‘ğ0H…ªRINFOZ
 CODE_SMELL
-’
-java:S1149u"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(©…·£HÀ¥RMAJORZ
+
+java:S1192„"IDefine a constant instead of duplicating this literal "user_num" 4 times.(åšÏÙÿÿÿÿÿH ªRCRITICALZ
+CODE_SMELL
+~
+java:S2095J"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×Óù8™»ìæï0Hî©RBLOCKERZBUG
+…	java:S117Ô"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í€¿ø8½ŞĞ‘ğ0H­ªRMINORZ
+CODE_SMELL
+
+java:S1192‰"PDefine a constant instead of duplicating this literal "review_writeday" 4 times.(¼ÖŒ’H†ªRCRITICALZ
+CODE_SMELL
+x
+java:S2095ˆ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×ÓùH‹ªRBLOCKERZBUG
+‡	java:S100˜"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦™„üÿÿÿÿ8İÛ†çï0H¦ªRMINORZ
+CODE_SMELL
+k
+java:S1135¦"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8åöçï0HªRINFOZ
 CODE_SMELL
 u
 java:S1128
-"<Remove this unused import 'com.mysql.cj.protocol.Resultset'.(«‹’ûÿÿÿÿ8 Öùçï0H±¥RMINORZ
+"<Remove this unused import 'com.mysql.cj.protocol.Resultset'.(«‹’ûÿÿÿÿ8 Öùçï0H¨ªRMINORZ
 CODE_SMELL
-~
-java:S1192‡"MDefine a constant instead of duplicating this literal "review_score" 4 times.(±ˆ‚æH¶¥RCRITICALZ
+€	java:S100ş"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©ÈçøÿÿÿÿH‘ªRMINORZ
+CODE_SMELL
+k
+java:S1135‘"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ˆ‚‹çï0HœªRINFOZ
+CODE_SMELL
+’
+java:S1149u"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(©…·£HšªRMAJORZ
+CODE_SMELL
+…	java:S117×"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ—Ù8İÛ†çï0Hÿ©RMINORZ
 CODE_SMELL
 j
-java:S11358"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8æ¶ïğ0H¥¥RINFOZ
-CODE_SMELL
-{	java:S100×"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ—ÙH­¥RMINORZ
-CODE_SMELL
-€	java:S100ş"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©ÈçøÿÿÿÿHº¥RMINORZ
-CODE_SMELL
-ƒ	java:S117ş"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©ÈçøÿÿÿÿHÈ¥RMINORZ
-CODE_SMELL
-
-java:S1192‰"PDefine a constant instead of duplicating this literal "review_writeday" 4 times.(¼ÖŒ’H¦¥RCRITICALZ
+java:S1135k"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8æ¶ïğ0H§ªRINFOZ
 CODE_SMELL
 ~
-java:S2095J"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×Óù8™»ìæï0H«¥RBLOCKERZBUG
-c
-java:S1135#"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿHÆ¥RINFOZ
+java:S1192‡"MDefine a constant instead of duplicating this literal "review_score" 4 times.(±ˆ‚æHŒªRCRITICALZ
 CODE_SMELL
-Š	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö’·¢ıÿÿÿÿ8æ¶ïğ0HÂ¥RMINORZ
+„	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş¦œ¸8ü²öğ0H÷©RMINORZ
 CODE_SMELL
-k
-java:S1135‘"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ˆ‚‹çï0H°¥RINFOZ
+}	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü¢¾Hğ©RMINORZ
 CODE_SMELL
-‡	java:S100˜"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦™„üÿÿÿÿ8İÛ†çï0HÉ¥RMINORZ
+Š	java:S117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦™„üÿÿÿÿ8æ¶ïğ0H¬ªRMINORZ
 CODE_SMELL
-k
-java:S1135¹"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8™»ìæï0HÅ¥RINFOZ
-CODE_SMELL
-
-java:S1192g"JDefine a constant instead of duplicating this literal "movie_num" 5 times.(í‚¢ŠıÿÿÿÿH–¥RCRITICALZ
-CODE_SMELL
-
-java:S1192„"IDefine a constant instead of duplicating this literal "user_num" 4 times.(åšÏÙÿÿÿÿÿH»¥RCRITICALZ
-CODE_SMELL
-…
-java:S1192ˆ"ODefine a constant instead of duplicating this literal "review_content" 4 times.(…ÛÏÛüÿÿÿÿH¥RCRITICALZ
-CODE_SMELL
-|
-java:S1192†"KDefine a constant instead of duplicating this literal "review_num" 4 times.(•‘İºH¡¥RCRITICALZ
-CODE_SMELL
-}	java:S117t"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ„ÍHµ¥RMINORZ
-CODE_SMELL
-…	java:S117×"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ—Ù8İÛ†çï0HÇ¥RMINORZ
-CODE_SMELL
-x
-java:S2095ˆ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×ÓùH¿¥RBLOCKERZBUG
 “
-java:S1149²"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(©…·£Hª¥RMAJORZ
+java:S1149Ø"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(©…·£H®ªRMAJORZ
 CODE_SMELL
-Š	java:S117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦™„üÿÿÿÿ8åöçï0Hœ¥RMINORZ
+“
+java:S1149²"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(©…·£Hï©RMAJORZ
 CODE_SMELL
-„	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş¦œ¸8ü²öğ0H›¥RMINORZ
+Š	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÙŠŠşÿÿÿÿ8İÛ†çï0H‚ªRMINORZ
 CODE_SMELL
-z	java:S100t"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ„ÍH®¥RMINORZ
+{	java:S100×"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ—ÙH’ªRMINORZ
 CODE_SMELL
-k
-java:S1135Ì"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8µÀûğ0H´¥RINFOZ
-CODE_SMELL
-}	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü¢¾H³¥RMINORZ
-CODE_SMELL
-…	java:S117Ô"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í€¿ø8½ŞĞ‘ğ0H»©RMINORZ
-CODE_SMELL
-Š	java:S117ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™©•ôüÿÿÿÿ8½ŞĞ‘ğ0H¼©RMINORZ
-CODE_SMELL
-Š	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ˆ¤äúÿÿÿÿ8½ŞĞ‘ğ0H½©RMINORZ
-CODE_SMELL
-…	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úá¸ú8½ŞĞ‘ğ0H¾©RMINORZ
+}	java:S117t"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ„ÍH›ªRMINORZ
 CODE_SMELL
 š
-java:S1149Õ"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(Çæ°ï8½ŞĞ‘ğ0H¿©RMAJORZ
+java:S1149Õ"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(Çæ°ï8½ŞĞ‘ğ0HƒªRMAJORZ
+CODE_SMELL
+Š	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö’·¢ıÿÿÿÿ8æ¶ïğ0Hş©RMINORZ
+CODE_SMELL
+Š	java:S117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦™„üÿÿÿÿ8åöçï0HªRMINORZ
 CODE_SMELL
 k
-java:S1135‘"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8½ŞĞ‘ğ0HÀ©RINFOZ
+java:S1135Ì"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8µÀûğ0HŸªRINFOZ
+CODE_SMELL
+ƒ	java:S117­"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Îş×ØÿÿÿÿÿH¥ªRMINORZ
+CODE_SMELL
+Š	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ˆ¤äúÿÿÿÿ8½ŞĞ‘ğ0Hñ©RMINORZ
 CODE_SMELL
 k
-java:S1135­"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8½ŞĞ‘ğ0HÁ©RINFOZ
+java:S1135­"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8½ŞĞ‘ğ0H«ªRINFOZ
+CODE_SMELL
+|
+java:S1192†"KDefine a constant instead of duplicating this literal "review_num" 4 times.(•‘İºHò©RCRITICALZ
+CODE_SMELL
+ƒ	java:S117ş"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©ÈçøÿÿÿÿH€ªRMINORZ
+CODE_SMELL
+j
+java:S11358"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8æ¶ïğ0H”ªRINFOZ
+CODE_SMELL
+k
+java:S1135¹"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8™»ìæï0HªªRINFOZ
 CODE_SMELL

@@ -477,7 +477,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 						<td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(rdto.getReview_score())%></td>
 						<td width="300" style="text-align: center;"><%=sdf.format(rdto.getReview_writeday())%></td>
 						<%
-						if (loginok != null && rdto.getUser_num().equals(user_num) ||loginok != null && myid.equals("admin")) {
+						if (loginok != null && rdto.getUser_num().equals(user_num) || loginok != null && myid.equals("admin")) {
 						%>
 						<td width="200" align="center"><button class="review_del" review_num=<%=rdto.getReview_num()%>>삭제</button></td>
 						<%

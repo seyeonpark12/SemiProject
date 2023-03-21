@@ -21,3 +21,5 @@ Y
 )src/main/webapp/review/pick_addaction.jsp,c\2\c21ebe8374dc36917224a7408e0caf338728dd79
 V
 &src/main/webapp/review/pick_delete.jsp,a\6\a62ca7adc8906091a6da0cb19a73b8bd6066edf7
+S
+#src/main/java/data/dao/UserDao.java,1\1\116253e6c911a0a22f0379c7f76e4e96d1d36276
