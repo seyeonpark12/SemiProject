@@ -289,7 +289,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
          <div class="review_modal modal-dialog">
 
             <!-- Modal content-->
-            <div class="review_modal modal-content">
+            <div class="review_modal modal-content" style="margin-top:170px;">
                <div class="review_modal modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <img alt="" src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200">
