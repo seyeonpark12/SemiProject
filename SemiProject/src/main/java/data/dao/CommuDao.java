@@ -409,5 +409,6 @@ public class CommuDao {
 		return total;
 	}
 	
+	
 
 }
