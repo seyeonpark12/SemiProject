@@ -49,7 +49,6 @@
 					"review_content" : review_contents
 				},
 				success : function() {
-					alert("리뷰 등록 완료");
 					location.reload();
 
 				}
@@ -90,7 +89,6 @@
 					"user_num" : user_num
 				},
 				success : function() {
-					alert("pick 되었습니다")
 					location.reload();
 				}
 
@@ -111,7 +109,6 @@
 					"user_num" : user_num
 				},
 				success : function() {
-					alert("pick이 해제되었습니다")
 					location.reload();
 				}
 
@@ -411,6 +408,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 				if (pdao.isCheck(user_num, movie_num) == false) {
 				%>
 				<td><b id="movie_pickadd" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b></td>
+				<td><span class="pick glyphicon glyphicon-heart" style="color: red; font-size: 0px;"></span></td>
 				<%
 				} else {
 				%>
