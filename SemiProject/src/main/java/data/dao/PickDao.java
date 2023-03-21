@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import data.dto.MovieDto;
-import data.dto.PickDto;
 import mysql.db.DbConnect;
 
 public class PickDao {

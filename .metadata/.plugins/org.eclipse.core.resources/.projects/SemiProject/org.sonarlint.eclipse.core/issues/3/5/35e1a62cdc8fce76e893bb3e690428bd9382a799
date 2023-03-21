@@ -1,43 +1,43 @@
 
-b	Web:S1827º")Remove this deprecated "align" attribute.(«Â§úûÿÿÿÿ8šë‰Œğ0H†›RMAJORZ
+]	Web:S1827Ä")Remove this deprecated "width" attribute.(‚®‹ë8šë‰Œğ0HÌ¥RMAJORZ
 CODE_SMELL
-b	Web:S1827Â")Remove this deprecated "width" attribute.(ìƒê‡ıÿÿÿÿ8Øº„ğ0HÈ RMAJORZ
+]	Web:S1827İ")Remove this deprecated "width" attribute.(˜¬½ê8Š½­ñï0HĞ¥RMAJORZ
 CODE_SMELL
-b	Web:S1827¾")Remove this deprecated "width" attribute.(š ™ øÿÿÿÿ8Š½­ñï0HıšRMAJORZ
+]	Web:S1827À"*Remove this deprecated "height" attribute.(€Ã
+8«¤øğ0Há¥RMAJORZ
 CODE_SMELL
-b	Web:S1827Â")Remove this deprecated "align" attribute.(ìƒê‡ıÿÿÿÿ8§´Ùğ0HÉ RMAJORZ
+^Web:TableWithoutCaptionCheck÷" Add a description to this table.(î¥ğøÿÿÿÿHÖ¥RMINORZBUG
+\	Web:S1827À")Remove this deprecated "width" attribute.(€Ã
+8Š½­ñï0HŞ¥RMAJORZ
 CODE_SMELL
-eWeb:TableWithoutCaptionCheck" Add a description to this table.(ãåè¡ùÿÿÿÿ8Š½­ñï0HÿšRMINORZBUG
-]Web:ImgWithoutAltCheckã"%Add an "alt" attribute to this image.(“–£üøÿÿÿÿH‹›RMINORZBUG
-P	Web:S5256à"%Add "<th>" headers to this "<table>".(î¥ğøÿÿÿÿH›RMAJORZBUG
-]	Web:S1827¼")Remove this deprecated "align" attribute.(¹äüú8Š½­ñï0H…›RMAJORZ
+b	Web:S1827Ú")Remove this deprecated "align" attribute.(«Â§úûÿÿÿÿ8Š½­ñï0HÍ¥RMAJORZ
 CODE_SMELL
-[	Web:S1827â")Remove this deprecated "width" attribute.(şÔÿşÿÿÿÿH€›RMAJORZ
+b	Web:S1827Ì")Remove this deprecated "align" attribute.(§¹²úÿÿÿÿ8Š½­ñï0Hß¥RMAJORZ
 CODE_SMELL
-\	Web:S1827 ")Remove this deprecated "width" attribute.(€Ã
-8«¤øğ0H®ŸRMAJORZ
+b	Web:S1827â")Remove this deprecated "width" attribute.(ìƒê‡ıÿÿÿÿ8Øº„ğ0HÙ¥RMAJORZ
 CODE_SMELL
-\	Web:S1827£")Remove this deprecated "width" attribute.(Ùãæ(8šë‰Œğ0HŠ›RMAJORZ
+[	Web:S1827ı")Remove this deprecated "width" attribute.(õ´³ÚüÿÿÿÿHÜ¥RMAJORZ
 CODE_SMELL
-]	Web:S1827¥")Remove this deprecated "width" attribute.(ÈÖÍî8Ü»†ğ0HÕŸRMAJORZ
+b	Web:S1827â")Remove this deprecated "align" attribute.(ìƒê‡ıÿÿÿÿ8§´Ùğ0HË¥RMAJORZ
 CODE_SMELL
-]	Web:S1827¤")Remove this deprecated "width" attribute.(‚®‹ë8šë‰Œğ0Hƒ›RMAJORZ
+]	Web:S1827Â")Remove this deprecated "width" attribute.(—¦Œë8Š½­ñï0HÓ¥RMAJORZ
 CODE_SMELL
-]	Web:S1827¡")Remove this deprecated "width" attribute.(·ãóÛ8Š½­ñï0Hˆ›RMAJORZ
+\	Web:S1827Ã")Remove this deprecated "width" attribute.(Ùãæ(8šë‰Œğ0Hİ¥RMAJORZ
 CODE_SMELL
-]	Web:S1827½")Remove this deprecated "width" attribute.(˜¬½ê8Š½­ñï0H‡›RMAJORZ
+b	Web:S1827Ş")Remove this deprecated "width" attribute.(š ™ øÿÿÿÿ8Š½­ñï0HÏ¥RMAJORZ
 CODE_SMELL
-_Web:FieldsetWithoutLegendCheckÇ"$Add a <legend> tag to this fieldset.(¨ÏçñHşšRMINORZBUG
-]	Web:S1827¢")Remove this deprecated "width" attribute.(—¦Œë8Š½­ñï0HŒ›RMAJORZ
+_Web:FieldsetWithoutLegendCheckŞ"$Add a <legend> tag to this fieldset.(¨ÏçñHÛ¥RMINORZBUG
+[	Web:S1827ù")Remove this deprecated "width" attribute.(şÔÿşÿÿÿÿHÚ¥RMAJORZ
 CODE_SMELL
-j	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷ÃûÿÿÿÿH›RMAJORZBUG
-[	Web:S1827æ")Remove this deprecated "width" attribute.(õ´³ÚüÿÿÿÿH›RMAJORZ
+j	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷ÃûÿÿÿÿHØ¥RMAJORZBUG
+c	Web:S1827¹"/Remove this deprecated "frameborder" attribute.(•œï²8Š½­ñï0HÒ¥RMAJORZ
 CODE_SMELL
-]	Web:S1827 "*Remove this deprecated "height" attribute.(€Ã
-8Š½­ñï0H‚›RMAJORZ
+eWeb:TableWithoutCaptionCheck¾" Add a description to this table.(ãåè¡ùÿÿÿÿ8Š½­ñï0HÑ¥RMINORZBUG
+]	Web:S1827Ü")Remove this deprecated "align" attribute.(¹äüú8šë‰Œğ0HÕ¥RMAJORZ
 CODE_SMELL
-^Web:TableWithoutCaptionCheckà" Add a description to this table.(î¥ğøÿÿÿÿH„›RMINORZBUG
-b	Web:S1827¬")Remove this deprecated "align" attribute.(§¹²úÿÿÿÿ8Š½­ñï0H‰›RMAJORZ
+]	Web:S1827Å")Remove this deprecated "width" attribute.(ÈÖÍî8Ü»†ğ0H×¥RMAJORZ
 CODE_SMELL
-c	Web:S1827™"/Remove this deprecated "frameborder" attribute.(•œï²8Š½­ñï0HüšRMAJORZ
+P	Web:S5256÷"%Add "<th>" headers to this "<table>".(î¥ğøÿÿÿÿHà¥RMAJORZBUG
+]Web:ImgWithoutAltCheckú"%Add an "alt" attribute to this image.(“–£üøÿÿÿÿHÎ¥RMINORZBUG
+]	Web:S1827Á")Remove this deprecated "width" attribute.(·ãóÛ8Š½­ñï0HÔ¥RMAJORZ
 CODE_SMELL

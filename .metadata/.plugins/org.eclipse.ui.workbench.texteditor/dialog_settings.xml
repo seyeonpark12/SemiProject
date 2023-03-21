@@ -13,6 +13,7 @@
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="true"/>
 		<list key="findhistory">
+			<item value="id=&quot;movie_num&quot;"/>
 			<item value="avg"/>
 			<item value="review_contents"/>
 			<item value="list"/>
@@ -20,7 +21,6 @@
 			<item value="myid"/>
 			<item value="101"/>
 			<item value="my"/>
-			<item value="id"/>
 		</list>
 		<list key="replacehistory">
 			<item value="review_content"/>
