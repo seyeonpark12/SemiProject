@@ -128,7 +128,7 @@ margin-bottom: 100px;
             </tr>
          </table>
 
-         <div class="write" style="align: center; margin-left: 500px;">
+         <div class="write" style="align: center; margin-left: 300px;">
             <h3>줄거리</h3>
             <br>
             <textarea style="width: 1000px; height: 400px;" name="movie_content" required="required"
@@ -136,7 +136,7 @@ margin-bottom: 100px;
          </div>
 
          <div
-            style="margin-left:500px; width: 1000px; height: 100px; padding: 0;">
+            style="margin-left:300px; width: 1000px; height: 100px; padding: 0;">
             <h3>출연/제작</h3>
             <div style="height: 100px; padding-left: 100px;">
                <b class="mv_content">감독</b> <br> <input type="text"
