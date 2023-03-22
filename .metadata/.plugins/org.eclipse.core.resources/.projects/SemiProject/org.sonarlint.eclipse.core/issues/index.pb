@@ -23,3 +23,7 @@ V
 &src/main/webapp/review/pick_delete.jsp,a\6\a62ca7adc8906091a6da0cb19a73b8bd6066edf7
 S
 #src/main/java/data/dao/UserDao.java,1\1\116253e6c911a0a22f0379c7f76e4e96d1d36276
+^
+.src/main/webapp/mypage/mypage_myinfoupdate.jsp,7\0\70c641163fa36122cd842553bc35270e8e258ae8
+T
+$src/main/webapp/movie/movie_list.jsp,e\0\e0540591199b8d317dbc92611eb65bbd18905225
