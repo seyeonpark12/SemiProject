@@ -35,7 +35,6 @@
 		session.setMaxInactiveInterval(60 * 60 * 8);
 		session.setAttribute("loginok", "yes");
 		session.setAttribute("myid", user_id);
-		session.setAttribute("mypw", user_pw);
 		session.setAttribute("saveid", saveid == null ? null : "yes");
 		session.setAttribute("saveok", user_id);
 
