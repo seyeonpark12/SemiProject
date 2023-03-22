@@ -4,19 +4,18 @@
 
 <%
 //관리자 체크박스 삭제action!!!!
-String nums = request.getParameter("nums");
+String user_n = request.getParameter("user_n");
 
 //nums에서 구분기호 ,로 읽어서 분리한걸 num
-String[] num = nums.split(",");
+String[] num = user_n.split(",");
 
 UserDao dao = new UserDao();
 
-for (String user_n : num) {
+for (String user_num : num) {
 
-   dao.deleteUser(user_n);
+   dao.deleteUser(user_num);
 
 }
 
-//목록으로 이동
-response.sendRedirect("../index.jsp?main=mypage/admin_peoplelist.jsp");
+
 %>

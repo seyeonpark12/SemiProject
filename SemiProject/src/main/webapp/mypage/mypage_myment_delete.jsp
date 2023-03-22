@@ -1,3 +1,4 @@
+<%@page import="data.dao.MentDao"%>
 <%@page import="data.dto.UserDto"%>
 <%@page import="data.dao.UserDao"%>
 <%@page import="data.dao.CommuDao"%>
@@ -5,7 +6,7 @@
     pageEncoding="utf-8"%>
 	
 	<%
- 	//내 게시글 체크박스 삭제action!!!!
+ 	//내 댓글 체크박스 삭제action!!!!
 	String loginok = (String) session.getAttribute("loginok");
 	String myid = (String) session.getAttribute("myid");
 	
@@ -14,19 +15,17 @@
 	
 	String nums=request.getParameter("nums");
 	
-	
 	String [] num=nums.split(",");
 	
-	CommuDao dao=new CommuDao();
+	MentDao dao=new MentDao();
 	
-	for(String commu_n:num){
+	for(String ment_n:num){
 		
-		dao.deleteCommu(commu_n);
+		dao.deleteMent(ment_n);
 		
-
 	} 
-	
-	response.sendRedirect("../index.jsp?main=mypage/login_mypage_mywrite.jsp?user_num="+user_num);
+
+	response.sendRedirect("../index.jsp?main=mypage/login_mypage_mycomment.jsp?user_num="+user_num);
 	%>
 	
 

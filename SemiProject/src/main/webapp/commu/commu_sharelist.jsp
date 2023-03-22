@@ -23,9 +23,47 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
 <style type="text/css">
 td.myinfo {
 	text-align: center;
+}
+.nav>li>a, .nav>li>a {
+	text-decoration: none;
+	color: #653491;;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+	color: #fff;
+	background-color: #CBB6D9;
+	border: 0px solid;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
 }
 </style>
 

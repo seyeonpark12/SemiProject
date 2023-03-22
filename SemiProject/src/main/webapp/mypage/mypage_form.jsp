@@ -1,3 +1,5 @@
+<%@page import="data.dto.MentDto"%>
+<%@page import="data.dao.MentDao"%>
 <%@page import="data.dto.CommuDto"%>
 <%@page import="data.dao.CommuDao"%>
 <%@page import="java.util.List"%>
@@ -33,12 +35,19 @@
 	String user_num=request.getParameter("user_num");
 	//UserDto dto=dao.getData(user_num);
 	
-	//커뮤니티 dao,dto
+	//커뮤니티 게시글 dao,dto
 	CommuDao cdao=new CommuDao();
 	String commu_num=request.getParameter("commu_num");
-
+	String commu_category=request.getParameter("commu_category");
 	//게시글 리스트
 	List<CommuDto> mycommulist=cdao.getMyCommuList(user_num, 0, 8);
+	
+	//커뮤니티 댓글 dao, dto
+	MentDao mdao=new MentDao();
+	String ment_num=request.getParameter("ment_num");
+	//댓글 리스트
+	List<MentDto> mymentlist=mdao.getMyMentList(user_num, 0, 8);
+	
 	%>
 <body>
 	<div class="myinfo_div">
@@ -163,23 +172,48 @@
 			%>
 		</table>
 		
-		
 		<!-- 커뮤니티!!!!!! 내가 쓴 댓글!!!!!!!!!!!!! -->
 		<a class="morebtn"
-			href='index.jsp?main=mypage/login_mypage_mycomment.jsp'>+MORE</a>
+			href='index.jsp?main=mypage/login_mypage_mycomment.jsp?user_num=<%=user_num %>'>+MORE</a>
 		
 		<table style="width: 1000px;">
-			<h3>내가 쓴 댓글</h3>
+		<input type="hidden" name="user_num" value="<%=user_num%>">
+		<input type="hidden" name="commu_num="<%=commu_num%>">
+		<input type="hidden" name="ment_num="<%=ment_num%>">
+		
+		<%
+		int myMentCount=mdao.myMentCount(user_num);
+		%>
+			<h3>내가 쓴 댓글 <%=myMentCount %></h3>
 			<tr class="tr_myinfo">
 				<th width="200" class="myinfo">카테고리</th>
-				<th width="800" class="myinfo">제목</th>
+				<th width="800" class="myinfo">댓글</th>
 			</tr>
-
-			<tr>
+			
+			<%
+			if(myMentCount==0){%>
+			
+				<tr>
 				<td colspan="5" align="center" class="myinfo">
-					<h3>등록된 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
+					<h3>작성한 댓글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
+			
+			<%}else{
+				
+				for(MentDto mdto:mymentlist){%>
+					<tr>		
+							<td align="center" class="myinfo">
+							<span>엉엉카테고리어캐해</span>
+							</td>
+						
+						<td align="center" class="myinfo">						
+						<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=mdto.getCommu_num()%>"><%=mdto.getMent_content() %></a></span>
+						</td>
+					</tr>
+				<%}
+			}
+			%>
 		</table>
 	</div>
 </body>
