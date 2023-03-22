@@ -23,20 +23,20 @@
 
 </head>
 <%
-	request.setCharacterEncoding("utf-8");
-	
-	String loginok = (String) session.getAttribute("loginok");
-	String myid = (String) session.getAttribute("myid");
-	String saveid = (String) session.getAttribute("saveid");
-	String saveok="";
-	if (saveid != null) {
-		saveok = (String) session.getAttribute("saveok");
-			}
-	
-	
-	UserDao dao = new UserDao();
-	String nickname = dao.getName_id(myid);
-	String user_num = dao.getNum(myid);
+request.setCharacterEncoding("utf-8");
+
+String loginok = (String) session.getAttribute("loginok");
+String myid = (String) session.getAttribute("myid");
+String mypw= (String) session.getAttribute("mypw");
+String saveid = (String) session.getAttribute("saveid");
+String saveok = "";
+if (saveid != null) {
+	saveok = (String) session.getAttribute("saveok");
+}
+
+UserDao dao = new UserDao();
+String nickname = dao.getName_id(myid);
+String user_num = dao.getNum(myid);
 %>
 
 <script type="text/javascript">
@@ -55,20 +55,30 @@
 
 			var gaipdata = $("#gaipfrm").serialize();
 			//alert(formdata);
+			var result = $("#check_result").text();
 
-			$.ajax({
+			var a = result == "사용가능한 아이디입니다.😊";
+			if (a) {
 
-				type : "get",
-				dataType : "html",
-				url : "user/user_addaction.jsp",
-				data : gaipdata,
-				success : function() {
+				$.ajax({
 
-					location.reload();
-					//$("#myModal").modal();
+					type : "get",
+					dataType : "html",
+					url : "user/user_addaction.jsp",
+					data : gaipdata,
+					success : function() {
 
-				}
-			});
+						alert("🎉회원가입을 축하합니다🎉")
+						location.reload();
+						//$("#myModal").modal();
+
+					}
+				});
+			} else {
+
+				alert("중복확인을 해주세요");
+			}
+
 		});
 
 		//로그인 액션으로 넘겨주기
@@ -84,7 +94,8 @@
 				url : "login/loginaction.jsp",
 				data : logindata,
 				success : function() {
-
+					
+					alert("로그인");
 					location.reload();
 
 				}
@@ -190,10 +201,10 @@
 
 			var saveid = $("#saveid").val();
 			//alert(saveid);
-			
-			
-			
+
 		});
+
+		//
 
 	});
 </script>
@@ -288,25 +299,19 @@
 								<form class="form-horizontal" id="loginfrm" method="post">
 									<div class="form-group" style="width: 300px;">
 
-										<br>
-										<br>
-										<input type="text" name="user_id" placeholder="ID" class="form-control"
-											required="required" style="width: 300px; background-color: #fafafa" value="<%=saveid!=null?saveok:""%>">
-
-										<br>
-										<br>
-										<input type="password" name="user_pw" id="user_pw" placeholder="PASSWORD"
+										<br> <br> <input type="text" name="user_id" placeholder="ID"
 											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
-										>
-										<br>
+											value="<%=saveid != null ? saveok : ""%>"
+										> <br> <br> <input type="password" name="user_pw" id="user_pw"
+											placeholder="PASSWORD" class="form-control" required="required"
+											style="width: 300px; background-color: #fafafa"
+										> <br>
 
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
 												<div class="checkbox">
-													<label>
-														<input type="checkbox" name="saveid"
-														<%=saveid!=null?"checked":"" %>>
-														
+													<label> <input type="checkbox" name="saveid" <%=saveid != null ? "checked" : ""%>>
+
 														아이디저장
 													</label>
 												</div>
@@ -347,24 +352,14 @@
 								<form class="form-horizontal" method="post" id="gaipfrm">
 									<div class="form-group" style="width: 300px;">
 
-										<br>
-										<br>
-										<input type="text" name="user_name" placeholder="이름" class="form-control"
-											required="required" style="width: 300px; background-color: #fafafa" value=""
-										>
-
-
-										<br>
-										<br>
-										<input type="text" name="user_nickname" placeholder="닉네임" class="form-control"
-											required="required" style="width: 300px; background-color: #fafafa" value=""
-										>
-
-
-										<br>
-										<br>
-										<input type="text" name="user_id" id="user_id" placeholder="아이디" class="form-control"
-											required="required" style="width: 70%; background-color: #fafafa"
+										<br> <br> <input type="text" name="user_name" placeholder="이름"
+											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
+											value=""
+										> <br> <br> <input type="text" name="user_nickname" placeholder="닉네임"
+											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
+											value=""
+										> <br> <br> <input type="text" name="user_id" id="user_id" placeholder="아이디"
+											class="form-control" required="required" style="width: 70%; background-color: #fafafa"
 										>
 
 										<button type="button" class="btn btn-default"
@@ -373,39 +368,26 @@
 
 										<div id="check_result"></div>
 
-										<br>
-										<br>
-										<input type="password" name="user_pw" id="user_pw1" placeholder="비밀번호"
-											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
-										>
-										<br>
-										<br>
-										<input type="password" name="user_pw2" id="user_pw2" placeholder="비밀번호확인"
-											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
+										<br> <br> <input type="password" name="user_pw" id="user_pw1"
+											placeholder="비밀번호" class="form-control" required="required"
+											style="width: 300px; background-color: #fafafa"
+										> <br> <br> <input type="password" name="user_pw2" id="user_pw2"
+											placeholder="비밀번호확인" class="form-control" required="required"
+											style="width: 300px; background-color: #fafafa"
 										>
 										<div id="pw_check"></div>
 
 
-										<br>
-										<br>
-										<input type="text" name="user_hp" placeholder="휴대번호" class="form-control"
-											required="required" style="width: 300px; background-color: #fafafa" value=""
-										>
-
-										<br>
-										<br>
-										<input type="text" name="user_addr" placeholder="주소" class="form-control"
-											required="required" style="width: 300px; background-color: #fafafa" value=""
-										>
-
-										<br>
-										<br>
-										<input type="text" name="user_email" placeholder="이메일" class="form-control"
-											required="required" style="width: 300px; background-color: #fafafa" value=""
-										>
-
-										<br>
-										<br>
+										<br> <br> <input type="text" name="user_hp" placeholder="휴대번호"
+											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
+											value=""
+										> <br> <br> <input type="text" name="user_addr" placeholder="주소"
+											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
+											value=""
+										> <br> <br> <input type="text" name="user_email" placeholder="이메일"
+											class="form-control" required="required" style="width: 300px; background-color: #fafafa"
+											value=""
+										> <br> <br>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
 												<button type="button" class="btn btn-default" style="width: 180px;" id="gaip">회원가입</button>

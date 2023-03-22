@@ -25,22 +25,22 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
   <script type="text/javascript">
-	  
-	//비밀번호 확인
-	//비밀번호 다를때 액션 호출 안되게 해야 함 form에서 onsubmit="return passcheck(this)"
-	function passcheck(f){
-		
-		if(f.user_pw.value!=f.user_pw2.value){
-			alert("비밀번호가 서로 다릅니다");
-			
-			//입력 창들 다시 공란으로 해주고(비밀번호 확인 칸을 빈칸으로 만들어줌)
-			f.user_pw2.value="";
-			
-			return false; //비밀번호,비밀번호 확인이 다를 경우 action이 호출되지 않게
-			
-		}
-		
-	}
+     
+   //비밀번호 확인
+   //비밀번호 다를때 액션 호출 안되게 해야 함 form에서 onsubmit="return passcheck(this)"
+   function passcheck(f){
+      
+      if(f.user_pw.value!=f.user_pw2.value){
+         alert("비밀번호가 서로 다릅니다");
+         
+         //입력 창들 다시 공란으로 해주고(비밀번호 확인 칸을 빈칸으로 만들어줌)
+         f.user_pw2.value="";
+         
+         return false; //비밀번호,비밀번호 확인이 다를 경우 action이 호출되지 않게
+         
+      }
+      
+   }
  
   </script>
 </head>
@@ -129,8 +129,8 @@ UserDto dto=dao.getData(user_num);
             </tr>
             
             <tr>
-            	<td colspan="2" style="text-align: center;">
-            		<div class="form-group">
+               <td colspan="2" style="text-align: center;">
+                  <div class="form-group">
             <br><br><br>
 
 
@@ -145,7 +145,7 @@ UserDto dto=dao.getData(user_num);
             </div>
 
          </div>
-            	</td>
+               </td>
             </tr>
           
             

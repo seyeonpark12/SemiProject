@@ -295,6 +295,8 @@ public class UserDao {
          if(rs.next()) {
             b=true;
             
+         } else {
+        	 b=false;
          }
          
       } catch (SQLException e) {
