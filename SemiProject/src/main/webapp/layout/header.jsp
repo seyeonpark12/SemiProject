@@ -50,47 +50,67 @@
          $("#myModal2").modal();
       });
 
-      //회원가입 액션으로 넘겨주기
-      $("#gaip").click(function() {
+      
+      //로그인처리
+      var loginform = document.getElementById('loginfrm');
 
-         var gaipdata = $("#gaipfrm").serialize();
-         //alert(formdata);
+      loginform.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var logindata = $("#loginfrm").serialize();
+        
+   
+            $.ajax({
 
-         $.ajax({
+                 type : "get",
+                 dataType : "html",
+                 url : "login/loginaction.jsp",
+                 data : logindata,
+                 success : function() {
 
-            type : "get",
-            dataType : "html",
-            url : "user/user_addaction.jsp",
-            data : gaipdata,
-            success : function() {
+                    location.reload();
 
-               location.reload();
-               //$("#myModal").modal();
+                 }
+              });
+        
+      });
+      
+      
+      
+      //회원가입처리
+      var gaipform = document.getElementById('gaipfrm');
 
-            }
-         });
+      gaipform.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var gaipdata = $("#gaipfrm").serialize();
+        //alert(gaipdata);
+        var result=$("#check_result").text();
+        
+        var a=result=="사용가능한 아이디입니다😊";
+        if(a){
+           
+           $.ajax({
+
+                type : "get",
+                dataType : "html",
+                url : "user/user_addaction.jsp",
+                data : gaipdata,
+                success : function() {
+
+                   alert("🎉회원가입을 축하합니다🎉");
+                   location.reload();
+                   //$("#myModal").modal();
+
+                }
+             });
+        }else{
+           
+           alert("중복확인을 해주세요");
+        }
+        
       });
 
-      //로그인 액션으로 넘겨주기
-      $("#login").click(function() {
-
-         var logindata = $("#loginfrm").serialize();
-         //alert(logindata);
-
-         $.ajax({
-
-            type : "get",
-            dataType : "html",
-            url : "login/loginaction.jsp",
-            data : logindata,
-            success : function() {
-
-               location.reload();
-
-            }
-         });
-
-      });
 
       //idsearch 불러오기
       $("#search_id")
@@ -154,7 +174,7 @@
                   $("#user_id").focus();
 
                } else {
-                  $("#check_result").html('사용가능한 아이디입니다.');
+                  $("#check_result").html('사용가능한 아이디입니다😊');
                   $('#check_result').css({
                      "color" : "green"
                   });
@@ -295,7 +315,7 @@
 
                               <br>
                               <br>
-                              <input type="password" name="user_pw" id="user_pw" placeholder="PASSWORD"
+                              <input type="password" name="user_pw" placeholder="PASSWORD"
                                  class="form-control" required="required" style="width: 300px; background-color: #fafafa"
                               >
                               <br>
@@ -315,7 +335,7 @@
 
                               <div class="form-group">
                                  <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" id="login" style="width: 180px;">로그인</button>
+                                    <button type="submit" class="btn btn-default" id="login" style="width: 180px;">로그인</button>
                                  </div>
                               </div>
 
@@ -408,7 +428,7 @@
                               <br>
                               <div class="form-group">
                                  <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" style="width: 180px;" id="gaip">회원가입</button>
+                                    <button type="submit" class="btn btn-default" style="width: 180px;" id="gaip">회원가입</button>
                                  </div>
                               </div>
 

@@ -79,7 +79,7 @@ margin-bottom: 100px;
       <form action="movie/movie_updateaction.jsp" method="post"
          enctype="multipart/form-data">
          <input type="hidden" name="movie_num" value="<%=movie_num%>">
-         <%-- <input type="hidden" name="before_poster" value="<%=dto.getMovie_poster()%>"> --%>
+         <input type="hidden" name="before_poster" value="<%=dto.getMovie_poster()%>"> 
 
          <table style="width: 1000px;">
             <caption>
