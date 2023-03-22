@@ -139,6 +139,7 @@
                               }
                            });
                   })
+
    });
 
    //이미지미리보기
@@ -408,17 +409,18 @@ no = totalCount - (currentPage_review - 1) * perPage;
             }
             %>
             <%
-            if (pdao.isCheck(user_num, movie_num) == false) {
+            if (pdao.isCheck(user_num, movie_num) == false && !myid.equals("admin")) {
             %>
             <td><b id="movie_pickadd" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b></td>
+            <td><b data-toggle="modal" data-target="#modal" class="mv_content_es" id="review_add">리뷰하기</b></td>
             <%
-            } else {
+            } else if (pdao.isCheck(user_num, movie_num) == true && !myid.equals("admin")) {
             %>
             <td><b id="movie_pickdel" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">NOT PICK</b></td>
+            <td><b data-toggle="modal" data-target="#modal" class="mv_content_es" id="review_add">리뷰하기</b></td>
             <%
             }
             %>
-            <td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
             <%
             }
             %>
@@ -443,7 +445,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 
          <h3>리뷰</h3>
          <div style="width: 1000px; margin-left: 1px;" id="movie_content">
-            <table style="width: 1000px; height: 200px;">
+            <table style="width: 1000px; height: 200px; ">
                <tr>
                   <th width="80" height="50" class="myinfo" style="text-align: center;">번호</th>
                   <th width="400" class="myinfo" style="text-align: center;">내용</th>
@@ -477,7 +479,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
                   <td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(rdto.getReview_score())%></td>
                   <td width="300" style="text-align: center;"><%=sdf.format(rdto.getReview_writeday())%></td>
                   <%
-                  if (loginok != null && rdto.getUser_num().equals(user_num) ||loginok != null && myid.equals("admin")) {
+                  if (loginok != null && rdto.getUser_num().equals(user_num) || loginok != null && myid.equals("admin")) {
                   %>
                   <td width="200" align="center"><button class="review_del" review_num=<%=rdto.getReview_num()%>>삭제</button></td>
                   <%

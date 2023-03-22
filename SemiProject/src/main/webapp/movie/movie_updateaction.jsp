@@ -53,8 +53,6 @@
 		String movie_content=multi.getParameter("movie_content");
 		String movie_poster=multi.getFilesystemName("movie_poster");
 		
-   
-      
       //dto저장
    		MovieDto dto=new MovieDto();
       	dto.setMovie_num(movie_num);
@@ -67,8 +65,7 @@
       	dto.setMovie_actor(movie_actor);
       	dto.setMovie_content(movie_content);
       	dto.setMovie_poster(movie_poster);
-      	
-      	
+      	  	
       	MovieDao dao=new MovieDao();
       	dao.updateMovie(dto);
 

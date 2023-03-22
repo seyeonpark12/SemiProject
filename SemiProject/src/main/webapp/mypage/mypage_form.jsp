@@ -38,10 +38,59 @@
 	
 	li{
 		float: left; 
+		
+	}
+	
+	#zzim:hover{
+	font-size:40px;
 	}
 </style>
 
+	<script type="text/javascript">
+	
 
+	
+	$(function(){
+
+		//일반 회원이 회원 탈퇴
+	    $("#userdelete").click(function () {
+	        
+	        var user_num=$(this).attr("user_num");
+	        var a=confirm("탈퇴하시겠습니까?");
+	        //alert(a);
+	        
+	         if(a){
+	           location.href="user/userdelete.jsp?user_num="+user_num;
+	        }
+	        
+	     });
+		
+ 		// pick 제거
+		$("#zzim").click(function() {
+			   var movie_num = $(this).attr("movie_num");
+			   var user_num = $(this).attr("user_num");
+			
+			   //alert(movie_num+"번 영화, "+user_num+"번 유저");
+			   $.ajax({
+			      type : "get",
+			      dataType : "html",
+			      url : "review/pick_delete.jsp",
+			      data : {
+			         "movie_num" : movie_num,
+			         "user_num" : user_num
+			      },
+			      success : function() {
+			         alert("pick이 해제되었습니다")
+			         location.reload();
+			      }
+			
+			   });
+			});		
+	});
+	
+	
+	</script>
+	
 </head>
 	<%
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
@@ -82,89 +131,98 @@
 	%>
 <body>
 	<div class="myinfo_div">
-		<table style="width: 700px;">
-			<h3>회원정보</h3>
-			<a class="editbtn"
-				href='index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num %>'>EDIT</a>
-			<input type="hidden" name="user_num" value="<%=user_num%>">
+	<table style="width: 700px;">
+         <caption>
 
-		<%
-      	for(UserDto dto:list){
+            <div style="width:100%; float: left;">
+               <h3 style="float: left;">회원정보</h3>
+               <div style="margin-top:30px;">
+               <input type="hidden" name="user_num" value="<%=user_num%>">
+               <a class="editbtn" style="float: left; margin-left: 480px;"
+                  href='index.jsp?main=mypage/mypage_myinfoupdate.jsp?user_num=<%=user_num %>'>EDIT</a>
+               <a class="editbtn" id="userdelete" style="float:left; margin-left:5px; border:1px solid red; color:red;"user_num=<%=user_num %>>DELETE</a>
+               </div>
+            </div>
+         </caption>
+         <%
+         for(UserDto dto:list){
          
          if(loginok!=null){
             
             if(dto.getUser_id().equals(myid)){%>
 
-			<tr>
-				<th class="myinfo" width="200">이름</th>
-				<td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto.getUser_name() %></td>
-			</tr>
-			<tr>
-				<th class="myinfo">닉네임</th>
-				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_nickname() %></td>
-			</tr>
+         <tr>
+            <th class="myinfo" width="200">이름</th>
+            <td class="myinfo" width="500">&nbsp;&nbsp;&nbsp;<%=dto.getUser_name() %></td>
+         </tr>
+         <tr>
+            <th class="myinfo">닉네임</th>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_nickname() %></td>
+         </tr>
 
-			<tr>
-				<th class="myinfo">아이디</th>
-				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_id() %></td>
-			</tr>
+         <tr>
+            <th class="myinfo">아이디</th>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_id() %></td>
+         </tr>
 
-			<tr>
-				<th class="myinfo" width="100">비밀번호</th>
-				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_pw() %></td>
-			</tr>
+         <tr>
+            <th class="myinfo" width="100">비밀번호</th>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_pw() %></td>
+         </tr>
 
-			<tr>
-				<th class="myinfo">핸드폰번호</th>
-				<td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_hp() %></td>
-			</tr>
+         <tr>
+            <th class="myinfo">핸드폰번호</th>
+            <td class="myinfo">&nbsp;&nbsp;&nbsp;<%=dto.getUser_hp() %></td>
+         </tr>
 
-			<tr>
-				<th class="myinfo" width="100">주소</th>
-				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_addr() %></td>
-			</tr>
+         <tr>
+            <th class="myinfo" width="100">주소</th>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_addr() %></td>
+         </tr>
 
-			<tr>
-				<th class="myinfo" width="100">이메일</th>
-				<td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_email() %></td>
-			</tr>
-			<%}
+         <tr>
+            <th class="myinfo" width="100">이메일</th>
+            <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_email() %></td>
+         </tr>
+         <%}
          }
       }
       %>
-		</table>
+      </table>
+
 
 		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp?user_num=<%=user_num %>'>+MORE</a>
 		<%
 		int myPickCount=pdao.myPickCount(user_num);
 		%>
 		<h3 style="margin-bottom: 30px;">MYPICK <%=myPickCount %></h3>
-		<div id="moviewrap_pick">
+		<div id="moviewrap_pick" style="width: 1000px; height: 400px; padding-left: 20px; margin-bottom:-50px;">
 		<%
 		if(myPickCount==0){%>
 			
 			<h3>Pick 영화가 없습니다</h3>
-
+			 
 			<%} else {
 				
 				for (PickDto pdto : mypicklist) {
 					String movie_poster=pdao.getMoviePoster(pdto.getMovie_num());
 					String movie_subject=pdao.getMovieSubJect(pdto.getMovie_num());
 				%>			
-					<div class="pick">
+					<div class="pick" style="position: relative;">
 						<ul>
 							<li>					
 							<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=pdto.getMovie_num()%>"><img src="movie_save/<%=movie_poster %>">
-							</a>
-							<h3><%=movie_subject %></h3>
+							</a>	
+							<span class="glyphicon glyphicon-heart" id="zzim" movie_num="<%=pdto.getMovie_num()%>" user_num="<%=pdto.getUser_num() %>" style="position:absolute; z-index: 1; right: 0; cursor: pointer;"></span>
 							</li>
 						</ul>
+							<h3><%=movie_subject %></h3>
 					</div>					
 					<%}			
 			}
 			%>
-		</div>
-				
+			</div>
+					
 		<!-- 영화!!!!!! 내가 쓴 리뷰!!!!!!!!!!  -->
 		<a class="morebtn"
 			href='index.jsp?main=mypage/login_mypage_myreview.jsp?user_num=<%=user_num %>'>+MORE</a>
