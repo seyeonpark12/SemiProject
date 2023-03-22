@@ -32,6 +32,8 @@
       session.setAttribute("loginok", "yes");
       session.setAttribute("myid", user_id);
       session.setAttribute("saveid", saveid==null?null:"yes");
+      session.setAttribute("saveok", user_id);
+      
    }
  %>
 </body>

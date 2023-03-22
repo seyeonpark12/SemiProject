@@ -31,37 +31,44 @@
          $(".checkdelete").prop("checked", admincheck);
       });
 
-      $("#admindelete")
-            .click(
-                  function() {
+      $("#admindelete").click(function() {
 
-                     var len = $(".checkdelete:checked").length; //체크 된 수(길이)를 len
+         var len = $(".checkdelete:checked").length; //체크 된 수(길이)를 len
 
-                     if (len == 0) {
-                        alert("한 개 이상의 글을 선택해 주세요");
-                     } else {
+         if (len == 0) {
+            alert("한 명 이상의 회원을 선택해 주세요");
+         } else {
 
-                        var a = confirm(len + "개의 글을 삭제하시겠습니까?");
+            var a = confirm(len + "명의 회원을 삭제하시겠습니까?");
 
-                        //체크된 글의 value를 commu_n 
-                        var user_n = "";
+            //체크된 글의 value를 commu_n 
+            var user_n = "";
 
-                        $(".checkdelete:checked").each(function(idx) {
+            $(".checkdelete:checked").each(function(idx) {
 
-                           user_n += $(this).val() + ",";
+               user_n += $(this).val() + ",";
 
-                        });
+            });
 
-                        user_n = user_n.substring(0, user_n.length - 1);
+            user_n = user_n.substring(0, user_n.length - 1);
 
-                        if (a == 1) {
-                           //삭제파일로 전송
-                           location.href = "mypage/admin_admincheckdelete.jsp?nums="
-                                 + user_n; //nums는 값이 누적되고 마지막 컴마가 제거된 commu_n
-                        }
+            if (a == 1) {
+               $.ajax({
+                  type : "get",
+                  dataType : "html",
+                  url : "mypage/admin_admincheckdelete.jsp",
+                  data : {
+                     "user_n" : user_n
+                  },
+                  success : function() {
+                     location.reload();
+                  }
 
-                     }
-                  });
+               });
+            }
+
+         }
+      });
 
    });
 </script>

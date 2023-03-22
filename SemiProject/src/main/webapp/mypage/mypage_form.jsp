@@ -1,3 +1,5 @@
+<%@page import="data.dto.PickDto"%>
+<%@page import="data.dao.PickDao"%>
 <%@page import="data.dto.ReviewDto"%>
 <%@page import="data.dao.ReviewDao"%>
 <%@page import="data.dto.MentDto"%>
@@ -26,6 +28,19 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
+<style type="text/css">
+	ul{
+		list-style: none;
+  
+		display: flex; 
+	}
+	
+	li{
+		float: left; 
+	}
+</style>
+
 
 </head>
 	<%
@@ -59,6 +74,11 @@
 	//리뷰리스트
 	List<ReviewDto> myreviewlist=rdao.getMyReview(user_num, 0, 4);
 	
+	//pick dao,dto
+	PickDao pdao=new PickDao();
+	String pick_num=request.getParameter("pick_num");
+	//pick 리스트 
+	List<PickDto> mypicklist=pdao.getMyPickList(user_num, 0, 4);
 	%>
 <body>
 	<div class="myinfo_div">
@@ -114,13 +134,35 @@
       %>
 		</table>
 
-		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp'>+MORE</a>
-		<h3 style="margin-bottom: 30px;">MYPICK</h3>
+		<a class="morebtn" href='index.jsp?main=mypage/login_mypickpage.jsp?user_num=<%=user_num %>'>+MORE</a>
+		<%
+		int myPickCount=pdao.myPickCount(user_num);
+		%>
+		<h3 style="margin-bottom: 30px;">MYPICK <%=myPickCount %></h3>
 		<div id="moviewrap_pick">
-			<div class="pick">
-				<span class="glyphicon glyphicon-heart" id="zzim"></span>
-			</div>
-			<!-- 최대 4개까지만 보이게 하기.. -->
+		<%
+		if(myPickCount==0){%>
+			
+			<h3>Pick 영화가 없습니다</h3>
+
+			<%} else {
+				
+				for (PickDto pdto : mypicklist) {
+					String movie_poster=pdao.getMoviePoster(pdto.getMovie_num());
+					String movie_subject=pdao.getMovieSubJect(pdto.getMovie_num());
+				%>			
+					<div class="pick">
+						<ul>
+							<li>					
+							<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=pdto.getMovie_num()%>"><img src="movie_save/<%=movie_poster %>">
+							</a>
+							<h3><%=movie_subject %></h3>
+							</li>
+						</ul>
+					</div>					
+					<%}			
+			}
+			%>
 		</div>
 				
 		<!-- 영화!!!!!! 내가 쓴 리뷰!!!!!!!!!!  -->
@@ -139,7 +181,7 @@
 				<th width="200" class="myinfo">영화제목</th>
 				<th width="50" class="myinfo">별점</th>
 				<th width="550" class="myinfo">리뷰</th>
-				<th width="200" class="myinfo">날짜</th>
+				<th width="200" class="myinfo">작성일</th>
 			</tr>
 			
 			<%
@@ -254,8 +296,7 @@
 			<%}else{
 				
 				for(MentDto mdto:mymentlist){%>
-					<tr>		
-							
+					<tr>	
 							<td align="center" class="myinfo">
 							<%
 							String category=mdao.getCategory(mdto.getCommu_num());
