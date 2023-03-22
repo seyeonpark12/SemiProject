@@ -155,7 +155,10 @@
 						</td>
 						
 						<td align="center" class="myinfo">
-						<span>엉엉카테고리어캐해</span>
+						<%
+						String category=mdao.getCategory(mdto.getCommu_num());
+						%>
+						<span><%=category %></span>
 						</td>
 					
 						<td align="center" class="myinfo">						
@@ -188,7 +191,7 @@
       if(startPage>1){
          %>
 			<li><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=startPage-1 %>">이전</a>
+				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=startPage-1 %>&user_num=<%=user_num%>">이전</a>
 			</li>
 			<%}
          
@@ -198,12 +201,12 @@
          if(pp==currentPage){
             %>
 			<li class="active"><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp %>"><%=pp %></a>
+				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp %>&user_num=<%=user_num%>"><%=pp %></a>
 			</li>
 			<% } else{
             %>
 			<li><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp %>"><%=pp %></a>
+				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp %>&user_num=<%=user_num%>"><%=pp %></a>
 			</li>
 			<%}
             
@@ -213,7 +216,7 @@
       if(endPage<totalPage){
          %>
 			<li><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=endPage+1 %>">다음</a>
+				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=endPage+1 %>&user_num=<%=user_num%>">다음</a>
 			</li>
 			<%}
       %>

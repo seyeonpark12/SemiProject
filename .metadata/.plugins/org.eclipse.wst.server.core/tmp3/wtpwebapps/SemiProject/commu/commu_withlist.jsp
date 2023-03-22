@@ -23,9 +23,47 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
 <style type="text/css">
 td.myinfo {
 	text-align: center;
+}
+.nav>li>a, .nav>li>a {
+	text-decoration: none;
+	color: #653491;;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+	color: #fff;
+	background-color: #CBB6D9;
+	border: 0px solid;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
 }
 </style>
 
@@ -72,7 +110,7 @@ start = (currentPage - 1) * perPage;
 //카테고리별 리스트
 List<CommuDto> list = dao.getCategoryList(commu_category, start, perPage);
 
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
 //스마트게시판 댓글에 관한 Dao처리
 MentDao mdao = new MentDao();
@@ -235,18 +273,15 @@ for (CommuDto dto : list) {
 					%> <a
 					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
 					style="float: left; color: red;">[<%=dto.getAnswerCount()%>]
-				</a> <%
- }
-
- SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy.MM.dd");
- String inpuDate = sdf2.format(dto.getCommu_writeday());
- String now = sdf2.format(new java.util.Date());
-
- if (inpuDate.equals(now)) {
- %> <img
-					style="float: left; width: 15px;" src="commu/new_img/newimg.png">
-					<%
-					}
+				</a> <%}
+					
+	   				//오늘 올라온 글이면 N icon
+     				String inpuDate=sdf.format(dto.getCommu_writeday());
+     				String now = sdf.format(new java.util.Date());
+ 
+     				if(inpuDate.equals(now)){%> 
+     				<img style="float: left; width: 15px;" src="commu/new_img/newimg.png">
+					<%}   
 					%></td>
 
 				<%

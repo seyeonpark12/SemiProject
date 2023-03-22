@@ -1,43 +1,0 @@
-
-c	Web:S1827·"/Remove this deprecated "frameborder" attribute.(•œï²8Š½­ñï0H­RMAJORZ
-CODE_SMELL
-[	Web:S1827ö")Remove this deprecated "width" attribute.(şÔÿşÿÿÿÿHû¬RMAJORZ
-CODE_SMELL
-b	Web:S1827Ø")Remove this deprecated "align" attribute.(«Â§úûÿÿÿÿ8šë‰Œğ0Hˆ­RMAJORZ
-CODE_SMELL
-]	Web:S1827¾"*Remove this deprecated "height" attribute.(€Ã
-8«¤øğ0HŠ­RMAJORZ
-CODE_SMELL
-[	Web:S1827ú")Remove this deprecated "width" attribute.(õ´³ÚüÿÿÿÿHƒ­RMAJORZ
-CODE_SMELL
-P	Web:S5256ô"%Add "<th>" headers to this "<table>".(î¥ğøÿÿÿÿH‡­RMAJORZBUG
-]	Web:S1827Â")Remove this deprecated "width" attribute.(‚®‹ë8šë‰Œğ0H„­RMAJORZ
-CODE_SMELL
-eWeb:TableWithoutCaptionCheck¼" Add a description to this table.(ãåè¡ùÿÿÿÿ8Š½­ñï0Hı¬RMINORZBUG
-]	Web:S1827Ú")Remove this deprecated "align" attribute.(¹äüú8Š½­ñï0H­RMAJORZ
-CODE_SMELL
-b	Web:S1827Ü")Remove this deprecated "width" attribute.(š ™ øÿÿÿÿ8Š½­ñï0H­RMAJORZ
-CODE_SMELL
-b	Web:S1827Ê")Remove this deprecated "align" attribute.(§¹²úÿÿÿÿ8Š½­ñï0H‘­RMAJORZ
-CODE_SMELL
-]	Web:S1827Ã")Remove this deprecated "width" attribute.(ÈÖÍî8Ü»†ğ0H‚­RMAJORZ
-CODE_SMELL
-]	Web:S1827¿")Remove this deprecated "width" attribute.(·ãóÛ8Š½­ñï0H…­RMAJORZ
-CODE_SMELL
-]	Web:S1827À")Remove this deprecated "width" attribute.(—¦Œë8Š½­ñï0H†­RMAJORZ
-CODE_SMELL
-b	Web:S1827à")Remove this deprecated "width" attribute.(ìƒê‡ıÿÿÿÿ8Øº„ğ0HŒ­RMAJORZ
-CODE_SMELL
-]Web:ImgWithoutAltCheck÷"%Add an "alt" attribute to this image.(“–£üøÿÿÿÿHü¬RMINORZBUG
-b	Web:S1827à")Remove this deprecated "align" attribute.(ìƒê‡ıÿÿÿÿ8§´Ùğ0H‹­RMAJORZ
-CODE_SMELL
-_Web:FieldsetWithoutLegendCheckÛ"$Add a <legend> tag to this fieldset.(¨ÏçñH€­RMINORZBUG
-^Web:TableWithoutCaptionCheckô" Add a description to this table.(î¥ğøÿÿÿÿH­RMINORZBUG
-j	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷ÃûÿÿÿÿH‰­RMAJORZBUG
-\	Web:S1827¾")Remove this deprecated "width" attribute.(€Ã
-8Š½­ñï0Hş¬RMAJORZ
-CODE_SMELL
-]	Web:S1827Û")Remove this deprecated "width" attribute.(˜¬½ê8Š½­ñï0H­RMAJORZ
-CODE_SMELL
-\	Web:S1827Á")Remove this deprecated "width" attribute.(Ùãæ(8šë‰Œğ0Hÿ¬RMAJORZ
-CODE_SMELL
