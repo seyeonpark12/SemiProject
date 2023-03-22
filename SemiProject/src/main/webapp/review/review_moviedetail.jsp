@@ -7,7 +7,8 @@
 <%@page import="data.dto.ReviewDto"%>
 <%@page import="data.dto.MovieDto"%>
 <%@page import="data.dao.MovieDao"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+   pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,15 +16,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WPICK</title>
 <link rel="favicon" href="../layout_image/titlelogo.ico">
-<link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="shortcut icon" type="../layoutimage/x-icon"
+   href="../layout_image/titlelogo.ico">
+<link
+   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
+   rel="stylesheet">
 
 <link href="css/info.css" type="text/css" rel="stylesheet">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
    $(function() {
       $("span.camera").click(function() {
@@ -139,6 +146,7 @@
                               }
                            });
                   })
+
    });
 
    //이미지미리보기
@@ -251,6 +259,41 @@ td {
    font-size: 16px;
    resize: none;
 }
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+   .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+   {
+   z-index: 3;
+   color: #fff;
+   cursor: default;
+   background-color: #CBB6D9;
+   border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+   {
+   z-index: 2;
+   color: #CBB6D9;
+   background-color: #fff;
+   border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+   .pagination>li>span:hover {
+   z-index: 2;
+   color: #fff;
+   background-color: #ECE6FF;
+   border: 0px solid;
+}
+
+.posterimg {
+   display: inline-block;
+   width: 100%;
+   height: 370px;
+   overflow: hidden;
+   object-fit: cover;
+   border-radius: 5px;
+}
 </style>
 
 </head>
@@ -324,11 +367,11 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 no = totalCount - (currentPage_review - 1) * perPage;
 %>
 <body>
-   <div style="margin-top: 100px; padding: 0;">
-      <input type="hidden" id="movie_num" value="<%=movie_num%>">
-      <input type="hidden" id="myid" value="<%=myid%>">
-      <input type="hidden" id="user_num" value="<%=user_num%>">
-      <input type="hidden" id="user_nickname" value="<%=user_nickname%>">
+   <div style="padding: 0; margin-top: 100px;">
+      <input type="hidden" id="movie_num" value="<%=movie_num%>"> <input
+         type="hidden" id="myid" value="<%=myid%>"> <input
+         type="hidden" id="user_num" value="<%=user_num%>"> <input
+         type="hidden" id="user_nickname" value="<%=user_nickname%>">
 
       <!-- Modal -->
       <div class="review_modal modal fade" id="modal" role="dialog">
@@ -338,10 +381,10 @@ no = totalCount - (currentPage_review - 1) * perPage;
             <div class="review_modal modal-content" style="margin-top: 170px;">
                <div class="review_modal modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <img alt="" src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" width="200">
+                  <img alt="" src="movie_save/<%=poster%>"
+                     movie_num="<%=movie_num%>" width="200">
                   <div style="text-align: center; font-size: 20pt">
-                     <b style="font-size: 15pt;">
-                        &nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject()%></b>
+                     <b style="font-size: 15pt;"> &nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject()%></b>
                   </div>
                </div>
                <div class="review_modal modal-score">
@@ -349,108 +392,158 @@ no = totalCount - (currentPage_review - 1) * perPage;
                   <form class="mb-3" name="myform" id="myform" method="post">
                      <fieldset>
                         <input type="radio" name="review_Star" value="5" id="rate1">
-                        <label for="rate1">★</label>
-                        <input type="radio" name="review_Star" value="4" id="rate2">
-                        <label for="rate2">★</label>
-                        <input type="radio" name="review_Star" value="3" id="rate3">
-                        <label for="rate3">★</label>
-                        <input type="radio" name="review_Star" value="2" id="rate4">
-                        <label for="rate4">★</label>
-                        <input type="radio" name="review_Star" value="1" id="rate5">
-                        <label for="rate5">★</label>
+                        <label for="rate1">★</label> <input type="radio"
+                           name="review_Star" value="4" id="rate2"> <label
+                           for="rate2">★</label> <input type="radio" name="review_Star"
+                           value="3" id="rate3"> <label for="rate3">★</label> <input
+                           type="radio" name="review_Star" value="2" id="rate4"> <label
+                           for="rate4">★</label> <input type="radio" name="review_Star"
+                           value="1" id="rate5"> <label for="rate5">★</label>
                      </fieldset>
                      <div>
-                        <textarea class="col-auto form-control" id="review_contents" placeholder="욕설과 비방을 작성 시 제재를 당할 수 있습니다." required="required"></textarea>
+                        <textarea class="col-auto form-control" id="review_contents"
+                           placeholder="욕설과 비방을 작성 시 제재를 당할 수 있습니다." required="required"></textarea>
                      </div>
                   </form>
                </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" id="review_save">저장하기</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal"
+                     id="review_save">저장하기</button>
                </div>
             </div>
          </div>
       </div>
       <!-- Modal 끝-->
-
-      <table style="width: 1000px;">
-         <tr height="100">
-            <td rowspan="3" width="300">
-               <!-- 영화이미지 보이는 이미지 --> <img src="movie_save/<%=poster%>" movie_num="<%=movie_num%>" id="movie_poster" style="max-width: 200px;">
+      <table style="width: 1000px; height: 300px;">
+         <tr>
+            <td rowspan="3" width="30%">
+               <!-- 영화이미지 보이는 이미지 --> <a
+               style="display: inline-block; width: 100%; height: 400px; margin: 2px; padding: 10px; overflow: hidden;">
+                  <img src="movie_save/<%=poster%>" movie_num="<%=movie_num%>"
+                  id="movie_poster" class="posterimg">
+            </a>
             </td>
 
-            <td width="600"><b class="mv_subject"><%=mdto.getMovie_subject()%></b></td>
+            <td colspan="4" width="70%" height="70%"
+               style="padding: 200px 0 0 30px;"><b class="mv_subject"><%=mdto.getMovie_subject()%></b></td>
          </tr>
 
          <tr>
-            <td><b class="mv_content_year"><%=mdto.getMovie_year()%>
-                  |
-                  <%=mdto.getMovie_genre()%>
-                  |
-                  <%=mdto.getMovie_nara()%></b></td>
+            <td colspan="4" style="padding: 0 30px;"><b
+               class="mv_content_year" style="color: gray; font-weight: 400;"><%=mdto.getMovie_year()%>
+                  | <%=mdto.getMovie_genre()%> | <%=mdto.getMovie_nara()%></b></td>
          </tr>
 
          <tr>
-            <td><b class="mv_content" style="color: orange;">
-                  ★
-                  <%=review_avgscore%></b></td>
-            <%
-            if (loginok != null) {
-            %>
-            <%
-            if (myid.equals("admin")) {
-            %>
-
-            <td>
-               <button type="button" onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
-               <button type="button" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
-            </td>
-            <%
-            }
-            %>
-            <%
-            if (pdao.isCheck(user_num, movie_num) == false) {
-            %>
-            <td><b id="movie_pickadd" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">PICK</b></td>
-            <%
-            } else {
-            %>
-            <td><b id="movie_pickdel" movie_num="<%=movie_num%>" class="mv_content" style="margin-left: -100px; cursor: pointer;">NOT PICK</b></td>
-            <%
-            }
-            %>
-            <td><b data-toggle="modal" data-target="#modal" class="mv_content_es">리뷰하기</b></td>
-            <%
-            }
-            %>
+            <td colspan="4" style="padding: 30px; width: 100%"><b
+               class="mv_content_year" style="color: orange; font-size: 20px;">
+                  ★ <%=review_avgscore%></b></td>
          </tr>
       </table>
+      <%
+      if (loginok != null) {
+      %>
+      <%
+      if (myid.equals("admin")) {
+      %>
+      <div style="float: left; margin-top: -20px;">
+         <button type="button" class="btn btn-default btn-sm"
+            style="margin-left: 1050px; border: 1px solid #CBB6D9; color: #CBB6D9; float: left;"
+            onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
+         <button type="button" class="btn btn-default btn-sm"
+            style="border: 1px solid #a02982; color: #a02982; float: left; margin-left: 5px;"
+            id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
+      </div>
+      <%
+      }
+      %>
+      <%
+      if (pdao.isCheck(user_num, movie_num) == false && !myid.equals("admin")) {
+      %>
+      <div style="float: right; margin-top: -180px; margin-right: 300px;">
+         <b id="movie_pickadd" movie_num="<%=movie_num%>"
+            class="mv_content_es"
+            style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;">PICK
+            <font style="margin-left: 5px; color: red; font-size: 18px;">♡</font>
+         </b> <b data-toggle="modal" data-target="#modal" class="mv_content_es"
+            style="font-size: 16px; margin-left: 5px; font-weight: 400;"
+            id="review_add">|&nbsp;&nbsp;리뷰하기<span style="margin-left: 5px;"
+            class="glyphicon glyphicon-pencil"></span></b>
 
+      </div>
+
+      <%
+      } else if (pdao.isCheck(user_num, movie_num) == true && !myid.equals("admin")) {
+      %>
+      <div style="float: right; margin-top: -180px; margin-right: 300px;">
+         <b id="movie_pickdel" movie_num="<%=movie_num%>"
+            class="mv_content_es"
+            style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;">
+            PICK<font style="margin-left: 5px; color: red; font-size: 18px;">♥</font>
+         </b> <b data-toggle="modal" data-target="#modal" class="mv_content_es"
+            style="font-size: 16px; margin-left: 5px; font-weight: 400;"
+            id="review_add">|&nbsp;&nbsp;리뷰하기<span style="margin-left: 5px;"
+            class="glyphicon glyphicon-pencil"></span></b>
+      </div>
+      <%
+      }
+      %>
+      <%
+      }
+      %>
+
+
+      <div style="float: right; margin-top: -20px;">
+         <!-- 목록가기 버튼.. -->
+         <button type="button" class="btn btn-default btn-sm"
+            style="margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;"
+            onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1'">목록</button>
+      </div>
+      <br>
       <hr>
 
-      <div style="width: 1000px; padding: 0;">
-         <h3>기본정보</h3>
-         <div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_content()%></div>
+      <div
+         style="width: 1000px; padding: 20px; border: 1px solid lightgray; border-radius: 30px;">
+         <h3
+            style="padding: 10px 30px 0px 30px; font-size: 18px; font-weight: 700;">기본정보</h3>
+         <div
+            style="width: 100%; margin-bottom: 20px; padding: 30px; font-size: 16px; font-weight: 400; color: gray;"
+            id="movie_content"><%=mdto.getMovie_content()%></div>
+         <hr>
+         <h3
+            style="padding: 10px 30px 0px 30px; font-size: 18px; font-weight: 700;">출연/제작</h3>
+         <div>
+            <div
+               style="width: 100%; padding: 30px 30px 0px 30px; font-size: 16px; font-weight: 400; color: gray;"
+               id="movie_content">
 
-         <h3>출연/제작</h3>
-         <div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content"><%=mdto.getMovie_actor()%>
-            /
-            <%=mdto.getMovie_director()%></div>
-
-         <h3>예고편</h3>
-         <div style="width: 1000px; border: 1px solid gray; margin-left: 1px; padding: 30px;" id="movie_content">
-            <iframe width="900" height="506" src="<%=mdto.getMovie_play()%>" title="<%=mdto.getMovie_subject()%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen> </iframe>
+               감독 |
+               <%=mdto.getMovie_director()%></div>
+            <div
+               style="width: 100%; padding: 15px 30px 30px 30px; font-size: 16px; font-weight: 400; color: gray;"
+               id="movie_content">
+               배우 |
+               <%=mdto.getMovie_actor()%>
+            </div>
          </div>
 
-         <h3>리뷰</h3>
-         <div style="width: 1000px; margin-left: 1px;" id="movie_content">
-            <table style="width: 1000px; height: 200px;">
+         <hr>
+         <div style="width: 100%; padding: 10px 30px;" id="movie_content">
+            <iframe width="900" height="506" src="<%=mdto.getMovie_play()%>"
+               title="<%=mdto.getMovie_subject()%>" frameborder="0"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               allowfullscreen> </iframe>
+         </div>
+         <hr>
+         <h3 style="padding: 30px; font-size: 18px; font-weight: 700;">리뷰</h3>
+         <div style="width: 100%; margin-left: 1px;" id="movie_content">
+            <table style="width: 100%;">
                <tr>
-                  <th width="80" height="50" class="myinfo" style="text-align: center;">번호</th>
-                  <th width="400" class="myinfo" style="text-align: center;">내용</th>
-                  <th width="120" class="myinfo" style="text-align: center;">작성자</th>
-                  <th width="70" class="myinfo" style="text-align: center;">점수</th>
-                  <th width="330" class="myinfo" style="text-align: center;">작성일</th>
-                  <th width="100"></th>
+                  <th width="10%" class="myinfo" style="text-align: center;">번호</th>
+                  <th width="60%" class="myinfo" style="text-align: center;">내용</th>
+                  <th width="10%" class="myinfo" style="text-align: center;">작성자</th>
+                  <th width="10%" class="myinfo" style="text-align: center;">점수</th>
+                  <th width="10%" class="myinfo" style="text-align: center;">작성일</th>
                </tr>
 
                <%
@@ -463,32 +556,24 @@ no = totalCount - (currentPage_review - 1) * perPage;
                </tr>
                <%
                } else {
-               for (ReviewDto rdto : list_movie) {
+               for (ReviewDto dto : list_movie) {
                %>
 
                <%
-               String writer_nickname = udao.getName_num(rdto.getUser_num());
+               String writer_nickname = udao.getName_num(dto.getUser_num());
                %>
 
                <tr>
-                  <td align="center"><%=no--%></td>
-                  <td><%=rdto.getReview_content()%></td>
+                  <td align="center" height="80"><%=no--%></td>
+                  <td align="center"><%=dto.getReview_content()%></td>
                   <td align="center"><%=writer_nickname%></td>
-                  <td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(rdto.getReview_score())%></td>
-                  <td width="300" style="text-align: center;"><%=sdf.format(rdto.getReview_writeday())%></td>
-                  <%
-                  if (loginok != null && rdto.getUser_num().equals(user_num) ||loginok != null && myid.equals("admin")) {
-                  %>
-                  <td width="200" align="center"><button class="review_del" review_num=<%=rdto.getReview_num()%>>삭제</button></td>
-                  <%
-                  }
-                  %>
+                  <td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(dto.getReview_score())%></td>
+                  <td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
                </tr>
                <%
                }
                }
                %>
-
             </table>
          </div>
 
@@ -500,34 +585,32 @@ no = totalCount - (currentPage_review - 1) * perPage;
                //이전
                if (startPage > 1) {
                %>
-               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_reviewe=<%=startPage - 1%>">이전</a></li>
+               <li><a
+                  href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_reviewe=<%=startPage - 1%>">이전</a></li>
                <%
                }
-
                for (int pp = startPage; pp <= endPage; pp++) {
-
                if (pp == currentPage_review) {
                %>
-               <li class="active"><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
+               <li class="active"><a
+                  href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
                <%
                } else {
                %>
-               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
+               <li><a
+                  href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
                <%
                }
-
                }
-
                //다음
                if (endPage < totalPage) {
                %>
-               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=endPage + 1%>">다음</a></li>
+               <li><a
+                  href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=endPage + 1%>">다음</a></li>
                <%
                }
                %>
             </ul>
-
-            <button type="button" class="btn btn-default" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1'">목록</button>
          </div>
 
       </div>

@@ -4,14 +4,12 @@
     pageEncoding="utf-8"%>
 <%
 
-	String user_id=request.getParameter("user_id");
-	UserDao dao=new UserDao();
-	
-	int count=dao.isIdCheck(user_id);
-	
-	JSONObject ob=new JSONObject();
-	ob.put("count", count);
+   String user_id=request.getParameter("user_id");
+   UserDao dao=new UserDao();
+   
+   int count=dao.isIdCheck(user_id);
+   
+   JSONObject ob=new JSONObject();
+   ob.put("count", count);
 %>
-
-
 <%=ob.toString()%>

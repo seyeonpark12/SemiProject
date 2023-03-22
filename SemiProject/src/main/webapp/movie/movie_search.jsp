@@ -76,17 +76,16 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
 %>
 
 <body>
-<div style="margin-left: 200px; margin-top: 50px; width: 500px; height: 150px;">
-	<h3><b style="font-size: 1.5em;"><%=search %>에 대한 검색결과입니다</b></h3>
-</div>
 
-	<%
-		if(totalCount == 0){%>
-			
-			<h3 style="width: 200px; text-align: center"><b>등록된 영화가 없습니다</b></h3>
-		<%}else{%>
-			
-			 <div class="container">
+<b>검색단어: <%=search %></b>
+
+   <%
+      if(totalCount == 0){%>
+         
+         <h3 style="width: 200px; text-align: center"><b>등록된 영화가 없습니다</b></h3>
+      <%}else{%>
+         
+          <div class="container">
       <div class="tab-content" style="padding-top: 40px;">
          <div id="all">
             <div>
@@ -98,7 +97,7 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
                      //이미지
                      String poster = dto.getMovie_poster();
                   %>
-					<% %>
+               <% %>
                   <div style="padding: 10px;">  
                      <a movie_num="<%=dto.getMovie_num()%>"
                         style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
@@ -171,9 +170,9 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
    
    
    </div>
-		<%}
-	%>
-	
+      <%}
+   %>
+   
   
 </body>
 </html>

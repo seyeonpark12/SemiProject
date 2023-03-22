@@ -34,6 +34,7 @@ UserDao udao = new UserDao();
 List<UserDto> list=udao.getAllUsers();
 
 String user_num=request.getParameter("user_num");
+UserDto dto=udao.getData(user_num);
 int no=1;
 //UserDto dto=dao.getData(user_num);
 
@@ -50,18 +51,13 @@ List<UserDto> list2 = udao.getAllAdminUsers(0,4);
 
          <h3>관리자정보</h3>
 
-         <a class="editbtn" href='index.jsp?main=mypage/admin_updateform.jsp'">EDIT</a>
+         <a class="editbtn" href='index.jsp?main=mypage/admin_updateform.jsp?user_num=<%=user_num %>'">EDIT</a>
 
 
          <input type="hidden" name="user_num" value="<%=user_num%>">
 
 
-         <%
-      for(UserDto dto:list){
          
-         if(loginok!=null){
-            
-            if(dto.getUser_id().equals(myid)){%>
 
          <tr>
             <th class="myinfo" width="200">이름</th>
@@ -96,10 +92,7 @@ List<UserDto> list2 = udao.getAllAdminUsers(0,4);
             <th class="myinfo" width="100">이메일</th>
             <td class="myinfo" width="250">&nbsp;&nbsp;&nbsp;<%=dto.getUser_email() %></td>
          </tr>
-         <%}
-         }
-      }
-      %>
+        
       </table>
 
       <a class="morebtn" href='index.jsp?main=mypage/admin_peoplelist.jsp'">+MORE</a>

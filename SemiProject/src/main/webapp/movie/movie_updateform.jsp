@@ -79,7 +79,7 @@ margin-bottom: 100px;
       <form action="movie/movie_updateaction.jsp" method="post"
          enctype="multipart/form-data">
          <input type="hidden" name="movie_num" value="<%=movie_num%>">
-         <%-- <input type="hidden" name="before_poster" value="<%=dto.getMovie_poster()%>"> --%>
+         <input type="hidden" name="before_poster" value="<%=dto.getMovie_poster()%>"> 
 
          <table style="width: 1000px;">
             <caption>
@@ -111,12 +111,12 @@ margin-bottom: 100px;
 
                <td><select name="movie_genre" class="form-control" required="required"
                   style="width: 200px;">
-                     <option value="romance">로맨스</option>
-                     <option value="action">액션</option>
-                     <option value="comedy">코미디</option>
-                     <option value="horror">공포</option>
-                     <option value="animation">애니메이션</option>
-                     <option value="etc">기타</option>
+                     <option value="romance" <%=dto.getMovie_genre().equals("romance")?"selected":""%>>로맨스</option>
+                     <option value="action" <%=dto.getMovie_genre().equals("action")?"selected":""%>>액션</option>
+                     <option value="comedy" <%=dto.getMovie_genre().equals("comedy")?"selected":""%>>코미디</option>
+                     <option value="horror" <%=dto.getMovie_genre().equals("horror")?"selected":""%>>공포</option>
+                     <option value="animation" <%=dto.getMovie_genre().equals("animation")?"selected":""%>>애니메이션</option>
+                     <option value="etc" <%=dto.getMovie_genre().equals("etc")?"selected":""%>>기타</option>
                </select></td>
             </tr>
 
@@ -128,7 +128,7 @@ margin-bottom: 100px;
             </tr>
          </table>
 
-         <div class="write" style="align: center; margin-left: 500px;">
+         <div class="write" style="align: center; margin-left: 300px;">
             <h3>줄거리</h3>
             <br>
             <textarea style="width: 1000px; height: 400px;" name="movie_content" required="required"
@@ -136,7 +136,7 @@ margin-bottom: 100px;
          </div>
 
          <div
-            style="margin-left:500px; width: 1000px; height: 100px; padding: 0;">
+            style="margin-left:300px; width: 1000px; height: 100px; padding: 0;">
             <h3>출연/제작</h3>
             <div style="height: 100px; padding-left: 100px;">
                <b class="mv_content">감독</b> <br> <input type="text"

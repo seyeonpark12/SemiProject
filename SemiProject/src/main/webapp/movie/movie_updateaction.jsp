@@ -26,20 +26,16 @@
    int uploadSize=1024*1024*2; //2메가
    MultipartRequest multi=null;
  	
- 	/* //전 이미지 포스터네임
-	String posterName=request.getParameter("before_poster");
  	
-	File file=new File(realPath+"\\"+posterName);
-	if(file.exists()){
-	   
-	   file.delete();
-	}
-	 */
+
    
    try{
       
       multi=new MultipartRequest(request,realPath,uploadSize,"utf-8",
             new DefaultFileRenamePolicy());
+      
+	  //전 이미지 포스터네임
+		String posterName=multi.getParameter("before_poster");
       
       //multi변수로 모든 폼데이타 읽어오기
       	String movie_num=multi.getParameter("movie_num");
@@ -53,7 +49,12 @@
 		String movie_content=multi.getParameter("movie_content");
 		String movie_poster=multi.getFilesystemName("movie_poster");
 		
-   
+   		
+		File file=new File(realPath+"\\"+posterName);
+		if(file.exists()){
+		   
+		   file.delete();
+		}
       
       //dto저장
    		MovieDto dto=new MovieDto();
@@ -66,7 +67,7 @@
       	dto.setMovie_director(movie_director);
       	dto.setMovie_actor(movie_actor);
       	dto.setMovie_content(movie_content);
-      	dto.setMovie_poster(movie_poster);
+      	dto.setMovie_poster(movie_poster==null?posterName:movie_poster);
       	
       	
       	MovieDao dao=new MovieDao();

@@ -34,25 +34,18 @@ List<UserDto> list = dao.getAllUsers();
 
 String user_num = request.getParameter("user_num");
 
-//UserDto dto=dao.getData(user_num);
+UserDto dto=dao.getData(user_num);
 
 %>
 <body>
    <div>
-
       <div class="myinfo_div">
          <table style="width: 700px;">
             <h3 align="center">관리자정보수정</h3>
 
             <input type="hidden" name="user_num" value="<%=user_num%>">
 
-            <%
-            for (UserDto dto : list) {
-
-               if (loginok != null) {
-
-                  if (dto.getUser_id().equals(myid)) {
-            %>
+           
 
             <tr>
                <th class="myinfo" width="200">이름</th>
@@ -112,18 +105,14 @@ String user_num = request.getParameter("user_num");
                   style="width: 300px; background-color: #fcfcfc"
                   value="<%=dto.getUser_email()%>"></td>
             </tr>
-            <%
-            }
-            }
-            }
-            %>
+           
          </table>
          <br> <br>
          <div class="form-group">
 
-
             <div style="float: right;">
-               <button type="button" class="btn btn-default btn-sm"
+               <button type="button" class="btn btn-default btn-sm" 
+              	  onclick="location.href='index.jsp?main=mypage/mypage_myinfoupdateaction.jsp?user_num=<%=user_num %>'"
                   style="margin-left: -600px; margin-bottom: 10px;">관리자
                   정보수정</button>
 
