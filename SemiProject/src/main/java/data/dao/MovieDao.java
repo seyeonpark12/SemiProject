@@ -113,7 +113,7 @@ public class MovieDao {
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
 	      
-	      String sql="select * from movie order by movie_num desc limit ?,?";
+	      String sql="select * from movie order by movie_year desc,movie_num desc limit ?,?";
 	      
 	      try {
 	         
@@ -269,7 +269,7 @@ public class MovieDao {
 		      PreparedStatement pstmt=null;
 		      ResultSet rs=null;
 		      
-		      String sql="select * from movie where movie_genre=? order by movie_num desc limit ?,?";
+		      String sql="select * from movie where movie_genre=? order by movie_year desc,movie_num desc limit ?,?";
 		      
 		      try {
 		         

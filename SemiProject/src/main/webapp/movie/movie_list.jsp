@@ -18,7 +18,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <link href="css/mvlist.css" type="text/css" rel="stylesheet">
-
+<link href="css/main.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 
@@ -235,7 +235,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 
 
 		<div class="tab-content"
-			style="padding-top: 40px; margin-left: 200px;">
+			style="padding-top: 40px; margin-left: 170px;">
 			<div id="all">
 				<div>
 					<div
@@ -265,10 +265,11 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 
 							<a movie_num="<%=dto.getMovie_num()%>"
 								style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
-								class="godetail"> <img src="movie_save/<%=poster%>"
+								class="godetail">
+								 <img src="movie_save/<%=poster%>"
 								class="poster"
 								onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
-								<span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
+								<span style="text-align: center; font-size:14px; margin-left:-10px;padding-top:10px;width: 100%;"><%=dto.getMovie_subject()%></span>
 							</a>
 						</div>
 
@@ -354,7 +355,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 		} else {
 		%>
 		<div class="tab-content"
-			style="padding-top: 40px; margin-left: 200px;">
+			style="padding-top: 40px; margin-left: 170px;">
 			<div id="movie_genre">
 				<div>
 					<div
@@ -383,7 +384,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 								class="godetail"> <img src="movie_save/<%=poster%>"
 								class="poster"
 								onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
-								<span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
+								<span style="text-align: center; font-size:14px; margin-left:-10px;padding-top:10px;width: 100%;"><%=dto.getMovie_subject()%></span>
 							</a>
 						</div>
 

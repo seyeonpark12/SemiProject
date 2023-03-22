@@ -232,6 +232,7 @@ public class MentDao {
 		return total;
 	}
 	
+	//commu_num에 따른 category 
 	 public String getCategory(String commu_num) {
 	      
 	      String commu_category="";
@@ -240,7 +241,7 @@ public class MentDao {
 	        PreparedStatement pstmt=null;
 	        ResultSet rs=null;
 	        
-	        String sql="select * from commu where commu_num=?";
+	        String sql="select commu_category from commu where commu_num=?";
 	        
 	        try {
 	         pstmt=conn.prepareStatement(sql);
@@ -259,7 +260,7 @@ public class MentDao {
 	      
 	      return commu_category;
 	   }
-	
-
+	 
+	 
 	
 }

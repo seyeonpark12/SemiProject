@@ -1,3 +1,4 @@
+<%@page import="data.dao.PickDao"%>
 <%@page import="data.dto.UserDto"%>
 <%@page import="data.dao.UserDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -35,7 +36,7 @@
 		$("span.camera").click(function() {
 			$("#movie_poster").trigger("click"); //이벤트 강제호출 : trigger
 		});
-
+		// 리뷰 생성
 		$("#review_save").click(function() {
 			var movie_num = $("#movie_num").val();
 			var user_num = $("#user_num").val();
@@ -62,27 +63,68 @@
 			})
 
 		})
+		// 리뷰 삭제
+		$(".review_del").click(function() {
+			var review_num = $(this).attr("review_num")
+			//alert(review_num)
 
-		$("#movie_pick").click(function() {
+			$.ajax({
+				type : "get",
+				dataType : "html",
+				url : "review/review_delete.jsp",
+				data : {
+					"review_num" : review_num
+				},
+				success : function() {
+					alert("삭제되었습니다")
+					location.reload();
+				}
+			})
+		})
+		// pick 추가
+		$("#movie_pickadd").click(function() {
 			var movie_num = $("#movie_num").val();
+			var user_num = $("#user_num").val();
 			var tag = $(this);
 
-			//alert(movie_num+"번 영화");
+			//alert(movie_num+"번 영화, "+user_num+"번 유저");
 			$.ajax({
-
 				type : "get",
-				dataType : "json",
-				url : "review/movie_pick.jsp",
+				dataType : "html",
+				url : "review/pick_addaction.jsp",
 				data : {
-					"movie_num" : movie_num
+					"movie_num" : movie_num,
+					"user_num" : user_num
 				},
-				success : function(res) {
-					alert("PICK이 되었습니다.")
+				success : function() {
+					alert("pick 되었습니다")
 					location.reload();
 				}
 
 			});
 		});
+		// pick 제거
+		$("#movie_pickdel").click(function() {
+			var movie_num = $("#movie_num").val();
+			var user_num = $("#user_num").val();
+
+			//alert(movie_num+"번 영화, "+user_num+"번 유저");
+			$.ajax({
+				type : "get",
+				dataType : "html",
+				url : "review/pick_delete.jsp",
+				data : {
+					"movie_num" : movie_num,
+					"user_num" : user_num
+				},
+				success : function() {
+					alert("pick이 해제되었습니다")
+					location.reload();
+				}
+
+			});
+		});
+		// 영화 삭제
 		$("#movie_delete")
 				.click(
 						function() {
@@ -104,6 +146,7 @@
 										}
 									});
 						})
+
 	});
 
 	//이미지미리보기
@@ -120,6 +163,10 @@
 
 
 <style type="text/css">
+.review_del {
+	width: 30px;
+}
+
 .shape {
 	position: relative;
 	font-size: 50pt;
@@ -238,6 +285,15 @@ td {
 	background-color: #ECE6FF;
 	border: 0px solid;
 }
+
+.posterimg {
+	display: inline-block;
+	width: 100%;
+	height: 370px;
+	overflow: hidden;
+	object-fit: cover;
+	border-radius: 5px;
+}
 </style>
 
 </head>
@@ -246,7 +302,7 @@ MovieDao mdao = new MovieDao();
 UserDao udao = new UserDao();
 UserDto udto = new UserDto();
 ReviewDao rdao = new ReviewDao();
-
+PickDao pdao = new PickDao();
 String movie_num = request.getParameter("movie_num");
 MovieDto mdto = mdao.getData(movie_num);
 
@@ -311,7 +367,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 no = totalCount - (currentPage_review - 1) * perPage;
 %>
 <body>
-	<div style="margin-top: 100px; padding: 0;">
+	<div style="padding: 0; margin-top: 100px;">
 		<input type="hidden" id="movie_num" value="<%=movie_num%>"> <input
 			type="hidden" id="myid" value="<%=myid%>"> <input
 			type="hidden" id="user_num" value="<%=user_num%>"> <input
@@ -358,58 +414,83 @@ no = totalCount - (currentPage_review - 1) * perPage;
 			</div>
 		</div>
 		<!-- Modal 끝-->
-
-		<table style="width: 1000px; height: 380px;">
+		<table style="width: 1000px; height: 300px;">
 			<tr>
 				<td rowspan="3" width="30%">
-					<!-- 영화이미지 보이는 이미지 --> <img src="movie_save/<%=poster%>"
-					movie_num="<%=movie_num%>" id="movie_poster"
-					style="max-width: 200px;">
+					<!-- 영화이미지 보이는 이미지 --> <a
+					style="display: inline-block; width: 100%; height: 400px; margin: 2px; padding: 10px; overflow: hidden;">
+						<img src="movie_save/<%=poster%>" movie_num="<%=movie_num%>"
+						id="movie_poster" class="posterimg">
+				</a>
 				</td>
 
 				<td colspan="4" width="70%" height="70%"
-					style="padding: 200px 0 0 10px;"><b class="mv_subject"><%=mdto.getMovie_subject()%></b></td>
+					style="padding: 200px 0 0 30px;"><b class="mv_subject"><%=mdto.getMovie_subject()%></b></td>
 			</tr>
 
 			<tr>
-				<td colspan="4" style="padding: 0 10px;"><b
+				<td colspan="4" style="padding: 0 30px;"><b
 					class="mv_content_year" style="color: gray; font-weight: 400;"><%=mdto.getMovie_year()%>
 						| <%=mdto.getMovie_genre()%> | <%=mdto.getMovie_nara()%></b></td>
 			</tr>
+
 			<tr>
-				<td style="padding: 10px; width: 200px;"><b
-					class="mv_content_year" style="color: orange;"> ★ <%=review_avgscore%></b>
-				</td>
-
-				<%
-				if (loginok != null) {
-				%>
-				<%
-				if (myid.equals("admin")) {
-				%>
-
-				<td style="width: 300px">
-					<button type="button" class="btn btn-default btn-sm"
-						onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
-					<button type="button" class="btn btn-default btn-sm"
-						id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
-				</td>
-				<%
-				}
-				%>
-
-				<td colspan="2" style="width: 100px;">
-				<b id="movie_pick"
-					movie_num="<%=movie_num%>" class="mv_content_year"
-					style="cursor: pointer; font-weight: 400; padding-left:200px;">PICK<font style="margin-left:2px;color:red;">♥</font>&nbsp;|&nbsp;</b>
-					 <b
-					data-toggle="modal" data-target="#modal" class="mv_content_year"
-					style="cursor: pointer; font-weight: 400;"> 리뷰하기</b><span style="margin-left:5px;"class="glyphicon glyphicon-pencil"></span></td>
-				<%
-				}
-				%>
+				<td colspan="4" style="padding: 30px; width: 100%"><b
+					class="mv_content_year" style="color: orange; font-size: 20px;">
+						★ <%=review_avgscore%></b></td>
 			</tr>
 		</table>
+		<%
+		if (loginok != null) {
+		%>
+		<%
+		if (myid.equals("admin")) {
+		%>
+		<div style="float: left; margin-top: -20px;">
+			<button type="button" class="btn btn-default btn-sm"
+				style="margin-left: 1050px; border: 1px solid #CBB6D9; color: #CBB6D9; float: left;"
+				onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
+			<button type="button" class="btn btn-default btn-sm"
+				style="border: 1px solid #a02982; color: #a02982; float: left; margin-left: 5px;"
+				id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
+		</div>
+		<%
+		}
+		%>
+		<%
+		if (pdao.isCheck(user_num, movie_num) == false && !myid.equals("admin")) {
+		%>
+		<div style="float: right; margin-top: -180px; margin-right: 300px;">
+			<b id="movie_pickadd" movie_num="<%=movie_num%>"
+				class="mv_content_es"
+				style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;">PICK
+				<font style="margin-left: 5px; color: red; font-size: 18px;">♡</font>
+			</b> <b data-toggle="modal" data-target="#modal" class="mv_content_es"
+				style="font-size: 16px; margin-left: 5px; font-weight: 400;"
+				id="review_add">|&nbsp;&nbsp;리뷰하기<span style="margin-left: 5px;"
+				class="glyphicon glyphicon-pencil"></span></b>
+
+		</div>
+
+		<%
+		} else if (pdao.isCheck(user_num, movie_num) == true && !myid.equals("admin")) {
+		%>
+		<div style="float: right; margin-top: -180px; margin-right: 300px;">
+			<b id="movie_pickdel" movie_num="<%=movie_num%>"
+				class="mv_content_es"
+				style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;">
+				PICK<font style="margin-left: 5px; color: red; font-size: 18px;">♥</font>
+			</b> <b data-toggle="modal" data-target="#modal" class="mv_content_es"
+				style="font-size: 16px; margin-left: 5px; font-weight: 400;"
+				id="review_add">|&nbsp;&nbsp;리뷰하기<span style="margin-left: 5px;"
+				class="glyphicon glyphicon-pencil"></span></b>
+		</div>
+		<%
+		}
+		%>
+		<%
+		}
+		%>
 
 
 		<div style="float: right; margin-top: -20px;">
@@ -508,9 +589,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 						href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_reviewe=<%=startPage - 1%>">이전</a></li>
 					<%
 					}
-
 					for (int pp = startPage; pp <= endPage; pp++) {
-
 					if (pp == currentPage_review) {
 					%>
 					<li class="active"><a
@@ -522,9 +601,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 						href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
 					<%
 					}
-
 					}
-
 					//다음
 					if (endPage < totalPage) {
 					%>
