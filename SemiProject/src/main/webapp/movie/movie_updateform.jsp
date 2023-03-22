@@ -67,11 +67,11 @@ margin-bottom: 100px;
 </style>
 
 <%
-	String movie_num=request.getParameter("movie_num");
-	
-	
-	MovieDao dao=new MovieDao();
-	MovieDto dto=dao.getData(movie_num);
+   String movie_num=request.getParameter("movie_num");
+   
+   
+   MovieDao dao=new MovieDao();
+   MovieDto dto=dao.getData(movie_num);
 %>
 </head>
 <body>
@@ -111,12 +111,12 @@ margin-bottom: 100px;
 
                <td><select name="movie_genre" class="form-control" required="required"
                   style="width: 200px;">
-                     <option value="romance">로맨스</option>
-                     <option value="action">액션</option>
-                     <option value="comedy">코미디</option>
-                     <option value="horror">공포</option>
-                     <option value="animation">애니메이션</option>
-                     <option value="etc">기타</option>
+                     <option value="romance" <%=dto.getMovie_genre().equals("romance")?"selected":""%>>로맨스</option>
+                     <option value="action" <%=dto.getMovie_genre().equals("action")?"selected":""%>>액션</option>
+                     <option value="comedy" <%=dto.getMovie_genre().equals("comedy")?"selected":""%>>코미디</option>
+                     <option value="horror" <%=dto.getMovie_genre().equals("horror")?"selected":""%>>공포</option>
+                     <option value="animation" <%=dto.getMovie_genre().equals("animation")?"selected":""%>>애니메이션</option>
+                     <option value="etc" <%=dto.getMovie_genre().equals("etc")?"selected":""%>>기타</option>
                </select></td>
             </tr>
 

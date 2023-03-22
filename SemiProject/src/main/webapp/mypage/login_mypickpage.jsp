@@ -21,6 +21,33 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<style type="text/css">
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
+}
+</style>
 
 
 	<%
@@ -32,7 +59,6 @@
 	
 	PickDao pdao=new PickDao();
 	String pick_num=request.getParameter("pick_num");
-	String movie_num=request.getParameter("movie_num");
 	
 	//페이징처리
 	   int totalCount; //내가 pick한 영화 총 갯수
@@ -69,41 +95,6 @@
 	      List<PickDto> list=pdao.getMyPickList(user_num, start, perPage);
 	       
 	%>
-	
-	<script type="text/javascript">
-	// pick 제거
-	$(function(){
-		
-		$("#zzim").click(function() {
-			   var movie_num = $(this).attr("movie_num");
-			   var user_num = $(this).attr("user_num");
-			
-			   //alert(movie_num+"번 영화, "+user_num+"번 유저");
-			   $.ajax({
-			      type : "get",
-			      dataType : "html",
-			      url : "review/pick_delete.jsp",
-			      data : {
-			         "movie_num" : movie_num,
-			         "user_num" : user_num
-			      },
-			      success : function() {
-			         alert("pick이 해제되었습니다")
-			         location.reload();
-			      }
-			
-			   });
-			});		
-	});
-	
-	
-	</script>
-	
-	<style>
-	#zzim:hover{
-	font-size:40px;
-	}
-	</style>
 </head>
 <body>
 	<div class="myinfo_div">
@@ -124,16 +115,15 @@
 					String movie_poster=pdao.getMoviePoster(pdto.getMovie_num());
 					String movie_subject=pdao.getMovieSubJect(pdto.getMovie_num());
 					%>
-					<div class="pick" style="position: relative;">
+					<div class="pick">
 						<ul>
 							<li>					
 							<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=pdto.getMovie_num()%>"><img src="movie_save/<%=movie_poster %>">
-							</a>	
-							<span class="glyphicon glyphicon-heart" id="zzim" movie_num="<%=pdto.getMovie_num()%>" user_num="<%=pdto.getUser_num() %>" style="position:absolute; z-index: 1; right: 0; cursor: pointer;"></span>
+							</a>
+							<h3><%=movie_subject %></h3>
 							</li>
 						</ul>
-							<h3><%=movie_subject %></h3>
-					</div>				
+					</div>		
 				<%}			
 			}%>
 		</div>

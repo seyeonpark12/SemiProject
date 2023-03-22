@@ -3,7 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%
+<<<<<<< HEAD
    request.setCharacterEncoding("utf-8"); 
+=======
+   request.setCharacterEncoding("utf-8");
+   
+>>>>>>> 7864ba1ee6145987eabd6d10075d729f34f0a345
    
    String user_num=request.getParameter("user_num");
    //UserDto dto=dao.getData(user_num);
@@ -31,3 +36,7 @@
    //mypage_form페이지로 이동
    response.sendRedirect("../index.jsp?main=mypage/admin_mypage_form.jsp?user_num="+user_num); 
    %>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7864ba1ee6145987eabd6d10075d729f34f0a345
