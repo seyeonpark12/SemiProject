@@ -24,11 +24,6 @@ img {
 }
 
 /*영화..*/
-.nav>li>a, .nav>li>a {
-	text-decoration: none;
-	color:#653491;;	
-}
-
 .nav>li>a:focus, .nav>li>a:hover {
 	text-decoration: none;
 	color:#fff;

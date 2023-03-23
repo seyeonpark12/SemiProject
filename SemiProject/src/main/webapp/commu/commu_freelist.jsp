@@ -185,16 +185,16 @@ td.myinfo {
 
 		<div style="float: left;">
 			<a href="index.jsp?main=commu/commu_totallist.jsp"
-				style="font-size: 18px; color: black; padding-right: 10px;">전체 |</a>
+				style="font-size: 18px; color: black; padding-right: 10px;">전체 </a>
 		</div>
 		<div style="float: left;">
 			<a href="index.jsp?main=commu/commu_freelist.jsp"
-				style="font-size: 18px; font-weight: bold; color: black; padding-right: 10px;">자유
-				|</a>
+				style="font-size: 18px; font-weight: bold; color: #653491; padding-right: 10px;">자유
+				</a>
 		</div>
 		<div style="float: left;">
 			<a href="index.jsp?main=commu/commu_withlist.jsp"
-				style="font-size: 18px; color: black; padding-right: 10px;">동행 |</a>
+				style="font-size: 18px; color: black; padding-right: 10px;">동행 </a>
 		</div>
 		<div style="float: left;">
 			<a href="index.jsp?main=commu/commu_sharelist.jsp"
