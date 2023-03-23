@@ -129,7 +129,7 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
                      String poster = dto.getMovie_poster();
                   %>
 							<% %>
-							<div style="padding: 10px;">
+							<div>
 								<a movie_num="<%=dto.getMovie_num()%>"
 									style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
 									class="godetail"> <img src="movie_save/<%=poster%>"

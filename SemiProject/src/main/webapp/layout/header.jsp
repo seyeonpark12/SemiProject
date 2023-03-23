@@ -63,12 +63,21 @@
             $.ajax({
 
                  type : "get",
-                 dataType : "html",
+                 dataType : "json",
                  url : "login/loginaction.jsp",
                  data : logindata,
-                 success : function() {
+                 success : function(res) {
+                    
+                    if(res.b){
+                       
+                       location.reload();
+                    }else{
+                       
+                       alert("아이디와 비밀번호가 일치하지 않습니다.");
+                       
+                    }
 
-                    location.reload();
+                    
 
                  }
               });
@@ -111,7 +120,23 @@
         
       });
 
-      
+
+      //idsearch 불러오기
+      $("#search_id")
+            .keyup(
+                  function(event) {
+
+                     if (event.which === 13) {
+
+                        var search = $(this).val();
+                        //alert(search);
+
+                        location.href = "index.jsp?main=movie/movie_search.jsp?search="
+                              + search + "&currentPage=1";
+                     }
+                     ;
+                  });
+
       //엔터로 로그인
       $("#user_pw").keyup(function(event) {
 
@@ -135,25 +160,6 @@
          }
          ;
       });
-      
-
-      //검색하기
-      $("#search_id")
-            .keyup(
-                  function(event) {
-
-                     if (event.which === 13) {
-
-                        var search = $(this).val();
-                        //alert(search);
-
-                        location.href = "index.jsp?main=movie/movie_search.jsp?search="
-                              + search + "&currentPage=1";
-                     }
-                     ;
-                  });
-
-  
 
       //중복 아이디 체크
       $("#id_check").click(function() {
@@ -208,7 +214,16 @@
 
       });
 
-	
+      //아이디 저장
+      $("#saveid").click(function() {
+
+         var saveid = $("#saveid").val();
+         //alert(saveid);
+         
+         
+         
+      });
+
    });
 </script>
 <body>

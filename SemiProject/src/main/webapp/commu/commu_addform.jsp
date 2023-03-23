@@ -61,25 +61,31 @@
 	margin-top: 4px;
 	margin-bottom: 10px;
 }
+
+input:focus {
+	outline: none;
+}
+
+.content:focus {
+	outline: none;
+}
 </style>
 
 </head>
 
 <body>
 
-	<br>
-	<br>
 	<div style="margin: 30px 30px;">
 		<form action="commu/commu_addaction.jsp" method="post"
 			enctype="multipart/form-data">
 
-			<div style="text-align: center; padding:40px;">
-				<b
-					class="mv_content" style="display: inline-block; text-align: left; font-size: 20px; font-weight: 600;">게시판 글쓰기
-				</b>
+			<div style="text-align: center; padding: 40px;">
+				<b class="mv_content"
+					style="display: inline-block; text-align: left; font-size: 20px; font-weight: 600;">게시판
+					글쓰기 </b>
 			</div>
 			<table style="width: 1000px;">
-				
+
 				<tr>
 					<td><select style="width: 200px;" name="commu_category"
 						class="form-control" required="required">
@@ -89,21 +95,22 @@
 					</select></td>
 
 					<td><input type="text" name="commu_subject"
-						class="form-control" style="width: 770px;" required="required">
-					</td>
+						class="form-control" style="width: 790px; margin-left: 8px;"
+						required="required"></td>
 				</tr>
 
 				<tr>
-					<td colspan="2"><img id="showimg"
-						style="max-width: 100%; max-height: 100%; margin-top: 10px; margin-left: 10px;">
-
-						<textarea name="commu_content" id="commu_content"
-							required="required"
-							style="width: 100%; height: 400px; border: 1px solid lightgray; outline: none;"></textarea>
+					<td colspan="2" style="border: 1px solid lightgray;">
+					<img
+						id="showimg"
+						style="max-width: 100%; max-height: 100%; padding: 10px;">
+						 <textarea
+							name="commu_content" id="commu_content" required="required"
+							style="width: 100%; height: 400px; border: none; outline: none; padding: 10px; overflow: hidden; overflow-wrap: break-word;"></textarea>
 
 						<input type="file" name="commu_photo" id="commu_photo"
-						style="margin-top: 15px; height:40px; margin-top:6px;" class="form-control"
-						onchange="readURL(this)"></td>
+						style="margin-top: 15px; height: 40px; margin-top: 6px;"
+						class="form-control" onchange="readURL(this)"></td>
 				</tr>
 
 				<tr>
