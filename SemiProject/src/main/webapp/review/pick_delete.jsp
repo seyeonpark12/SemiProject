@@ -5,5 +5,4 @@ PickDao pdao = new PickDao();
 String user_num = request.getParameter("user_num");
 String movie_num = request.getParameter("movie_num");
 pdao.deletePick(user_num, movie_num);
-pdao.deletePcount(movie_num);
 %>

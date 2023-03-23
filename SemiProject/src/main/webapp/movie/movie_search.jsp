@@ -3,7 +3,7 @@
 <%@page import="data.dao.MovieDao"%>
 <%@page import="data.dto.MovieDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-   pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +12,45 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
-   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-   rel="stylesheet">
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
+	rel="stylesheet">
 
 <link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <link href="css/mvlist.css" type="text/css" rel="stylesheet">
 
 <link rel="stylesheet"
-   href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<style type="text/css">
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
+}
+</style>
 
 </head>
 
@@ -76,103 +104,106 @@ List<MovieDto> list=dao.getList_Search(search, start, perPage);
 %>
 
 <body>
-
-<b>검색단어: <%=search %></b>
-
-   <%
+	<div style="padding: 100px;">
+		<div style="text-align: center;">
+			<b style="display: inline-block; text-align: left; font-size:14px; font-weight:500;">'<%=search %>'를 검색한 결과입니다.</b>
+		</div>
+		<%
       if(totalCount == 0){%>
-         
-         <h3 style="width: 200px; text-align: center"><b>등록된 영화가 없습니다</b></h3>
-      <%}else{%>
-         
-          <div class="container">
-      <div class="tab-content" style="padding-top: 40px;">
-         <div id="all">
-            <div>
-               <div
-                  style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
-                  <%
+
+		<h3 style="width: 200px; text-align: center; padding-top:100px;">
+			<b style="inline-block; text-align:left; font-size:20px; font-weight:500; color:purple;">등록된 영화가 없습니다</b>
+		</h3>
+		<%}else{%>
+
+		<div class="container">
+			<div class="tab-content" style="padding-top: 40px;">
+				<div id="all">
+					<div>
+						<div
+							style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
+							<%
                   int i = 0;
                   for (MovieDto dto : list) {
                      //이미지
                      String poster = dto.getMovie_poster();
                   %>
-               <% %>
-                  <div style="padding: 10px;">  
-                     <a movie_num="<%=dto.getMovie_num()%>"
-                        style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
-                        class="godetail"> <img src="movie_save/<%=poster%>"
-                        class="poster"
-                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&movie_genre=all&sort=recent&currentPage=<%=currentPage%>'">
-                        <span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
-                     </a>
-                  </div>
+							<% %>
+							<div style="padding: 10px;">
+								<a movie_num="<%=dto.getMovie_num()%>"
+									style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
+									class="godetail"> <img src="movie_save/<%=poster%>"
+									class="poster"
+									onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=dto.getMovie_num()%>&movie_genre=all&sort=recent&currentPage=<%=currentPage%>'">
+									<span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
+								</a>
+							</div>
 
 
-                  <%
+							<%
                   if ((i + 1) % 4 == 0) {
                   %>
-               </div>
-               <div
-                  style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
-                  <%
+						</div>
+						<div
+							style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
+							<%
                   }
                   i++;
                   }
                   %>
-               </div>
-            </div>
-         </div>
-         </div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <!-- 페이징 처리 -->
-      <div style="width: 500px; text-align: center;" class="container">
-         <ul class="pagination">
-            <%
+			<!-- 페이징 처리 -->
+			<div style="width: 500px; text-align: center;" class="container">
+				<ul class="pagination">
+					<%
             //이전
 
             if (startPage > 1) {
             %>
-            <li><a
-               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=startPage - 1%>">이전</a>
-            </li>
-            <%
+					<li><a
+						href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=startPage - 1%>">이전</a>
+					</li>
+					<%
             }
             for (int pp = startPage; pp <= endPage; pp++) {
             if (pp == currentPage) {
             %>
-            <li class="active"><a
-               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=pp%>"><%=pp%></a>
-            </li>
-            <%
+					<li class="active"><a
+						href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=pp%>"><%=pp%></a>
+					</li>
+					<%
             } else {
             %>
 
-            <li><a
-               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=pp%>"><%=pp%></a>
-            </li>
-            <%
+					<li><a
+						href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=pp%>"><%=pp%></a>
+					</li>
+					<%
             }
             }
 
             //다음
             if (endPage < totalPage) {
             %>
-            <li><a
-               href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=endPage + 1%>">다음</a>
-            </li>
-            <%
+					<li><a
+						href="index.jsp?main=movie/movie_search.jsp?search=<%=search%>&currentPage=<%=endPage + 1%>">다음</a>
+					</li>
+					<%
             }
             %>
-         </ul>
-      </div>
+				</ul>
+			</div>
 
-   
-   
-   </div>
-      <%}
+
+
+		</div>
+		<%}
    %>
-   
-  
+	</div>
+
 </body>
 </html>

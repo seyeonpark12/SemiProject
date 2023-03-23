@@ -67,11 +67,11 @@ margin-bottom: 100px;
 </style>
 
 <%
-	String movie_num=request.getParameter("movie_num");
-	
-	
-	MovieDao dao=new MovieDao();
-	MovieDto dto=dao.getData(movie_num);
+   String movie_num=request.getParameter("movie_num");
+   
+   
+   MovieDao dao=new MovieDao();
+   MovieDto dto=dao.getData(movie_num);
 %>
 </head>
 <body>

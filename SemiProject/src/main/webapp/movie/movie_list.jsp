@@ -2,7 +2,7 @@
 <%@page import="data.dao.MovieDao"%>
 <%@page import="data.dto.MovieDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-   pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,115 +11,115 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
-   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-   rel="stylesheet">
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
+	rel="stylesheet">
 
 <link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <link href="css/mvlist.css" type="text/css" rel="stylesheet">
 <link href="css/main.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet"
-   href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 
 
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-   $(function() {
+	$(function() {
 
-      $("#moviedel").click(function() {
+		$("#moviedel").click(function() {
 
-         var cnt = $(".movie_num:checked").length;
-         if (cnt == 0) {
+			var cnt = $(".movie_num:checked").length;
+			if (cnt == 0) {
 
-            alert("삭제할 영화를 선택해주세요");
-            return;
-         }
+				alert("삭제할 영화를 선택해주세요");
+				return;
+			}
 
-         $(".movie_num:checked").each(function(i, element) {
+			$(".movie_num:checked").each(function(i, element) {
 
-            var movie_num = $(this).attr("movie_num");
-            $.ajax({
-               type : "get",
-               dataType : "html",
-               url : "movie/movie_delete.jsp",
-               data : {
-                  "movie_num" : movie_num
-               },
-               success : function() {
+				var movie_num = $(this).attr("movie_num");
+				$.ajax({
+					type : "get",
+					dataType : "html",
+					url : "movie/movie_delete.jsp",
+					data : {
+						"movie_num" : movie_num
+					},
+					success : function() {
 
-                  location.reload();
-               }
-            });
-         });
+						location.reload();
+					}
+				});
+			});
 
-      });
+		});
 
-       
-        $('.nav>li>a').on('click', function() {
-           // 다른 li 요소의 배경색을 해제하고 on 클래스를 제거합니다.
-           $('.nav>li>a').not(this).removeClass('on').css('background-color', '');
-           // 클릭된 요소의 배경색을 purple로 변경하고 on 클래스를 추가합니다.
-           $(this).addClass('on').css('background-color', 'purple');
-         });
-        
-   });
+		 
+		  $('.nav>li>a').on('click', function() {
+			  // 다른 li 요소의 배경색을 해제하고 on 클래스를 제거합니다.
+			  $('.nav>li>a').not(this).removeClass('on').css('background-color', '');
+			  // 클릭된 요소의 배경색을 purple로 변경하고 on 클래스를 추가합니다.
+			  $(this).addClass('on').css('background-color', 'purple');
+			});
+		  
+	});
 </script>
 
 <style type="text/css">
 .nav>li>a, .nav>li>a {
-   text-decoration: none;
-   color: #653491;;
+	text-decoration: none;
+	color: #653491;;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
-   text-decoration: none;
-   color: #fff;
-   background-color: #CBB6D9;
-   border: 0px solid;
+	text-decoration: none;
+	color: #fff;
+	background-color: #CBB6D9;
+	border: 0px solid;
 }
 
 .nav>li>a:active {
-   text-decoration: none;
-   color: #fff;
-   background-color: purple;
-   border: 0px solid;
+	text-decoration: none;
+	color: #fff;
+	background-color: purple;
+	border: 0px solid;
 }
 
 .nav>li>a.on, .nav>li>a.on:active {
-   text-decoration: none;
-   background-color: purple;
+	text-decoration: none;
+	background-color: purple;
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
-   .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
-   {
-   z-index: 3;
-   color: #fff;
-   cursor: default;
-   background-color: #CBB6D9;
-   border-color: #CBB6D9;
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
 }
 
 .pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
-   {
-   z-index: 2;
-   color: #CBB6D9;
-   background-color: #fff;
-   border: 0px solid;
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
 }
 
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
-   .pagination>li>span:hover {
-   z-index: 2;
-   color: #fff;
-   background-color: #ECE6FF;
-   border: 0px solid;
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
 }
 </style>
 </head>
@@ -155,9 +155,9 @@ totalCountGen = dao.getTotalCount_Genre(movie_genre);
 
 //현재페이지 번호 읽기(단 null일때는 1페이지로둠)
 if (request.getParameter("currentPage") == null)
-   currentPage = 1;
+	currentPage = 1;
 else
-   currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
 //총 페이지 개수
 totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
@@ -171,9 +171,9 @@ endPageGen = startPage + perBlock - 1;
 
 //총페이지가8 (6~10 ... endpage를 8로 수정해주어야함.)
 if (endPage > totalPage)
-   endPage = totalPage;
+	endPage = totalPage;
 if (endPageGen > totalPageGen)
-   endPageGen = totalPageGen;
+	endPageGen = totalPageGen;
 
 //각페이지에서 불러올 시작번호
 start = (currentPage - 1) * perPage;
@@ -188,287 +188,287 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 %>
 
 <body>
-   <div style="width: 100%; margin-top: 100px;">
-      <div class="container">
-         <ul class="nav nav-tabs" style="margin-bottom:10px;">
-            <li style="margin-left: 330px;"><a class="all_genre"
-               href="movie/select_genre_sort.jsp?movie_genre=all&sort=<%=sort%>">전체</a></li>
-            <li><a class="romance"
-               href="movie/select_genre_sort.jsp?movie_genre=romance&sort=<%=sort%>">로맨스</a></li>
-            <li><a class="action"
-               href="movie/select_genre_sort.jsp?movie_genre=action&sort=<%=sort%>">액션</a></li>
-            <li><a class="comedy"
-               href="movie/select_genre_sort.jsp?movie_genre=comedy&sort=<%=sort%>">코미디</a></li>
-            <li><a class="horror"
-               href="movie/select_genre_sort.jsp?movie_genre=horror&sort=<%=sort%>">공포</a></li>
-            <li><a class="animation"
-               href="movie/select_genre_sort.jsp?movie_genre=animation&sort=<%=sort%>">애니메이션</a></li>
-            <li><a class="everything"
-               href="movie/select_genre_sort.jsp?movie_genre=etc&sort=<%=sort%>">기타</a></li>
-         </ul>
-         
-         <div style="float: right;">
-            <div style="float: left;">
-               <a
-                  href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=recent"
-                  style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">최신순
-                  &nbsp;|</a>
-            </div>
-            <div style="float: left;">
-               <a
-                  href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=rank"
-                  style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">평점순
-                  &nbsp;|</a>
-            </div>
-            <div style="float: left;">
-               <a
-                  href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=pick"
-                  style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">pick순</a>
-            </div>
-         </div>
-      </div>
+	<div style="width: 100%; margin-top: 100px;">
+		<div class="container">
+			<ul class="nav nav-tabs" style="margin-bottom:10px;">
+				<li style="margin-left: 330px;"><a class="all_genre"
+					href="movie/select_genre_sort.jsp?movie_genre=all&sort=<%=sort%>">전체</a></li>
+				<li><a class="romance"
+					href="movie/select_genre_sort.jsp?movie_genre=romance&sort=<%=sort%>">로맨스</a></li>
+				<li><a class="action"
+					href="movie/select_genre_sort.jsp?movie_genre=action&sort=<%=sort%>">액션</a></li>
+				<li><a class="comedy"
+					href="movie/select_genre_sort.jsp?movie_genre=comedy&sort=<%=sort%>">코미디</a></li>
+				<li><a class="horror"
+					href="movie/select_genre_sort.jsp?movie_genre=horror&sort=<%=sort%>">공포</a></li>
+				<li><a class="animation"
+					href="movie/select_genre_sort.jsp?movie_genre=animation&sort=<%=sort%>">애니메이션</a></li>
+				<li><a class="everything"
+					href="movie/select_genre_sort.jsp?movie_genre=etc&sort=<%=sort%>">기타</a></li>
+			</ul>
+			
+			<div style="float: right;">
+				<div style="float: left;">
+					<a
+						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=recent"
+						style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">최신순
+						&nbsp;|</a>
+				</div>
+				<div style="float: left;">
+					<a
+						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=rank"
+						style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">평점순
+						&nbsp;|</a>
+				</div>
+				<div style="float: left;">
+					<a
+						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=pick"
+						style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">pick순</a>
+				</div>
+			</div>
+		</div>
 
 
-      <%
-      if (movie_genre.equals("all")) {
-      %>
+		<%
+		if (movie_genre.equals("all")) {
+		%>
 
 
-      <div class="tab-content"
-         style="padding-top: 40px; margin-left: 170px;">
-         <div id="all">
-            <div>
-               <div
-                  style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
-                  <%
-                  int i = 0;
-                  for (MovieDto dto : sort.equals("recent") ? list_recent : sort.equals("pick") ? list_pick : list_rank) {
-                     //이미지
-                     String poster = dto.getMovie_poster();
-                  %>
-                  <%
+		<div class="tab-content"
+			style="padding-top: 40px; margin-left: 170px;">
+			<div id="all">
+				<div>
+					<div
+						style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
+						<%
+						int i = 0;
+						for (MovieDto dto : sort.equals("recent") ? list_recent : sort.equals("pick") ? list_pick : list_rank) {
+							//이미지
+							String poster = dto.getMovie_poster();
+						%>
+						<%
 
-                  %>
-                  <div style="padding: 10px;">
-                     <%
-                     if (loginok != null) {
-                        if (myid.equals("admin")) {
-                     %>
+						%>
+						<div style="padding: 10px;">
+							<%
+							if (loginok != null) {
+								if (myid.equals("admin")) {
+							%>
 
-                     <input type="checkbox" name="movie_num" class="movie_num"
-                        movie_num="<%=dto.getMovie_num()%>" id="movie_del">
+							<input type="checkbox" name="movie_num" class="movie_num"
+								movie_num="<%=dto.getMovie_num()%>" id="movie_del">
 
-                     <%
-                     }
-                     }
-                     %>
+							<%
+							}
+							}
+							%>
 
-                     <a movie_num="<%=dto.getMovie_num()%>"
-                        style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
-                        class="godetail">
-                         <img src="movie_save/<%=poster%>"
-                        class="poster"
-                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
-                        <span style="text-align: center; font-size:14px; margin-left:-10px;padding-top:10px;width: 100%;"><%=dto.getMovie_subject()%></span>
-                     </a>
-                  </div>
-
-
-                  <%
-                  if ((i + 1) % 4 == 0) {
-                  %>
-               </div>
-               <div
-                  style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
-                  <%
-                  }
-                  i++;
-                  }
-                  %>
-               </div>
-            </div>
-         </div>
-         <%
-         if (loginok != null) {
-            if (myid.equals("admin")) {
-         %>
+							<a movie_num="<%=dto.getMovie_num()%>"
+								style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
+								class="godetail">
+								 <img src="movie_save/<%=poster%>"
+								class="poster"
+								onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+								<span style="text-align: center; font-size:14px; margin-left:-10px;padding-top:10px;width: 100%;"><%=dto.getMovie_subject()%></span>
+							</a>
+						</div>
 
 
-
-         <div style="margin-left: 990px;">
-            <button type="button" class="btn btn-default"
-               style="color: #653491; border: 1px solid #653491;"
-               onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
-            <button type="button" class="btn btn-default" id="moviedel">삭제</button>
-         </div>
-      </div>
-      <%
-      }
-      }
-      %>
-
-
-      <!-- 페이징 처리 -->
-      <div style="width: 500px; text-align: center; margin-right: 40%;"
-         class="container">
-         <ul class="pagination">
-            <%
-            //이전
-
-            if (startPage > 1) {
-            %>
-            <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=startPage - 1%>">이전</a>
-            </li>
-            <%
-            }
-            for (int pp = startPage; pp <= endPage; pp++) {
-            if (pp == currentPage) {
-            %>
-            <li class="active"><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
-            </li>
-            <%
-            } else {
-            %>
-
-            <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
-            </li>
-            <%
-            }
-            }
-
-            //다음
-            if (endPage < totalPage) {
-            %>
-            <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=endPage + 1%>">다음</a>
-            </li>
-            <%
-            }
-            %>
-         </ul>
-      </div>
-
-      <%
-      } else {
-      %>
-      <div class="tab-content"
-         style="padding-top: 40px; margin-left: 170px;">
-         <div id="movie_genre">
-            <div>
-               <div
-                  style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
-                  <%
-                  int i = 0;
-                  for (MovieDto dto : sort.equals("recent") ? list_genre_recent
-                        : sort.equals("pick") ? list_genre_pick : list_genre_rank) {
-
-                     String poster = dto.getMovie_poster();
-                  %>
-
-                  <div style="padding: 10px;">
-                     <%
-                     if (loginok != null) {
-                        if (myid.equals("admin")) {
-                     %>
-                     <input type="checkbox" name="movie_num" class="movie_num"
-                        movie_num="<%=dto.getMovie_num()%>" id="movie_del">
-                     <%
-                     }
-                     }
-                     %>
-                     <a movie_num="<%=dto.getMovie_num()%>"
-                        style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
-                        class="godetail"> <img src="movie_save/<%=poster%>"
-                        class="poster"
-                        onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
-                        <span style="text-align: center; font-size:14px; margin-left:-10px;padding-top:10px;width: 100%;"><%=dto.getMovie_subject()%></span>
-                     </a>
-                  </div>
-
-                  <%
-                  if ((i + 1) % 4 == 0) {
-                  %>
-               </div>
-
-               <div
-                  style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
-                  <%
-                  }
-                  i++;
-                  }
-                  %>
-               </div>
-            </div>
-         </div>
-         <%
-         if (loginok != null) {
-            if (myid.equals("admin")) {
-         %>
+						<%
+						if ((i + 1) % 4 == 0) {
+						%>
+					</div>
+					<div
+						style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
+						<%
+						}
+						i++;
+						}
+						%>
+					</div>
+				</div>
+			</div>
+			<%
+			if (loginok != null) {
+				if (myid.equals("admin")) {
+			%>
 
 
 
-         <div style="margin-left: 990px;">
-            <button type="button" class="btn btn-default"
-               style="color: #653491; border: 1px solid #653491;"
-               onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
-            <button type="button" class="btn btn-default" id="moviedel">삭제</button>
-         </div>
-      </div>
-      <%
-      }
-      }
-      %>
+			<div style="margin-left: 990px;">
+				<button type="button" class="btn btn-default"
+					style="color: #653491; border: 1px solid #653491;"
+					onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
+				<button type="button" class="btn btn-default" id="moviedel">삭제</button>
+			</div>
+		</div>
+		<%
+		}
+		}
+		%>
 
 
-      <!-- 페이징 처리 -->
-      <div style="width: 500px; text-align: center; margin-right: 40%;"
-         class="container">
-         <ul class="pagination">
-            <%
-            //이전
+		<!-- 페이징 처리 -->
+		<div style="width: 500px; text-align: center; margin-right: 40%;"
+			class="container">
+			<ul class="pagination">
+				<%
+				//이전
 
-            if (startPage > 1) {
-            %>
-            <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=startPage - 1%>">이전</a>
-            </li>
-            <%
-            }
-            for (int pp = startPage; pp <= endPageGen; pp++) {
-            if (pp == currentPage) {
-            %>
-            <li class="active"><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
-            </li>
-            <%
-            } else {
-            %>
+				if (startPage > 1) {
+				%>
+				<li><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=startPage - 1%>">이전</a>
+				</li>
+				<%
+				}
+				for (int pp = startPage; pp <= endPage; pp++) {
+				if (pp == currentPage) {
+				%>
+				<li class="active"><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
+				</li>
+				<%
+				} else {
+				%>
 
-            <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
-            </li>
-            <%
-            }
-            }
+				<li><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
+				</li>
+				<%
+				}
+				}
 
-            //다음
-            if (endPageGen < totalPageGen) {
-            %>
-            <li><a
-               href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=endPageGen + 1%>">다음</a>
-            </li>
-            <%
-            }
-            %>
-         </ul>
-      </div>
+				//다음
+				if (endPage < totalPage) {
+				%>
+				<li><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=<%=sort%>&currentPage=<%=endPage + 1%>">다음</a>
+				</li>
+				<%
+				}
+				%>
+			</ul>
+		</div>
 
-      <%
-      }
-      %>
-   </div>
+		<%
+		} else {
+		%>
+		<div class="tab-content"
+			style="padding-top: 40px; margin-left: 170px;">
+			<div id="movie_genre">
+				<div>
+					<div
+						style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
+						<%
+						int i = 0;
+						for (MovieDto dto : sort.equals("recent") ? list_genre_recent
+								: sort.equals("pick") ? list_genre_pick : list_genre_rank) {
+
+							String poster = dto.getMovie_poster();
+						%>
+
+						<div style="padding: 10px;">
+							<%
+							if (loginok != null) {
+								if (myid.equals("admin")) {
+							%>
+							<input type="checkbox" name="movie_num" class="movie_num"
+								movie_num="<%=dto.getMovie_num()%>" id="movie_del">
+							<%
+							}
+							}
+							%>
+							<a movie_num="<%=dto.getMovie_num()%>"
+								style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
+								class="godetail"> <img src="movie_save/<%=poster%>"
+								class="poster"
+								onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+								<span style="text-align: center; font-size:14px; margin-left:-10px;padding-top:10px;width: 100%;"><%=dto.getMovie_subject()%></span>
+							</a>
+						</div>
+
+						<%
+						if ((i + 1) % 4 == 0) {
+						%>
+					</div>
+
+					<div
+						style="display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
+						<%
+						}
+						i++;
+						}
+						%>
+					</div>
+				</div>
+			</div>
+			<%
+			if (loginok != null) {
+				if (myid.equals("admin")) {
+			%>
+
+
+
+			<div style="margin-left: 990px;">
+				<button type="button" class="btn btn-default"
+					style="color: #653491; border: 1px solid #653491;"
+					onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
+				<button type="button" class="btn btn-default" id="moviedel">삭제</button>
+			</div>
+		</div>
+		<%
+		}
+		}
+		%>
+
+
+		<!-- 페이징 처리 -->
+		<div style="width: 500px; text-align: center; margin-right: 40%;"
+			class="container">
+			<ul class="pagination">
+				<%
+				//이전
+
+				if (startPage > 1) {
+				%>
+				<li><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=startPage - 1%>">이전</a>
+				</li>
+				<%
+				}
+				for (int pp = startPage; pp <= endPageGen; pp++) {
+				if (pp == currentPage) {
+				%>
+				<li class="active"><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
+				</li>
+				<%
+				} else {
+				%>
+
+				<li><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=pp%>"><%=pp%></a>
+				</li>
+				<%
+				}
+				}
+
+				//다음
+				if (endPageGen < totalPageGen) {
+				%>
+				<li><a
+					href="index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&currentPage=<%=endPageGen + 1%>">다음</a>
+				</li>
+				<%
+				}
+				%>
+			</ul>
+		</div>
+
+		<%
+		}
+		%>
+	</div>
 </body>
 </html>

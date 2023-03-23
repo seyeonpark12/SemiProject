@@ -297,7 +297,6 @@ td.myinfo {
 				class="btn btn-default btn-sm" onclick="location.href='#'">삭제</button>
 			<%}%>
 
-
 			<button type="button" class="btn btn-default btn-sm"
 				style="float: right; margin-left: 5px;"
 				onclick="location.href='index.jsp?main=commu/commu_addform.jsp'">

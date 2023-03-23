@@ -60,7 +60,7 @@
         var logindata = $("#loginfrm").serialize();
         
    
-        	 $.ajax({
+            $.ajax({
 
                  type : "get",
                  dataType : "html",
@@ -89,8 +89,8 @@
         
         var a=result=="사용가능한 아이디입니다😊";
         if(a){
-       	 
-       	 $.ajax({
+           
+           $.ajax({
 
                 type : "get",
                 dataType : "html",
@@ -105,29 +105,13 @@
                 }
              });
         }else{
-       	 
-       	 alert("중복확인을 해주세요");
+           
+           alert("중복확인을 해주세요");
         }
         
       });
 
-
-      //idsearch 불러오기
-      $("#search_id")
-            .keyup(
-                  function(event) {
-
-                     if (event.which === 13) {
-
-                        var search = $(this).val();
-                        //alert(search);
-
-                        location.href = "index.jsp?main=movie/movie_search.jsp?search="
-                              + search + "&currentPage=1";
-                     }
-                     ;
-                  });
-
+      
       //엔터로 로그인
       $("#user_pw").keyup(function(event) {
 
@@ -151,6 +135,25 @@
          }
          ;
       });
+      
+
+      //검색하기
+      $("#search_id")
+            .keyup(
+                  function(event) {
+
+                     if (event.which === 13) {
+
+                        var search = $(this).val();
+                        //alert(search);
+
+                        location.href = "index.jsp?main=movie/movie_search.jsp?search="
+                              + search + "&currentPage=1";
+                     }
+                     ;
+                  });
+
+  
 
       //중복 아이디 체크
       $("#id_check").click(function() {
@@ -205,16 +208,7 @@
 
       });
 
-      //아이디 저장
-      $("#saveid").click(function() {
-
-         var saveid = $("#saveid").val();
-         //alert(saveid);
-         
-         
-         
-      });
-
+	
    });
 </script>
 <body>

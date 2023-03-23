@@ -22,8 +22,35 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-	
-	<%
+<style type="text/css">
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
+}
+</style>
+
+<%
 	String loginok = (String) session.getAttribute("loginok");
 	String myid = (String) session.getAttribute("myid");
 	
@@ -81,7 +108,7 @@
 	      }
 	
 	%>
-	
+
 <!-- 삭제 체크 박스 -->
 <script type="text/javascript">
 	$(function(){
@@ -130,14 +157,18 @@
 	</script>
 </head>
 <body>
-	
+
 	<div class="myinfo_div">
 		<table style="width: 1000px;">
-		 <input type="hidden" name="user_num" id="user_num" value="<%=user_num%>"> 
-		<input type="hidden" name="commu_num" value="<%=commu_num%>">
-			<h3>내가 쓴 글 <%=totalCount %></h3>
+			<input type="hidden" name="user_num" id="user_num"
+				value="<%=user_num%>">
+			<input type="hidden" name="commu_num" value="<%=commu_num%>">
+			<h3>
+				내가 쓴 글
+				<%=totalCount %></h3>
 			<tr class="tr_myinfo">
-				<th width="30" class="myinfo"><input type="checkbox" class="allcheckdelete"></th>
+				<th width="30" class="myinfo"><input type="checkbox"
+					class="allcheckdelete"></th>
 				<th width="170" class="myinfo">카테고리</th>
 				<th width="600" class="myinfo">제목</th>
 				<th width="200" class="myinfo">작성일</th>
@@ -145,59 +176,59 @@
 
 			<%
 			if(totalCount==0){%>
-			
-				<tr>
+
+			<tr>
 				<td colspan="5" align="center" class="myinfo">
 					<h3>작성한 게시글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
-			
+
 			<%}else{
 				
 				for(CommuDto cdto:list){%>
-					<tr>
-						<td align="center" class="myinfo">
-						<input type="checkbox" class="checkdelete" value="<%=cdto.getCommu_num() %>">
-						</td>
+			<tr>
+				<td align="center" class="myinfo"><input type="checkbox"
+					class="checkdelete" value="<%=cdto.getCommu_num() %>"></td>
+
+				<td align="center" class="myinfo"><span><%=cdto.getCommu_category() %></span>
+				</td>
+
+				<td align="center" class="myinfo"><span><a
+						href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=cdto.getCommu_num()%>"
+						style="float: left;"><%=cdto.getCommu_subject() %></a></span> <%
+						 if(cdto.getCommu_photo()!=null){%> <img
+					style="float: left; width: 15px;" src="commu/new_img/photoimg.png">
+					<%}
 						
-						<td align="center" class="myinfo">
-						<span><%=cdto.getCommu_category() %></span>
-						</td>
-					
-						<td align="center" class="myinfo">						
-						<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=cdto.getCommu_num()%>" style="float: left;"><%=cdto.getCommu_subject() %></a></span>
-						<%
-						 if(cdto.getCommu_photo()!=null){%> 
-							<img style="float: left; width: 15px;" src="commu/new_img/photoimg.png">
-						<%}
-						
-						if(cdto.getAnswerCount()>0){%>
-							<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=cdto.getCommu_num()%>" style="float: left; color: red;">[<%=cdto.getAnswerCount() %>] </a></span>
-						<%}
-						%>
-						</td>
-						
-						<td class="myinfo"><%=sdf.format(cdto.getCommu_writeday()) %></td>
-					</tr>
-				<%}
+						if(cdto.getAnswerCount()>0){%> <span><a
+						href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=cdto.getCommu_num()%>"
+						style="float: left; color: red;">[<%=cdto.getAnswerCount() %>]
+					</a></span> <%}
+						%></td>
+
+				<td class="myinfo"><%=sdf.format(cdto.getCommu_writeday()) %></td>
+			</tr>
+			<%}
 			}
 			%>
 		</table>
-
-		<button type="button" class="btn btn-default btn-sm"
+		
+		<div>
+			<button type="button" class="btn btn-default btn-sm"
 				onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num %>'"
-			style="margin-left: 450px; margin-bottom: 10px;">마이페이지</button>
-			
-		<button type="button" class="btn btn-default btn-sm" id="mycommudelete"
-			style="margin-left: 450px; margin-bottom: 10px;">삭제</button>
+				style="margin-left: 850px; margin-bottom: 10px;">마이페이지</button>
+
+			<button type="button" class="btn btn-default btn-sm"
+				id="mycommudelete" style="color:red; border:1px solid red;  margin-bottom: 10px;">삭제</button>
+		</div>
 	</div>
-	
-	
-	
+
+
+
 	<!-- 페이징처리 -->
 	<div style="width: 500px; text-align: center;" class="container">
 		<ul class="pagination">
-	<%
+			<%
          
       //이전
       if(startPage>1){

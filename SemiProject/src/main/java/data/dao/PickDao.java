@@ -92,43 +92,56 @@ public class PickDao {
       }
       
       
-      public void insertPcount(String movie_num) {
-            Connection conn = db.getConnection();
-            PreparedStatement pstmt = null;
+      public int getTotalCount_Pcount(String movie_num) {
+	      
+	      int n=0;
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select count(*) from pick where movie_num=?";
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, movie_num);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         if(rs.next())
+	            n=rs.getInt(1);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      return n;
+	   }
+      
+      
+      public void insertPcount(int pcount,String movie_num) {
+          Connection conn = db.getConnection();
+          PreparedStatement pstmt = null;
 
-            String sql = "update movie set movie_pcount=movie_pcount+1 where movie_num=?";
+          String sql = "update movie set movie_pcount=? where movie_num=?";
 
-            try {
-               pstmt = conn.prepareStatement(sql);
-               pstmt.setString(1, movie_num);
+          try {
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setInt(1, pcount);
+             pstmt.setString(2, movie_num);
 
-               pstmt.execute();
-            } catch (SQLException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-            } finally {
-               db.dbClose(pstmt, conn);
-            }
-         }
-         
-         public void deletePcount(String movie_num) {
-            Connection conn = db.getConnection();
-            PreparedStatement pstmt = null;
-
-            String sql = "update movie set movie_pcount=movie_pcount-1 where movie_num=?";
-
-            try {
-               pstmt = conn.prepareStatement(sql);
-               pstmt.setString(1, movie_num);
-
-               pstmt.execute();
-            } catch (SQLException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-            } finally {
-               db.dbClose(pstmt, conn);
-            }
-         }
+             pstmt.execute();
+          } catch (SQLException e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+          } finally {
+             db.dbClose(pstmt, conn);
+          }
+       }
+      
+      
          
          //user_num별 pick 갯수
          public int myPickCount(String user_num) {
