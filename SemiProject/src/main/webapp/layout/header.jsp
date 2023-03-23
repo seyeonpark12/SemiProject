@@ -63,12 +63,21 @@
             $.ajax({
 
                  type : "get",
-                 dataType : "html",
+                 dataType : "json",
                  url : "login/loginaction.jsp",
                  data : logindata,
-                 success : function() {
+                 success : function(res) {
+                    
+                    if(res.b){
+                       
+                       location.reload();
+                    }else{
+                       
+                       alert("아이디와 비밀번호가 일치하지 않습니다.");
+                       
+                    }
 
-                    location.reload();
+                    
 
                  }
               });

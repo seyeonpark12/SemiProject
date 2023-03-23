@@ -304,6 +304,11 @@ UserDto udto = new UserDto();
 ReviewDao rdao = new ReviewDao();
 PickDao pdao = new PickDao();
 String movie_num = request.getParameter("movie_num");
+
+//pcount 계산
+int pcount=pdao.getTotalCount_Pcount(movie_num);
+pdao.insertPcount(pcount, movie_num);
+
 MovieDto mdto = mdao.getData(movie_num);
 
 String poster = mdto.getMovie_poster();

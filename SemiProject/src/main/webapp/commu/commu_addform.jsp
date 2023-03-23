@@ -89,7 +89,7 @@
 					</select></td>
 
 					<td><input type="text" name="commu_subject"
-						class="form-control" style="width: 770px;" required="required">
+						class="form-control" style="width: 790px; margin-left:8px;" required="required">
 					</td>
 				</tr>
 

@@ -243,7 +243,6 @@ td.myinfo {
 
 				<td class="myinfo"><%=dto.getCommu_category() %></td>
 
-
 				<td class="myinfo"><a style="float: left; margin-left: 50px;"
 					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
 					<%
