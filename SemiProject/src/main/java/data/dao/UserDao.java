@@ -465,7 +465,33 @@ public class UserDao {
           
        }
    
-   
+       //id 찾기
+       public String findId(String user_name, String user_hp) {
+    	   Connection conn=db.getConnection();
+    	   PreparedStatement pstmt=null;
+    	   ResultSet rs=null;
+   		   String id = null;
+   		
+   		try {
+   			String sql = "select user_id from user where user_name=? and user_hp=? ";
+   			pstmt = conn.prepareStatement(sql);
+   			pstmt.setString(1, user_name);
+   			pstmt.setString(2, user_hp);
+   			
+   			rs = pstmt.executeQuery();
+   			
+   			if(rs.next()) {
+   				id = rs.getString("user_id");
+   			}
+   				
+   		} catch (Exception e) {
+   			e.printStackTrace();
+   		}finally {
+            db.dbClose(rs, pstmt, conn);
+         }
+   		
+   		return id;
+   	}
    
    
 }

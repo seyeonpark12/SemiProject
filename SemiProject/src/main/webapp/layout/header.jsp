@@ -63,17 +63,27 @@
             $.ajax({
 
                  type : "get",
-                 dataType : "html",
+                 dataType : "json",
                  url : "login/loginaction.jsp",
                  data : logindata,
-                 success : function() {
+                 success : function(res) {
+                	 
+                	 if(res.b){
+                		 
+                		 location.reload();
+                	 }else{
+                		 
+                		 alert("아이디와 비밀번호가 일치하지 않습니다.");
+                		 
+                	 }
 
-                    location.reload();
+                    
 
                  }
               });
         
       });
+      
       
       
       
@@ -332,6 +342,16 @@
                                     </div>
                                  </div>
                               </div>
+                              
+                              <div class="form-group">
+	                              <div class="col-sm-offset-2 col-sm-10">
+	                              	<button type="button" class="btn btn-default" id="findid"style="width: 120px;" 
+	                              	onclick="location.href='index.jsp?main=login/login_findid.jsp'">아이디 찾기</button>
+	                              	<button type="button" class="btn btn-default" id="findpw"style="width: 120px;" 
+	                              	onclick="location.href='index.jsp?main=login/login_findid.jsp'">비밀번호 찾기</button>
+	                              </div >
+                              </div>
+                              
 
                               <div class="form-group">
                                  <div class="col-sm-offset-2 col-sm-10">
@@ -408,7 +428,7 @@
 
                               <br>
                               <br>
-                              <input type="text" name="user_hp" placeholder="휴대번호" class="form-control"
+                              <input type="text" name="user_hp" placeholder="휴대번호/'-'까지 입력" class="form-control"
                                  required="required" style="width: 300px; background-color: #fafafa" value=""
                               >
 

@@ -15,18 +15,18 @@
 </head>
 <body>
 <%
-	String user_num=request.getParameter("user_num");
-	
-	//전체멤버 정보 가져오기
-	UserDao dao=new UserDao();
-	
-	dao.deleteInfo(user_num);
-	
-	//로그인한 세션제거
-	session.removeAttribute("loginok");
-	session.removeAttribute("myid");
-	
-	response.sendRedirect("../index.jsp");
-	%>
+   String user_num=request.getParameter("user_num");
+   
+   //전체멤버 정보 가져오기
+   UserDao dao=new UserDao();
+   
+   dao.deleteInfo(user_num);
+   
+   //로그인한 세션제거
+   session.removeAttribute("loginok");
+   session.removeAttribute("myid");
+   
+   response.sendRedirect("../index.jsp");
+   %>
 </body>
 </html>

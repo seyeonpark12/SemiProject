@@ -435,7 +435,7 @@
 				</div>
 
 				<div class="modal-body">
-					<b>댓글수정 </b> <input type="text" id=update_ment_content
+					<input type="text" id=update_ment_content
 						style="width: 300px; height: 200px;">
 				</div>
 
