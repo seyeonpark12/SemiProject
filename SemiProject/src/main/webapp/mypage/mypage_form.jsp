@@ -224,8 +224,8 @@ a.godetail {
 			<%
 		if(myPickCount==0){%>
 
-			<h3>Pick 영화가 없습니다</h3>
-
+			<h3 style="text-align: center; padding: 200px;">Pick 영화가 없습니다</h3>
+			
 			<%} else {
 				
 				for (PickDto pdto : mypicklist) {

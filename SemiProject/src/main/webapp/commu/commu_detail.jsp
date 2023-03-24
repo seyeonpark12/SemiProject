@@ -34,6 +34,14 @@
 	color: black;
 }
 
+input:focus {
+	outline: none;
+}
+
+.content:focus {
+	outline: none;
+}
+
 .ca_subject {
 	font-size: 18px;
 	font-weight: 300;
@@ -168,6 +176,20 @@
 	MentDao mdao = new MentDao();
 	//commu_num에 따른 댓글리스트
 	List<MentDto> mlist = mdao.getAllMent(dto.getCommu_num());
+	
+	
+	String category=request.getParameter("category");
+	String href = "";
+	
+	if(category!=null){
+		
+		href="index.jsp?main=commu/"+(category.equals("total")?"commu_totallist.jsp":
+			category.equals("free")?"commu_freelist.jsp":
+				category.equals("share")?"commu_sharelist.jsp":
+					category.equals("with")?"commu_withlist.jsp":"");
+	}else
+		href="index.jsp?main=commu/commu_totallist.jsp";
+
 	%>
 
 	<div>
@@ -201,25 +223,26 @@
 		</table>
 		<div style="float: right; margin-top: -20px;">
 			<!-- 목록가기 버튼.. -->
+
 			<button
 				style="margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;"
 				type="button" class="btn btn-default btn-sm"
-				onclick="location.href='index.jsp?main=commu/commu_totallist.jsp'">목록</button>
-
+				onclick="location.href='<%=href%>'">목록</button>
+				
 			<%
 			if (loginok != null) {
 
 				if (myid.equals(writer_id)) {
 			%>
 
-		<button type="button" class="btn btn-default btn-sm"
+			<button type="button" class="btn btn-default btn-sm"
 				style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;"
 				onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
-				
+
 			<button type="button" class="btn btn-default btn-sm"
 				style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;"
 				onclick="location.href='index.jsp?main=commu/commu_updateform.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>'">수정</button>
-	
+
 		</div>
 
 		<%
@@ -227,7 +250,8 @@
 		%>
 
 		<div style="float: right;">
-			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;"
+			<button type="button" class="btn btn-default btn-sm"
+				style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;"
 				onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
 		</div>
 		<%
@@ -269,7 +293,6 @@
 		<hr>
 
 
-
 		<%
 		int mentcount = mdao.getAllMent(commu_num).size();
 		dto.setAnswerCount(mentcount);
@@ -298,7 +321,7 @@
 						<tr>
 							<td style="width: 90%;"><textarea name="ment_content"
 									required="required"
-									style="display: block; width: 100%; overflow: hidden; overflow-wrap: break-word; height: 80px; min-height: 17px; padding-right: 1px; border: 0; font-size: 13px; -webkit-appearance: none; resize: none; box-sizing: border-box; background: transparent; color: var(- -skinTextColor); outline: 0;"></textarea>
+									style="display: block; width: 100%; padding:20px;overflow: hidden; overflow-wrap: break-word; height: 80px; min-height: 17px; padding-right: 1px; border: 0; font-size: 13px; -webkit-appearance: none; resize: none; box-sizing: border-box; background: transparent; color: var(- -skinTextColor); outline: 0;"></textarea>
 							</td>
 
 							<td>
@@ -427,21 +450,22 @@
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
-			<div class="modal-content" style="margin-top: 160px;">
+			<div class="modal-content" style="margin-top: 160px; width: 400px;">
 
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">댓글 수정</h4>
 				</div>
 
-				<div class="modal-body">
-					<input type="text" id=update_ment_content
-						style="width: 300px; height: 200px;">
+				<div class="modal-body" style="padding: 20px;">
+					<textarea type="text" id=update_ment_content
+						style="width: 355px; height: 200px; padding: 10px; border: none; outline: none; resize: none;"></textarea>
 				</div>
 
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default btn-sm"
-						data-dismiss="modal" id="btnupdate">수정</button>
+						style="border: 1px solid #CBB6D9;" data-dismiss="modal"
+						id="btnupdate">수정</button>
 				</div>
 			</div>
 

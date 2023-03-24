@@ -183,22 +183,23 @@ td.myinfo {
 		style="width: 1000px; margin-top: 100px; margin-left: 670px;">
 
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_totallist.jsp"
-				style="font-size: 18px; color: black; padding-right: 10px;">전체 |</a>
+			<a href="index.jsp?main=commu/commu_totallist.jsp?category=total"
+				style="font-size: 18px; color: black; padding-right: 10px;">전체 </a>
 		</div>
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_freelist.jsp"
-				style="font-size: 18px; color: black; padding-right: 10px;">자유 |</a>
+			<a href="index.jsp?main=commu/commu_freelist.jsp?category=free"
+				style="font-size: 18px; color: black; padding-right: 10px;">자유 </a>
 		</div>
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_withlist.jsp"
-				style="font-size: 18px; color: black; padding-right: 10px;">동행 |</a>
+			<a href="index.jsp?main=commu/commu_withlist.jsp?category=with"
+				style="font-size: 18px; color: black; padding-right: 10px;">동행 </a>
 		</div>
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_sharelist.jsp"
-				style="font-size: 18px; font-weight: bold; color: black; padding-right: 10px;">나눔</a>
+			<a href="index.jsp?main=commu/commu_sharelist.jsp?category=share"
+				style="font-size: 18px; font-weight: bold; color: #653491; padding-right: 10px;">나눔</a>
 		</div>
 	</div>
+	
 
 	<br>
 	<div class="myinfo_div">
@@ -251,7 +252,7 @@ td.myinfo {
 
 
 				<td class="myinfo"><a style="float: left; margin-left: 50px;"
-					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
+					href="index.jsp?main=commu/commu_detail.jsp?category=share&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
 					<%
                   //이미지 첨부된 경우 아이콘 표시
                   if(dto.getCommu_photo()!=null){%> <img
@@ -260,7 +261,7 @@ td.myinfo {
                   
 	   				//댓글이 있을 경우 제목 옆에 갯수 나타내기
 	   				if(dto.getAnswerCount()>0){%> <a
-					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
+					href="index.jsp?main=commu/commu_detail.jsp?category=share&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
 					style="float: left; color: red;">[<%=dto.getAnswerCount() %>]
 				</a> <%}
                   
@@ -287,7 +288,7 @@ td.myinfo {
             }
             %>
 		</table>
-<% 
+	<% 
 		if(loginok!=null){
 			if(myid.equals("admin")){%>
 		<div style="float: right;">
@@ -317,7 +318,7 @@ td.myinfo {
       if(startPage>1){
          %>
 			<li><a
-				href="index.jsp?main=commu/commu_sharelist.jsp?currentPage=<%=startPage-1 %>">이전</a>
+				href="index.jsp?main=commu/commu_sharelist.jsp?category=share&currentPage=<%=startPage-1 %>">이전</a>
 			</li>
 			<%}
          
@@ -327,12 +328,12 @@ td.myinfo {
          if(pp==currentPage){
             %>
 			<li class="active"><a
-				href="index.jsp?main=commu/commu_sharelist.jsp?currentPage=<%=pp %>"><%=pp %></a>
+				href="index.jsp?main=commu/commu_sharelist.jsp?category=share&currentPage=<%=pp %>"><%=pp %></a>
 			</li>
 			<% } else{
             %>
 			<li><a
-				href="index.jsp?main=commu/commu_sharelist.jsp?currentPage=<%=pp %>"><%=pp %></a>
+				href="index.jsp?main=commu/commu_sharelist.jsp?category=share&currentPage=<%=pp %>"><%=pp %></a>
 			</li>
 			<%}
             
@@ -342,7 +343,7 @@ td.myinfo {
       if(endPage<totalPage){
          %>
 			<li><a
-				href="index.jsp?main=commu/commu_sharelist.jsp?currentPage=<%=endPage+1 %>">다음</a>
+				href="index.jsp?main=commu/commu_sharelist.jsp?category=share&currentPage=<%=endPage+1 %>">다음</a>
 			</li>
 			<%}
       %>

@@ -36,8 +36,12 @@
 		$("span.camera").click(function() {
 			$("#movie_poster").trigger("click"); //이벤트 강제호출 : trigger
 		});
-		// 리뷰 생성
-		$("#review_save").click(function() {
+		//리뷰생성
+		var reviewform = document.getElementById('myform');
+
+		reviewform.addEventListener('submit', function(event) {
+			event.preventDefault();
+
 			var movie_num = $("#movie_num").val();
 			var user_num = $("#user_num").val();
 			var review_score = $("#myform input[type=radio]:checked").val()
@@ -62,9 +66,9 @@
 				}
 			})
 
-		})
-		// 리뷰 삭제
-		$(".review_del").click(function() {
+		});
+		$(document).on("click", "#review_del", function() {
+
 			var review_num = $(this).attr("review_num")
 			//alert(review_num)
 
@@ -81,6 +85,7 @@
 				}
 			})
 		})
+
 		// pick 추가
 		$("#movie_pickadd").click(function() {
 			var movie_num = $("#movie_num").val();
@@ -306,7 +311,7 @@ PickDao pdao = new PickDao();
 String movie_num = request.getParameter("movie_num");
 
 //pcount 계산
-int pcount=pdao.getTotalCount_Pcount(movie_num);
+int pcount = pdao.getTotalCount_Pcount(movie_num);
 pdao.insertPcount(pcount, movie_num);
 
 MovieDto mdto = mdao.getData(movie_num);
@@ -373,10 +378,6 @@ no = totalCount - (currentPage_review - 1) * perPage;
 %>
 <body>
 	<div style="padding: 0; margin-top: 100px;">
-		<input type="hidden" id="movie_num" value="<%=movie_num%>"> <input
-			type="hidden" id="myid" value="<%=myid%>"> <input
-			type="hidden" id="user_num" value="<%=user_num%>"> <input
-			type="hidden" id="user_nickname" value="<%=user_nickname%>">
 
 		<!-- Modal -->
 		<div class="review_modal modal fade" id="modal" role="dialog">
@@ -386,15 +387,18 @@ no = totalCount - (currentPage_review - 1) * perPage;
 				<div class="review_modal modal-content" style="margin-top: 170px;">
 					<div class="review_modal modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<img alt="" src="movie_save/<%=poster%>"
-							movie_num="<%=movie_num%>" width="200">
-						<div style="text-align: center; font-size: 20pt">
-							<b style="font-size: 15pt;"> &nbsp;&nbsp;&nbsp;<%=mdto.getMovie_subject()%></b>
+						
+						<div style="text-align: center; font-size: 20pt; padding:5px; margin-left:13px;">
+							<b style="font-size: 15pt; color:#fff"><%=mdto.getMovie_subject()%></b>
 						</div>
 					</div>
 					<div class="review_modal modal-score">
 
 						<form class="mb-3" name="myform" id="myform" method="post">
+							<input type="hidden" id="movie_num" value="<%=movie_num%>">
+							<input type="hidden" id="myid" value="<%=myid%>"> <input
+								type="hidden" id="user_num" value="<%=user_num%>"> <input
+								type="hidden" id="user_nickname" value="<%=user_nickname%>">
 							<fieldset>
 								<input type="radio" name="review_Star" value="5" id="rate1">
 								<label for="rate1">★</label> <input type="radio"
@@ -405,15 +409,15 @@ no = totalCount - (currentPage_review - 1) * perPage;
 									for="rate4">★</label> <input type="radio" name="review_Star"
 									value="1" id="rate5"> <label for="rate5">★</label>
 							</fieldset>
-							<div>
+							<div style="float: left; padding: 10px;">
 								<textarea class="col-auto form-control" id="review_contents"
-									placeholder="욕설과 비방을 작성 시 제재를 당할 수 있습니다." required="required"></textarea>
+									style="width: 350px; height: 180px; padding: 20px; border: none; outline: none; resize: none;"
+									욕설과 비방을 작성 시 제재를 당할 수 있습니다." required="required"></textarea>
+							</div>
+							<div style="margin: 0 40%;">
+								<button type="submit" class="btn btn-default" id="review_save">저장하기</button>
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal"
-							id="review_save">저장하기</button>
 					</div>
 				</div>
 			</div>
@@ -502,7 +506,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 			<!-- 목록가기 버튼.. -->
 			<button type="button" class="btn btn-default btn-sm"
 				style="margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;"
-				onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1'">목록</button>
+				onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre %>&sort=<%=sort %>&currentPage=<%=currentPage%>'">목록</button>
 		</div>
 		<br>
 		<hr>
@@ -544,11 +548,12 @@ no = totalCount - (currentPage_review - 1) * perPage;
 			<div style="width: 100%; margin-left: 1px;" id="movie_content">
 				<table style="width: 100%;">
 					<tr>
-						<th width="10%" class="myinfo" style="text-align: center;">번호</th>
+						<th width="8%" class="myinfo" style="text-align: center;">번호</th>
 						<th width="60%" class="myinfo" style="text-align: center;">내용</th>
-						<th width="10%" class="myinfo" style="text-align: center;">작성자</th>
-						<th width="10%" class="myinfo" style="text-align: center;">점수</th>
-						<th width="10%" class="myinfo" style="text-align: center;">작성일</th>
+						<th width="8%" class="myinfo" style="text-align: center;">작성자</th>
+						<th width="8%" class="myinfo" style="text-align: center;">점수</th>
+						<th width="8%" class="myinfo" style="text-align: center;">작성일</th>
+						<th width="8%" class="myinfo" style="text-align: center;"></th>
 					</tr>
 
 					<%
@@ -566,6 +571,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 
 					<%
 					String writer_nickname = udao.getName_num(dto.getUser_num());
+					String id = udao.getId(dto.getUser_num());
 					%>
 
 					<tr>
@@ -574,6 +580,18 @@ no = totalCount - (currentPage_review - 1) * perPage;
 						<td align="center"><%=writer_nickname%></td>
 						<td width="30" style="text-align: center; color: orange;"><%="★ " + Math.round(dto.getReview_score())%></td>
 						<td width="200" style="text-align: center;"><%=sdf.format(dto.getReview_writeday())%></td>
+						<%
+						if (loginok != null && myid.equals("admin") || loginok != null && myid.equals(id)) {
+						%>
+
+						<td>
+							<button type="button" class="btn btn-default btn-sm"
+								review_num="<%=dto.getReview_num()%>" id="review_del"
+								style="margin-left: 10px;">삭제</button>
+						</td>
+						<%
+						}
+						%>
 					</tr>
 					<%
 					}

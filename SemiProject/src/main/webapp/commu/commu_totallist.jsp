@@ -176,20 +176,20 @@ td.myinfo {
 	<div class="category"
 		style="width: 1000px; margin-top: 100px; margin-left: 670px;">
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_totallist.jsp"
-				style="font-size: 18px; font-weight: bold; color: black; padding-right: 10px;">전체
-				|</a>
+			<a href="index.jsp?main=commu/commu_totallist.jsp?category=total"
+				style="font-size: 18px; font-weight: bold; color: #653491; padding-right: 10px;">전체
+				</a>
 		</div>
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_freelist.jsp"
-				style="font-size: 18px; color: black; padding-right: 10px;">자유 |</a>
+			<a href="index.jsp?main=commu/commu_freelist.jsp?category=free"
+				style="font-size: 18px; color: black; padding-right: 10px;">자유 </a>
 		</div>
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_withlist.jsp"
-				style="font-size: 18px; color: black; padding-right: 10px;">동행 |</a>
+			<a href="index.jsp?main=commu/commu_withlist.jsp?category=with"
+				style="font-size: 18px; color: black; padding-right: 10px;">동행 </a>
 		</div>
 		<div style="float: left;">
-			<a href="index.jsp?main=commu/commu_sharelist.jsp"
+			<a href="index.jsp?main=commu/commu_sharelist.jsp?category=share"
 				style="font-size: 18px; color: black; padding-right: 10px;">나눔</a>
 		</div>
 	</div>
@@ -243,26 +243,31 @@ td.myinfo {
 
 				<td class="myinfo"><%=dto.getCommu_category() %></td>
 
-				<td class="myinfo"><a style="float: left; margin-left: 50px;"
-					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"><%=dto.getCommu_subject() %></a>
+
+				<td class="myinfo">
+				<a style="float: left; margin-left: 50px; padding:0px 5px;"
+					href="index.jsp?main=commu/commu_detail.jsp?category=total&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>">
+					<%=dto.getCommu_subject() %></a>
 					<%
+					
                   //이미지 첨부된 경우 아이콘 표시
                   if(dto.getCommu_photo()!=null){%> <img
-					style="float: left; width: 15px;" src="commu/new_img/photoimg.png">
+					style="float: left; width: 13px; margin-top:3px;" src="commu/new_img/photoimg.png">
 					<%}
-                  
+					
 	   				//댓글이 있을 경우 제목 옆에 갯수 나타내기
 	   				if(dto.getAnswerCount()>0){%> <a
-					href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
+					href="index.jsp?main=commu/commu_detail.jsp?category=total&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"
 					style="float: left; color: red;">[<%=dto.getAnswerCount() %>]
 				</a> <%}
+					
 	   				
 	   				//오늘 올라온 글이면 N icon
      				String inpuDate=sdf.format(dto.getCommu_writeday());
      				String now = sdf.format(new java.util.Date());
  
      				if(inpuDate.equals(now)){%> 
-     				<img style="float: left; width: 15px;" src="commu/new_img/newimg.png">
+     				<img style="float: left; width: 13px; margin-top:3px;" src="commu/new_img/newimg.png">
 					<%}             
 	   			
      				%></td>
@@ -314,7 +319,7 @@ td.myinfo {
       if(startPage>1){
          %>
 			<li><a
-				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=startPage-1 %>">이전</a>
+				href="index.jsp?main=commu/commu_totallist.jsp?category=total&currentPage=<%=startPage-1 %>">이전</a>
 			</li>
 			<%}
          
@@ -324,12 +329,12 @@ td.myinfo {
          if(pp==currentPage){
             %>
 			<li class="active"><a
-				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=pp %>"><%=pp %></a>
+				href="index.jsp?main=commu/commu_totallist.jsp?category=total&currentPage=<%=pp %>"><%=pp %></a>
 			</li>
 			<% } else{
             %>
 			<li><a
-				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=pp %>"><%=pp %></a>
+				href="index.jsp?main=commu/commu_totallist.jsp?category=total&currentPage=<%=pp %>"><%=pp %></a>
 			</li>
 			<%}
             
@@ -339,7 +344,7 @@ td.myinfo {
       if(endPage<totalPage){
          %>
 			<li><a
-				href="index.jsp?main=commu/commu_totallist.jsp?currentPage=<%=endPage+1 %>">다음</a>
+				href="index.jsp?main=commu/commu_totallist.jsp?category=total&currentPage=<%=endPage+1 %>">다음</a>
 			</li>
 			<%}
       %>
