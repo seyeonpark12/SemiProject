@@ -3,7 +3,7 @@
 a.godetail {
 	display: inline-block;
 	width: 240px;
-	height: 400px;
+	height: 490px;
 	margin: 2px;
 	padding: 10px;
 	overflow: hidden;
@@ -26,7 +26,7 @@ img {
 /*영화..*/
 .nav>li>a:focus, .nav>li>a:hover {
 	text-decoration: none;
-	color:#fff;
-	background-color:#CBB6D9;
-	border:0px solid;
+	color: #fff;
+	background-color: #CBB6D9;
+	border: 0px solid;
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +13,14 @@
 </head>
 <body>
 
-    <%
-     //loginok세션제거
-     session.removeAttribute("loginok");
-     session.removeAttribute("myid");
-  
-     //메인페이지이동
-     response.sendRedirect("../index.jsp");
-  %>
-  
+	<%
+	//loginok세션제거
+	session.removeAttribute("loginok");
+	session.removeAttribute("myid");
+
+	//메인페이지이동
+	response.sendRedirect("../index.jsp");
+	%>
+
 </body>
 </html>

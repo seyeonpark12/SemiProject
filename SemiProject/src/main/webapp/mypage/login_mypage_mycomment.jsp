@@ -6,22 +6,17 @@
 <%@page import="data.dao.UserDao"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>WPICK</title>
 <link rel="favicon" href="../layout_image/titlelogo.ico">
-<link rel="shortcut icon" type="../layoutimage/x-icon"
-	href="../layout_image/titlelogo.ico">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-	rel="stylesheet">
+<link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link href="css/info.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <style type="text/css">
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
@@ -153,16 +148,14 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 
 	<div class="myinfo_div">
 		<table style="width: 1000px;">
-			<input type="hidden" name="user_num" id="user_num"
-				value="<%=user_num%>">
+			<input type="hidden" name="user_num" id="user_num" value="<%=user_num%>">
 			<input type="hidden" name="commu_num" value="<%=commu_num%>">
 			<input type="hidden" name="ment_num" value="<%=ment_num%>">
 			<h3>
-				내가 쓴 댓글
-				<%=totalCount%></h3>
+				내가 쓴 댓글 <b style="color: purple; font-size: 17pt"><%=totalCount%></b>
+			</h3>
 			<tr class="tr_myinfo">
-				<th width="30" class="myinfo"><input type="checkbox"
-					class="allcheckdelete"></th>
+				<th width="30" class="myinfo"><input type="checkbox" class="allcheckdelete"></th>
 				<th width="170" class="myinfo">카테고리</th>
 				<th width="600" class="myinfo">댓글</th>
 				<th width="200" class="myinfo">작성일</th>
@@ -174,7 +167,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 
 			<tr>
 				<td colspan="5" align="center" class="myinfo">
-					<h3>작성한 댓글이 없습니다</h3> <!-- 최대 8개까지만 보이게 하기.. -->
+					<h3>작성한 댓글이 없습니다</h3>
+					<!-- 최대 8개까지만 보이게 하기.. -->
 				</td>
 			</tr>
 
@@ -184,18 +178,20 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 			for (MentDto mdto : list) {
 			%>
 			<tr>
-				<td align="center" class="myinfo"><input type="checkbox"
-					class="checkdelete" value="<%=mdto.getMent_num()%>"></td>
+				<td align="center" class="myinfo">
+					<input type="checkbox" class="checkdelete" value="<%=mdto.getMent_num()%>">
+				</td>
 
 				<td align="center" class="myinfo">
 					<%
 					String category = mdao.getCategory(mdto.getCommu_num());
-					%> <span><%=category%></span>
+					%>
+					<span><%=category%></span>
 				</td>
 
-				<td align="center" class="myinfo"><span><a
-						href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=mdto.getCommu_num()%>"
-						style="float: left;"><%=mdto.getMent_content()%></a></span></td>
+				<td align="center" class="myinfo">
+					<span><a href="index.jsp?main=commu/commu_detail.jsp?commu_num=<%=mdto.getCommu_num()%>" style="float: left;"><%=mdto.getMent_content()%></a></span>
+				</td>
 
 				<td class="myinfo"><%=sdf.format(mdto.getMent_writeday())%></td>
 			</tr>
@@ -205,12 +201,9 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 			%>
 		</table>
 		<div>
-			<button type="button" class="btn btn-default btn-sm"
-				onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"
-				style="margin-left: 850px; margin-bottom: 10px;">마이페이지</button>
+			<button type="button" class="btn btn-default btn-sm" onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'" style="margin-left: 850px; margin-bottom: 10px;">마이페이지</button>
 
-			<button type="button" class="btn btn-default btn-sm"
-				id="mymentdelete" style="color:red; border:1px solid red; margin-bottom: 10px;">삭제</button>
+			<button type="button" class="btn btn-default btn-sm" id="mymentdelete" style="color: red; border: 1px solid red; margin-bottom: 10px;">삭제</button>
 		</div>
 	</div>
 
@@ -222,8 +215,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 			//이전
 			if (startPage > 1) {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=startPage - 1%>&user_num=<%=user_num%>">이전</a>
+			<li>
+				<a href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=startPage - 1%>&user_num=<%=user_num%>">이전</a>
 			</li>
 			<%
 			}
@@ -232,14 +225,14 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 
 			if (pp == currentPage) {
 			%>
-			<li class="active"><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
+			<li class="active">
+				<a href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			} else {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
+			<li>
+				<a href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			}
@@ -249,8 +242,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 			//다음
 			if (endPage < totalPage) {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=endPage + 1%>&user_num=<%=user_num%>">다음</a>
+			<li>
+				<a href="index.jsp?main=mypage/login_mypage_mycomment.jsp?currentPage=<%=endPage + 1%>&user_num=<%=user_num%>">다음</a>
 			</li>
 			<%
 			}

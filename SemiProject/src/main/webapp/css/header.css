@@ -21,7 +21,7 @@ a {
 }
 
 a:hover {
-	text-decoration: none;
+	font-weight: bolder;
 }
 
 header {
@@ -34,7 +34,7 @@ header {
 	width: 1536px;
 	padding: 50px 0 30px 0;
 	position: fixed;
-	background-color:#fff;
+	background-color: #fff;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -92,7 +92,7 @@ navi>li:hover {
 }
 
 .modal-header, h4, .close {
-	background-color:#CBB6D9;
+	background-color: #CBB6D9;
 	color: white !important;
 	text-align: center;
 	font-size: 30px;

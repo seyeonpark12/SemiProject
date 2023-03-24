@@ -3,22 +3,17 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>WPICK</title>
 <link rel="favicon" href="../layout_image/titlelogo.ico">
-<link rel="shortcut icon" type="../layoutimage/x-icon"
-	href="../layout_image/titlelogo.ico">
+<link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
 <link href="css/info.css" type="text/css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <!-- 관리자 체크박스 -->
 <script type="text/javascript">
@@ -120,7 +115,7 @@
 	%>
 
 	<div class="myinfo_div">
-		<table style="width: 1000px;">
+		<table style="width: 1000px; text-align: center;">
 			<h3>회원목록</h3>
 
 			<tr class="tr_myinfo">
@@ -130,8 +125,7 @@
 				if (loginok != null) {
 					if (myid.equals("admin")) {
 				%>
-				<th width="30" class="myinfo"><input type="checkbox"
-					class="allcheckdelete"></th>
+				<th width="30" class="myinfo"><input type="checkbox" class="allcheckdelete"></th>
 				<%
 				}
 				}
@@ -155,8 +149,9 @@
 				if (loginok != null) {
 					if (myid.equals("admin")) {
 				%>
-				<td class="myinfo"><input type="checkbox" class="checkdelete"
-					value="<%=udto.getUser_num()%>"></td>
+				<td class="myinfo">
+					<input type="checkbox" class="checkdelete" value="<%=udto.getUser_num()%>">
+				</td>
 				<%
 				}
 				}
@@ -178,12 +173,9 @@
 
 	</div>
 	<div style="float: right;">
-		<button type="button" class="btn btn-default btn-sm" id="admindelete"
-			style="margin-left: -400px; margin-bottom: 10px;">삭제</button>
+		<button type="button" class="btn btn-default btn-sm" id="admindelete" style="margin-left: -400px; margin-bottom: 10px;">삭제</button>
 
-		<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp'"
-			style="margin-bottom: 10px; margin-right: 10px;">관리자페이지</button>
+		<button type="button" class="btn btn-default btn-sm" onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp'" style="margin-bottom: 10px; margin-right: 10px;">관리자페이지</button>
 	</div>
 	<!-- 페이징처리 -->
 	<div style="width: 500px; text-align: center;" class="container">
@@ -192,8 +184,8 @@
 			//이전
 			if (startPage > 1) {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=startPage - 1%>">이전</a>
+			<li>
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=startPage - 1%>">이전</a>
 			</li>
 			<%
 			}
@@ -202,14 +194,14 @@
 
 			if (pp == currentPage) {
 			%>
-			<li class="active"><a
-				href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>"><%=pp%></a>
+			<li class="active">
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>"><%=pp%></a>
 			</li>
 			<%
 			} else {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>"><%=pp%></a>
+			<li>
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>"><%=pp%></a>
 			</li>
 			<%
 			}
@@ -219,8 +211,8 @@
 			//다음
 			if (endPage < totalPage) {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=endPage + 1%>">다음</a>
+			<li>
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=endPage + 1%>">다음</a>
 			</li>
 			<%
 			}
