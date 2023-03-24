@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="data.dao.PickDao"%>
 <%@page import="java.util.List"%>
 <%@page import="data.dao.MovieDao"%>
 <%@page import="data.dto.MovieDto"%>
@@ -18,7 +20,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <link href="css/mvlist.css" type="text/css" rel="stylesheet">
-
+<link href="css/main.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 
@@ -60,21 +62,23 @@
 
 		});
 
-		 
-		  $('.nav>li>a').on('click', function() {
-			  // 다른 li 요소의 배경색을 해제하고 on 클래스를 제거합니다.
-			  $('.nav>li>a').not(this).removeClass('on').css('background-color', '');
-			  // 클릭된 요소의 배경색을 purple로 변경하고 on 클래스를 추가합니다.
-			  $(this).addClass('on').css('background-color', 'purple');
-			});
-		  
+		$('.nav>li>a').on(
+				'click',
+				function() {
+					// 다른 li 요소의 배경색을 해제하고 on 클래스를 제거합니다.
+					$('.nav>li>a').not(this).removeClass('on').css(
+							'background-color', '').css('color', '');
+					// 클릭된 요소의 배경색을 purple로 변경하고 on 클래스를 추가합니다.
+					$(this).addClass('on').css('background-color', '#c08bbc')
+							.css('color', '#fff');
+				});
+
 	});
 </script>
 
 <style type="text/css">
-.nav>li>a, .nav>li>a {
+a:hover {
 	text-decoration: none;
-	color: #653491;;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
@@ -84,16 +88,14 @@
 	border: 0px solid;
 }
 
-.nav>li>a:active {
-	text-decoration: none;
-	color: #fff;
-	background-color: purple;
-	border: 0px solid;
+ul>li>a {
+	color: #c08bbc;
 }
 
-.nav>li>a.on, .nav>li>a.on:active {
+.on {
 	text-decoration: none;
-	background-color: purple;
+	background-color: #c08bbc;
+	color: #fff;
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
@@ -120,6 +122,10 @@
 	color: #fff;
 	background-color: #ECE6FF;
 	border: 0px solid;
+}
+
+.ordernum {
+	font-weight: 700;
 }
 </style>
 </head>
@@ -190,39 +196,46 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 <body>
 	<div style="width: 100%; margin-top: 100px;">
 		<div class="container">
-			<ul class="nav nav-tabs" style="margin-bottom:10px;">
-				<li style="margin-left: 330px;"><a class="all_genre"
+			<ul class="nav nav-tabs" style="margin-bottom: 10px;">
+				<li style="margin-left: 330px;"><a
+					class="all_genre <%=movie_genre.equals("all") ? "on" : ""%>"
 					href="movie/select_genre_sort.jsp?movie_genre=all&sort=<%=sort%>">전체</a></li>
-				<li><a class="romance"
+				<li><a
+					class="romance <%=movie_genre.equals("romance") ? "on" : ""%>"
 					href="movie/select_genre_sort.jsp?movie_genre=romance&sort=<%=sort%>">로맨스</a></li>
-				<li><a class="action"
+				<li><a
+					class="action <%=movie_genre.equals("action") ? "on" : ""%>"
 					href="movie/select_genre_sort.jsp?movie_genre=action&sort=<%=sort%>">액션</a></li>
-				<li><a class="comedy"
+				<li><a
+					class="comedy <%=movie_genre.equals("comedy") ? "on" : ""%>"
 					href="movie/select_genre_sort.jsp?movie_genre=comedy&sort=<%=sort%>">코미디</a></li>
-				<li><a class="horror"
+				<li><a
+					class="horror <%=movie_genre.equals("horror") ? "on" : ""%>"
 					href="movie/select_genre_sort.jsp?movie_genre=horror&sort=<%=sort%>">공포</a></li>
-				<li><a class="animation"
+				<li><a
+					class="animation <%=movie_genre.equals("animation") ? "on" : ""%>"
 					href="movie/select_genre_sort.jsp?movie_genre=animation&sort=<%=sort%>">애니메이션</a></li>
-				<li><a class="everything"
+				<li><a
+					class="everything <%=movie_genre.equals("etc") ? "on" : ""%>"
 					href="movie/select_genre_sort.jsp?movie_genre=etc&sort=<%=sort%>">기타</a></li>
 			</ul>
-			
+
 			<div style="float: right;">
 				<div style="float: left;">
 					<a
-						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=recent"
+						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=recent" class="<%=sort.equals("recent")?"ordernum":"" %>"
 						style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">최신순
 						&nbsp;|</a>
 				</div>
 				<div style="float: left;">
 					<a
-						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=rank"
+						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=rank" class="<%=sort.equals("rank")?"ordernum":"" %>"
 						style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">평점순
 						&nbsp;|</a>
 				</div>
 				<div style="float: left;">
 					<a
-						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=pick"
+						href="movie/select_genre_sort.jsp?movie_genre=<%=movie_genre%>&sort=pick" class="<%=sort.equals("pick")?"ordernum":"" %>"
 						style="font-size: 12px; color: #653491; padding-top: 10px; padding-right: 10px;">pick순</a>
 				</div>
 			</div>
@@ -235,7 +248,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 
 
 		<div class="tab-content"
-			style="padding-top: 40px; margin-left: 200px;">
+			style="padding-top: 40px; margin-left: 170px;">
 			<div id="all">
 				<div>
 					<div
@@ -263,12 +276,26 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 							}
 							%>
 
+
+							<%
+							double rank = Math.round(dto.getMovie_rank_avg() * 10.0) / 10.0;
+							PickDao pdao = new PickDao();
+							int pcount = pdao.getTotalCount_Pcount(dto.getMovie_num());
+							String date = dto.getMovie_year();
+							%>
+
+
 							<a movie_num="<%=dto.getMovie_num()%>"
-								style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
+								style="cursor: pointer; display: flex; flex-direction: column; align-items: left; text-decoration: none;"
 								class="godetail"> <img src="movie_save/<%=poster%>"
 								class="poster"
 								onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
-								<span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
+								<span
+								style="text-align: center; font-size: 16px; font-weight: 600; padding-top: 10px; width: 100%;"><%=dto.getMovie_subject()%>
+									<br><font style="color:gray;"><%=sort.equals("recent") ? date.substring(0, 4) : ""%></font> 
+									<%=sort.equals("rank") ? "<b style='color:orange; font-size:15px; margin-right:2px;'>★</b>" + rank : ""%>
+									<%=sort.equals("pick") ? "<b style='color:red; font-size:15px; margin-right:2px;'>♥</b>"+pcount : ""%> </span>
+
 							</a>
 						</div>
 
@@ -308,12 +335,11 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 
 
 		<!-- 페이징 처리 -->
-		<div style="width: 500px; text-align: center; margin-right: 40%;"
+		<div style="width: 500px; text-align: center; margin-right: 38%;"
 			class="container">
 			<ul class="pagination">
 				<%
 				//이전
-
 				if (startPage > 1) {
 				%>
 				<li><a
@@ -354,7 +380,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 		} else {
 		%>
 		<div class="tab-content"
-			style="padding-top: 40px; margin-left: 200px;">
+			style="padding-top: 40px; margin-left: 170px;">
 			<div id="movie_genre">
 				<div>
 					<div
@@ -378,12 +404,23 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 							}
 							}
 							%>
+
+							<%
+							double rank = Math.round(dto.getMovie_rank_avg() * 10.0) / 10.0;
+							PickDao pdao = new PickDao();
+							int pcount = pdao.getTotalCount_Pcount(dto.getMovie_num());
+							String date = dto.getMovie_year();
+							%>
 							<a movie_num="<%=dto.getMovie_num()%>"
 								style="cursor: pointer; display: flex; flex-direction: column; align-items: left;"
 								class="godetail"> <img src="movie_save/<%=poster%>"
 								class="poster"
-								onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
-								<span style="text-align: center; margin-top: 5px; width: 100%;"><%=dto.getMovie_subject()%></span>
+								onclick="location.href='index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort%>&movie_num=<%=dto.getMovie_num()%>&currentPage=<%=currentPage%>'">
+								<span
+								style="text-align: center; font-size: 14px; font-weight: 600; padding-top: 10px; width: 100%;"><%=dto.getMovie_subject()%>
+									<br> <%=sort.equals("recent") ? date.substring(0, 4) : ""%>
+									<%=sort.equals("rank") ? "<b style='color:orange; font-size:23px;'>★</b>" + rank : ""%>
+									<%=sort.equals("pick") ? pcount : ""%></span>
 							</a>
 						</div>
 

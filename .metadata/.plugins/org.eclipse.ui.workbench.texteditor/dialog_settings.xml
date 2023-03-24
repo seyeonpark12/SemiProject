@@ -8,19 +8,19 @@
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="avg"/>
+		<item key="selection" value="sdf"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="true"/>
 		<list key="findhistory">
-			<item value="id=&quot;movie_num&quot;"/>
-			<item value="avg"/>
-			<item value="review_contents"/>
-			<item value="list"/>
-			<item value="reviewdto"/>
-			<item value="myid"/>
-			<item value="101"/>
-			<item value="my"/>
+			<item value="sdf"/>
+			<item value="["/>
+			<item value="리뷰하기"/>
+			<item value="리뷰"/>
+			<item value="totalcount"/>
+			<item value="span"/>
+			<item value="sort"/>
+			<item value="삭제"/>
 		</list>
 		<list key="replacehistory">
 			<item value="review_content"/>

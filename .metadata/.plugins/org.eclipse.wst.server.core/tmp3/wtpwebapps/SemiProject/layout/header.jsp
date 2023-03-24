@@ -1,5 +1,6 @@
 <%@page import="data.dao.UserDao"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+   pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,33 +11,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-   rel="stylesheet"
->
+   rel="stylesheet">
 <link href="css/header.css" type="text/css" rel="stylesheet">
 <!-- 아이콘.. -->
-<script src="https://kit.fontawesome.com/7027f21a5f.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7027f21a5f.js"
+   crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <%
-   request.setCharacterEncoding("utf-8");
-   
-   String loginok = (String) session.getAttribute("loginok");
-   String myid = (String) session.getAttribute("myid");
-   String saveid = (String) session.getAttribute("saveid");
-   String saveok="";
-   if (saveid != null) {
-      saveok = (String) session.getAttribute("saveok");
-         }
-   
-   
-   UserDao dao = new UserDao();
-   String nickname = dao.getName_id(myid);
-   String user_num = dao.getNum(myid);
+request.setCharacterEncoding("utf-8");
+
+String loginok = (String) session.getAttribute("loginok");
+String myid = (String) session.getAttribute("myid");
+String saveid = (String) session.getAttribute("saveid");
+String saveok = "";
+if (saveid != null) {
+   saveok = (String) session.getAttribute("saveok");
+}
+
+UserDao dao = new UserDao();
+String nickname = dao.getName_id(myid);
+String user_num = dao.getNum(myid);
 %>
 
 <script type="text/javascript">
@@ -50,45 +52,67 @@
          $("#myModal2").modal();
       });
 
-      //회원가입 액션으로 넘겨주기
-      $("#gaip").click(function() {
+      //로그인처리
+      var loginform = document.getElementById('loginfrm');
 
-         var gaipdata = $("#gaipfrm").serialize();
-         //alert(formdata);
-
-         $.ajax({
-
-            type : "get",
-            dataType : "html",
-            url : "user/user_addaction.jsp",
-            data : gaipdata,
-            success : function() {
-
-               location.reload();
-               //$("#myModal").modal();
-
-            }
-         });
-      });
-
-      //로그인 액션으로 넘겨주기
-      $("#login").click(function() {
+      loginform.addEventListener('submit', function(event) {
+         event.preventDefault();
 
          var logindata = $("#loginfrm").serialize();
-         //alert(logindata);
 
          $.ajax({
 
             type : "get",
-            dataType : "html",
+            dataType : "json",
             url : "login/loginaction.jsp",
             data : logindata,
-            success : function() {
+            success : function(res) {
 
-               location.reload();
+               if (res.b) {
+
+                  location.reload();
+               } else {
+
+                  alert("아이디와 비밀번호가 일치하지 않습니다.");
+
+               }
 
             }
          });
+
+      });
+
+      //회원가입처리
+      var gaipform = document.getElementById('gaipfrm');
+
+      gaipform.addEventListener('submit', function(event) {
+         event.preventDefault();
+
+         var gaipdata = $("#gaipfrm").serialize();
+         //alert(gaipdata);
+         var result = $("#check_result").text();
+
+         var a = result == "사용가능한 아이디입니다😊";
+         if (a) {
+
+            $.ajax({
+
+               type : "get",
+               dataType : "html",
+               url : "user/user_addaction.jsp",
+               data : gaipdata,
+               success : function() {
+
+                  alert("🎉회원가입을 축하합니다🎉");
+                  location.reload();
+                  //$("#myModal").modal();
+
+               }
+            });
+         } else {
+
+            alert("중복확인을 해주세요");
+         }
 
       });
 
@@ -154,7 +178,7 @@
                   $("#user_id").focus();
 
                } else {
-                  $("#check_result").html('사용가능한 아이디입니다.');
+                  $("#check_result").html('사용가능한 아이디입니다😊');
                   $('#check_result').css({
                      "color" : "green"
                   });
@@ -190,9 +214,7 @@
 
          var saveid = $("#saveid").val();
          //alert(saveid);
-         
-         
-         
+
       });
 
    });
@@ -203,22 +225,24 @@
       <div class="top">
 
          <div class="logo">
-            <a href="index.jsp?main=layout/main.jsp"><img src="layout_image/logo.png"></a>
+            <a href="index.jsp?main=layout/main.jsp"><img
+               src="layout_image/logo.png"></a>
          </div>
 
          <nav class="menu">
             <ul class="navi">
                <li><a
                   href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1"
-                  class="mainmenu"
-               >영화</a></li>
-               <li><a href="index.jsp?main=commu/commu_totallist.jsp" class="mainmenu">커뮤니티</a></li>
+                  class="mainmenu">영화</a></li>
+               <li><a href="index.jsp?main=commu/commu_totallist.jsp"
+                  class="mainmenu">커뮤니티</a></li>
             </ul>
          </nav>
 
          <form method="post">
 
-            <input type="text" id="search_id" placeholder="검색" class="form-control">
+            <input type="text" id="search_id" placeholder="검색"
+               class="form-control">
 
          </form>
 
@@ -231,26 +255,30 @@
                if (myid.equals("admin")) {
             %>
 
-            <div class="menu2">
-               <b style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님 로그인중 </b>
-               <button type="button" class="btn btn-default btn-sm" style="width: 80px; margin-right: 10px;"
-                  onclick="location.href='login/logoutaction.jsp'"
-               >Logout</button>
-               <div class="fa-solid fa-user-gear" style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num%>'"
-               ></div>
+            <div class="menu2" style="  position: relative;">
+               <b
+                  style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님
+                  로그인중 </b>
+               <button type="button" class="btn btn-default btn-sm"
+                  style="width: 80px; margin-right: 10px; "
+                  onclick="location.href='login/logoutaction.jsp'">Logout</button>
+               <div class="fa-solid fa-user-gear"
+                   style="font-size: 20px; height:30px; line-height:30px;"
+                  onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num%>'"></div>
             </div>
             <%
             } else {
             %>
             <div class="menu2">
-               <b style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님 로그인중</b>
-               <button type="button" class="btn btn-default btn-sm" style="width: 80px; margin-right: 10px;"
-                  onclick="location.href='login/logoutaction.jsp'"
-               >Logout</button>
-               <div class="fa-solid fa-user" style="font-size: 20px; line-height: 20px; height: 20px;"
-                  onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"
-               ></div>
+               <b
+                  style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님
+                  로그인중</b>
+               <button type="button" class="btn btn-default btn-sm"
+                  style="width: 80px; margin-right: 10px;"
+                  onclick="location.href='login/logoutaction.jsp'">Logout</button>
+               <div class="fa-solid fa-user"
+                  style="font-size: 20px; height:30px; line-height:30px;"
+                  onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"></div>
             </div>
             <%
             }
@@ -260,12 +288,11 @@
             } else {
             %>
             <div class="menu2">
-               <button type="button" class="btn btn-default btn-sm" id="myBtn" data-toggle="modal"
-                  data-target="#myModal"
-               >로그인</button>
-               <button type="button" class="btn btn-default btn-sm" style="width: 100px;" id="myBtn2"
-                  data-toggle="modal" data-target="#myModal2"
-               >회원가입</button>
+               <button type="button" class="btn btn-default btn-sm" id="myBtn"
+                  data-toggle="modal" data-target="#myModal">로그인</button>
+               <button type="button" class="btn btn-default btn-sm"
+                  style="width: 100px;" id="myBtn2" data-toggle="modal"
+                  data-target="#myModal2">회원가입</button>
             </div>
             <%
             }
@@ -288,37 +315,34 @@
                         <form class="form-horizontal" id="loginfrm" method="post">
                            <div class="form-group" style="width: 300px;">
 
-                              <br>
-                              <br>
-                              <input type="text" name="user_id" placeholder="ID" class="form-control"
-                                 required="required" style="width: 300px; background-color: #fafafa" value="<%=saveid!=null?saveok:""%>">
+                              <br> <br> <input type="text" name="user_id"
+                                 placeholder="ID" class="form-control" required="required"
+                                 style="width: 300px; background-color: #fafafa"
+                                 value="<%=saveid != null ? saveok : ""%>"> <br>
+                              <br> <input type="password" name="user_pw"
+                                 placeholder="PASSWORD" class="form-control"
+                                 required="required"
+                                 style="width: 300px; background-color: #fafafa"> <br>
 
-                              <br>
-                              <br>
-                              <input type="password" name="user_pw" id="user_pw" placeholder="PASSWORD"
-                                 class="form-control" required="required" style="width: 300px; background-color: #fafafa"
-                              >
-                              <br>
-
-                              <div class="form-group">
-                                 <div class="col-sm-offset-2 col-sm-10">
+                            
                                     <div class="checkbox">
-                                       <label>
-                                          <input type="checkbox" name="saveid"
-                                          <%=saveid!=null?"checked":"" %>>
-                                          
-                                          아이디저장
+                                       <label> <input type="checkbox" name="saveid"
+                                          class="text-align:center;"
+                                          <%=saveid != null ? "checked" : ""%>> 아이디저장
                                        </label>
                                     </div>
-                                 </div>
-                              </div>
+                               
 
-                              <div class="form-group">
+                              <div class="form-group" style="margin-top:50px;">
                                  <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" id="login" style="width: 180px;">로그인</button>
+                                    <button type="submit" class="btn btn-default" id="login"
+                                       style="width: 180px;">로그인</button>
                                  </div>
                               </div>
-
+                              <div style="text-align: center;">
+                                 <a href="index.jsp?main=login/login_findid.jsp" style="color: black;">아이디ㆍ비밀번호 찾기</a>
+                                
+                              </div>
                            </div>
                         </form>
                      </div>
@@ -347,68 +371,53 @@
                         <form class="form-horizontal" method="post" id="gaipfrm">
                            <div class="form-group" style="width: 300px;">
 
-                              <br>
-                              <br>
-                              <input type="text" name="user_name" placeholder="이름" class="form-control"
-                                 required="required" style="width: 300px; background-color: #fafafa" value=""
-                              >
+                              <br> <br> <input type="text" name="user_name"
+                                 placeholder="이름" class="form-control" required="required"
+                                 style="width: 300px; background-color: #fafafa" value="">
 
 
-                              <br>
-                              <br>
-                              <input type="text" name="user_nickname" placeholder="닉네임" class="form-control"
-                                 required="required" style="width: 300px; background-color: #fafafa" value=""
-                              >
+                              <br> <br> <input type="text" name="user_nickname"
+                                 placeholder="닉네임" class="form-control" required="required"
+                                 style="width: 300px; background-color: #fafafa" value="">
 
 
-                              <br>
-                              <br>
-                              <input type="text" name="user_id" id="user_id" placeholder="아이디" class="form-control"
-                                 required="required" style="width: 70%; background-color: #fafafa"
-                              >
+                              <br> <br> <input type="text" name="user_id"
+                                 id="user_id" placeholder="아이디" class="form-control"
+                                 required="required"
+                                 style="width: 70%; background-color: #fafafa">
 
                               <button type="button" class="btn btn-default"
-                                 style="margin-top: -55px; margin-left: 220px;" id="id_check"
-                              >중복확인</button>
+                                 style="margin-top: -55px; margin-left: 220px;" id="id_check">중복확인</button>
 
                               <div id="check_result"></div>
 
-                              <br>
-                              <br>
-                              <input type="password" name="user_pw" id="user_pw1" placeholder="비밀번호"
-                                 class="form-control" required="required" style="width: 300px; background-color: #fafafa"
-                              >
-                              <br>
-                              <br>
-                              <input type="password" name="user_pw2" id="user_pw2" placeholder="비밀번호확인"
-                                 class="form-control" required="required" style="width: 300px; background-color: #fafafa"
-                              >
+                              <br> <br> <input type="password" name="user_pw"
+                                 id="user_pw1" placeholder="비밀번호" class="form-control"
+                                 required="required"
+                                 style="width: 300px; background-color: #fafafa"> <br>
+                              <br> <input type="password" name="user_pw2" id="user_pw2"
+                                 placeholder="비밀번호확인" class="form-control" required="required"
+                                 style="width: 300px; background-color: #fafafa">
                               <div id="pw_check"></div>
 
 
-                              <br>
-                              <br>
-                              <input type="text" name="user_hp" placeholder="휴대번호" class="form-control"
-                                 required="required" style="width: 300px; background-color: #fafafa" value=""
-                              >
+                              <br> <br> <input type="text" name="user_hp"
+                                 placeholder="휴대번호" class="form-control" required="required"
+                                 style="width: 300px; background-color: #fafafa" value="">
 
-                              <br>
-                              <br>
-                              <input type="text" name="user_addr" placeholder="주소" class="form-control"
-                                 required="required" style="width: 300px; background-color: #fafafa" value=""
-                              >
+                              <br> <br> <input type="text" name="user_addr"
+                                 placeholder="주소" class="form-control" required="required"
+                                 style="width: 300px; background-color: #fafafa" value="">
 
-                              <br>
-                              <br>
-                              <input type="text" name="user_email" placeholder="이메일" class="form-control"
-                                 required="required" style="width: 300px; background-color: #fafafa" value=""
-                              >
+                              <br> <br> <input type="text" name="user_email"
+                                 placeholder="이메일" class="form-control" required="required"
+                                 style="width: 300px; background-color: #fafafa" value="">
 
-                              <br>
-                              <br>
+                              <br> <br>
                               <div class="form-group">
                                  <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" style="width: 180px;" id="gaip">회원가입</button>
+                                    <button type="submit" class="btn btn-default"
+                                       style="width: 180px;" id="gaip">회원가입</button>
                                  </div>
                               </div>
 

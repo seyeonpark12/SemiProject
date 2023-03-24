@@ -1,4 +1,4 @@
 alignEndBracket=true
 eclipse.preferences.version=1
-inlineElements=small,big,sub,strong,select,acronym,strike,em,i,label,basefont,title,sup,br,td,q,s,th,u,cite,abbr,li,font
+inlineElements=small,big,sub,strong,b,select,acronym,strike,em,i,basefont,title,sup,q,s,th,u,cite,abbr,li
 lineWidth=999

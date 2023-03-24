@@ -22,8 +22,36 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-	
-	<%
+<style type="text/css">
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
+}
+</style>
+
+
+<%
 	String loginok = (String) session.getAttribute("loginok");
 	String myid = (String) session.getAttribute("myid");
 	
@@ -69,8 +97,8 @@
 	       
 	      SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
 	%>
-	
-	<!-- 리뷰 삭제 체크 박스 -->
+
+<!-- 리뷰 삭제 체크 박스 -->
 <script type="text/javascript">
 	$(function(){
 		
@@ -120,72 +148,73 @@
 <body>
 	<div class="myinfo_div">
 		<table style="width: 1000px;">
-		<%-- <input type="hidden" name="user_num" id="user_num" value="<%=user_num %>">
+			<%-- <input type="hidden" name="user_num" id="user_num" value="<%=user_num %>">
 		<input type="hidden" name="review_num" value="<%=review_num %>">
 		<input type="hidden" name="movie_num" value="<%=movie_num %>"> --%>
-			<h3>내가 쓴 리뷰 <%=totalCount %></h3>
+			<h3>
+				내가 쓴 리뷰
+				<b style="color:purple; font-size:17pt"><%=totalCount %></b></h3>
 			<tr class="tr_myinfo">
-				<th width="30" class="myinfo"><input type="checkbox" class="allcheckdelete"></th>
+				<th width="30" class="myinfo"><input type="checkbox"
+					class="allcheckdelete"></th>
 				<th width="200" class="myinfo">영화제목</th>
 				<th width="50" class="myinfo">별점</th>
 				<th width="550" class="myinfo">리뷰</th>
 				<th width="170" class="myinfo">날짜</th>
 			</tr>
-			
+
 			<%
 			if(totalCount==0){%>
-				<tr>
-					<td colspan="5" align="center" class="myinfo">
-						<h3>등록된 게시글이 없습니다</h3>
-					</td>
-				</tr>		
+			<tr>
+				<td colspan="5" align="center" class="myinfo">
+					<h3>등록된 게시글이 없습니다</h3>
+				</td>
+			</tr>
 			<%}else{
 				
 				for(ReviewDto rdto:list){%>
-					
-					<tr>
-					<td align="center" class="myinfo">
-					<input type="checkbox" class="checkdelete" user_num="<%=user_num %>" value="<%=rdto.getReview_num() %>">
-					</td>
-					<%
+
+			<tr>
+				<td align="center" class="myinfo"><input type="checkbox"
+					class="checkdelete" user_num="<%=user_num %>"
+					value="<%=rdto.getReview_num() %>"></td>
+				<%
 					String movie_subject=rdao.getMovieSubject(rdto.getMovie_num());
 					%>
-					<td align="center" class="myinfo">
-					<span><%=movie_subject %></span>
-					</td>
-					
-					<td align="center" class="myinfo">
-					<span><%=rdto.getReview_score() %></span>
-					</td>
-				
-					<td align="center" class="myinfo">						
-					<span><a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=rdto.getMovie_num()%>"><%=rdto.getReview_content() %></a></span>
-					</td>
-					
-					
-					<td align="center" class="myinfo">						
-					<span><%=sdf.format(rdto.getReview_writeday()) %></span>
-					</td>
-				</tr>
-					
-				<%}
+				<td align="center" class="myinfo"><span><%=movie_subject %></span>
+				</td>
+
+				<td align="center" class="myinfo"><span><%=rdto.getReview_score() %></span>
+				</td>
+
+				<td align="center" class="myinfo"><span><a
+						href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=rdto.getMovie_num()%>"><%=rdto.getReview_content() %></a></span>
+				</td>
+
+
+				<td align="center" class="myinfo"><span><%=sdf.format(rdto.getReview_writeday()) %></span>
+				</td>
+			</tr>
+
+			<%}
 			}
 			
 			%>
 		</table>
-
-		<button type="button" class="btn btn-default btn-sm"
+		<div>
+			<button type="button" class="btn btn-default btn-sm"
 				onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num %>'"
-			style="margin-left: 450px; margin-bottom: 10px;">마이페이지</button>
-			
-		<button type="button" class="btn btn-default btn-sm" id="myreviewdelete"
-			style="margin-left: 450px; margin-bottom: 10px;">삭제</button>
+				style="margin-left: 850px; margin-bottom: 10px;">마이페이지</button>
+
+			<button type="button" class="btn btn-default btn-sm"
+				id="myreviewdelete" style="color:red; border:1px solid red;  margin-bottom: 10px;">삭제</button>
+		</div>
 	</div>
-	
+
 	<!-- 페이징처리 -->
 	<div style="width: 500px; text-align: center;" class="container">
 		<ul class="pagination">
-	<%
+			<%
          
       //이전
       if(startPage>1){

@@ -5,6 +5,10 @@
 	padding: 0;
 }
 
+a:hover {
+	text-decoration: none;
+}
+
 .bodywrap {
 	width: 1536px;
 	margin-top: 20px;

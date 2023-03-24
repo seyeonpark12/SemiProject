@@ -79,9 +79,49 @@ td.myinfo {
 	margin-bottom: 100px;
 }
 
+
 #moviewrap_pick>div {
 	float: left;
-	border: 1px solid black;
+	/*border: 1px solid black;
+	width: 200px;
+	height: 300px;*/
+	margin-left: 30px;
+	margin-bottom: 30px;
+	font-size: 20px;
+	line-height: 100px;
+	text-align: center;
+}
+
+#moviewrap_pick ::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+#zzim {
+	color: red;
+	z-index: 10;
+	font-size: 35px;
+	position: relative;
+	float: right;
+	margin-top: 300px;
+	margin-right:-20px;
+	padding: 20px;
+}
+
+#zzimwrap_pick {
+	width: 1000px;
+	height: 400px;
+	padding-left: 20px;
+	margin-bottom: 100px;
+}
+
+
+
+#zzimwrap_pick>div {
+	float: left;
+	border:none;
 	width: 200px;
 	height: 300px;
 	margin-left: 30px;
@@ -91,21 +131,30 @@ td.myinfo {
 	text-align: center;
 }
 
-#moviewrap_pick ::afrer {
+#zzimwrap_pick ::after {
 	content: "";
 	display: block;
 	clear: both;
 }
 
-#zzim {
-	color: red;
-	z-index: 10;
-	font-size: 35px;
-	position: relative;
-	float: right;
-	margin-top: 230px;
-	padding: 20px;
+#moviewrap_pick>div {
+	float: left;
+	/*border: 1px solid black;
+	width: 200px;
+	height: 300px;*/
+	margin-left: 30px;
+	margin-bottom: 30px;
+	font-size: 20px;
+	line-height: 100px;
+	text-align: center;
 }
+
+#moviewrap_pick ::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
 
 .myinfo_div {
 	margin-top: 50px;

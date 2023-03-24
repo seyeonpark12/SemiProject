@@ -120,7 +120,7 @@
 	%>
 
 	<div class="myinfo_div">
-		<table style="width: 1000px;">
+		<table style="width: 1000px; text-align:center;">
 			<h3>회원목록</h3>
 
 			<tr class="tr_myinfo">

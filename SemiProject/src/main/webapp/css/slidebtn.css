@@ -67,7 +67,7 @@ html, body {
 .slide_main2 section ul li {
 	display: inline-block;
 	width: 260px;
-	height: 400px;
+	height: 440px;
 	margin: 2px;
 	padding: 10px;
 	overflow: hidden;
@@ -136,7 +136,7 @@ html, body {
 	display: table;
 	float: left;
 	width: 1200px;
-	height: 400px;
+	height: 480px;
 }
 
 .slide_content>p {

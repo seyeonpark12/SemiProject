@@ -30,7 +30,7 @@
 	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
 </head>
 
-	<%
+<%
 	MovieDao dao=new MovieDao();
 	List<MovieDto> list_rank = dao.getList_Rank_Avg(0,5);
 	List<MovieDto> list_pick1 = dao.getList_Pcount(0, 4);
@@ -39,13 +39,13 @@
 	List<MovieDto> list_pick4 = dao.getList_Pcount(12, 4);
 	List<MovieDto> list_pick5 = dao.getList_Pcount(16, 4);
 	%>
-	
+
 <body>
 	<div class="bodywrap">
 		<div class="imgslide">
-			<a href="#"><img alt="" src="layout_image/1.png"></a> <a
-				href="#"><img alt="" src="layout_image/2.png"></a> <a href="#"><img
-				alt="" src="layout_image/3.png"></a>
+			<a href="#"><img alt="" src="layout_image/bn1.jpg"></a> <a
+				href="#"><img alt="" src="layout_image/bn_2.png"></a> <a href="#"><img
+				alt="" src="layout_image/bn_3.png"></a>
 		</div>
 
 		<div>
@@ -56,17 +56,18 @@
 							TOP5</h2>
 						<div class="pickimg_item" style="padding: 20px;">
 							<ul class="top5_list">
-								<!-- 5개만 넣기..! -->							
+								<!-- 5개만 넣기..! -->
 								<%
 									for(MovieDto dto:list_rank){%>
-										
-										<li>
-											<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
-												<img src="movie_save/<%=dto.getMovie_poster()%>">
-											</a>
-											<h3 class="img_text" style="font-size:20px;"><%=dto.getMovie_subject()%> <b style="color:yellow; font-size:23px;">★</b><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %> </h3>
-										</li>
-									<%}
+
+								<li><a
+									href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
+										<img src="movie_save/<%=dto.getMovie_poster()%>">
+								</a>
+									<h3 class="img_text" style="font-size: 20px;"><%=dto.getMovie_subject()%>
+										<b style="color: orange; font-size: 23px;">★</b><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %>
+									</h3></li>
+								<%}
 								%>
 							</ul>
 						</div>
@@ -87,13 +88,17 @@
 									<ul>
 										<%
 										for(MovieDto dto:list_pick1){%>
-										
-											<li>
-												<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
-													<img src="movie_save/<%=dto.getMovie_poster()%>">
-												</a>
-												<h3 class="img_text"><%=dto.getMovie_pcount() %> | <%=dto.getMovie_subject()%></h3>
-											</li>
+
+										<li><a
+											href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
+												<img src="movie_save/<%=dto.getMovie_poster()%>">
+										</a>
+											<h3 class="img_text">
+												<%=dto.getMovie_subject()%>
+												<br> <b
+													style='color: red; font-size: 20px; margin-right: 2px;'>♥</b>
+												<font style="font-size: 20px;"><%=dto.getMovie_pcount() %></font>
+											</h3></li>
 										<%}%>
 									</ul>
 								</section>
@@ -106,13 +111,17 @@
 									<ul>
 										<%
 										for(MovieDto dto:list_pick2){%>
-										
-											<li>
-												<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
-													<img src="movie_save/<%=dto.getMovie_poster()%>">
-												</a>
-												<h3 class="img_text"><%=dto.getMovie_pcount() %> | <%=dto.getMovie_subject()%></h3>
-											</li>
+
+										<li><a
+											href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
+												<img src="movie_save/<%=dto.getMovie_poster()%>">
+										</a>
+											<h3 class="img_text">
+												<%=dto.getMovie_subject()%>
+												<br> <b
+													style='color: red; font-size: 20px; margin-right: 2px;'>♥</b>
+												<font style="font-size: 20px;"><%=dto.getMovie_pcount() %></font>
+											</h3></li>
 										<%}%>
 									</ul>
 								</section>
@@ -126,13 +135,17 @@
 									<ul>
 										<%
 										for(MovieDto dto:list_pick3){%>
-										
-											<li>
-												<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
-													<img src="movie_save/<%=dto.getMovie_poster()%>">
-												</a>
-												<h3 class="img_text"><%=dto.getMovie_pcount() %> | <%=dto.getMovie_subject()%></h3>
-											</li>
+
+										<li><a
+											href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
+												<img src="movie_save/<%=dto.getMovie_poster()%>">
+										</a>
+											<h3 class="img_text">
+												<%=dto.getMovie_subject()%>
+												<br> <b
+													style='color: red; font-size: 20px; margin-right: 2px;'>♥</b>
+												<font style="font-size: 20px;"><%=dto.getMovie_pcount() %></font>
+											</h3></li>
 										<%}%>
 									</ul>
 								</section>
@@ -145,13 +158,17 @@
 									<ul>
 										<%
 										for(MovieDto dto:list_pick4){%>
-										
-											<li>
-												<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
-													<img src="movie_save/<%=dto.getMovie_poster()%>">
-												</a>
-												<h3 class="img_text"><%=dto.getMovie_pcount() %> | <%=dto.getMovie_subject()%></h3>
-											</li>
+
+										<li><a
+											href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
+												<img src="movie_save/<%=dto.getMovie_poster()%>">
+										</a>
+											<h3 class="img_text">
+												<%=dto.getMovie_subject()%>
+												<br> <b
+													style='color: red; font-size: 20px; margin-right: 2px;'>♥</b>
+												<font style="font-size: 20px;"><%=dto.getMovie_pcount() %></font>
+											</h3></li>
 										<%}%>
 									</ul>
 								</section>
@@ -164,13 +181,17 @@
 									<ul>
 										<%
 										for(MovieDto dto:list_pick5){%>
-										
-											<li>
-												<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
-													<img src="movie_save/<%=dto.getMovie_poster()%>">
-												</a>
-												<h3 class="img_text"><%=dto.getMovie_pcount() %> | <%=dto.getMovie_subject()%></h3>
-											</li>
+
+										<li><a
+											href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1">
+												<img src="movie_save/<%=dto.getMovie_poster()%>">
+										</a>
+											<h3 class="img_text">
+												<%=dto.getMovie_subject()%>
+												<br> <b
+													style='color: red; font-size: 20px; margin-right: 2px;'>♥</b>
+												<font style="font-size: 20px;"><%=dto.getMovie_pcount() %></font>
+											</h3></li>
 										<%}%>
 									</ul>
 								</section>
@@ -181,8 +202,10 @@
 				</div>
 				<!-- // .slide_box  <i class="fa-solid fa-chevron-right"></i>-->
 				<div class="slide_btn_box">
-					<button type="button" class="slide_btn_prev fa-solid fa-circle-chevron-left"></button>
-					<button type="button" class="slide_btn_next fa-solid fa-circle-chevron-right"></button>
+					<button type="button"
+						class="slide_btn_prev fa-solid fa-circle-chevron-left"></button>
+					<button type="button"
+						class="slide_btn_next fa-solid fa-circle-chevron-right"></button>
 				</div>
 				<!-- // .slide_btn_box -->
 				<ul class="slide_pagination"></ul>
