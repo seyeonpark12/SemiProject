@@ -30,8 +30,5 @@
    UserDao dao=new UserDao();
    dao.insertUser(dto);
    
-   
-   //gaipsuccess페이지로 이동
-   //response.sendRedirect("../index.jsp?main=user/gaipsuccess.jsp?id="+user_id);
 
 %>

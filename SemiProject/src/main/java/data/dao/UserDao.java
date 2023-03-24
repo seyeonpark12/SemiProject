@@ -501,7 +501,7 @@ public class UserDao {
    		   String pw = null;
    		
    		try {
-   			String sql = "select user_id from user where user_email=? and user_hp=? ";
+   			String sql = "select user_pw from user where user_id=? and user_hp=? ";
    			pstmt = conn.prepareStatement(sql);
    			pstmt.setString(1, user_id);
    			pstmt.setString(2, user_hp);

@@ -24,18 +24,8 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-	
-	$(function(){
 		
-		/* $(document).on("click","#login",function(){
-			
-			var findid=$("#login")
-			//alert("ㅇㅇ");
-			
-			
-		}); */
-		
-		
+		//id 찾기
 		function id_search() { 
 		 	var frm = document.idfindscreen;
 
@@ -44,17 +34,35 @@
 			  return;
 			 }
 
-			 if (frm.user_hp.value.length != 12) {
-				  alert("핸드폰번호를 정확하게 입력해주세요");
+			 if (frm.user_hp.value.length != 13) {
+				  alert("핸드폰 번호를 정확하게 입력해주세요");
 				  return;
 			 }
 
 		 frm.method = "post";
-		 frm.action = "login/login_findidresult.jsp"; //넘어간화면
+		 frm.action = "index.jsp?main=login/login_findidresult.jsp"; //넘어간화면
 		 frm.submit();  
 		 }
+	
 		
-	});
+		//pw 찾기
+		function pw_search() { 
+		 	var frm = document.pwfindscreen;
+	
+		 	if (frm.user_id.value.length < 1) {
+			  alert("아이디를 입력해주세요");
+			  return;
+			 }
+	
+			 if (frm.user_hp.value.length != 13) {
+				  alert("핸드폰번호를 정확하게 입력해주세요");
+				  return;
+			 }
+	
+		 frm.method = "post";
+		 frm.action = "index.jsp?main=login/login_findpwresult.jsp"; //넘어간화면
+		 frm.submit();  
+		 }
 	
 	
 	
@@ -78,15 +86,14 @@
 
 
             <div style="padding: 30px;">
-               <button type="button" class="btn btn-default btn-sm" id="login"
+               <button type="button" class="btn btn-default btn-sm" id="findid"
                   style="width: 100px; margin: 10px 0px;"
                   onClick="id_search()">아이디 찾기</button>
                   
-                  <!-- <input type="button" name="enter" value="찾기"  onClick="id_search()"> -->
 
                <button type="button" class="btn btn-default btn-sm"
                   style="width: 100px;"
-                  onclick="location.href='index.jsp'">뒤로가기</button>
+                  onClick="location.href='index.jsp'">뒤로가기</button>
             </div>
 
          </div>
@@ -106,16 +113,17 @@
                style="width: 300px; margin: 10px 0px; background-color: #fafafa">
             <input type="text" name="user_hp" placeholder="전화번호 '-'까지 입력해주세요"
                class="form-control" required="required"
-               style="width: 300px; background-color: #fafafa"
-               onclick="location.href='index.jsp'">
+               style="width: 300px; background-color: #fafafa">
 
 
             <div style="padding: 30px;">
-               <button type="submit" class="btn btn-default btn-sm" id="login"
-                  style="width: 100px; margin: 10px 0px;">비밀번호찾기</button>
+               <button type="submit" class="btn btn-default btn-sm" id="findpw"
+                  style="width: 100px; margin: 10px 0px;"
+                  onClick="pw_search()">비밀번호찾기</button>
 
                <button type="button" class="btn btn-default btn-sm"
-                  style="width: 100px;">뒤로가기</button>
+                  style="width: 100px;"
+                  onClick="location.href='index.jsp'">뒤로가기</button>
             </div>
 
          </div>

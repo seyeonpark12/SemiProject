@@ -18,45 +18,45 @@
 <body>
 	<%
 	request.setCharacterEncoding("UTF-8");
-	String member_name = request.getParameter("member_name");
-	String member_phone = request.getParameter("member_phone");
+	String user_email = request.getParameter("user_email");
+	String user_hp = request.getParameter("user_hp");
+	
 
 	UserDao dao = new UserDao();
-	String member_mid = dao.findId(member_name, member_phone); //아이디를 디비에서 가져옴..실패시 널
+	String user_id = dao.findId(user_email, user_hp); //아이디를 디비에서 가져옴..실패시 널
 	%>
 
 	<form name="idsearch" method="post">
 		<%
-		if (member_mid != null) {
+		if (user_id != null) {
 		%>
 
-		<div class="container">
+		<div class="container" style="margin-top: 30px;">
 			<div class="found-success">
-				<h4>회원님의 아이디는</h4>
-				<div class="found-id"><%=member_mid%></div>
-				<h4>입니다</h4>
+				
+				<div class="found-id">
+					<h4>회원님의 아이디는 <%=user_id%> 입니다 </h4>
+				</div>
+				
 			</div>
-			<div class="found-login">
-				<input type="button" id="btnLogin" value="로그인" onClick='login()' />
+			<div class="found-login" >
+				<input type="button" id="btnLogin" value="로그인" onClick="location.href='index.jsp'" />
 			</div>
 		</div>
 		<%
 		} else {
 		%>
-		<div class="container">
+		<div class="container" style="margin-top: 30px;">
 			<div class="found-fail">
-				<h4>등록된 정보가 없습니다</h4>
+				<h4>등록된 아이디가 없습니다</h4>
 			</div>
 			<div class="found-login">
 				<input type="button" id="btnback" value="다시 찾기" onClick="history.back()" /> <input
-					type="button" id="btnjoin" value="회원가입" onClick="joinin()"
-				/>
+					type="button" id="btnjoin" value="회원가입" onClick="location.href='index.jsp'"/>
 			</div>
 		</div>
 
-		<div class="adcontainer">
-			<a href="#"><img src="../images/casead.png" /></a>
-		</div>
+
 		<%
 		}
 		%>

@@ -22,6 +22,7 @@
      //메인페이지이동
      response.sendRedirect("../index.jsp");
   %>
+  <a href="http://developers.kakao.com/logout">카카오 로그아웃</a>
   
 </body>
 </html>
