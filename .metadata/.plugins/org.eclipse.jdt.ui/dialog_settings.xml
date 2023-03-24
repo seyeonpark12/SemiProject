@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item key="org.eclipse.jdt.ui.codeformatter.line_wrapping_tab_page.preview_line_width" value="40"/>
+	<item key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_width" value="1474"/>
+	<item key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_height" value="760"/>
+	<item key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_x" value="223"/>
+	<item key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_y" value="9"/>
+	<item key="org.eclipse.jdt.uiformatter_pagemodify_dialog.sash_form_left_width" value="639"/>
+	<item key="org.eclipse.jdt.uiformatter_pagemodify_dialog.sash_form_rigth_width" value="790"/>
+	<item key="org.eclipse.jdt.uiformatter_page.preference_tree_expansion" value="00.0..0.0.000.0.0.0.0.0.0.0.0.0.0..00.0.0.0.0.0.0.0.0.0.0..00.0.0.0.0.0.0..00.0.0.0..00.0.0.0...00.0.0..000.0..0.0..000.0.0.0.0.0.0.0.0.0.0.0...01.1..0.."/>
+	<item key="org.eclipse.jdt.uiformatter_page.preference_scroll_position" value="0"/>
+	<item key="org.eclipse.jdt.uiformatter_page.last_focus_index" value="450"/>
+	<item key="org.eclipse.jdt.ui.codeformatter.create_profile_dialog.open_edit" value="true"/>
 	<section name="JavaElementSearchActions">
 	</section>
 	<section name="BuildPathsPropertyPage">
@@ -57,5 +68,8 @@
 		<item key="DIALOG_WIDTH" value="681"/>
 		<item key="DIALOG_HEIGHT" value="889"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="JavaEditorCodeMiningConfigurationBlock">
+		<item key="expanded0" value="true"/>
 	</section>
 </section>

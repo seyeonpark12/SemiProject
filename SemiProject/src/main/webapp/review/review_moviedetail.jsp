@@ -436,12 +436,20 @@ no = totalCount - (currentPage_review - 1) * perPage;
 			</tr>
 			<tr>
 				<td colspan="4" style="padding: 0 30px;">
-					<b class="mv_content_year" style="color: gray; font-weight: 400;"><%=mdto.getMovie_year()%> | <%=mdto.getMovie_genre()%> | <%=mdto.getMovie_nara()%></b>
+					<b class="mv_content_year" style="color: gray; font-weight: 400;"><%=mdto.getMovie_year()%>
+						|
+						<%=mdto.getMovie_genre()%>
+						|
+						<%=mdto.getMovie_nara()%></b>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="4" style="padding: 30px; width: 100%">
-					<b class="mv_content_year" style="color: orange; font-size: 20px;"> ★ <%=review_avgscore%></b>
+					<b class="mv_content_year" style="color: orange; font-size: 20px;">
+						★
+						<%=review_avgscore%></b>&nbsp;&nbsp;&nbsp;
+					<b style='color: red; font-size: 20px; margin-right: 2px;'>♥</b>
+					<b style="font-size: 20px;"><%=pcount%></b>
 				</td>
 			</tr>
 		</table>
@@ -461,16 +469,26 @@ no = totalCount - (currentPage_review - 1) * perPage;
 		<%
 		if (pdao.isCheck(user_num, movie_num) == false && !myid.equals("admin")) {
 		%>
-		<div style="float: right; margin-top: -180px; margin-right: 300px;">
-			<b id="movie_pickadd" movie_num="<%=movie_num%>" class="mv_content_es" style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;">PICK <font style="margin-left: 5px; color: red; font-size: 18px;">♡</font>
-			</b> <b data-toggle="modal" data-target="#modal" class="mv_content_es" style="font-size: 16px; margin-left: 5px; font-weight: 400;" id="review_add">|&nbsp;&nbsp;<%=compare > 0 ? "기대평 남기기" : "리뷰하기"%><span style="margin-left: 5px;" class="glyphicon glyphicon-pencil"></span></b>
+		<div style="float: right; margin-top: -195px; margin-right: 300px;">
+			<b id="movie_pickadd" movie_num="<%=movie_num%>" class="mv_content_es" style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;">
+				PICK
+				<font style="margin-left: 5px; color: red; font-size: 18px;">♡</font>
+			</b>
+			<b data-toggle="modal" data-target="#modal" class="mv_content_es" style="font-size: 16px; margin-left: 5px; font-weight: 400;" id="review_add">
+				|&nbsp;&nbsp;<%=compare > 0 ? "기대평 남기기" : "리뷰하기"%><span style="margin-left: 5px;" class="glyphicon glyphicon-pencil"></span>
+			</b>
 		</div>
 		<%
 		} else if (pdao.isCheck(user_num, movie_num) == true && !myid.equals("admin")) {
 		%>
-		<div style="float: right; margin-top: -180px; margin-right: 300px;">
-			<b id="movie_pickdel" movie_num="<%=movie_num%>" class="mv_content_es" style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;"> PICK<font style="margin-left: 5px; color: red; font-size: 18px;">♥</font>
-			</b> <b data-toggle="modal" data-target="#modal" class="mv_content_es" style="font-size: 16px; margin-left: 5px; font-weight: 400;" id="review_add">|&nbsp;&nbsp;<%=compare > 0 ? "기대평 남기기" : "리뷰하기"%><span style="margin-left: 5px;" class="glyphicon glyphicon-pencil"></span></b>
+		<div style="float: right; margin-top: -195px; margin-right: 300px;">
+			<b id="movie_pickdel" movie_num="<%=movie_num%>" class="mv_content_es" style="margin-left: -100px; cursor: pointer; font-size: 16px; font-weight: 400;">
+				PICK
+				<font style="margin-left: 5px; color: red; font-size: 18px;">♥</font>
+			</b>
+			<b data-toggle="modal" data-target="#modal" class="mv_content_es" style="font-size: 16px; margin-left: 5px; font-weight: 400;" id="review_add">
+				|&nbsp;&nbsp;<%=compare > 0 ? "기대평 남기기" : "리뷰하기"%><span style="margin-left: 5px;" class="glyphicon glyphicon-pencil"></span>
+			</b>
 		</div>
 		<%
 		}
@@ -478,7 +496,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
 		<%
 		}
 		%>
-		<div style="float: right; margin-top: -20px;">
+		<div style="float: right; margin-top: -40px;">
 			<!-- 목록가기 버튼.. -->
 			<button type="button" class="btn btn-default btn-sm" style="margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1'">목록</button>
 		</div>
