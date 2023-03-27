@@ -1,21 +1,16 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>WPICK</title>
 <link rel="favicon" href="../layout_image/titlelogo.ico">
-<link rel="shortcut icon" type="../layoutimage/x-icon"
-	href="../layout_image/titlelogo.ico">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-	rel="stylesheet">
+<link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link href="css/index.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 <script type="text/javascript">
@@ -74,50 +69,58 @@ input:focus {
 </head>
 
 <body>
+	
+	<%
+	String category = request.getParameter("category");
+	String href = "";
+
+	if (category != null) {
+
+		href = "index.jsp?main=commu/" + (category.equals("total")
+		? "commu_totallist.jsp"
+		: category.equals("free")
+				? "commu_freelist.jsp"
+				: category.equals("share")
+						? "commu_sharelist.jsp"
+						: category.equals("with") ? "commu_withlist.jsp" : "");
+	} else
+		href = "index.jsp?main=commu/commu_totallist.jsp";
+	%>
 
 	<div style="margin: 30px 30px;">
-		<form action="commu/commu_addaction.jsp" method="post"
-			enctype="multipart/form-data">
+		<form action="commu/commu_addaction.jsp" method="post" enctype="multipart/form-data">
 
 			<div style="text-align: center; padding: 40px;">
-				<b class="mv_content"
-					style="display: inline-block; text-align: left; font-size: 20px; font-weight: 600;">게시판
-					글쓰기 </b>
+				<b class="mv_content" style="display: inline-block; text-align: left; font-size: 20px; font-weight: 600;">게시판 글쓰기 </b>
 			</div>
 			<table style="width: 1000px;">
 
 				<tr>
-					<td><select style="width: 200px;" name="commu_category"
-						class="form-control" required="required">
+					<td>
+						<select style="width: 200px;" name="commu_category" class="form-control" required="required">
 							<option value="자유" selected="selected">자유</option>
 							<option value="동행">동행</option>
 							<option value="나눔">나눔</option>
-					</select></td>
+						</select>
+					</td>
 
-					<td><input type="text" name="commu_subject"
-						class="form-control" style="width: 790px; margin-left: 8px;"
-						required="required"></td>
+					<td>
+						<input type="text" name="commu_subject" class="form-control" style="width: 790px; margin-left: 8px;" required="required">
+					</td>
 				</tr>
 
 				<tr>
 					<td colspan="2" style="border: 1px solid lightgray;">
-					<img
-						id="showimg"
-						style="max-width: 100%; max-height: 100%; padding: 10px;">
-						 <textarea
-							name="commu_content" id="commu_content" required="required"
-							style="width: 100%; height: 400px; border: none; outline: none; padding: 10px; overflow: hidden; overflow-wrap: break-word;"></textarea>
-
-						<input type="file" name="commu_photo" id="commu_photo"
-						style="margin-top: 15px; height: 40px; margin-top: 6px;"
-						class="form-control" onchange="readURL(this)"></td>
+						<img id="showimg" style="max-width: 100%; max-height: 100%; padding: 10px;">
+						<textarea name="commu_content" id="commu_content" required="required" style="width: 100%; height: 400px; border: none; outline: none; padding: 10px; overflow: hidden; overflow-wrap: break-word;"></textarea>
+						<input type="file" name="commu_photo" id="commu_photo" style="margin-top: 15px; height: 40px; margin-top: 6px;" class="form-control" onchange="readURL(this)">
+					</td>
 				</tr>
 
 				<tr>
 					<td colspan="2" align="center" style="padding-top: 50px;">
 						<button type="submit" class="btn btn-default btn-sm">저장</button>
-						<button type="button" class="btn btn-default btn-sm"
-							onclick="location.href='index.jsp?main=commu/commu_totallist.jsp'">목록</button>
+						<button type="button" class="btn btn-default btn-sm" onclick="location.href=location.href='<%=href%>'">목록</button>
 					</td>
 				</tr>
 

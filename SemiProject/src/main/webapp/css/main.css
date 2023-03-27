@@ -5,6 +5,10 @@
 	padding: 0;
 }
 
+a:hover {
+	text-decoration: none;
+}
+
 .bodywrap {
 	width: 1536px;
 	margin-top: 20px;
@@ -109,10 +113,9 @@
 
 h3.img_text {
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 16px;
 	margin: 0;
 	padding: 10px;
-	font-size: 22px;
 }
 
 .main section ul li:hover {
