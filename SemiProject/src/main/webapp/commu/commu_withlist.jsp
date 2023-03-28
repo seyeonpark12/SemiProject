@@ -253,7 +253,7 @@ for (CommuDto dto : list) {
 				<td class="myinfo"><%=dto.getCommu_category()%></td>
 
 				<td class="myinfo">
-					<a style="float: left; margin-left: 50px; padding: 0px 5px;" href="index.jsp?main=commu/commu_detail.jsp?category=total&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"> <%=dto.getCommu_subject()%></a>
+					<a style="float: left; margin-left: 50px; padding: 0px 5px;" href="index.jsp?main=commu/commu_detail.jsp?category=with&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>"> <%=dto.getCommu_subject()%></a>
 					<%
 					//이미지 첨부된 경우 아이콘 표시
 					if (dto.getCommu_photo() != null) {
@@ -265,7 +265,7 @@ for (CommuDto dto : list) {
 					//댓글이 있을 경우 제목 옆에 갯수 나타내기
 					if (dto.getAnswerCount() > 0) {
 					%>
-					<a href="index.jsp?main=commu/commu_detail.jsp?category=total&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>" style="float: left; color: red;">[<%=dto.getAnswerCount()%>]
+					<a href="index.jsp?main=commu/commu_detail.jsp?category=with&commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>" style="float: left; color: red;">[<%=dto.getAnswerCount()%>]
 					</a>
 					<%
 					}
@@ -302,13 +302,13 @@ for (CommuDto dto : list) {
 			if (myid.equals("admin")) {
 		%>
 		<div style="float: right;">
-			<button style="float: left;" type="button" id="admindelete" class="btn btn-default btn-sm" onclick="location.href='#'">삭제</button>
+			<button style="float: left; border:1px solid red; color:red;" type="button" id="admindelete" class="btn btn-default btn-sm" onclick="location.href='#'">삭제</button>
 			<%
 			}
 			%>
 
 
-			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-left: 5px;" onclick="location.href='index.jsp?main=commu/commu_addform.jsp'">
+			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-left: 5px;" onclick="location.href='index.jsp?main=commu/commu_addform.jsp?category=with'">
 				<span class="glyphicon glyphicon-pencil"></span>글쓰기
 			</button>
 		</div>

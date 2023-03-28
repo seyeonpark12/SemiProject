@@ -62,6 +62,7 @@ input:focus {
 .dropdown:hover .dropdown-content {
 	display: block;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -223,7 +224,7 @@ input:focus {
 				if (myid.equals(writer_id)) {
 			%>
 
-			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
+			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border:1px solid red; color:red;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
 
 			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;" onclick="location.href='index.jsp?main=commu/commu_updateform.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>'">수정</button>
 
@@ -234,7 +235,7 @@ input:focus {
 		%>
 
 		<div style="float: right;">
-			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
+			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px;border:1px solid red; color:red;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
 		</div>
 		<%
 		}
@@ -354,15 +355,16 @@ input:focus {
 							<%
 							}
 							%>
-							<span style="float: left; font-size: 9pt; height: 12px; color: gray;"><%=sdf.format(mdto.getMent_writeday())%> <%
- //오늘 올라온 댓글이면 N icon
- String inpuDate = sdf.format(mdto.getMent_writeday());
- String now = sdf.format(new java.util.Date());
+							<span style="float: left; font-size: 9pt; height: 12px; color: gray;"><%=sdf.format(mdto.getMent_writeday())%> 
+							<%
+							 //오늘 올라온 댓글이면 N icon
+							 String inpuDate = sdf.format(mdto.getMent_writeday());
+							 String now = sdf.format(new java.util.Date());
 
- if (inpuDate.equals(now)) {
- %> <img style="float: right; width: 12px; height: 12px; margin-top: 3px; margin-left: 3px;" src="commu/new_img/newimg.png"> <br> <br> <%
- }
- %> </span><br> <br> <span style="font-size: 10pt;"><%=mdto.getMent_content().replace("\n", "<br>")%></span>
+							 if (inpuDate.equals(now)) {
+							 %> <img style="float: right; width: 12px; height: 12px; margin-top: 3px; margin-left: 3px;" src="commu/new_img/newimg.png"> <br> <br> <%
+							 }
+							 %> </span><br> <br> <span style="font-size: 10pt;"><%=mdto.getMent_content().replace("\n", "<br>")%></span>
 						</td>
 
 						<td>

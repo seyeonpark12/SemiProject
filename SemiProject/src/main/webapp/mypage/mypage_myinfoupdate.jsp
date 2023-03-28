@@ -122,7 +122,7 @@ UserDto dto = dao.getData(user_num);
 
 
 								<div style="float: right;">
-									<button type="submit" class="btn btn-default btn-sm" style="margin-left: -600px; margin-bottom: 10px;">회원 정보수정</button>
+									<button type="submit" class="btn btn-default btn-sm" style="margin-left: -680px; margin-bottom: 10px;">회원 정보수정</button>
 
 									<button type="button" class="btn btn-default btn-sm" onclick="location.href='index.jsp?main=mypage/mypage_form.jsp'" style="margin-bottom: 10px; margin-right: 10px;">마이페이지</button>
 								</div>

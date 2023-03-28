@@ -300,13 +300,13 @@ for (CommuDto dto : list) {
 			if (myid.equals("admin")) {
 		%>
 		<div style="float: right;">
-			<button style="float: left;" type="button" id="admindelete" class="btn btn-default btn-sm" onclick="location.href='#'">삭제</button>
+			<button style="float: left; border:1px solid red; color:red;" type="button" id="admindelete" class="btn btn-default btn-sm" onclick="location.href='#'">삭제</button>
 			<%
 			}
 			%>
 
 
-			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-left: 5px;" onclick="location.href='index.jsp?main=commu/commu_addform.jsp'">
+			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-left: 5px;" onclick="location.href='index.jsp?main=commu/commu_addform.jsp?category=total'">
 				<span class="glyphicon glyphicon-pencil"></span>글쓰기
 			</button>
 		</div>

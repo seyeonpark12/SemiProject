@@ -101,7 +101,7 @@ List<UserDto> list2 = udao.getAllAdminUsers(0,4);
 
 		</table>
 
-		<a class="morebtn" href='index.jsp?main=mypage/admin_peoplelist.jsp'">+MORE</a>
+		<a class="morebtn" href='index.jsp?main=mypage/admin_peoplelist.jsp?user_num=<%=user_num %>'">+MORE</a>
 
 		<table style="width: 1000px; text-align:center;">
 			<h3>회원목록</h3>

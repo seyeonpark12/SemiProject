@@ -193,7 +193,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 				</td>
 
 				<td align="center" class="myinfo">
-					<span><a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=rdto.getMovie_num()%>"><%=rdto.getReview_content()%></a></span>
+					<span><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=rdto.getMovie_num()%>&currentPage=1"><%=rdto.getReview_content()%></a></span>
 				</td>
 
 
@@ -222,7 +222,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 			if (startPage > 1) {
 			%>
 			<li>
-				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=startPage - 1%>">이전</a>
+				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=startPage - 1%>&user_num=<%=user_num%>">이전</a>
 			</li>
 			<%
 			}
@@ -232,13 +232,13 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 			if (pp == currentPage) {
 			%>
 			<li class="active">
-				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=pp%>"><%=pp%></a>
+				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			} else {
 			%>
 			<li>
-				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=pp%>"><%=pp%></a>
+				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			}
@@ -249,7 +249,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 			if (endPage < totalPage) {
 			%>
 			<li>
-				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=endPage + 1%>">다음</a>
+				<a href="index.jsp?main=mypage/login_mypage_myreview.jsp?currentPage=<%=endPage + 1%>&user_num=<%=user_num%>">다음</a>
 			</li>
 			<%
 			}

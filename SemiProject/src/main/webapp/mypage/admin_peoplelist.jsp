@@ -15,6 +15,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<style type="text/css">
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #CBB6D9;
+	border-color: #CBB6D9;
+}
+
+.pagination>li>a, .pagination>li>a, .pagination>li>span, .pagination>li>span
+	{
+	z-index: 2;
+	color: #CBB6D9;
+	background-color: #fff;
+	border: 0px solid;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #fff;
+	background-color: #ECE6FF;
+	border: 0px solid;
+}
+</style>
 <!-- 관리자 체크박스 -->
 <script type="text/javascript">
 	$(function() {
@@ -75,6 +102,9 @@
 	String loginok = (String) session.getAttribute("loginok");
 	//아이디 myid
 	String myid = (String) session.getAttribute("myid");
+	
+	//유저넘저
+	String user_num=request.getParameter("user_num");
 
 	UserDao udao = new UserDao();
 
@@ -173,9 +203,9 @@
 
 	</div>
 	<div style="float: right;">
-		<button type="button" class="btn btn-default btn-sm" id="admindelete" style="margin-left: -400px; margin-bottom: 10px;">삭제</button>
+		<button type="button" class="btn btn-default btn-sm" id="admindelete" style="border:1px solid red; color:red; margin-left: -400px; margin-bottom: 10px;">삭제</button>
 
-		<button type="button" class="btn btn-default btn-sm" onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp'" style="margin-bottom: 10px; margin-right: 10px;">관리자페이지</button>
+		<button type="button" class="btn btn-default btn-sm" onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num %>'" style="margin-bottom: 10px; margin-right: 10px;">관리자페이지</button>
 	</div>
 	<!-- 페이징처리 -->
 	<div style="width: 500px; text-align: center;" class="container">
@@ -185,7 +215,7 @@
 			if (startPage > 1) {
 			%>
 			<li>
-				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=startPage - 1%>">이전</a>
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=startPage - 1%>&user_num=<%=user_num%>">이전</a>
 			</li>
 			<%
 			}
@@ -195,13 +225,13 @@
 			if (pp == currentPage) {
 			%>
 			<li class="active">
-				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>"><%=pp%></a>
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			} else {
 			%>
 			<li>
-				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>"><%=pp%></a>
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			}
@@ -212,7 +242,7 @@
 			if (endPage < totalPage) {
 			%>
 			<li>
-				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=endPage + 1%>">다음</a>
+				<a href="index.jsp?main=mypage/admin_peoplelist.jsp?currentPage=<%=endPage + 1%>&user_num=<%=user_num%>">다음</a>
 			</li>
 			<%
 			}

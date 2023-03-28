@@ -17,7 +17,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
 
+</style>
 </head>
 <%
 request.setCharacterEncoding("utf-8");
@@ -314,7 +316,7 @@ String user_num = dao.getNum(myid);
 											</div>
 										</div>
 										<div style="text-align: center;">
-											<a href="index.jsp?main=login/login_findid.jsp" style="color: black;">아이디ㆍ비밀번호 찾기</a>
+											<a href="index.jsp?main=login/login_findidpw.jsp" style="color: black;">아이디ㆍ비밀번호 찾기</a>
 
 										</div>
 									</div>
@@ -368,7 +370,7 @@ String user_num = dao.getNum(myid);
 
 
 										<br> <br>
-										<input type="text" name="user_hp" placeholder="휴대번호" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
+										<input type="text" name="user_hp" placeholder="휴대번호 '-'까지 입력해주세요" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
 
 										<br> <br>
 										<input type="text" name="user_addr" placeholder="주소" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">

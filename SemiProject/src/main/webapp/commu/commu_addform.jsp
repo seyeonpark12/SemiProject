@@ -69,6 +69,23 @@ input:focus {
 </head>
 
 <body>
+	
+	<%
+	String category = request.getParameter("category");
+	String href = "";
+
+	if (category != null) {
+
+		href = "index.jsp?main=commu/" + (category.equals("total")
+		? "commu_totallist.jsp"
+		: category.equals("free")
+				? "commu_freelist.jsp"
+				: category.equals("share")
+						? "commu_sharelist.jsp"
+						: category.equals("with") ? "commu_withlist.jsp" : "");
+	} else
+		href = "index.jsp?main=commu/commu_totallist.jsp";
+	%>
 
 	<div style="margin: 30px 30px;">
 		<form action="commu/commu_addaction.jsp" method="post" enctype="multipart/form-data">
@@ -79,7 +96,7 @@ input:focus {
 			<table style="width: 1000px;">
 
 				<tr>
-					<td>
+					<td style="width:20%;">
 						<select style="width: 200px;" name="commu_category" class="form-control" required="required">
 							<option value="자유" selected="selected">자유</option>
 							<option value="동행">동행</option>
@@ -87,7 +104,7 @@ input:focus {
 						</select>
 					</td>
 
-					<td>
+					<td style="width:80%;">
 						<input type="text" name="commu_subject" class="form-control" style="width: 790px; margin-left: 8px;" required="required">
 					</td>
 				</tr>
@@ -103,7 +120,7 @@ input:focus {
 				<tr>
 					<td colspan="2" align="center" style="padding-top: 50px;">
 						<button type="submit" class="btn btn-default btn-sm">저장</button>
-						<button type="button" class="btn btn-default btn-sm" onclick="location.href='index.jsp?main=commu/commu_totallist.jsp'">목록</button>
+						<button type="button" class="btn btn-default btn-sm" onclick="location.href=location.href='<%=href%>'">목록</button>
 					</td>
 				</tr>
 

@@ -82,13 +82,19 @@ navi>li:hover {
 	text-decoration: none;
 }
 
+
 .menu2 {
 	float: right;
-	width: 400px;
+	width: 340px;
 	margin-top: -30px;
-	margin-right: -320px;
-	background-color: #ffffff;
+	margin-right: -200px;
 	z-index: 1;
+	text-align: center;
+}
+
+.menu2 > * {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .modal-header, h4, .close {
@@ -134,4 +140,5 @@ dal-footer {
 	border: none;
 	margin-left: 980px;
 	background-color: #fafafa;
+	margin-top:10px;
 }

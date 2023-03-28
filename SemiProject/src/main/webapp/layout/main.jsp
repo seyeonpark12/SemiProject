@@ -37,7 +37,13 @@
 <body>
 	<div class="bodywrap">
 		<div class="imgslide">
-			<a href="#"><img alt="" src="layout_image/bn1.jpg"></a> <a href="#"><img alt="" src="layout_image/bn_2.png"></a> <a href="#"><img alt="" src="layout_image/bn_3.png"></a>
+			<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=64&movie_genre=all&sort=recent&currentPage=1">
+			<img alt="" src="layout_image/bn_2.png"></a>
+			 <a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=72&movie_genre=all&sort=recent&currentPage=1">
+			 <img alt="" src="layout_image/bn_3.png"></a>
+			<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=62&movie_genre=all&sort=recent&currentPage=1">
+			<img alt="" src="layout_image/bn_1.jpg"></a> 
+		
 		</div>
 
 		<div>
@@ -54,8 +60,8 @@
 								<li>
 									<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=dto.getMovie_num()%>&currentPage=1"> <img src="movie_save/<%=dto.getMovie_poster()%>">
 									</a>
-									<h3 class="img_text" style="font-size: 20px;"><%=dto.getMovie_subject()%>
-										<b style="color: orange; font-size: 23px;">★</b><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %>
+									<h3 class="img_text" style="font-size: 16px;"><%=dto.getMovie_subject()%> <br>
+										<b style="color: orange; font-size: 18px;">★</b><%=Math.round(dto.getMovie_rank_avg()*10.0)/10.0 %>
 									</h3>
 								</li>
 								<%}
