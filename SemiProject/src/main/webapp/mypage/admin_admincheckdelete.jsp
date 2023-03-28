@@ -1,6 +1,5 @@
 <%@page import="data.dao.UserDao"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-   pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%
 //관리자 체크박스 삭제action!!!!
@@ -13,9 +12,7 @@ UserDao dao = new UserDao();
 
 for (String user_num : num) {
 
-   dao.deleteUser(user_num);
+	dao.deleteUser(user_num);
 
 }
-
-
 %>

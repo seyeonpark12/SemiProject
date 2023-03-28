@@ -1,11 +1,11 @@
-jQuery(document).ready(function(){
-	
+jQuery(document).ready(function() {
+
 
 	$(".imgslide > a:gt(0)").hide();
 
 	setInterval(function() {
 		$('.imgslide a:first-child').fadeOut().next('a').fadeIn().end()
-				.appendTo('.imgslide');
+			.appendTo('.imgslide');
 	}, 3000);
 
 
@@ -42,7 +42,7 @@ jQuery(document).ready(function(){
 	const pageDots = document.querySelectorAll('.dot'); // each dot from pagination
 
 	slideList.style.transform = "translate3d(-" + (slideWidth * (startNum + 1))
-			+ "px, 0px, 0px)";
+		+ "px, 0px, 0px)";
 
 	let curIndex = startNum; // current slide index (except copied slide)
 	let curSlide = slideContents[curIndex]; // current slide dom
@@ -53,19 +53,19 @@ jQuery(document).ready(function(){
 		if (curIndex <= slideLen - 1) {
 			slideList.style.transition = slideSpeed + "ms";
 			slideList.style.transform = "translate3d(-"
-					+ (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+				+ (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
 		}
 		if (curIndex === slideLen - 1) {
 			setTimeout(function() {
 				slideList.style.transition = "0ms";
 				slideList.style.transform = "translate3d(-" + slideWidth
-						+ "px, 0px, 0px)";
+					+ "px, 0px, 0px)";
 			}, slideSpeed);
 			curIndex = -1;
 		}
 		curSlide.classList.remove('slide_active');
 		pageDots[(curIndex === -1) ? slideLen - 1 : curIndex].classList
-				.remove('dot_active');
+			.remove('dot_active');
 		curSlide = slideContents[++curIndex];
 		curSlide.classList.add('slide_active');
 		pageDots[curIndex].classList.add('dot_active');
@@ -76,19 +76,19 @@ jQuery(document).ready(function(){
 		if (curIndex >= 0) {
 			slideList.style.transition = slideSpeed + "ms";
 			slideList.style.transform = "translate3d(-"
-					+ (slideWidth * curIndex) + "px, 0px, 0px)";
+				+ (slideWidth * curIndex) + "px, 0px, 0px)";
 		}
 		if (curIndex === 0) {
 			setTimeout(function() {
 				slideList.style.transition = "0ms";
 				slideList.style.transform = "translate3d(-"
-						+ (slideWidth * slideLen) + "px, 0px, 0px)";
+					+ (slideWidth * slideLen) + "px, 0px, 0px)";
 			}, slideSpeed);
 			curIndex = slideLen;
 		}
 		curSlide.classList.remove('slide_active');
 		pageDots[(curIndex === slideLen) ? 0 : curIndex].classList
-				.remove('dot_active');
+			.remove('dot_active');
 		curSlide = slideContents[--curIndex];
 		curSlide.classList.add('slide_active');
 		pageDots[curIndex].classList.add('dot_active');
@@ -111,7 +111,7 @@ jQuery(document).ready(function(){
 			curSlide.classList.add('slide_active');
 			slideList.style.transition = slideSpeed + "ms";
 			slideList.style.transform = "translate3d(-"
-					+ (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
+				+ (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
 		});
 	});
 });
