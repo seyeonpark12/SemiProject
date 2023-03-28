@@ -30,3 +30,6 @@
 
 ![alt 프로젝트산출물](https://user-images.githubusercontent.com/126428632/228110027-2a4e635e-1f90-41a4-9358-7f0e2ce179fa.jpg)
 
+![alt 메인1](https://user-images.githubusercontent.com/126428632/228113044-12fc60df-09c9-4adf-83db-6062f7f57e9a.JPG)
+![alt 메인2](https://user-images.githubusercontent.com/126428632/228113051-54b6d3ac-9e14-4033-a893-c8f68a650649.JPG)
+![alt 메인3](https://user-images.githubusercontent.com/126428632/228113059-73d3371c-5e43-470d-a578-4e0447c58d2d.JPG)
