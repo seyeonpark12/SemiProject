@@ -13,14 +13,13 @@
 <!-- 아이콘.. -->
 <script src="https://kit.fontawesome.com/7027f21a5f.js" crossorigin="anonymous"></script>
 
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script>
-	Kakao.init('d40c93410b0cc1c12c4732675703d114'); // 사용하려는 앱의 JavaScript 키 입력
-</script>
+<style type="text/css">
 
+</style>
 </head>
 <%
 request.setCharacterEncoding("utf-8");
@@ -214,56 +213,25 @@ String user_num = dao.getNum(myid);
 
 		});
 
-		//카카오톡 로그인
-		$("#kakao-login-btn").on("click", function() {
-			//1. 로그인 시도
-			Kakao.Auth.login({
-				success : function(authObj) {
-
-					//2. 로그인 성공시, API 호출
-					Kakao.API.request({
-						url : '/v2/user/me',
-						success : function(res) {
-							var account = res.kakao_account;
-							var id = res.id;
-							scope: 'account_email';
-							alert('로그인성공');
-							location.href = "index.jsp?main=layout/main.jsp";
-
-						}
-					})
-					console.log(authObj);
-					var token = authObj.access_token;
-				},
-				fail : function(err) {
-					alert(JSON.stringify(err));
-				}
-			});
-
-		})
-
 	});
 </script>
-<%
-session.setAttribute("member_mid", "5235268");k
-response.sendRedirect("index.jsp?main=layout/main.jsp");
-%>
 <body>
-
 
 	<header>
 		<div class="top">
 
 			<div class="logo">
-				<a href="index.jsp?main=layout/main.jsp">
-					<img src="layout_image/logo.png">
-				</a>
+				<a href="index.jsp?main=layout/main.jsp"><img src="layout_image/logo.png"></a>
 			</div>
 
 			<nav class="menu">
 				<ul class="navi">
-					<li><a href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1" class="mainmenu">영화</a></li>
-					<li><a href="index.jsp?main=commu/commu_totallist.jsp" class="mainmenu">커뮤니티</a></li>
+					<li>
+						<a href="index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1" class="mainmenu">영화</a>
+					</li>
+					<li>
+						<a href="index.jsp?main=commu/commu_totallist.jsp" class="mainmenu">커뮤니티</a>
+					</li>
 				</ul>
 			</nav>
 
@@ -282,20 +250,18 @@ response.sendRedirect("index.jsp?main=layout/main.jsp");
 					if (myid.equals("admin")) {
 				%>
 
-				<div class="menu2">
-					<b style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님 로그인중
-					</b>
+				<div class="menu2" style="position: relative;">
+					<b style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님 로그인중 </b>
 					<button type="button" class="btn btn-default btn-sm" style="width: 80px; margin-right: 10px;" onclick="location.href='login/logoutaction.jsp'">Logout</button>
-					<div class="fa-solid fa-user-gear" style="font-size: 20px; line-height: 20px; height: 20px;" onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num%>'"></div>
+					<div class="fa-solid fa-user-gear" style="font-size: 20px; height: 30px; line-height: 30px;" onclick="location.href='index.jsp?main=mypage/admin_mypage_form.jsp?user_num=<%=user_num%>'"></div>
 				</div>
 				<%
 				} else {
 				%>
 				<div class="menu2">
-					<b style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님 로그인중
-					</b>
+					<b style="font-size: 10pt; font-weight: normal; margin-right: 10px;"><%=nickname%>님 로그인중</b>
 					<button type="button" class="btn btn-default btn-sm" style="width: 80px; margin-right: 10px;" onclick="location.href='login/logoutaction.jsp'">Logout</button>
-					<div class="fa-solid fa-user" style="font-size: 20px; line-height: 20px; height: 20px;" onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"></div>
+					<div class="fa-solid fa-user" style="font-size: 20px; height: 30px; line-height: 30px;" onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"></div>
 				</div>
 				<%
 				}
@@ -335,31 +301,23 @@ response.sendRedirect("index.jsp?main=layout/main.jsp");
 										<input type="password" name="user_pw" placeholder="PASSWORD" class="form-control" required="required" style="width: 300px; background-color: #fafafa">
 										<br>
 
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
-												<div class="checkbox">
-													<label>
-														<input type="checkbox" name="saveid" class="text-align:center;" <%=saveid != null ? "checked" : ""%>>
-														아이디저장
-													</label>
-												</div>
-											</div>
+
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" name="saveid" class="text-align:center;" <%=saveid != null ? "checked" : ""%>>
+												아이디저장
+											</label>
 										</div>
 
-										<div class="form-group">
+
+										<div class="form-group" style="margin-top: 50px;">
 											<div class="col-sm-offset-2 col-sm-10">
 												<button type="submit" class="btn btn-default" id="login" style="width: 180px;">로그인</button>
 											</div>
-
-											<div class="button-login" align="center">
-												<a id="kakao-login-btn">
-													<img src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="180px">
-												</a>
-											</div>
 										</div>
-
 										<div style="text-align: center;">
 											<a href="index.jsp?main=login/login_findidpw.jsp" style="color: black;">아이디ㆍ비밀번호 찾기</a>
+
 										</div>
 									</div>
 								</form>
@@ -391,8 +349,12 @@ response.sendRedirect("index.jsp?main=layout/main.jsp");
 
 										<br> <br>
 										<input type="text" name="user_name" placeholder="이름" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
+
+
 										<br> <br>
 										<input type="text" name="user_nickname" placeholder="닉네임" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
+
+
 										<br> <br>
 										<input type="text" name="user_id" id="user_id" placeholder="아이디" class="form-control" required="required" style="width: 70%; background-color: #fafafa">
 
@@ -408,11 +370,14 @@ response.sendRedirect("index.jsp?main=layout/main.jsp");
 
 
 										<br> <br>
-										<input type="text" name="user_hp" placeholder="휴대번호" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
+										<input type="text" name="user_hp" placeholder="휴대번호 '-'까지 입력해주세요" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
+
 										<br> <br>
 										<input type="text" name="user_addr" placeholder="주소" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
+
 										<br> <br>
 										<input type="text" name="user_email" placeholder="이메일" class="form-control" required="required" style="width: 300px; background-color: #fafafa" value="">
+
 										<br> <br>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">

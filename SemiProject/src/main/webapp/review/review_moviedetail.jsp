@@ -296,6 +296,8 @@ td {
    border-radius: 5px;
 }
 </style>
+
+
 </head>
 <%
 MovieDao mdao = new MovieDao();
@@ -379,6 +381,20 @@ List<ReviewDto> list_movie = rdao.getAllReview_movie(movie_num, start, perPage);
 
 no = totalCount - (currentPage_review - 1) * perPage;
 %>
+
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		type:"get",
+		dataType:"html",
+		url:"cookie/cookie_set.jsp",
+		data:{"movie_num":<%=movie_num%>},
+		success:function(){
+			//console.log("전달");
+		}
+	})
+})
+</script>
 <body>
    <div style="padding: 0; margin-top: 100px;">
       <!-- Modal -->
@@ -461,7 +477,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
       %>
       <div style="float: left; margin-top: -20px;">
          <button type="button" class="btn btn-default btn-sm" style="margin-left: 1050px; border: 1px solid #CBB6D9; color: #CBB6D9; float: left;" onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
-         <button type="button" class="btn btn-default btn-sm" style="border: 1px solid #a02982; color: #a02982; float: left; margin-left: 5px;" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
+         <button type="button" class="btn btn-default btn-sm" style="border:1px solid red; color:red; float: left; margin-left: 5px;" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
       </div>
       <%
       }
@@ -498,7 +514,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
       %>
       <div style="float: right; margin-top: -40px;">
          <!-- 목록가기 버튼.. -->
-         <button type="button" class="btn btn-default btn-sm" style="margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=all&sort=recent&currentPage=1'">목록</button>
+         <button type="button" class="btn btn-default btn-sm" style="margin-top:20px; margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre %>&sort=<%=sort %>&currentPage=<%=currentPage%>'">목록</button>
       </div>
       <br>
       <hr>
@@ -561,7 +577,7 @@ no = totalCount - (currentPage_review - 1) * perPage;
                   if (loginok != null && myid.equals("admin") || loginok != null && myid.equals(id)) {
                   %>
                   <td>
-                     <button type="button" class="btn btn-default btn-sm" review_num="<%=dto.getReview_num()%>" id="review_del" style="margin-left: 10px;">삭제</button>
+                     <button type="button" class="btn btn-default btn-sm" review_num="<%=dto.getReview_num()%>" id="review_del" style=" border:1px solid red; color:red; margin-left: 10px;">삭제</button>
                   </td>
                   <%
                   }
@@ -580,24 +596,24 @@ no = totalCount - (currentPage_review - 1) * perPage;
                //이전
                if (startPage > 1) {
                %>
-               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_reviewe=<%=startPage - 1%>">이전</a></li>
+               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_reviewe=<%=startPage - 1%>">이전</a></li>
                <%
                }
                for (int pp = startPage; pp <= endPage; pp++) {
                if (pp == currentPage_review) {
                %>
-               <li class="active"><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
+               <li class="active"><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
                <%
                } else {
                %>
-               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
+               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=pp%>"><%=pp%></a></li>
                <%
                }
                }
                //다음
                if (endPage < totalPage) {
                %>
-               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=endPage + 1%>">다음</a></li>
+               <li><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=<%=movie_genre%>&sort=<%=sort %>&movie_num=<%=movie_num%>&currentPage=<%=currentPage%>&currentPage_review=<%=endPage + 1%>">다음</a></li>
                <%
                }
                %>

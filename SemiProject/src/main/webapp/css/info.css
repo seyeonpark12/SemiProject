@@ -35,9 +35,10 @@ tr th td {
 	font-size: 14px;
 }
 
-a{
-	color:black;
+a {
+	color: black;
 }
+
 a:hover {
 	text-decoration: none;
 }
@@ -59,9 +60,10 @@ th.myinfo {
 	text-align: center;
 }
 
-td.myinfo a{
+td.myinfo a {
 	color: black;
 }
+
 td.myinfo {
 	padding: 15px 0;
 	font-size: 13px;
@@ -78,7 +80,6 @@ td.myinfo {
 	padding-left: 20px;
 	margin-bottom: 100px;
 }
-
 
 #moviewrap_pick>div {
 	float: left;
@@ -98,7 +99,6 @@ td.myinfo {
 	clear: both;
 }
 
-
 #zzim {
 	color: red;
 	z-index: 10;
@@ -106,7 +106,7 @@ td.myinfo {
 	position: relative;
 	float: right;
 	margin-top: 300px;
-	margin-right:-20px;
+	margin-right: -20px;
 	padding: 20px;
 }
 
@@ -117,11 +117,9 @@ td.myinfo {
 	margin-bottom: 100px;
 }
 
-
-
 #zzimwrap_pick>div {
 	float: left;
-	border:none;
+	border: none;
 	width: 200px;
 	height: 300px;
 	margin-left: 30px;
@@ -154,7 +152,6 @@ td.myinfo {
 	display: block;
 	clear: both;
 }
-
 
 .myinfo_div {
 	margin-top: 50px;

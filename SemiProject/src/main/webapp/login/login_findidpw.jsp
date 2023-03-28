@@ -24,49 +24,49 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-		
-		//id 찾기
-		function id_search() { 
-		 	var frm = document.idfindscreen;
+      
+      //id 찾기
+      function id_search() { 
+          var frm = document.idfindscreen;
 
-		 	if (frm.user_email.value.length < 1) {
-			  alert("이메일을 입력해주세요");
-			  return;
-			 }
+          if (frm.user_email.value.length < 1) {
+           alert("이메일을 입력해주세요");
+           return;
+          }
 
-			 if (frm.user_hp.value.length != 13) {
-				  alert("핸드폰 번호를 정확하게 입력해주세요");
-				  return;
-			 }
+          if (frm.user_hp.value.length != 13) {
+              alert("휴대번호를 정확하게 입력해주세요");
+              return;
+          }
 
-		 frm.method = "post";
-		 frm.action = "index.jsp?main=login/login_findidresult.jsp"; //넘어간화면
-		 frm.submit();  
-		 }
-	
-		
-		//pw 찾기
-		function pw_search() { 
-		 	var frm = document.pwfindscreen;
-	
-		 	if (frm.user_id.value.length < 1) {
-			  alert("아이디를 입력해주세요");
-			  return;
-			 }
-	
-			 if (frm.user_hp.value.length != 13) {
-				  alert("핸드폰번호를 정확하게 입력해주세요");
-				  return;
-			 }
-	
-		 frm.method = "post";
-		 frm.action = "index.jsp?main=login/login_findpwresult.jsp"; //넘어간화면
-		 frm.submit();  
-		 }
-	
-	
-	
-	</script>
+       frm.method = "post";
+       frm.action = "index.jsp?main=login/login_findidresult.jsp"; //넘어간화면
+       frm.submit();  
+       }
+   
+      
+      //pw 찾기
+      function pw_search() { 
+          var frm = document.pwfindscreen;
+   
+          if (frm.user_id.value.length < 1) {
+           alert("아이디를 입력해주세요");
+           return;
+          }
+   
+          if (frm.user_hp.value.length != 13) {
+              alert("휴대번호를 정확하게 입력해주세요");
+              return;
+          }
+   
+       frm.method = "post";
+       frm.action = "index.jsp?main=login/login_findpwresult.jsp"; //넘어간화면
+       frm.submit();  
+       }
+   
+   
+   
+   </script>
 
 </head>
 <body>
@@ -80,7 +80,7 @@
             <input type="text" name="user_email" placeholder="이메일"
                class="form-control" required="required"
                style="width: 300px; margin: 10px 0px; background-color: #fafafa">
-            <input type="text" name="user_hp" placeholder="전화번호 '-'까지 입력해주세요"
+            <input type="text" name="user_hp" placeholder="휴대번호 '-'까지 입력해주세요"
                class="form-control" required="required"
                style="width: 300px; background-color: #fafafa">
 
@@ -111,7 +111,7 @@
             <input type="text" name="user_id" placeholder="아이디"
                class="form-control" required="required"
                style="width: 300px; margin: 10px 0px; background-color: #fafafa">
-            <input type="text" name="user_hp" placeholder="전화번호 '-'까지 입력해주세요"
+            <input type="text" name="user_hp" placeholder="휴대번호 '-'까지 입력해주세요"
                class="form-control" required="required"
                style="width: 300px; background-color: #fafafa">
 

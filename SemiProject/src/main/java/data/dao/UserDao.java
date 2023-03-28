@@ -467,59 +467,59 @@ public class UserDao {
    
        //id 찾기
        public String findId(String user_email, String user_hp) {
-    	   Connection conn=db.getConnection();
-    	   PreparedStatement pstmt=null;
-    	   ResultSet rs=null;
-   		   String id = null;
-   		
-   		try {
-   			String sql = "select user_id from user where user_email=? and user_hp=? ";
-   			pstmt = conn.prepareStatement(sql);
-   			pstmt.setString(1, user_email);
-   			pstmt.setString(2, user_hp);
-   			
-   			rs = pstmt.executeQuery();
-   			
-   			if(rs.next()) {
-   				id = rs.getString("user_id");
-   			}
-   				
-   		} catch (Exception e) {
-   			e.printStackTrace();
-   		}finally {
+          Connection conn=db.getConnection();
+          PreparedStatement pstmt=null;
+          ResultSet rs=null;
+            String id = null;
+         
+         try {
+            String sql = "select user_id from user where user_email=? and user_hp=? ";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, user_email);
+            pstmt.setString(2, user_hp);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+               id = rs.getString("user_id");
+            }
+               
+         } catch (Exception e) {
+            e.printStackTrace();
+         }finally {
             db.dbClose(rs, pstmt, conn);
          }
-   		
-   		return id;
-   	}
+         
+         return id;
+      }
        
      //pw 찾기
        public String findPw(String user_id, String user_hp) {
-    	   Connection conn=db.getConnection();
-    	   PreparedStatement pstmt=null;
-    	   ResultSet rs=null;
-   		   String pw = null;
-   		
-   		try {
-   			String sql = "select user_pw from user where user_id=? and user_hp=? ";
-   			pstmt = conn.prepareStatement(sql);
-   			pstmt.setString(1, user_id);
-   			pstmt.setString(2, user_hp);
-   			
-   			rs = pstmt.executeQuery();
-   			
-   			if(rs.next()) {
-   				pw = rs.getString("user_pw");
-   			}
-   				
-   		} catch (Exception e) {
-   			e.printStackTrace();
-   		}finally {
+          Connection conn=db.getConnection();
+          PreparedStatement pstmt=null;
+          ResultSet rs=null;
+            String pw = null;
+         
+         try {
+            String sql = "select user_pw from user where user_id=? and user_hp=? ";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, user_id);
+            pstmt.setString(2, user_hp);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+               pw = rs.getString("user_pw");
+            }
+               
+         } catch (Exception e) {
+            e.printStackTrace();
+         }finally {
             db.dbClose(rs, pstmt, conn);
          }
-   		
-   		return pw;
-   	}
+         
+         return pw;
+      }
    
    
 }

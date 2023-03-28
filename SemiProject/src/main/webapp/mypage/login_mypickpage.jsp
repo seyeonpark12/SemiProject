@@ -4,26 +4,20 @@
 <%@page import="data.dao.UserDao"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>WPICK</title>
 <link rel="favicon" href="../layout_image/titlelogo.ico">
-<link rel="shortcut icon" type="../layoutimage/x-icon"
-	href="../layout_image/titlelogo.ico">
+<link rel="shortcut icon" type="../layoutimage/x-icon" href="../layout_image/titlelogo.ico">
 <link href="css/info.css" type="text/css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link href="css/info.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <style type="text/css">
-
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
 	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
 	{
@@ -123,27 +117,27 @@ List<PickDto> list = pdao.getMyPickList(user_num, start, perPage);
 	$(function() {
 
 		// pick 제거
- 		$(document).on("click","#zzim",function(){
- 		   var movie_num = $(this).attr("movie_num");
-		   var user_num = $(this).attr("user_num");
-		
-		   //alert(movie_num+"번 영화, "+user_num+"번 유저");
-		   $.ajax({
-		      type : "get",
-		      dataType : "html",
-		      url : "review/pick_delete.jsp",
-		      data : {
-		         "movie_num" : movie_num,
-		         "user_num" : user_num
-		      },
-		      success : function() {
-		         alert("pick이 해제되었습니다")
-		         location.reload();
-		      }
-		
-		   });
- 			
- 		});
+		$(document).on("click", "#zzim", function() {
+			var movie_num = $(this).attr("movie_num");
+			var user_num = $(this).attr("user_num");
+
+			//alert(movie_num+"번 영화, "+user_num+"번 유저");
+			$.ajax({
+				type : "get",
+				dataType : "html",
+				url : "review/pick_delete.jsp",
+				data : {
+					"movie_num" : movie_num,
+					"user_num" : user_num
+				},
+				success : function() {
+					alert("pick이 해제되었습니다")
+					location.reload();
+				}
+
+			});
+
+		});
 	});
 </script>
 
@@ -161,10 +155,9 @@ List<PickDto> list = pdao.getMyPickList(user_num, start, perPage);
 		int myPickCount = pdao.myPickCount(user_num);
 		%>
 		<h3 style="margin-left: 450px; margin-bottom: 50px;">
-			MYPICK
-			<%=myPickCount%></h3>
-		<div id="zzimwrap_pick"
-			style="width: 1000px; height: 400px; padding-left: 20px;">
+			MYPICK <b style="color: purple; font-size: 17pt"><%=myPickCount%></b>
+		</h3>
+		<div id="zzimwrap_pick" style="width: 1000px; height: 400px; padding-left: 20px;">
 			<%
 			if (myPickCount == 0) {
 			%>
@@ -181,16 +174,10 @@ List<PickDto> list = pdao.getMyPickList(user_num, start, perPage);
 
 			<div class="pick" style="position: relative; height: 500px;">
 				<ul>
-					<li><a
-						href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=pdto.getMovie_num()%>"
-						class="godetail"> <img src="movie_save/<%=movie_poster%>"
-							class="poster">
-					</a> <span class="glyphicon glyphicon-heart" id="zzim"
-						movie_num="<%=pdto.getMovie_num()%>"
-						user_num="<%=pdto.getUser_num()%>"
-						style="position: absolute; z-index: 1; right: 0; cursor: pointer;"></span>
-						<h3
-							style="padding: 10px 20px; font-size: 18px; margin-top: -40px; font-weight: 400;"><%=movie_subject%></h3>
+					<li>
+						<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=pdto.getMovie_num()%>&currentPage=1" class="godetail"> <img src="movie_save/<%=movie_poster%>" class="poster">
+						</a> <span class="glyphicon glyphicon-heart" id="zzim" movie_num="<%=pdto.getMovie_num()%>" user_num="<%=pdto.getUser_num()%>" style="position: absolute; z-index: 1; right: 0; cursor: pointer;"></span>
+						<h3 style="padding: 20px; font-size: 18px; margin-left: 30px; margin-top: -55px; font-weight: 600;"><%=movie_subject%></h3>
 					</li>
 				</ul>
 
@@ -201,9 +188,7 @@ List<PickDto> list = pdao.getMyPickList(user_num, start, perPage);
 			%>
 		</div>
 
-		<button type="button" class="btn btn-default btn-sm"
-			onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'"
-			style="float: right; margin-bottom: 10px;">마이페이지</button>
+		<button type="button" class="btn btn-default btn-sm" onclick="location.href='index.jsp?main=mypage/mypage_form.jsp?user_num=<%=user_num%>'" style="float: right; margin-bottom: 10px;">마이페이지</button>
 	</div>
 
 	<!-- 페이징처리 -->
@@ -213,8 +198,8 @@ List<PickDto> list = pdao.getMyPickList(user_num, start, perPage);
 			//이전
 			if (startPage > 1) {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=startPage - 1%>&user_num=<%=user_num%>">이전</a>
+			<li>
+				<a href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=startPage - 1%>&user_num=<%=user_num%>">이전</a>
 			</li>
 			<%
 			}
@@ -223,14 +208,14 @@ List<PickDto> list = pdao.getMyPickList(user_num, start, perPage);
 
 			if (pp == currentPage) {
 			%>
-			<li class="active"><a
-				href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
+			<li class="active">
+				<a href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			} else {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
+			<li>
+				<a href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=pp%>&user_num=<%=user_num%>"><%=pp%></a>
 			</li>
 			<%
 			}
@@ -240,8 +225,8 @@ List<PickDto> list = pdao.getMyPickList(user_num, start, perPage);
 			//다음
 			if (endPage < totalPage) {
 			%>
-			<li><a
-				href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=endPage + 1%>&user_num=<%=user_num%>">다음</a>
+			<li>
+				<a href="index.jsp?main=mypage/login_mypickpage.jsp?currentPage=<%=endPage + 1%>&user_num=<%=user_num%>">다음</a>
 			</li>
 			<%
 			}
