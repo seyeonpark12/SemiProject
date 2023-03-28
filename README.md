@@ -1,4 +1,4 @@
-# 💜WHATPICK💜
+<h1 align="center">💜WHATPICK💜</h1>
 
 ![alt 왓픽](https://user-images.githubusercontent.com/126428632/228108498-f636236f-ad10-4909-91b9-334feac95fec.jpg)
 
@@ -68,3 +68,7 @@
 
 ![슬라이드69](https://user-images.githubusercontent.com/126428632/228113971-7b75fd66-7932-47e1-b7cb-e1b56ae0f125.JPG)
 
+### 🏆수상 성과
+```
+⭐자체 최고의 사이트 대상⭐
+```
