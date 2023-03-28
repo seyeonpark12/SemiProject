@@ -1,0 +1,177 @@
+@charset "utf-8";
+
+* {
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	font-family: "Noto Sans KR";
+	color: black;
+}
+
+tr th td {
+	text-align: center;
+}
+
+.ca_subject {
+	font-size: 15px;
+	font-weight: 400;
+	letter-spacing: -1.2px;
+	line-height: 36px;
+}
+
+.morebtn {
+	float: right;
+	margin-bottom: 10px;
+	color: #8c8c8c;
+}
+
+.editbtn {
+	float: right;
+	margin-bottom: 10px;
+	text-align: center;
+	border: 1px solid #8c8c8c;
+	padding: 3px 10px;
+	color: #8c8c8c;
+	font-size: 14px;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+tr.tr_myinfo {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+}
+
+th.myinfo {
+	padding: 15px 0;
+	font-size: 13px;
+	color: #000;
+	font-family: Verdana;
+	font-weight: normal;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #e9e9e9;
+	text-align: center;
+}
+
+td.myinfo a {
+	color: black;
+}
+
+td.myinfo {
+	padding: 15px 0;
+	font-size: 13px;
+	color: #000;
+	font-family: Verdana;
+	font-weight: normal;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #e9e9e9;
+}
+
+#moviewrap_pick {
+	width: 1000px;
+	height: 400px;
+	padding-left: 20px;
+	margin-bottom: 100px;
+}
+
+#moviewrap_pick>div {
+	float: left;
+	/*border: 1px solid black;
+	width: 200px;
+	height: 300px;*/
+	margin-left: 30px;
+	margin-bottom: 30px;
+	font-size: 20px;
+	line-height: 100px;
+	text-align: center;
+}
+
+#moviewrap_pick ::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#zzim {
+	color: red;
+	z-index: 10;
+	font-size: 35px;
+	position: relative;
+	float: right;
+	margin-top: 300px;
+	margin-right: -20px;
+	padding: 20px;
+}
+
+#zzimwrap_pick {
+	width: 1000px;
+	height: 400px;
+	padding-left: 20px;
+	margin-bottom: 100px;
+}
+
+#zzimwrap_pick>div {
+	float: left;
+	border: none;
+	width: 200px;
+	height: 300px;
+	margin-left: 30px;
+	margin-bottom: 30px;
+	font-size: 20px;
+	line-height: 100px;
+	text-align: center;
+}
+
+#zzimwrap_pick ::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#moviewrap_pick>div {
+	float: left;
+	/*border: 1px solid black;
+	width: 200px;
+	height: 300px;*/
+	margin-left: 30px;
+	margin-bottom: 30px;
+	font-size: 20px;
+	line-height: 100px;
+	text-align: center;
+}
+
+#moviewrap_pick ::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.myinfo_div {
+	margin-top: 50px;
+	margin-left: 265px;
+	width: 1000px;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+	word-wrap: break-word;
+	word-break: keep-all;
+	margin-bottom: 100px;
+}
+
+h3 {
+	font-size: 18px;
+	color: #2e2e2e;
+	font-weight: bold;
+	line-height: 18px;
+}
