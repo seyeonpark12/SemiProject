@@ -14,6 +14,8 @@
 각각 개별적인 기능만을 제공하는 기존 웹사이트들과 차별점을 두었습니다.
 ```
 
+### [왓픽PDF.pdf](https://github.com/seyeonpark12/SemiProject/files/11084948/pdf.pdf)
+### 
 
 ![alt 왓픽1](https://user-images.githubusercontent.com/126428632/228111491-6917b2e5-6f92-4125-8a44-1ca080064aec.jpg)
 
