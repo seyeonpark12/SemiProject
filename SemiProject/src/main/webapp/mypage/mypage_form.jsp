@@ -226,7 +226,7 @@ List<PickDto> mypicklist = pdao.getMyPickList(user_num, 0, 4);
 			<div class="pick" style="position: relative;">
 				<ul>
 					<li>
-						<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=pdto.getMovie_num()%>" class="godetail"> <img src="movie_save/<%=movie_poster%>" class="poster">
+						<a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=pdto.getMovie_num()%>&currentPage=1" class="godetail"> <img src="movie_save/<%=movie_poster%>" class="poster">
 						</a> <span class="glyphicon glyphicon-heart" id="zzim" movie_num="<%=pdto.getMovie_num()%>" user_num="<%=pdto.getUser_num()%>" style="position: absolute; z-index: 1; right: 0; cursor: pointer;"></span>
 						<h3 style="padding: 10px 20px; font-size: 18px; margin-left: 30px; margin-top: -55px; font-weight: 600;"><%=movie_subject%></h3>
 					</li>
@@ -287,7 +287,7 @@ List<PickDto> mypicklist = pdao.getMyPickList(user_num, 0, 4);
 				</td>
 
 				<td align="center" class="myinfo">
-					<span><a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=<%=rdto.getMovie_num()%>"><%=rdto.getReview_content()%></a></span>
+					<span><a href="index.jsp?main=review/review_moviedetail.jsp?movie_genre=all&sort=recent&movie_num=<%=rdto.getMovie_num()%>&currentPage=1"><%=rdto.getReview_content()%></a></span>
 				</td>
 
 				<td align="center" class="myinfo">

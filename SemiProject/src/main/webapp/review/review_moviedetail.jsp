@@ -477,7 +477,7 @@ $(function(){
       %>
       <div style="float: left; margin-top: -20px;">
          <button type="button" class="btn btn-default btn-sm" style="margin-left: 1050px; border: 1px solid #CBB6D9; color: #CBB6D9; float: left;" onclick="location.href='index.jsp?main=movie/movie_updateform.jsp?movie_num=<%=movie_num%>'">영화수정</button>
-         <button type="button" class="btn btn-default btn-sm" style="border: 1px solid #a02982; color: #a02982; float: left; margin-left: 5px;" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
+         <button type="button" class="btn btn-default btn-sm" style="border:1px solid red; color:red; float: left; margin-left: 5px;" id="movie_delete" movie_num="<%=movie_num%>">영화삭제</button>
       </div>
       <%
       }
@@ -514,7 +514,7 @@ $(function(){
       %>
       <div style="float: right; margin-top: -40px;">
          <!-- 목록가기 버튼.. -->
-         <button type="button" class="btn btn-default btn-sm" style="margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre %>&sort=<%=sort %>&currentPage=<%=currentPage%>'">목록</button>
+         <button type="button" class="btn btn-default btn-sm" style="margin-top:20px; margin-right: 300px; border: 1px solid #CBB6D9; color: #fff; background-color: #CBB6D9; float: right;" onclick="location.href='index.jsp?main=movie/movie_list.jsp?movie_genre=<%=movie_genre %>&sort=<%=sort %>&currentPage=<%=currentPage%>'">목록</button>
       </div>
       <br>
       <hr>
@@ -577,7 +577,7 @@ $(function(){
                   if (loginok != null && myid.equals("admin") || loginok != null && myid.equals(id)) {
                   %>
                   <td>
-                     <button type="button" class="btn btn-default btn-sm" review_num="<%=dto.getReview_num()%>" id="review_del" style="margin-left: 10px;">삭제</button>
+                     <button type="button" class="btn btn-default btn-sm" review_num="<%=dto.getReview_num()%>" id="review_del" style=" border:1px solid red; color:red; margin-left: 10px;">삭제</button>
                   </td>
                   <%
                   }

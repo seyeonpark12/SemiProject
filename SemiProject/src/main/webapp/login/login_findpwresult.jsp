@@ -47,7 +47,7 @@
       %>
       <div class="container" style="padding:100px; margin-top: 30px; text-align:center;">
          <div class="found-fail">
-            <h2 style="text-align:center;">이메일과 전화번호가 일치하지 않습니다</h2>
+            <h2 style="text-align:center;">아이디와 휴대번호가 일치하지 않습니다</h2>
          </div>
          <div class="found-login" style="padding:100px; margin:0 300px;">
             <input type="button" class="btn btn-default btn-sm"id="btnback" value="다시 찾기" onClick="history.back()" /> <input

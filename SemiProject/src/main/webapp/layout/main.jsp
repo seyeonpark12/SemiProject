@@ -38,11 +38,11 @@
 	<div class="bodywrap">
 		<div class="imgslide">
 			<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=64&movie_genre=all&sort=recent&currentPage=1">
-			<img alt="" src="layout_image/bn_2.png"></a>
+			<img alt="" src="layout_image/bn_2.jpg"></a>
 			 <a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=72&movie_genre=all&sort=recent&currentPage=1">
 			 <img alt="" src="layout_image/bn_3.png"></a>
 			<a href="index.jsp?main=review/review_moviedetail.jsp?movie_num=62&movie_genre=all&sort=recent&currentPage=1">
-			<img alt="" src="layout_image/bn1.jpg"></a> 
+			<img alt="" src="layout_image/bn_1.jpg"></a> 
 		
 		</div>
 

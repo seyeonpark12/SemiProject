@@ -301,7 +301,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 
          <div style="margin-left: 990px;">
             <button type="button" class="btn btn-default" style="color: #653491; border: 1px solid #653491;" onclick="location.href='index.jsp?main=movie/movie_addform.jsp'">등록</button>
-            <button type="button" class="btn btn-default" id="moviedel">삭제</button>
+            <button type="button" class="btn btn-default" id="moviedel" style="border:1px solid red; color:red;">삭제</button>
          </div>
       </div>
       <%
@@ -311,7 +311,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 
 
       <!-- 페이징 처리 -->
-      <div style="width: 500px; text-align: center; margin-right: 38%;" class="container">
+      <div style="width: 500px; text-align: center; margin-right: 32%;" class="container">
          <ul class="pagination">
             <%
             //이전
@@ -427,7 +427,7 @@ List<MovieDto> list_genre_rank = dao.getList_Genre_Rank_Avg(movie_genre, start, 
 
 
       <!-- 페이징 처리 -->
-      <div style="width: 500px; text-align: center; margin-right: 40%;" class="container">
+      <div style="width: 500px; text-align: center; margin-right: 32%;" class="container">
          <ul class="pagination">
             <%
             //이전

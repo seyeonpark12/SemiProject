@@ -62,6 +62,7 @@ input:focus {
 .dropdown:hover .dropdown-content {
 	display: block;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -223,7 +224,7 @@ input:focus {
 				if (myid.equals(writer_id)) {
 			%>
 
-			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
+			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border:1px solid red; color:red;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
 
 			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;" onclick="location.href='index.jsp?main=commu/commu_updateform.jsp?commu_num=<%=dto.getCommu_num()%>&currentPage=<%=currentPage%>'">수정</button>
 
@@ -234,7 +235,7 @@ input:focus {
 		%>
 
 		<div style="float: right;">
-			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px; border: 1px solid #CBB6D9; color: #CBB6D9;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
+			<button type="button" class="btn btn-default btn-sm" style="float: right; margin-right: 3px;border:1px solid red; color:red;" onclick="funcdel(<%=commu_num%>,<%=currentPage%>)">삭제</button>
 		</div>
 		<%
 		}

@@ -92,7 +92,7 @@ input:focus {
 			<table style="width: 1000px;">
 
 				<tr>
-					<td>
+					<td style="width:20%;">
 						<select style="width: 200px;" name="commu_category" class="form-control" required="required">
 							<option value="자유" selected="selected">자유</option>
 							<option value="동행">동행</option>
@@ -100,7 +100,7 @@ input:focus {
 						</select>
 					</td>
 
-					<td>
+					<td style="width:80%;">
 						<input type="text" name="commu_subject" class="form-control" style="width: 790px; margin-left: 8px;" required="required" value="<%=dto.getCommu_subject()%>">
 					</td>
 				</tr>

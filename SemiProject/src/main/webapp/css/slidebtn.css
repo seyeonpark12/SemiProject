@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+* {
+	font-family: "Noto Sans KR";
+}
+
 html, body {
 	box-sizing: border-box;
 	padding: 0;
