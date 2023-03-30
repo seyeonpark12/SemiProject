@@ -11,7 +11,7 @@ public class DbConnect {
 
 
 	static final String MYSQLDRIVER="com.mysql.cj.jdbc.Driver";
-	static final String MYSQL_URL="jdbc:mysql://popcorn.cuqgx5noh2if.ap-northeast-2.rds.amazonaws.com:3306/popcorn?serverTimezone=Asia/Seoul";
+	static final String MYSQL_URL="jdbc:mysql://localhost:3306/semi?serverTimezone=Asia/Seoul";
 
 	public DbConnect() {
 		
@@ -28,7 +28,7 @@ public class DbConnect {
 		Connection conn=null;
 
 		try {
-			conn=DriverManager.getConnection(MYSQL_URL, "adminpjs", "sist1226");
+			conn=DriverManager.getConnection(MYSQL_URL, "semi", "1234");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("MYSQL 연결 실패:"+e.getMessage());
